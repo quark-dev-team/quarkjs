@@ -2,8 +2,9 @@
 (function(){
 
 /**
- * DisplayObject类是可放在舞台上的所有显示对象的基类。DisplayObject类定义了若干显示对象的基本属性。
- * 渲染一个DisplayObject其实是进行若干变换后再渲染其drawable对象。
+ * Constructor.
+ * @name DisplayObject
+ * @class DisplayObject类是可放在舞台上的所有显示对象的基类。DisplayObject类定义了若干显示对象的基本属性。渲染一个DisplayObject其实是进行若干变换后再渲染其drawable对象。
  */	
 var DisplayObject = Quark.DisplayObject = function(props)
 {

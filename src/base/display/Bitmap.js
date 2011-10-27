@@ -2,7 +2,10 @@
 (function(){
 
 /**
- * Bitmap位图类，表示位图图像的显示对象，简单说它就是Image对象的某个区域的抽象表示。
+ * Constructor.
+ * @name Bitmap
+ * @augments DisplayObject
+ * @class Bitmap位图类，表示位图图像的显示对象，简单说它就是Image对象的某个区域的抽象表示。
  */
 var Bitmap = Quark.Bitmap = function(props)
 {	

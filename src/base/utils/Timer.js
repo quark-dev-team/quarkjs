@@ -2,7 +2,9 @@
 (function(){
 
 /**
- * Timer是一个计时器。它能按指定的时间序列运行代码。
+ * Constructor.
+ * @name Timer
+ * @class Timer是一个计时器。它能按指定的时间序列运行代码。
  * @param interval 计时器的时间间隔。以毫秒为单位。
  */
 var Timer = Quark.Timer = function(interval)

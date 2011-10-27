@@ -2,7 +2,9 @@
 (function(){
 
 /**
- * Quark框架中显示对象结构的上下文，实现显示对象结构的渲染。
+ * Constructor.
+ * @name Context
+ * @class Context是Quark框架中显示对象结构的上下文，实现显示对象结构的渲染。此类为抽象类。
  */
 var Context = Quark.Context = function(props)
 {	

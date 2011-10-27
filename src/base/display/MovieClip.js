@@ -2,9 +2,10 @@
 (function(){
 
 /**
- * MovieClip影片剪辑类，表示一组动画片段。
- * MovieClip是由Image对象的若干矩形区域组成的集合序列，并按照一定规则顺序播放。
- * 帧frame的定义格式为：{rect:*required*, label:"", interval:0, stop:0, jump:-1}
+ * Constructor.
+ * @name MovieClip
+ * @augments Bitmap
+ * @class MovieClip影片剪辑类，表示一组动画片段。MovieClip是由Image对象的若干矩形区域组成的集合序列，并按照一定规则顺序播放。帧frame的定义格式为：{rect:*required*, label:"", interval:0, stop:0, jump:-1}。
  */
 var MovieClip = Quark.MovieClip = function(props)
 {	

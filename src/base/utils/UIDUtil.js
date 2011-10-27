@@ -3,6 +3,7 @@
 
 /**
  * UIDUtil用来生成一个全局唯一的ID。
+ * @private
  */
 var UIDUtil = Quark.UIDUtil = { _counter:0 };
 

@@ -2,9 +2,9 @@
 (function(){
 
 /**
- * Drawable是可绘制图像或DOM的包装。
- * 当封装的是HTMLImageElement、HTMLCanvasElement或HTMLVideoElement对象时，
- * 可同时支持canvas和dom两种渲染方式，而如果封装的是dom时，则不支持canvas方式。
+ * Constructor.
+ * @name Drawable
+ * @class Drawable是可绘制图像或DOM的包装。当封装的是HTMLImageElement、HTMLCanvasElement或HTMLVideoElement对象时，可同时支持canvas和dom两种渲染方式，而如果封装的是dom时，则不支持canvas方式。
  */
 var Drawable = Quark.Drawable = function(drawable, isDOM)
 {	

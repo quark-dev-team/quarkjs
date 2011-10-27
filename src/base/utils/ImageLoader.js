@@ -2,9 +2,11 @@
 (function(){
 
 /**
- * ImageLoader类是一个图片加载器，用于动态加载图片资源。
- * @param source 要加载的图片资源，可以是一个单独资源或多个资源的数组。
- * 图片资源格式为：{src:$url, id:$id, size:$size}。
+ * Constructor.
+ * @name ImageLoader
+ * @augments EventDispatcher
+ * @class ImageLoader类是一个图片加载器，用于动态加载图片资源。
+ * @param source 要加载的图片资源，可以是一个单独资源或多个资源的数组。图片资源格式为：{src:$url, id:$id, size:$size}。
  */
 var ImageLoader = Quark.ImageLoader = function(source)
 {

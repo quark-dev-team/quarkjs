@@ -2,7 +2,10 @@
 (function(){
 
 /**
- * CanvasContext是Canvas渲染上下文，将显示对象渲染到指定的Canvas上。
+ * Constructor.
+ * @name CanvasContext
+ * @augments Context
+ * @class CanvasContext是Canvas渲染上下文，将显示对象渲染到指定的Canvas上。
  */
 var CanvasContext = Quark.CanvasContext = function(props)
 {

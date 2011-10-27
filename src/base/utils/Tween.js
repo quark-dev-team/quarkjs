@@ -2,7 +2,9 @@
 (function(){
 
 /**
- * Tween类是一个缓动动画类。使用它能实现移动、改变大小、淡入淡出等效果。
+ * Constructor.
+ * @name Tween
+ * @class Tween类是一个缓动动画类。使用它能实现移动、改变大小、淡入淡出等效果。
  * @param target 实现缓动动画的目标对象。
  * @param newProps 设置目标对象的新的属性。
  * @param params 设置缓动动画类的参数。

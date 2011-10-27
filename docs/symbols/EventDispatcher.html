@@ -1,0 +1,645 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<meta name="generator" content="JsDoc Toolkit" />
+		
+		<title>QuarkJS Reference - EventDispatcher</title>
+
+		<style type="text/css">
+			/* default.css */
+body
+{
+	font: 12px Tahoma, Arial, sans-serif;
+	margin: 0;
+	padding: 0;
+}
+
+#header
+{
+	clear: both;
+	background: -moz-linear-gradient(top, #2969ad, #184073);
+	background: -webkit-gradient(linear, 0 0, 0 bottom, from(#2969ad), to(#184073));
+	background: -o-linear-gradient(top, #2969ad, #184073);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#2969ad, endColorstr=#184073);
+	height: 70px;
+	margin-bottom: 20px;
+}
+
+#header a
+{
+	color: #222;
+	display: block;
+	text-decoration: none;
+	height: 18px;
+}
+
+a
+{
+	color: #222;
+}
+
+a:hover
+{
+	color: #999;
+	text-decoration:none;
+}
+
+h1
+{
+	font-size: 150%;
+	font-weight: bold;
+	padding: 0;
+}
+
+hr
+{
+	border: none 0;
+	border-top: 1px solid #1c4b88;
+	height: 1px;
+}
+
+pre.code
+{
+	display: block;
+	padding: 8px;
+	border: 1px dashed #ccc;
+}
+
+#index
+{
+	float: left;
+	width: 200px;
+	position: absolute;
+	left: 10px;
+	background-color: #F3F3F3;
+	padding: 0px;
+}
+
+#content
+{
+	margin: 0 8px 0 240px;
+}
+
+.classList
+{
+	list-style-type: none;
+	padding: 0;
+	margin: 0 0 0 8px;
+	font-family: arial, sans-serif;
+	font-size: 1em;
+	overflow: auto;
+}
+
+.classList li
+{
+	padding: 0;
+	margin: 0 0 8px 0;
+}
+
+.summaryTable { width: 100%; }
+
+h1.classTitle
+{
+	font-size:170%;
+	line-height:130%;
+}
+
+h2 { font-size: 110%; }
+caption, div.sectionTitle
+{
+	background-color: #1c4b88;
+	color: #fff;
+	font-size:130%;
+	text-align: left;
+	padding: 2px 6px 2px 6px;
+	border: 1px #1c4b88 solid;
+}
+
+div.sectionTitle { margin-bottom: 8px; }
+.summaryTable thead { display: none; }
+
+.summaryTable td
+{
+	vertical-align: top;
+	padding: 4px;
+	border-bottom: 1px #1c4b88 solid;
+	border-right: 1px #1c4b88 solid;
+}
+
+/*col#summaryAttributes {}*/
+.summaryTable td.attributes
+{
+	border-left: 1px #1c4b88 solid;
+	width: 140px;
+	text-align: right;
+}
+
+td.attributes, .fixedFont
+{
+	line-height: 15px;
+	color: #1c4b88;
+	font-family: "Courier New",Courier,monospace;
+	font-size: 13px;
+}
+
+.summaryTable td.nameDescription
+{
+	text-align: left;
+	font-size: 13px;
+	line-height: 15px;
+}
+
+.summaryTable td.nameDescription, .description
+{
+	line-height: 15px;
+	padding: 4px;
+	padding-left: 4px;
+}
+
+.summaryTable { margin-bottom: 8px; }
+
+ul.inheritsList
+{
+	list-style: square;
+	margin-left: 20px;
+	padding-left: 0;
+}
+
+.detailList {
+	margin-left: 20px; 
+	line-height: 15px;
+}
+.detailList dt { margin-left: 20px; }
+
+.detailList .heading
+{
+	font-weight: bold;
+	padding-bottom: 6px;
+	margin-left: 0;
+}
+
+.light, td.attributes, .light a:link, .light a:visited
+{
+	color: #777;
+	font-style: italic;
+}
+
+.fineprint
+{
+	margin-top: 20px;
+	margin-bottom: 5px;
+	text-align: center;
+	font-size: 10px;
+}
+		</style>
+	</head>
+
+	<body>
+<!-- ============================== header ================================= -->	
+		<!-- begin static/header.html -->
+		<div id="header">
+	<h1 style="font-size:20px;color:#fff;margin:0;padding:12px 0 0 12px;">QuarkJS - A HTML5 Game Framework</h1>
+	<div id="menu" style="margin:10px 0 0 12px;">
+		<li style="padding-top:4px;background:#fff;width:120px;height:20px;display:block;font-weight:bold;text-align:center;"><a href="../index.html" style="color:#222;display:block;text-decoration:none;height:18px;">Documentation</a></li>
+	</div>
+</div>
+		<!-- end static/header.html -->
+
+<!-- ============================== classes index ============================ -->
+		<div id="index">
+			<!-- begin publish.classesIndex -->
+			<div align="center" style="height:24px;padding-top:6px;background:#1c4b88;color:#fff;font-size:14px;font-weight:bold;text-align:center;">Class List</div>
+<ul class="classList">
+	
+	<li></li>
+	
+	<li><a href="../symbols/Audio.html">Audio</a></li>
+	
+	<li><a href="../symbols/Bitmap.html">Bitmap</a></li>
+	
+	<li><a href="../symbols/CanvasContext.html">CanvasContext</a></li>
+	
+	<li><a href="../symbols/Context.html">Context</a></li>
+	
+	<li><a href="../symbols/DisplayObject.html">DisplayObject</a></li>
+	
+	<li><a href="../symbols/DisplayObjectContainer.html">DisplayObjectContainer</a></li>
+	
+	<li><a href="../symbols/DOMContext.html">DOMContext</a></li>
+	
+	<li><a href="../symbols/Drawable.html">Drawable</a></li>
+	
+	<li><a href="../symbols/EventDispatcher.html">EventDispatcher</a></li>
+	
+	<li><a href="../symbols/EventManager.html">EventManager</a></li>
+	
+	<li><a href="../symbols/ImageLoader.html">ImageLoader</a></li>
+	
+	<li><a href="../symbols/MovieClip.html">MovieClip</a></li>
+	
+	<li><a href="../symbols/Quark.html">Quark</a></li>
+	
+	<li><a href="../symbols/Stage.html">Stage</a></li>
+	
+	<li><a href="../symbols/Timer.html">Timer</a></li>
+	
+	<li><a href="../symbols/Tween.html">Tween</a></li>
+	
+</ul>
+			<!-- end publish.classesIndex -->
+		</div>
+		
+		<div id="content">
+<!-- ============================== class title ============================ -->
+			<h1 class="classTitle">
+				
+				Class EventDispatcher
+			</h1>
+
+<!-- ============================== class summary ========================== -->			
+			<p class="description">
+				
+				
+			
+				EventDispatcher类是可调度事件的类的基类，它允许显示列表上的任何对象都是一个事件目标。
+				
+			</p>
+
+<!-- ============================== constructor summary ==================== -->			
+			
+			<table class="summaryTable" cellspacing="0" summary="A summary of the constructor documented in the class EventDispatcher.">
+				<caption>Class Summary</caption>
+				<thead>
+					<tr>
+						<th scope="col">Constructor Attributes</th>
+						<th scope="col">Constructor Name and Description</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td class="attributes">&nbsp;</td>
+						<td class="nameDescription" >
+							<div class="fixedFont">
+								<b><a href="../symbols/EventDispatcher.html#constructor">EventDispatcher</a></b>()
+							</div>
+							<div class="description">Constructor.</div>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			
+
+<!-- ============================== properties summary ===================== -->
+			
+
+<!-- ============================== methods summary ======================== -->
+			
+				
+				
+				<table class="summaryTable" cellspacing="0" summary="A summary of the methods documented in the class EventDispatcher.">
+					<caption>Method Summary</caption>
+					<thead>
+						<tr>
+							<th scope="col">Method Attributes</th>
+							<th scope="col">Method Name and Description</th>
+						</tr>
+					</thead>
+					<tbody>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/EventDispatcher.html#addEventListener">addEventListener</a></b>(type, listener)
+								</div>
+								<div class="description">注册事件侦听器对象，以使侦听器能够接收事件通知。</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/EventDispatcher.html#dispatchEvent">dispatchEvent</a></b>(event)
+								</div>
+								<div class="description">派发事件，调用事件侦听器。</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/EventDispatcher.html#hasEventListener">hasEventListener</a></b>(type)
+								</div>
+								<div class="description">检查是否为指定事件类型注册了任何侦听器。</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/EventDispatcher.html#removeAllEventListeners">removeAllEventListeners</a></b>()
+								</div>
+								<div class="description">删除所有事件侦听器。</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/EventDispatcher.html#removeEventListener">removeEventListener</a></b>(type, listener)
+								</div>
+								<div class="description">删除事件侦听器。</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/EventDispatcher.html#removeEventListenerByType">removeEventListenerByType</a></b>(type)
+								</div>
+								<div class="description">删除指定类型的所有事件侦听器。</div>
+							</td>
+						</tr>
+					
+					</tbody>
+				</table>
+				
+				
+				
+			
+<!-- ============================== events summary ======================== -->
+			
+
+<!-- ============================== constructor details ==================== -->		
+			
+			<div class="details"><a name="constructor"> </a>
+				<div class="sectionTitle">
+					Class Detail
+				</div>
+				
+				<div class="fixedFont">
+						<b>EventDispatcher</b>()
+				</div>
+				
+				<div class="description">
+					Constructor.
+					
+				</div>
+				
+				
+				
+				
+					
+					
+					
+					
+					
+					
+					
+
+			</div>
+			
+
+<!-- ============================== field details ========================== -->		
+			
+
+<!-- ============================== method details ========================= -->		
+			
+				<div class="sectionTitle">
+					Method Detail
+				</div>
+				
+					<a name="addEventListener"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>addEventListener</b>(type, listener)
+					
+					</div>
+					<div class="description">
+						注册事件侦听器对象，以使侦听器能够接收事件通知。
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<b>type</b>
+									
+								</dt>
+								<dd></dd>
+							
+								<dt>
+									<b>listener</b>
+									
+								</dt>
+								<dd></dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="dispatchEvent"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>dispatchEvent</b>(event)
+					
+					</div>
+					<div class="description">
+						派发事件，调用事件侦听器。
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<b>event</b>
+									
+								</dt>
+								<dd></dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="hasEventListener"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>hasEventListener</b>(type)
+					
+					</div>
+					<div class="description">
+						检查是否为指定事件类型注册了任何侦听器。
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<b>type</b>
+									
+								</dt>
+								<dd></dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="removeAllEventListeners"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>removeAllEventListeners</b>()
+					
+					</div>
+					<div class="description">
+						删除所有事件侦听器。
+						
+						
+					</div>
+					
+					
+					
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="removeEventListener"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>removeEventListener</b>(type, listener)
+					
+					</div>
+					<div class="description">
+						删除事件侦听器。
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<b>type</b>
+									
+								</dt>
+								<dd></dd>
+							
+								<dt>
+									<b>listener</b>
+									
+								</dt>
+								<dd></dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="removeEventListenerByType"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>removeEventListenerByType</b>(type)
+					
+					</div>
+					<div class="description">
+						删除指定类型的所有事件侦听器。
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<b>type</b>
+									
+								</dt>
+								<dd></dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+						
+						
+
+					
+				
+			
+			
+<!-- ============================== event details ========================= -->		
+			
+			
+			<hr />
+		</div>
+
+		
+<!-- ============================== footer ================================= -->
+		<div class="fineprint" style="clear:both">
+			
+			Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Thu Oct 27 2011 16:10:54 GMT+0800 (CST)
+		</div>
+	</body>
+</html>

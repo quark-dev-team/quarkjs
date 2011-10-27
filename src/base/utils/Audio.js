@@ -2,7 +2,9 @@
 (function(){
 
 /**
- * Audio类是原生Audio的封装。
+ * Constructor.
+ * @name Audio
+ * @class Audio类是原生Audio的封装。
  * @param src 要加载的声音的地址。
  * @param preload 指示是否自动加载，在某些浏览器下无效，如IOS上的Safari。
  * @param autoPlay 指示是否自动播放，在某些浏览器下无效，如IOS上的Safari。

@@ -2,8 +2,10 @@
 (function(){
 
 /**
- * DisplayObjectContainer类继承自DisplayObject，是显示列表中显示对象容器的基类。
- * 每个DisplayObjectContainer对象都有自己的子级列表children，用于组织对象的Z轴顺序。
+ * Constructor.
+ * @name DisplayObjectContainer
+ * @augments DisplayObject
+ * @class DisplayObjectContainer类继承自DisplayObject，是显示列表中显示对象容器的基类。每个DisplayObjectContainer对象都有自己的子级列表children，用于组织对象的Z轴顺序。
  */
 var DisplayObjectContainer = Quark.DisplayObjectContainer = function(props)
 {

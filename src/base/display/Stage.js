@@ -2,8 +2,10 @@
 (function(){
 
 /**
- * 舞台是显示对象的根，所有显示对象都会被添加到舞台上，必须传入一个context使得舞台能被渲染。
- * 舞台是一种特殊显示对象容器，可以容纳子显示对象。
+ * Constructor.
+ * @name Stage
+ * @augments DisplayObjectContainer
+ * @class 舞台是显示对象的根，所有显示对象都会被添加到舞台上，必须传入一个context使得舞台能被渲染。舞台是一种特殊显示对象容器，可以容纳子显示对象。
  */
 var Stage = Quark.Stage = function(props)
 {

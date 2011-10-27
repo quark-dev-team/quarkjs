@@ -1,0 +1,943 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<meta name="generator" content="JsDoc Toolkit" />
+		
+		<title>QuarkJS Reference - DisplayObjectContainer</title>
+
+		<style type="text/css">
+			/* default.css */
+body
+{
+	font: 12px Tahoma, Arial, sans-serif;
+	margin: 0;
+	padding: 0;
+}
+
+#header
+{
+	clear: both;
+	background: -moz-linear-gradient(top, #2969ad, #184073);
+	background: -webkit-gradient(linear, 0 0, 0 bottom, from(#2969ad), to(#184073));
+	background: -o-linear-gradient(top, #2969ad, #184073);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#2969ad, endColorstr=#184073);
+	height: 70px;
+	margin-bottom: 20px;
+}
+
+#header a
+{
+	color: #222;
+	display: block;
+	text-decoration: none;
+	height: 18px;
+}
+
+a
+{
+	color: #222;
+}
+
+a:hover
+{
+	color: #999;
+	text-decoration:none;
+}
+
+h1
+{
+	font-size: 150%;
+	font-weight: bold;
+	padding: 0;
+}
+
+hr
+{
+	border: none 0;
+	border-top: 1px solid #1c4b88;
+	height: 1px;
+}
+
+pre.code
+{
+	display: block;
+	padding: 8px;
+	border: 1px dashed #ccc;
+}
+
+#index
+{
+	float: left;
+	width: 200px;
+	position: absolute;
+	left: 10px;
+	background-color: #F3F3F3;
+	padding: 0px;
+}
+
+#content
+{
+	margin: 0 8px 0 240px;
+}
+
+.classList
+{
+	list-style-type: none;
+	padding: 0;
+	margin: 0 0 0 8px;
+	font-family: arial, sans-serif;
+	font-size: 1em;
+	overflow: auto;
+}
+
+.classList li
+{
+	padding: 0;
+	margin: 0 0 8px 0;
+}
+
+.summaryTable { width: 100%; }
+
+h1.classTitle
+{
+	font-size:170%;
+	line-height:130%;
+}
+
+h2 { font-size: 110%; }
+caption, div.sectionTitle
+{
+	background-color: #1c4b88;
+	color: #fff;
+	font-size:130%;
+	text-align: left;
+	padding: 2px 6px 2px 6px;
+	border: 1px #1c4b88 solid;
+}
+
+div.sectionTitle { margin-bottom: 8px; }
+.summaryTable thead { display: none; }
+
+.summaryTable td
+{
+	vertical-align: top;
+	padding: 4px;
+	border-bottom: 1px #1c4b88 solid;
+	border-right: 1px #1c4b88 solid;
+}
+
+/*col#summaryAttributes {}*/
+.summaryTable td.attributes
+{
+	border-left: 1px #1c4b88 solid;
+	width: 140px;
+	text-align: right;
+}
+
+td.attributes, .fixedFont
+{
+	line-height: 15px;
+	color: #1c4b88;
+	font-family: "Courier New",Courier,monospace;
+	font-size: 13px;
+}
+
+.summaryTable td.nameDescription
+{
+	text-align: left;
+	font-size: 13px;
+	line-height: 15px;
+}
+
+.summaryTable td.nameDescription, .description
+{
+	line-height: 15px;
+	padding: 4px;
+	padding-left: 4px;
+}
+
+.summaryTable { margin-bottom: 8px; }
+
+ul.inheritsList
+{
+	list-style: square;
+	margin-left: 20px;
+	padding-left: 0;
+}
+
+.detailList {
+	margin-left: 20px; 
+	line-height: 15px;
+}
+.detailList dt { margin-left: 20px; }
+
+.detailList .heading
+{
+	font-weight: bold;
+	padding-bottom: 6px;
+	margin-left: 0;
+}
+
+.light, td.attributes, .light a:link, .light a:visited
+{
+	color: #777;
+	font-style: italic;
+}
+
+.fineprint
+{
+	margin-top: 20px;
+	margin-bottom: 5px;
+	text-align: center;
+	font-size: 10px;
+}
+		</style>
+	</head>
+
+	<body>
+<!-- ============================== header ================================= -->	
+		<!-- begin static/header.html -->
+		<div id="header">
+	<h1 style="font-size:20px;color:#fff;margin:0;padding:12px 0 0 12px;">QuarkJS - A HTML5 Game Framework</h1>
+	<div id="menu" style="margin:10px 0 0 12px;">
+		<li style="padding-top:4px;background:#fff;width:120px;height:20px;display:block;font-weight:bold;text-align:center;"><a href="../index.html" style="color:#222;display:block;text-decoration:none;height:18px;">Documentation</a></li>
+	</div>
+</div>
+		<!-- end static/header.html -->
+
+<!-- ============================== classes index ============================ -->
+		<div id="index">
+			<!-- begin publish.classesIndex -->
+			<div align="center" style="height:24px;padding-top:6px;background:#1c4b88;color:#fff;font-size:14px;font-weight:bold;text-align:center;">Class List</div>
+<ul class="classList">
+	
+	<li></li>
+	
+	<li><a href="../symbols/Audio.html">Audio</a></li>
+	
+	<li><a href="../symbols/Bitmap.html">Bitmap</a></li>
+	
+	<li><a href="../symbols/CanvasContext.html">CanvasContext</a></li>
+	
+	<li><a href="../symbols/Context.html">Context</a></li>
+	
+	<li><a href="../symbols/DisplayObject.html">DisplayObject</a></li>
+	
+	<li><a href="../symbols/DisplayObjectContainer.html">DisplayObjectContainer</a></li>
+	
+	<li><a href="../symbols/DOMContext.html">DOMContext</a></li>
+	
+	<li><a href="../symbols/Drawable.html">Drawable</a></li>
+	
+	<li><a href="../symbols/EventDispatcher.html">EventDispatcher</a></li>
+	
+	<li><a href="../symbols/EventManager.html">EventManager</a></li>
+	
+	<li><a href="../symbols/ImageLoader.html">ImageLoader</a></li>
+	
+	<li><a href="../symbols/MovieClip.html">MovieClip</a></li>
+	
+	<li><a href="../symbols/Quark.html">Quark</a></li>
+	
+	<li><a href="../symbols/Stage.html">Stage</a></li>
+	
+	<li><a href="../symbols/Timer.html">Timer</a></li>
+	
+	<li><a href="../symbols/Tween.html">Tween</a></li>
+	
+</ul>
+			<!-- end publish.classesIndex -->
+		</div>
+		
+		<div id="content">
+<!-- ============================== class title ============================ -->
+			<h1 class="classTitle">
+				
+				Class DisplayObjectContainer
+			</h1>
+
+<!-- ============================== class summary ========================== -->			
+			<p class="description">
+				
+				Extends
+					<a href="../symbols/DisplayObject.html">DisplayObject</a>.<br />
+				
+			
+				DisplayObjectContainer类继承自DisplayObject，是显示列表中显示对象容器的基类。每个DisplayObjectContainer对象都有自己的子级列表children，用于组织对象的Z轴顺序。
+				
+			</p>
+
+<!-- ============================== constructor summary ==================== -->			
+			
+			<table class="summaryTable" cellspacing="0" summary="A summary of the constructor documented in the class DisplayObjectContainer.">
+				<caption>Class Summary</caption>
+				<thead>
+					<tr>
+						<th scope="col">Constructor Attributes</th>
+						<th scope="col">Constructor Name and Description</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td class="attributes">&nbsp;</td>
+						<td class="nameDescription" >
+							<div class="fixedFont">
+								<b><a href="../symbols/DisplayObjectContainer.html#constructor">DisplayObjectContainer</a></b>()
+							</div>
+							<div class="description">Constructor.</div>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			
+
+<!-- ============================== properties summary ===================== -->
+			
+				
+				
+				
+				
+				<dl class="inheritsList">
+				<dt>Fields borrowed from class <a href="../symbols/DisplayObject.html">DisplayObject</a>: </dt><dd><a href="../symbols/DisplayObject.html#onEvent">onEvent</a></dd>
+				</dl>
+				
+			
+
+<!-- ============================== methods summary ======================== -->
+			
+				
+				
+				<table class="summaryTable" cellspacing="0" summary="A summary of the methods documented in the class DisplayObjectContainer.">
+					<caption>Method Summary</caption>
+					<thead>
+						<tr>
+							<th scope="col">Method Attributes</th>
+							<th scope="col">Method Name and Description</th>
+						</tr>
+					</thead>
+					<tbody>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/DisplayObjectContainer.html#addChild">addChild</a></b>(child)
+								</div>
+								<div class="description">将一个DisplayObject子实例添加到该DisplayObjectContainer实例的子级列表中。</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/DisplayObjectContainer.html#addChildAt">addChildAt</a></b>(child, index)
+								</div>
+								<div class="description">将一个DisplayObject子实例添加到该DisplayObjectContainer实例的子级列表中的指定位置。</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/DisplayObjectContainer.html#contains">contains</a></b>(child)
+								</div>
+								<div class="description">确定指定对象是否为DisplayObjectContainer的子显示对象。</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/DisplayObjectContainer.html#getChildAt">getChildAt</a></b>(index)
+								</div>
+								<div class="description">返回DisplayObjectContainer的位于指定索引处的子显示对象。</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/DisplayObjectContainer.html#getChildIndex">getChildIndex</a></b>(child)
+								</div>
+								<div class="description">返回指定对象在DisplayObjectContainer的子级列表中的索引位置。</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/DisplayObjectContainer.html#getNumChildren">getNumChildren</a></b>()
+								</div>
+								<div class="description">返回DisplayObjectContainer的子显示对象数目。</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/DisplayObjectContainer.html#getObjectUnderPoint">getObjectUnderPoint</a></b>(x, y, usePixelCollision, threshold, returnAll)
+								</div>
+								<div class="description">返回x和y指定点下的DisplayObjectContainer的子项（或孙子项，依此类推）的数组集合。默认只返回最先加入的子显示对象。</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/DisplayObjectContainer.html#removeAllChildren">removeAllChildren</a></b>()
+								</div>
+								<div class="description">删除DisplayObjectContainer的所有子对象。</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/DisplayObjectContainer.html#removeChild">removeChild</a></b>(child)
+								</div>
+								<div class="description">从DisplayObjectContainer的子级列表中删除指定子对象。</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/DisplayObjectContainer.html#removeChildAt">removeChildAt</a></b>(index)
+								</div>
+								<div class="description">从DisplayObjectContainer的子级列表中指定索引处删除子对象。</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/DisplayObjectContainer.html#render">render</a></b>(context)
+								</div>
+								<div class="description">渲染DisplayObjectContainer本身及其所有子显示对象。</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/DisplayObjectContainer.html#setChildIndex">setChildIndex</a></b>(child, index)
+								</div>
+								<div class="description">设置指定对象在DisplayObjectContainer的子级列表中的索引位置。</div>
+							</td>
+						</tr>
+					
+					</tbody>
+				</table>
+				
+				
+				
+				<dl class="inheritsList">
+				<dt>Methods borrowed from class <a href="../symbols/DisplayObject.html">DisplayObject</a>: </dt><dd><a href="../symbols/DisplayObject.html#getBounds">getBounds</a>, <a href="../symbols/DisplayObject.html#getCurrentHeight">getCurrentHeight</a>, <a href="../symbols/DisplayObject.html#getCurrentWidth">getCurrentWidth</a>, <a href="../symbols/DisplayObject.html#getDrawable">getDrawable</a>, <a href="../symbols/DisplayObject.html#getStage">getStage</a>, <a href="../symbols/DisplayObject.html#getState">getState</a>, <a href="../symbols/DisplayObject.html#globalToLocal">globalToLocal</a>, <a href="../symbols/DisplayObject.html#hitTestObject">hitTestObject</a>, <a href="../symbols/DisplayObject.html#hitTestPoint">hitTestPoint</a>, <a href="../symbols/DisplayObject.html#localToGlobal">localToGlobal</a>, <a href="../symbols/DisplayObject.html#localToTarget">localToTarget</a>, <a href="../symbols/DisplayObject.html#propChanged">propChanged</a>, <a href="../symbols/DisplayObject.html#saveState">saveState</a>, <a href="../symbols/DisplayObject.html#setDrawable">setDrawable</a>, <a href="../symbols/DisplayObject.html#toString">toString</a>, <a href="../symbols/DisplayObject.html#update">update</a></dd>
+				</dl>
+				
+			
+<!-- ============================== events summary ======================== -->
+			
+
+<!-- ============================== constructor details ==================== -->		
+			
+			<div class="details"><a name="constructor"> </a>
+				<div class="sectionTitle">
+					Class Detail
+				</div>
+				
+				<div class="fixedFont">
+						<b>DisplayObjectContainer</b>()
+				</div>
+				
+				<div class="description">
+					Constructor.
+					
+				</div>
+				
+				
+				
+				
+					
+					
+					
+					
+					
+					
+					
+
+			</div>
+			
+
+<!-- ============================== field details ========================== -->		
+			
+
+<!-- ============================== method details ========================= -->		
+			
+				<div class="sectionTitle">
+					Method Detail
+				</div>
+				
+					<a name="addChild"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>addChild</b>(child)
+					
+					</div>
+					<div class="description">
+						将一个DisplayObject子实例添加到该DisplayObjectContainer实例的子级列表中。
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<b>child</b>
+									
+								</dt>
+								<dd></dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="addChildAt"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>addChildAt</b>(child, index)
+					
+					</div>
+					<div class="description">
+						将一个DisplayObject子实例添加到该DisplayObjectContainer实例的子级列表中的指定位置。
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<b>child</b>
+									
+								</dt>
+								<dd></dd>
+							
+								<dt>
+									<b>index</b>
+									
+								</dt>
+								<dd></dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="contains"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>contains</b>(child)
+					
+					</div>
+					<div class="description">
+						确定指定对象是否为DisplayObjectContainer的子显示对象。
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<b>child</b>
+									
+								</dt>
+								<dd></dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="getChildAt"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>getChildAt</b>(index)
+					
+					</div>
+					<div class="description">
+						返回DisplayObjectContainer的位于指定索引处的子显示对象。
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<b>index</b>
+									
+								</dt>
+								<dd></dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="getChildIndex"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>getChildIndex</b>(child)
+					
+					</div>
+					<div class="description">
+						返回指定对象在DisplayObjectContainer的子级列表中的索引位置。
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<b>child</b>
+									
+								</dt>
+								<dd></dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="getNumChildren"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>getNumChildren</b>()
+					
+					</div>
+					<div class="description">
+						返回DisplayObjectContainer的子显示对象数目。
+						
+						
+					</div>
+					
+					
+					
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="getObjectUnderPoint"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>getObjectUnderPoint</b>(x, y, usePixelCollision, threshold, returnAll)
+					
+					</div>
+					<div class="description">
+						返回x和y指定点下的DisplayObjectContainer的子项（或孙子项，依此类推）的数组集合。默认只返回最先加入的子显示对象。
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<b>x</b>
+									
+								</dt>
+								<dd></dd>
+							
+								<dt>
+									<b>y</b>
+									
+								</dt>
+								<dd></dd>
+							
+								<dt>
+									<b>usePixelCollision</b>
+									
+								</dt>
+								<dd></dd>
+							
+								<dt>
+									<b>threshold</b>
+									
+								</dt>
+								<dd></dd>
+							
+								<dt>
+									<b>returnAll</b>
+									
+								</dt>
+								<dd></dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="removeAllChildren"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>removeAllChildren</b>()
+					
+					</div>
+					<div class="description">
+						删除DisplayObjectContainer的所有子对象。
+						
+						
+					</div>
+					
+					
+					
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="removeChild"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>removeChild</b>(child)
+					
+					</div>
+					<div class="description">
+						从DisplayObjectContainer的子级列表中删除指定子对象。
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<b>child</b>
+									
+								</dt>
+								<dd></dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="removeChildAt"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>removeChildAt</b>(index)
+					
+					</div>
+					<div class="description">
+						从DisplayObjectContainer的子级列表中指定索引处删除子对象。
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<b>index</b>
+									
+								</dt>
+								<dd></dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="render"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>render</b>(context)
+					
+					</div>
+					<div class="description">
+						渲染DisplayObjectContainer本身及其所有子显示对象。
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<b>context</b>
+									
+								</dt>
+								<dd></dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="setChildIndex"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>setChildIndex</b>(child, index)
+					
+					</div>
+					<div class="description">
+						设置指定对象在DisplayObjectContainer的子级列表中的索引位置。
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<b>child</b>
+									
+								</dt>
+								<dd></dd>
+							
+								<dt>
+									<b>index</b>
+									
+								</dt>
+								<dd></dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+						
+						
+
+					
+				
+			
+			
+<!-- ============================== event details ========================= -->		
+			
+			
+			<hr />
+		</div>
+
+		
+<!-- ============================== footer ================================= -->
+		<div class="fineprint" style="clear:both">
+			
+			Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Thu Oct 27 2011 16:10:54 GMT+0800 (CST)
+		</div>
+	</body>
+</html>

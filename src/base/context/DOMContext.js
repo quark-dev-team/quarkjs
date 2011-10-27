@@ -26,7 +26,10 @@ Quark.supportTransform3D = supportTransform3D;
 if(!supportTransform) throw "Error: DOMContext requires css transfrom support.";
 
 /**
- * DOMContext是DOM渲染上下文，将显示对象以dom方式渲染到舞台上。
+ * Constructor.
+ * @name DOMContext
+ * @augments Context
+ * @class DOMContext是DOM渲染上下文，将显示对象以dom方式渲染到舞台上。
  */
 var DOMContext = Quark.DOMContext = function(props)
 {

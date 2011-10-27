@@ -2,7 +2,9 @@
 (function(){
 
 /**
- * EventManager是一个简单的系统事件管理器。
+ * Constructor.
+ * @name EventManager
+ * @class EventManager是一个简单的系统事件管理器。
  */
 var EventManager = Quark.EventManager = function()
 {

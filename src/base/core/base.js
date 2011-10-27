@@ -1,6 +1,10 @@
 
 (function(win){
 
+/**
+ * @name Quark
+ * @class QuarkJS框架的全局对象，也是框架内部所有类的命名空间。
+ */
 var Quark = win.Quark = win.Quark || 
 {
 	version: "1.0.0",
