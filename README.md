@@ -8,6 +8,7 @@ QuarkJS is a HTML5 game framework. It includes two parts:
 
 Wiki
 -----------------
+* [Infrastructure](http://github.com/quark-dev-team/quarkjs/wiki/Quark-Infrastructure)
 
 API Docs
 -----------------
