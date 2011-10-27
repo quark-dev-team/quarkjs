@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="user-scalable=no, width=device-width, height=device-height, initial-scale=1.0, minimum-scale=1, maximum-scale=1" />
+<title>Quark Framework Example - simple</title>
+
+<style type="text/css">
+body{margin:0;padding:0;font-size:12px;background-color:#eee;}
+</style>
+
+<script type="text/javascript" src="../src/base/core/base.js"></script>
+<script type="text/javascript" src="../src/base/event/EventDispatcher.js"></script>
+<script type="text/javascript" src="../src/base/event/EventManager.js"></script>
+<script type="text/javascript" src="../src/base/event/EventConst.js"></script>
+<script type="text/javascript" src="../src/base/utils/Utils.js"></script>
+<script type="text/javascript" src="../src/base/utils/UIDUtil.js"></script>
+<script type="text/javascript" src="../src/base/utils/Timer.js"></script>
+<script type="text/javascript" src="../src/base/utils/Tween.js"></script>
+<script type="text/javascript" src="../src/base/utils/Audio.js"></script>
+<script type="text/javascript" src="../src/base/utils/ImageLoader.js"></script>
+<script type="text/javascript" src="../src/base/geom/Matrix.js"></script>
+<script type="text/javascript" src="../src/base/geom/Rectangle.js"></script>
+<script type="text/javascript" src="../src/base/context/Context.js"></script>
+<script type="text/javascript" src="../src/base/context/CanvasContext.js"></script>
+<script type="text/javascript" src="../src/base/context/DOMContext.js"></script>
+<script type="text/javascript" src="../src/base/display/Drawable.js"></script>
+<script type="text/javascript" src="../src/base/display/DisplayObject.js"></script>
+<script type="text/javascript" src="../src/base/display/DisplayObjectContainer.js"></script>
+<script type="text/javascript" src="../src/base/display/Stage.js"></script>
+<script type="text/javascript" src="../src/base/display/Bitmap.js"></script>
+<script type="text/javascript" src="../src/base/display/MovieClip.js"></script>
+
+</head>
+
+<body>
+
+<div id="container" style="position:absolute;left:0;top:0;width:480px;height:320px;"></div>
+<div id="fps" style="position:absolute;left:0;top:0;"></div>
+<img id="girl" src="images/girl.png" style="display:none;" />
+<img id="boy" src="images/boy.png" style="display:none;" />
+
+<script type="text/javascript">
+
+window.onload = init;
+
+var container, girl, boy, width, height, stage, canvas, canvasContext, domContext, timer, fps;
+var bmp, bmp2, mc;
+var sound;
+
+function init()
+{
+	container = Quark.getDOM("container");
+	girl = Quark.getDOM("girl"),
+	boy = Quark.getDOM("boy");
+	
+	width = 480;
+	height = 320;
+	fps = 60;
+	
+	canvas = Quark.createDOM("canvas", {width:width, height:height, style:{position:"absolute",backgroundColor:"#fff"}});
+	canvasContext = new Quark.CanvasContext({canvas:canvas});
+	container.appendChild(canvas);
+	domContext = new Quark.DOMContext({canvas:container});	
+	
+	start();
+}
+
+function start()
+{	
+	stage = new Quark.Stage({width:width, height:height, context:canvasContext, update:update});
+
+	timer = new Q.Timer(1000/fps);
+	timer.addListener(stage);
+	timer.addListener(Q.Tween);
+	timer.start();
+
+	bmp = new Quark.Bitmap({image:girl, rect:[0,0,64,85], regX:32, regY:42});
+	bmp.rotation = 0;
+	bmp.x = 300;
+	bmp.y = 100;
+	bmp.enabled = true;
+	bmp.onEvent = function(e)
+	{
+		if(e.type == "mousedown")
+		{
+			bmp.enabled = !bmp.enabled;
+		}
+	}
+	
+	bmp2 = new Quark.Bitmap({image:boy, rect:[0,0,64,85], regX:32, regY:42});
+	bmp2.x = 100;
+	bmp2.y = 100;
+	bmp2.onEvent = function(e)
+	{
+		if(e.type == "mousedown")
+		{
+			bmp2.scaleX = bmp2.scaleY = bmp2.scaleX == 1? 2 : 1;
+		}
+	}
+	
+	mc = new Quark.MovieClip({image:girl, interval:50});
+	mc.addFrame([
+	{rect:[0,0,64,85], label:"stand", stop:1},
+	{rect:[192,0,64,85], label:"walk"},
+	{rect:[192,85,64,85], jump:"walk"},
+	{rect:[320,0,64,85], label:"cheer"},
+	{rect:[384,0,64,85]},
+	{rect:[448,0,64,85], jump:"cheer"}]);
+	mc.x = 150;
+	mc.y = 150;
+	mc.gotoAndPlay("walk");
+	mc.onEvent = function(e)
+	{
+		if(e.type == "mousedown")
+		{
+			mc.paused = !mc.paused;
+		}
+	}
+
+	stage.addChild(bmp);
+	stage.addChild(bmp2);
+	stage.addChild(mc);
+	
+	setTimeout(function(){mc.visible=false;}, 2000);
+	setTimeout(function(){mc.visible=true;}, 4000);
+
+	sound = new Q.Audio("../../games/tank/res/sound/explosion.mp3", true, true);
+
+	var events = Quark.supportTouch ? ["touchstart"] : ["mousedown"];
+	var em = new Q.EventManager();
+	em.register(stage.context.canvas, events, function()
+	{
+		//if(!sound.loaded()) sound.load();
+		//else setInterval(function(){sound.play();trace("play");}, 2000);
+	});
+
+	em.registerStage(stage, events);	
+}
+
+function loadMusic(sounds)
+{
+	var id = 0, loading = false;
+
+	var loadID = setInterval(function()
+	{
+		if(id >= sounds.length) 
+		{
+			clearInterval(loadID);
+			trace("complete");
+			setInterval(function(){var i=Math.floor(Math.random()*2);sounds[i].play();trace("play", i, sounds[i]);}, 5000);
+		}else
+		{
+			if(!loading)
+			{
+				sounds[id].load();
+				sounds[id].addEventListener("progress", function(e){trace("progress:", e.target.buffered, e.target.duration)});
+				sounds[id].addEventListener("load", function(){trace("load hahha")});
+				loading = true;
+				trace("load:", id, sounds[id].src);
+			}else
+			{
+				if(sounds[id].readyState > 2)
+				{
+					loading = false;
+					id = id + 1;
+				}
+			}
+			
+		}
+	}, 10);
+}
+
+function playAudio()
+{	
+	audioObj1.play();
+	//audioObj2.play();
+	//fakeClick(function(){audioObj1.play();trace("play audio");});
+}
+
+function createAudio(id, url)
+{
+	var audio = new Audio(url);
+	//audio.loop = true;
+	audio.autoPlay = true;
+	audio.id = id;
+	document.body.appendChild(audio);
+	return audio;
+}
+
+function fakeClick(callback)
+{
+	var aTag = document.createElement("a");
+	aTag.id = "fakeClickLink";
+	aTag.addEventListener("click", function(e)
+	{
+		e.preventDefault();
+		callback();
+	}, false);
+	document.body.appendChild(aTag);
+
+	if (document.createEvent)
+	{
+		var evt = document.createEvent("MouseEvents");
+		if (evt.initMouseEvent)
+		{
+			evt.initMouseEvent("click", true, true, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);
+			aTag.dispatchEvent(evt);
+		}
+	}	
+	document.body.removeChild(aTag);
+}
+
+function update()
+{
+	frames++;
+	if(bmp && bmp.enabled) bmp.rotation += 5;
+}
+
+function clearDirty()
+{
+	for(var i = 0; i < this.children.length; i++)
+	{
+		var child = this.children[i];
+		this.context.clear(child.getState("x")-child.getState("regX"), child.getState("y")-child.getState("regY"), child.getState("width"), child.getState("height"));
+	}
+}
+
+var frames = 0, fpsContainer = Quark.getDOM("fps");
+setInterval(function()
+{
+	fpsContainer.innerHTML = "FPS:" + frames;
+	frames = 0;
+}, 1000);
+
+</script>
+
+</body>
+</html>

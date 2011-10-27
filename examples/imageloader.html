@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Quark Framework Example - ImageLoader</title>
+
+<style type="text/css">
+body{margin:0;padding:0;font-size:12px;}
+</style>
+
+<script type="text/javascript" src="../src/base/core/base.js"></script>
+<script type="text/javascript" src="../src/base/event/EventDispatcher.js"></script>
+<script type="text/javascript" src="../src/base/event/EventManager.js"></script>
+<script type="text/javascript" src="../src/base/event/EventConst.js"></script>
+<script type="text/javascript" src="../src/base/utils/Utils.js"></script>
+<script type="text/javascript" src="../src/base/utils/UIDUtil.js"></script>
+<script type="text/javascript" src="../src/base/utils/Timer.js"></script>
+<script type="text/javascript" src="../src/base/utils/Tween.js"></script>
+<script type="text/javascript" src="../src/base/utils/Audio.js"></script>
+<script type="text/javascript" src="../src/base/utils/ImageLoader.js"></script>
+<script type="text/javascript" src="../src/base/geom/Matrix.js"></script>
+<script type="text/javascript" src="../src/base/geom/Rectangle.js"></script>
+<script type="text/javascript" src="../src/base/context/Context.js"></script>
+<script type="text/javascript" src="../src/base/context/CanvasContext.js"></script>
+<script type="text/javascript" src="../src/base/context/DOMContext.js"></script>
+<script type="text/javascript" src="../src/base/display/Drawable.js"></script>
+<script type="text/javascript" src="../src/base/display/DisplayObject.js"></script>
+<script type="text/javascript" src="../src/base/display/DisplayObjectContainer.js"></script>
+<script type="text/javascript" src="../src/base/display/Stage.js"></script>
+<script type="text/javascript" src="../src/base/display/Bitmap.js"></script>
+<script type="text/javascript" src="../src/base/display/MovieClip.js"></script>
+
+</head>
+
+<body>
+
+<div id="container"></div>
+<div id="fps" style="position:absolute;left:0;top:0;"></div>
+
+<script type="text/javascript">
+
+var loader = new Quark.ImageLoader();
+loader.addEventListener("loaded", onLoad);
+loader.addEventListener("complete", onComplete);	
+loader.load([{id:"girl", src:"images/girl.png", size:51}, {id:"boy", src:"images/boy.png", size:72}]);
+
+function onLoad(e)
+{
+	trace(e.target.getLoadedSize(), e.target.getTotalSize(), e.image.src);
+}
+
+function onComplete(e)
+{
+	trace(e.images.girl.image);
+}
+
+</script>
+
+</body>
+</html>

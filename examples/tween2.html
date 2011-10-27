@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="user-scalable=no, width=device-width, height=device-height, initial-scale=1.0, minimum-scale=1, maximum-scale=1" />
+<title>Quark Framework Example - Tween</title>
+
+<style type="text/css">
+body{margin:0;padding:0;font-size:12px;background-color:#fff;}
+</style>
+
+<script type="text/javascript" src="../src/base/core/base.js"></script>
+<script type="text/javascript" src="../src/base/event/EventDispatcher.js"></script>
+<script type="text/javascript" src="../src/base/event/EventManager.js"></script>
+<script type="text/javascript" src="../src/base/event/EventConst.js"></script>
+<script type="text/javascript" src="../src/base/utils/Utils.js"></script>
+<script type="text/javascript" src="../src/base/utils/UIDUtil.js"></script>
+<script type="text/javascript" src="../src/base/utils/Timer.js"></script>
+<script type="text/javascript" src="../src/base/utils/Tween.js"></script>
+<script type="text/javascript" src="../src/base/utils/Audio.js"></script>
+<script type="text/javascript" src="../src/base/utils/ImageLoader.js"></script>
+<script type="text/javascript" src="../src/base/geom/Matrix.js"></script>
+<script type="text/javascript" src="../src/base/geom/Rectangle.js"></script>
+<script type="text/javascript" src="../src/base/context/Context.js"></script>
+<script type="text/javascript" src="../src/base/context/CanvasContext.js"></script>
+<script type="text/javascript" src="../src/base/context/DOMContext.js"></script>
+<script type="text/javascript" src="../src/base/display/Drawable.js"></script>
+<script type="text/javascript" src="../src/base/display/DisplayObject.js"></script>
+<script type="text/javascript" src="../src/base/display/DisplayObjectContainer.js"></script>
+<script type="text/javascript" src="../src/base/display/Stage.js"></script>
+<script type="text/javascript" src="../src/base/display/Bitmap.js"></script>
+<script type="text/javascript" src="../src/base/display/MovieClip.js"></script>
+
+</head>
+
+<body>
+
+<div id="container" style="position:absolute;left:0;top:0;width:480px;height:320px;background:#eee;"></div>
+<div id="fps" style="position:absolute;left:0;top:0;"></div>
+<img id="girl" src="images/girl.png" style="display:none;" />
+<img id="boy" src="images/boy.png" style="display:none;" />
+<img id="turn" src="images/turn.png" style="display:none;" />
+
+<script type="text/javascript">
+
+window.onload = init;
+
+var timer, container, canvas;
+
+function init()
+{	
+	container = Q.getDOM("container");
+	var domContext = new Q.DOMContext({canvas:container});
+	
+	canvas = Quark.createDOM("canvas", {width:480, height:320, style:{position:"absolute",backgroundColor:"#eee"}});
+	container.appendChild(canvas);
+	canvasContext = new Quark.CanvasContext({canvas:canvas});
+	
+	var stage = new Q.Stage({context:canvasContext, width:480, height:320, update:function()
+	{
+		frames++;
+	}});
+	
+	timer = new Q.Timer(60);
+	timer.addListener(stage);
+	timer.addListener(Q.Tween);
+	timer.start();
+
+	var turn = new Q.Bitmap({id:'turn', image:Q.getDOM('turn'), alpha:0});
+	turn.x = -turn.width;
+	turn.y = stage.height - turn.height >> 1;
+	stage.addChild(turn);
+
+	Q.Tween.to(turn, {x:stage.width - turn.width >> 1, alpha:1}, {time:300, onComplete:function(tween)
+	{
+		Q.Tween.to(turn, {x:stage.width, alpha:0}, {time:300, delay:500, onComplete:function()
+		{
+			trace("tween end");
+		}});
+	}});
+}
+
+var frames = 0, fpsContainer = Quark.getDOM("fps");
+setInterval(function()
+{
+	fpsContainer.innerHTML = "FPS:" + frames;
+	frames = 0;
+}, 1000);
+
+</script>
+
+</body>
+</html>
