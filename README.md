@@ -1,5 +1,5 @@
 Quark - A HTML5 Game Framework
-=======================
+==============================
 
 QuarkJS is a HTML5 game framework. It includes two parts:
 
@@ -12,8 +12,14 @@ Wiki
 
 API Docs
 -----------------
-* [Online API Docs](http://github.com/quark-dev-team/quarkjs/blob/master/docs/index.html)
+* [Online API Docs](http://quark-dev-team.github.com/quarkjs/docs/)
+
+Examples
+-----------------
+* [Simple](http://quark-dev-team.github.com/quarkjs/examples/simple1.html)
+* [Tween1](http://quark-dev-team.github.com/quarkjs/examples/tween1.html)
+* [Tween2](http://quark-dev-team.github.com/quarkjs/examples/tween2.html)
 
 Demo
---------------------
+-----------------
 * [Happy Dolphin](http://www.riaidea.com/html5/dolphin/)
