@@ -10,7 +10,7 @@ Wiki
 -----------------
 * [Quark架构 Infrastructure](http://github.com/quark-dev-team/quarkjs/wiki/Quark-Infrastructure)
 * [开始使用 Get Started](http://github.com/quark-dev-team/quarkjs/wiki/Get-Started)
-* 
+
 API Docs
 -----------------
 * [Online API Docs](http://quark-dev-team.github.com/quarkjs/docs/)
