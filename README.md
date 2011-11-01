@@ -11,6 +11,7 @@ QuarkJS is a HTML5 game framework. It includes two parts:
 Usage
 
 Download the minified library and include it in your html.
+
 ```html
 <script src="js/quark.base-1.0.0.alpha.min.js"></script>
 ```
