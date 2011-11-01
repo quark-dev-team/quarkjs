@@ -1,5 +1,3 @@
-<img src="http://quark-dev-team.github.com/quarkjs/wiki/images/quark.jpg">
-
 QuarkJS - A HTML5 Game Framework
 ================================
 
