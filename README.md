@@ -32,6 +32,4 @@ Examples
 
 Demo
 -----------------
-* [快乐的海豚 Happy Dolphin](http://www.riaidea.com/html5/dolphin/)<br>
-<img src="http://quark-dev-team.github.com/quarkjs/wiki/images/dolphin_startup_s.jpg" width="240" height="134">  
-<img src="http://quark-dev-team.github.com/quarkjs/wiki/images/dolphin_main_s.jpg" width="240" height="134">
+* [快乐的海豚 Happy Dolphin](http://www.riaidea.com/html5/dolphin/)
