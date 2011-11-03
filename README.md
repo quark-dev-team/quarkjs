@@ -8,12 +8,12 @@ QuarkJS is a HTML5 game framework. It includes two parts:
 
 Wiki
 -----------------
-* [Quark Base架构 Infrastructure](http://github.com/quark-dev-team/quarkjs/wiki/Quark-Base-Infrastructure)
-* [显示对象 DisplayObject](http://github.com/quark-dev-team/quarkjs/wiki/DisplayObject)
+* [Quark Base Infrastructure](http://github.com/quark-dev-team/quarkjs/wiki/Quark-Base-Infrastructure)
+* [DisplayObject](http://github.com/quark-dev-team/quarkjs/wiki/DisplayObject)
 
 Tutorials
 -----------------
-* [开始使用 Get Started](http://github.com/quark-dev-team/quarkjs/wiki/Get-Started)
+* [Get Started](http://github.com/quark-dev-team/quarkjs/wiki/Get-Started)
 
 API Docs
 -----------------
@@ -27,4 +27,4 @@ Examples
 
 Demo
 -----------------
-* [快乐的海豚 Happy Dolphin](http://www.riaidea.com/html5/dolphin/)
+* [Happy Dolphin](http://www.riaidea.com/html5/dolphin/)
