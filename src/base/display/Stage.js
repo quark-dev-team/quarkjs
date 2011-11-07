@@ -64,7 +64,7 @@ Stage.prototype._render = function(context)
  * 舞台Stage默认的事件处理器。调用事件发生的目标显示对象的onEvent回调。
  */
 Stage.prototype.onEvent = function(e)
-{
+{	
 	var x = e.pageX - this.stageX, y = e.pageY - this.stageY;
 	var obj = this.getObjectUnderPoint(x, y);
 		

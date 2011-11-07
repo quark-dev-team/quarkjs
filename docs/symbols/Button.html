@@ -5,7 +5,7 @@
 		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 		<meta name="generator" content="JsDoc Toolkit" />
 		
-		<title>QuarkJS Reference - DOMContext</title>
+		<title>QuarkJS Reference - Button</title>
 
 		<style type="text/css">
 			/* default.css */
@@ -257,23 +257,23 @@ ul.inheritsList
 <!-- ============================== class title ============================ -->
 			<h1 class="classTitle">
 				
-				Class DOMContext
+				Class Button
 			</h1>
 
 <!-- ============================== class summary ========================== -->			
 			<p class="description">
 				
 				Extends
-					<a href="../symbols/Context.html">Context</a>.<br />
+					<a href="../symbols/MovieClip.html">MovieClip</a>.<br />
 				
 			
-				DOMContext是DOM渲染上下文，将显示对象以dom方式渲染到舞台上。
+				Button类继承自MovieClip，是Quark中的简单按钮实现。
 				
 			</p>
 
 <!-- ============================== constructor summary ==================== -->			
 			
-			<table class="summaryTable" cellspacing="0" summary="A summary of the constructor documented in the class DOMContext.">
+			<table class="summaryTable" cellspacing="0" summary="A summary of the constructor documented in the class Button.">
 				<caption>Class Summary</caption>
 				<thead>
 					<tr>
@@ -286,7 +286,7 @@ ul.inheritsList
 						<td class="attributes">&nbsp;</td>
 						<td class="nameDescription" >
 							<div class="fixedFont">
-								<b><a href="../symbols/DOMContext.html#constructor">DOMContext</a></b>()
+								<b><a href="../symbols/Button.html#constructor">Button</a></b>()
 							</div>
 							<div class="description">Constructor.</div>
 						</td>
@@ -297,12 +297,74 @@ ul.inheritsList
 
 <!-- ============================== properties summary ===================== -->
 			
+				
+				
+				<table class="summaryTable" cellspacing="0" summary="A summary of the fields documented in the class Button.">
+					<caption>Field Summary</caption>
+					<thead>
+						<tr>
+							<th scope="col">Field Attributes</th>
+							<th scope="col">Field Name and Description</th>
+						</tr>
+					</thead>
+					<tbody>
+					
+						<tr>
+							<td class="attributes">&lt;static&gt; &nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">
+								Button.<b><a href="../symbols/Button.html#.DISABLED">DISABLED</a></b>
+								</div>
+								<div class="description">按钮的不可用状态。常数。</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&lt;static&gt; &nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">
+								Button.<b><a href="../symbols/Button.html#.DOWN">DOWN</a></b>
+								</div>
+								<div class="description">按钮的按下状态。常数。</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&lt;static&gt; &nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">
+								Button.<b><a href="../symbols/Button.html#.OVER">OVER</a></b>
+								</div>
+								<div class="description">按钮的经过状态。常数。</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&lt;static&gt; &nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">
+								Button.<b><a href="../symbols/Button.html#.UP">UP</a></b>
+								</div>
+								<div class="description">按钮的弹起状态。常数。</div>
+							</td>
+						</tr>
+					
+					</tbody>
+				</table>
+				
+				
+				
+				<dl class="inheritsList">
+				<dt>Fields borrowed from class <a href="../symbols/DisplayObject.html">DisplayObject</a>: </dt><dd><a href="../symbols/DisplayObject.html#onEvent">onEvent</a></dd>
+				</dl>
+				
+			
 
 <!-- ============================== methods summary ======================== -->
 			
 				
 				
-				<table class="summaryTable" cellspacing="0" summary="A summary of the methods documented in the class DOMContext.">
+				<table class="summaryTable" cellspacing="0" summary="A summary of the methods documented in the class Button.">
 					<caption>Method Summary</caption>
 					<thead>
 						<tr>
@@ -315,36 +377,54 @@ ul.inheritsList
 						<tr>
 							<td class="attributes">&nbsp;</td>
 							<td class="nameDescription">
-								<div class="fixedFont"><b><a href="../symbols/DOMContext.html#draw">draw</a></b>(target)
+								<div class="fixedFont"><b><a href="../symbols/Button.html#changeState">changeState</a></b>(state)
 								</div>
-								<div class="description">绘制指定对象的DOM到舞台上。</div>
+								<div class="description">改变按钮的状态。</div>
 							</td>
 						</tr>
 					
 						<tr>
 							<td class="attributes">&nbsp;</td>
 							<td class="nameDescription">
-								<div class="fixedFont"><b><a href="../symbols/DOMContext.html#hide">hide</a></b>(target)
+								<div class="fixedFont"><b><a href="../symbols/Button.html#setDisabledState">setDisabledState</a></b>(disabledState)
 								</div>
-								<div class="description">隐藏指定对象渲染的dom节点，用于当显示对象visible=0或alpha=0等情况，由显示对象内部方法调用。</div>
+								<div class="description">设置按钮不可用状态的显示帧。</div>
 							</td>
 						</tr>
 					
 						<tr>
 							<td class="attributes">&nbsp;</td>
 							<td class="nameDescription">
-								<div class="fixedFont"><b><a href="../symbols/DOMContext.html#remove">remove</a></b>(target)
+								<div class="fixedFont"><b><a href="../symbols/Button.html#setDownState">setDownState</a></b>(downState)
 								</div>
-								<div class="description">删除指定显示对象渲染的dom节点，由显示对象内部方法调用。</div>
+								<div class="description">设置按钮按下状态的显示帧。</div>
 							</td>
 						</tr>
 					
 						<tr>
 							<td class="attributes">&nbsp;</td>
 							<td class="nameDescription">
-								<div class="fixedFont"><b><a href="../symbols/DOMContext.html#transform">transform</a></b>(target)
+								<div class="fixedFont"><b><a href="../symbols/Button.html#setEnabled">setEnabled</a></b>(enabled)
 								</div>
-								<div class="description">对指定的显示对象的DOM进行css属性设置或变换。</div>
+								<div class="description">设置按钮是否启用。</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/Button.html#setOverState">setOverState</a></b>(overState)
+								</div>
+								<div class="description">设置按钮经过状态的显示帧。</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/Button.html#setUpState">setUpState</a></b>(upState)
+								</div>
+								<div class="description">设置按钮弹起状态的显示帧。</div>
 							</td>
 						</tr>
 					
@@ -354,7 +434,7 @@ ul.inheritsList
 				
 				
 				<dl class="inheritsList">
-				<dt>Methods borrowed from class <a href="../symbols/Context.html">Context</a>: </dt><dd><a href="../symbols/Context.html#endDraw">endDraw</a>, <a href="../symbols/Context.html#startDraw">startDraw</a></dd>
+				<dt>Methods borrowed from class <a href="../symbols/MovieClip.html">MovieClip</a>: </dt><dd><a href="../symbols/MovieClip.html#addFrame">addFrame</a>, <a href="../symbols/MovieClip.html#getFrame">getFrame</a>, <a href="../symbols/MovieClip.html#getFrameIndex">getFrameIndex</a>, <a href="../symbols/MovieClip.html#gotoAndPlay">gotoAndPlay</a>, <a href="../symbols/MovieClip.html#gotoAndStop">gotoAndStop</a>, <a href="../symbols/MovieClip.html#nextFrame">nextFrame</a>, <a href="../symbols/MovieClip.html#play">play</a>, <a href="../symbols/MovieClip.html#render">render</a>, <a href="../symbols/MovieClip.html#setFrame">setFrame</a>, <a href="../symbols/MovieClip.html#stop">stop</a></dd><dt>Methods borrowed from class <a href="../symbols/Bitmap.html">Bitmap</a>: </dt><dd><a href="../symbols/Bitmap.html#setRect">setRect</a></dd><dt>Methods borrowed from class <a href="../symbols/DisplayObject.html">DisplayObject</a>: </dt><dd><a href="../symbols/DisplayObject.html#getBounds">getBounds</a>, <a href="../symbols/DisplayObject.html#getCurrentHeight">getCurrentHeight</a>, <a href="../symbols/DisplayObject.html#getCurrentWidth">getCurrentWidth</a>, <a href="../symbols/DisplayObject.html#getDrawable">getDrawable</a>, <a href="../symbols/DisplayObject.html#getStage">getStage</a>, <a href="../symbols/DisplayObject.html#getState">getState</a>, <a href="../symbols/DisplayObject.html#globalToLocal">globalToLocal</a>, <a href="../symbols/DisplayObject.html#hitTestObject">hitTestObject</a>, <a href="../symbols/DisplayObject.html#hitTestPoint">hitTestPoint</a>, <a href="../symbols/DisplayObject.html#localToGlobal">localToGlobal</a>, <a href="../symbols/DisplayObject.html#localToTarget">localToTarget</a>, <a href="../symbols/DisplayObject.html#propChanged">propChanged</a>, <a href="../symbols/DisplayObject.html#saveState">saveState</a>, <a href="../symbols/DisplayObject.html#setDrawable">setDrawable</a>, <a href="../symbols/DisplayObject.html#toString">toString</a>, <a href="../symbols/DisplayObject.html#update">update</a></dd>
 				</dl>
 				
 			
@@ -369,7 +449,7 @@ ul.inheritsList
 				</div>
 				
 				<div class="fixedFont">
-						<b>DOMContext</b>()
+						<b>Button</b>()
 				</div>
 				
 				<div class="description">
@@ -393,6 +473,99 @@ ul.inheritsList
 
 <!-- ============================== field details ========================== -->		
 			
+				<div class="sectionTitle">
+					Field Detail
+				</div>
+				
+					<a name=".DISABLED"> </a>
+					<div class="fixedFont">&lt;static&gt; 
+					
+					
+					<span class="light">Button.</span><b>DISABLED</b>
+					
+					</div>
+					<div class="description">
+						按钮的不可用状态。常数。
+						
+						
+					</div>
+					
+					
+
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name=".DOWN"> </a>
+					<div class="fixedFont">&lt;static&gt; 
+					
+					
+					<span class="light">Button.</span><b>DOWN</b>
+					
+					</div>
+					<div class="description">
+						按钮的按下状态。常数。
+						
+						
+					</div>
+					
+					
+
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name=".OVER"> </a>
+					<div class="fixedFont">&lt;static&gt; 
+					
+					
+					<span class="light">Button.</span><b>OVER</b>
+					
+					</div>
+					<div class="description">
+						按钮的经过状态。常数。
+						
+						
+					</div>
+					
+					
+
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name=".UP"> </a>
+					<div class="fixedFont">&lt;static&gt; 
+					
+					
+					<span class="light">Button.</span><b>UP</b>
+					
+					</div>
+					<div class="description">
+						按钮的弹起状态。常数。
+						
+						
+					</div>
+					
+					
+
+						
+						
+						
+						
+
+					
+				
+			
 
 <!-- ============================== method details ========================= -->		
 			
@@ -400,15 +573,15 @@ ul.inheritsList
 					Method Detail
 				</div>
 				
-					<a name="draw"> </a>
+					<a name="changeState"> </a>
 					<div class="fixedFont">
 					
 					
-					<b>draw</b>(target)
+					<b>changeState</b>(state)
 					
 					</div>
 					<div class="description">
-						绘制指定对象的DOM到舞台上。
+						改变按钮的状态。
 						
 						
 					</div>
@@ -420,7 +593,7 @@ ul.inheritsList
 							<dt class="heading">Parameters:</dt>
 							
 								<dt>
-									<b>target</b>
+									<b>state</b>
 									
 								</dt>
 								<dd></dd>
@@ -436,15 +609,15 @@ ul.inheritsList
 
 					<hr />
 				
-					<a name="hide"> </a>
+					<a name="setDisabledState"> </a>
 					<div class="fixedFont">
 					
 					
-					<b>hide</b>(target)
+					<b>setDisabledState</b>(disabledState)
 					
 					</div>
 					<div class="description">
-						隐藏指定对象渲染的dom节点，用于当显示对象visible=0或alpha=0等情况，由显示对象内部方法调用。
+						设置按钮不可用状态的显示帧。
 						
 						
 					</div>
@@ -456,7 +629,7 @@ ul.inheritsList
 							<dt class="heading">Parameters:</dt>
 							
 								<dt>
-									<b>target</b>
+									<b>disabledState</b>
 									
 								</dt>
 								<dd></dd>
@@ -472,15 +645,15 @@ ul.inheritsList
 
 					<hr />
 				
-					<a name="remove"> </a>
+					<a name="setDownState"> </a>
 					<div class="fixedFont">
 					
 					
-					<b>remove</b>(target)
+					<b>setDownState</b>(downState)
 					
 					</div>
 					<div class="description">
-						删除指定显示对象渲染的dom节点，由显示对象内部方法调用。
+						设置按钮按下状态的显示帧。
 						
 						
 					</div>
@@ -492,7 +665,7 @@ ul.inheritsList
 							<dt class="heading">Parameters:</dt>
 							
 								<dt>
-									<b>target</b>
+									<b>downState</b>
 									
 								</dt>
 								<dd></dd>
@@ -508,15 +681,15 @@ ul.inheritsList
 
 					<hr />
 				
-					<a name="transform"> </a>
+					<a name="setEnabled"> </a>
 					<div class="fixedFont">
 					
 					
-					<b>transform</b>(target)
+					<b>setEnabled</b>(enabled)
 					
 					</div>
 					<div class="description">
-						对指定的显示对象的DOM进行css属性设置或变换。
+						设置按钮是否启用。
 						
 						
 					</div>
@@ -528,7 +701,79 @@ ul.inheritsList
 							<dt class="heading">Parameters:</dt>
 							
 								<dt>
-									<b>target</b>
+									<b>enabled</b>
+									
+								</dt>
+								<dd></dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="setOverState"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>setOverState</b>(overState)
+					
+					</div>
+					<div class="description">
+						设置按钮经过状态的显示帧。
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<b>overState</b>
+									
+								</dt>
+								<dd></dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="setUpState"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>setUpState</b>(upState)
+					
+					</div>
+					<div class="description">
+						设置按钮弹起状态的显示帧。
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<b>upState</b>
 									
 								</dt>
 								<dd></dd>

@@ -26,12 +26,26 @@ var Button = Quark.Button = function(props)
 };
 Quark.inherit(Button, Quark.MovieClip);
 
-//Button states
+/**
+ * 按钮的弹起状态。常数。
+ */
 Button.UP = "up";
+/**
+ * 按钮的经过状态。常数。
+ */
 Button.OVER = "over";
+/**
+ * 按钮的按下状态。常数。
+ */
 Button.DOWN = "down";
+/**
+ * 按钮的不可用状态。常数。
+ */
 Button.DISABLED = "disabled";
 
+/**
+ * 设置按钮弹起状态的显示帧。
+ */
 Button.prototype.setUpState = function(upState)
 {
 	upState.label = Button.UP;
@@ -40,6 +54,9 @@ Button.prototype.setUpState = function(upState)
 	return this;
 };
 
+/**
+ * 设置按钮经过状态的显示帧。
+ */
 Button.prototype.setOverState = function(overState)
 {
 	overState.label = Button.OVER;
@@ -48,6 +65,9 @@ Button.prototype.setOverState = function(overState)
 	return this;
 };
 
+/**
+ * 设置按钮按下状态的显示帧。
+ */
 Button.prototype.setDownState = function(downState)
 {
 	downState.label = Button.DOWN;
@@ -56,6 +76,9 @@ Button.prototype.setDownState = function(downState)
 	return this;
 };
 
+/**
+ * 设置按钮不可用状态的显示帧。
+ */
 Button.prototype.setDisabledState = function(disabledState)
 {
 	disabledState.label = Button.DISABLED;
@@ -64,6 +87,9 @@ Button.prototype.setDisabledState = function(disabledState)
 	return this;
 };
 
+/**
+ * 设置按钮是否启用。
+ */
 Button.prototype.setEnabled = function(enabled)
 {
 	if(this.enabled == enabled) return this;
@@ -79,6 +105,9 @@ Button.prototype.setEnabled = function(enabled)
 	return this;
 };
 
+/**
+ * 改变按钮的状态。
+ */
 Button.prototype.changeState = function(state)
 {
 	if(this.state == state) return;
@@ -99,6 +128,10 @@ Button.prototype.changeState = function(state)
 	return this;
 };
 
+/**
+ * 按钮的事件处理器。内部方法。开发者请使用onEvent回调。
+ * @private
+ */
 Button.prototype._onEvent = function(e)
 {
 	if(!this.enabled) return;
