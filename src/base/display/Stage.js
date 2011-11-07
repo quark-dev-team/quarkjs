@@ -13,6 +13,8 @@ var Stage = Quark.Stage = function(props)
 	this.stageY = 0;
 	this.paused = false;
 	
+	this._eventTarget = null;
+	
 	props = props || {};
 	Stage.superClass.constructor.call(this, props);
 	this.id = props.id || Quark.UIDUtil.createUID("Stage");	
@@ -65,7 +67,26 @@ Stage.prototype.onEvent = function(e)
 {
 	var x = e.pageX - this.stageX, y = e.pageY - this.stageY;
 	var obj = this.getObjectUnderPoint(x, y);
-	if(obj != null) obj._onEvent(e);
+		
+	if(this._eventTarget != null && this._eventTarget != obj)
+	{
+		//派发移开事件mouseout或touchend到上一个事件对象
+		var outEvent = e.type == "mousemove" ? "mouseout" : e.type == "touchmove" ? "touchend" : null;
+		if(outEvent) this._eventTarget._onEvent({type:outEvent});
+		this._eventTarget = null;
+	}
+	//派发事件到目标对象
+	if(obj!= null && obj.eventEnabled)
+	{
+		this._eventTarget = obj;
+		obj._onEvent(e);
+	}
+	//设置光标状态
+	if(!Quark.supportTouch)
+	{
+		var cursor = (this._eventTarget && this._eventTarget.useHandCursor && this._eventTarget.eventEnabled) ? "pointer" : "";
+		this.context.canvas.style.cursor = cursor;
+	}
 };
 
 /**

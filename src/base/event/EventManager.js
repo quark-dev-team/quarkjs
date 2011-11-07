@@ -20,7 +20,14 @@ EventManager.prototype.registerStage = function(stage, events, preventDefault, s
 {
 	this.register(stage.context.canvas, events, function(e)
 	{
-		stage.onEvent(e);
+		var ne = e, isTouch = e.type.indexOf("touch") == 0;
+		if(isTouch)
+		{
+			ne = (e.touches && e.touches.length > 0) ? e.touches[0] : 
+				(e.changedTouches && e.changedTouches.length > 0) ? e.changedTouches[0] : e;
+			ne.type = e.type;
+		}
+		stage.onEvent(ne);
 	}, preventDefault, stopPropagation);
 };
 
