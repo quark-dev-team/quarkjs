@@ -42,18 +42,7 @@ EventManager.prototype.register = function(target, events, callback, preventDefa
 	if(typeof callback == "function") callback = {host:null, func:callback};
 	var params = {prevent:preventDefault, stop:stopPropagation};
 	
-	var me = this, handler = function(e)
-	{
-		//correct touch events
-		var ne = e, isTouch = e.type.indexOf("touch") == 0;
-		if(isTouch)
-		{
-			ne = (e.touches && e.touches.length > 0) ? e.touches[0] : 
-				(e.changedTouches && e.changedTouches.length > 0) ? e.changedTouches[0] : e;
-			ne.type = e.type;
-		}
-		me._onEvent(e, params, callback);
-	};
+	var me = this, handler = function(e){me._onEvent(e, params, callback);};
 	
 	for(var i = 0; i < events.length; i++)
 	{
@@ -105,7 +94,14 @@ EventManager.prototype.unregister = function(target, events, callback)
  */
 EventManager.prototype._onEvent = function(e, params, callback)
 {	
-	var type = e.type;
+	//correct touch events
+    var ne = e, type = e.type, isTouch = e.type.indexOf("touch") == 0;
+    if(isTouch)
+    {
+        ne = (e.touches && e.touches.length > 0) ? e.touches[0] : 
+            (e.changedTouches && e.changedTouches.length > 0) ? e.changedTouches[0] : e;
+        ne.type = type;
+    }
 	
 	if(type == "keydown" || type == "keyup" || type == "keypress")
 	{
@@ -115,7 +111,7 @@ EventManager.prototype._onEvent = function(e, params, callback)
 	//不能修改原生的event对象，在opera下会抛错
 	//e.timeStamp = Date.now();
 	
-	callback.func.call(callback.host, e);
+	callback.func.call(callback.host, ne);
 	
 	EventManager.stop(e, !params.prevent, !params.stop);
 };
