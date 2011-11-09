@@ -70,8 +70,8 @@ Stage.prototype.onEvent = function(e)
 		
 	if(this._eventTarget != null && this._eventTarget != obj)
 	{
-		//派发移开事件mouseout或touchend到上一个事件对象
-		var outEvent = e.type == "mousemove" ? "mouseout" : e.type == "touchmove" ? "touchend" : null;
+		//派发移开事件mouseout或touchout到上一个事件对象
+		var outEvent = e.type == "mousemove" ? "mouseout" : e.type == "touchmove" ? "touchout" : null;
 		if(outEvent) this._eventTarget._onEvent({type:outEvent});
 		this._eventTarget = null;
 	}

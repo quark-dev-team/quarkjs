@@ -151,6 +151,7 @@ Button.prototype._onEvent = function(e)
 			else this.changeState(Button.UP);
 			break;
 		case "mouseout":
+		case "touchout":
 		case "touchend":
 			if(this.upState) this.changeState(Button.UP);
 			break;
