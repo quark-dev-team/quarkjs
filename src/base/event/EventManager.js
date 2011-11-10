@@ -39,7 +39,7 @@ EventManager.prototype.unregisterStage = function(stage, events)
  */
 EventManager.prototype.register = function(target, events, callback, preventDefault, stopPropagation)
 {
-	if(typeof callback == "function") callback = {host:null, func:callback};
+	if(callback == null || (typeof callback == "function")) callback = {host:null, func:callback};
 	var params = {prevent:preventDefault, stop:stopPropagation};
 	
 	var me = this, handler = function(e){me._onEvent(e, params, callback);};
@@ -111,7 +111,7 @@ EventManager.prototype._onEvent = function(e, params, callback)
 	//不能修改原生的event对象，在opera下会抛错
 	//e.timeStamp = Date.now();
 	
-	callback.func.call(callback.host, ne);
+	if(callback.func != null) callback.func.call(callback.host, ne);
 	
 	EventManager.stop(e, !params.prevent, !params.stop);
 };
