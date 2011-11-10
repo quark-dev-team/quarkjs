@@ -39,7 +39,7 @@ EventManager.prototype.unregisterStage = function(stage, events)
  */
 EventManager.prototype.register = function(target, events, callback, preventDefault, stopPropagation)
 {
-	if(typeof callback == "function") callback = {host:null, func:callback};
+	if(callback == null || (typeof callback == "function")) callback = {host:null, func:callback};
 	var params = {prevent:preventDefault, stop:stopPropagation};
 	
 	var me = this, handler = function(e){me._onEvent(e, params, callback);};
