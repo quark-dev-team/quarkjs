@@ -50,7 +50,7 @@ var Tween = Quark.Tween = function(target, newProps, params)
 
 	for(var p in params)
 	{
-		if(this[p] !== undefined) this[p] = params[p];
+		this[p] = params[p];
 	}
 };
 
