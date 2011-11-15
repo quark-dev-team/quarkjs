@@ -12,8 +12,8 @@ var Stage = Quark.Stage = function(props)
 	this.stageX = 0;
 	this.stageY = 0;
 	this.paused = false;
-	
-	this._eventTarget = null;
+    
+	this.eventTarget = null;
 	
 	props = props || {};
 	Stage.superClass.constructor.call(this, props);
@@ -63,30 +63,32 @@ Stage.prototype._render = function(context)
 /**
  * 舞台Stage默认的事件处理器。调用事件发生的目标显示对象的onEvent回调。
  */
-Stage.prototype.onEvent = function(e)
+Stage.prototype._onEvent = function(e)
 {	
 	var x = e.pageX - this.stageX, y = e.pageY - this.stageY;
 	var obj = this.getObjectUnderPoint(x, y);
 		
-	if(this._eventTarget != null && this._eventTarget != obj)
+	if(this.eventTarget != null && this.eventTarget != obj)
 	{
 		//派发移开事件mouseout或touchout到上一个事件对象
 		var outEvent = e.type == "mousemove" ? "mouseout" : e.type == "touchmove" ? "touchout" : null;
-		if(outEvent) this._eventTarget._onEvent({type:outEvent});
-		this._eventTarget = null;
+		if(outEvent) this.eventTarget._onEvent({type:outEvent});
+		this.eventTarget = null;
 	}
 	//派发事件到目标对象
 	if(obj!= null && obj.eventEnabled)
 	{
-		this._eventTarget = obj;
+		this.eventTarget = obj;
 		obj._onEvent(e);
 	}
 	//设置光标状态
 	if(!Quark.supportTouch)
 	{
-		var cursor = (this._eventTarget && this._eventTarget.useHandCursor && this._eventTarget.eventEnabled) ? "pointer" : "";
+		var cursor = (this.eventTarget && this.eventTarget.useHandCursor && this.eventTarget.eventEnabled) ? "pointer" : "";
 		this.context.canvas.style.cursor = cursor;
 	}
+
+    if(this.onEvent != null) this.onEvent(e);
 };
 
 /**

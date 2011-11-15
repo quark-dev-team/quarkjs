@@ -19,7 +19,7 @@ var EventManager = Quark.EventManager = function()
  */
 EventManager.prototype.registerStage = function(stage, events, preventDefault, stopPropagation)
 {
-	this.register(stage.context.canvas, events, {host:stage, func:stage.onEvent}, preventDefault, stopPropagation);
+	this.register(stage.context.canvas, events, {host:stage, func:stage._onEvent}, preventDefault, stopPropagation);
 };
 
 /**
