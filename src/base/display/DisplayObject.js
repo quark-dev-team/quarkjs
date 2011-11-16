@@ -236,7 +236,7 @@ DisplayObject.prototype.getBounds = function(targetCoordinateSpace)
 	//TODO: bugfix if scaleX < 0 or scaleY < 0.
 	if(this.rotation%360 != 0)
 	{
-		var radian = this.rotation * Quark.RADIAN;
+		var radian = this.rotation * DEG_TO_RAD;
 		var sin = Math.sin(radian), cos = Math.cos(radian);
 		var origin = {x:x, y:y};
 		var p1 = rotatePoint(origin, {x:x-regX, y:y-regY}, sin, cos);
@@ -299,5 +299,7 @@ DisplayObject.prototype.toString = function()
 	return Quark.UIDUtil.displayObjectToString(this);
 	//return this.id || this.name;
 };
+
+var DEG_TO_RAD = Math.PI / 180;
 
 })();
