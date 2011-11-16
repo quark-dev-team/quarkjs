@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="user-scalable=no, width=device-width, height=device-height, initial-scale=1.0, minimum-scale=1, maximum-scale=1" />
+<title>Squirrel - Quark Framework Tutorials</title>
+
+<style type="text/css">
+body{margin:0;padding:0;font-size:12px;background-color:#fff;}
+</style>
+
+<script type="text/javascript" src="../../js/quark.base-1.0.0.alpha.min.js"></script>
+<script type="text/javascript" src="Squirrel.js"></script>
+
+</head>
+
+<body>
+
+<div id="container" style="position:absolute;left:0;top:0;width:480px;height:320px;background:#eee;"></div>
+<div id="fps" style="position:absolute;left:0;top:0;"></div>
+<img id="bodyWalk" src="images/body_walk.png" style="display:none;" />
+<img id="headIdle" src="images/head_idle.png" style="display:none;" />
+
+<script type="text/javascript">
+
+window.onload = init;
+
+var container, params, timer, stage, context, em, squirrel;
+
+function init()
+{		
+	container = Q.getDOM("container");
+
+	container.style.background = "-moz-linear-gradient(top, #00889d, #94d7e1, #58B000)";
+	container.style.background = "-webkit-gradient(linear, 0 0, 0 bottom, from(#00889d), to(#58B000), color-stop(0.5,#94d7e1))";
+	container.style.background = "-o-linear-gradient(top, #00889d, #94d7e1, #58B000)";
+	container.style.filter = "progid:DXImageTransform.Microsoft.gradient(startColorstr=#00889d, endColorstr=#94d7e1)";
+	
+	params = Q.getUrlParams();
+	if(params.canvas)
+	{
+		var canvas = Quark.createDOM("canvas", {width:480, height:320, style:{position:"absolute",backgroundColor:"#eee"}});
+		container.appendChild(canvas);
+		context = new Quark.CanvasContext({canvas:canvas});
+	}else
+	{
+		context = new Q.DOMContext({canvas:container});
+	}	
+	
+	stage = new Q.Stage({context:context, width:480, height:320, 
+	update:function()
+	{
+		frames++;
+	}});
+	
+	timer = new Q.Timer(1000/30);
+	timer.addListener(stage);
+	timer.start();
+
+	squirrel = new Squirrel({id:"squirrel", x:200, y:160, autoSize:true});
+	stage.addChild(squirrel);
+
+	em = new Q.EventManager();
+	var events = Q.supportTouch ? ["touchstart","touchmove","touchend"] : ["mousedown","mousemove","mouseup"];
+	em.registerStage(stage, events, true, true);
+
+	var tip = Q.createDOM("span", {id:"tip", style:
+	{
+		position: "absolute",
+		left: "210px",
+		top: "265px",
+		font: "bold 16px Arial",
+		color: "#fff"
+	}});
+	tip.innerHTML = "Click me!";
+	container.appendChild(tip);
+}
+
+var frames = 0, fpsContainer = Quark.getDOM("fps");
+setInterval(function()
+{
+	fpsContainer.innerHTML = "FPS:" + frames;
+	frames = 0;
+}, 1000);
+
+</script>
+
+</body>
+</html>
