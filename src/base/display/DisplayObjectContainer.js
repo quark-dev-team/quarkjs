@@ -165,7 +165,7 @@ DisplayObjectContainer.prototype._update = function(timeInfo)
 	for(var i = 0, len = this.children.length; i < len; i++)
 	{
 		var child = this.children[i];
-		child._depth = i;
+		child._depth = i + 1;
 		child._update(timeInfo);
 	}
 };
