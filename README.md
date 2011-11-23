@@ -24,6 +24,7 @@ Examples
 * [Simple](http://quark-dev-team.github.com/quarkjs/examples/simple1.html)
 * [Tween1](http://quark-dev-team.github.com/quarkjs/examples/tween1.html)
 * [Tween2](http://quark-dev-team.github.com/quarkjs/examples/tween2.html)
+* [Squirrel](http://quark-dev-team.github.com/quarkjs/examples/squirrel/squirrel.html)
 
 Demo
 -----------------
