@@ -35,7 +35,7 @@ Examples
 * [Tween2](http://quark-dev-team.github.com/quarkjs/examples/tween2.html)
 * [Squirrel](http://quark-dev-team.github.com/quarkjs/examples/squirrel/squirrel.html)
 
-Demo
+Demos
 -----------------
 * [Happy Dolphin](http://www.riaidea.com/html5/dolphin/)
 * [Runner (by old framework)](http://www.riaidea.com/html5/runner/)
