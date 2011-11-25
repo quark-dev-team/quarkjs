@@ -6,7 +6,7 @@ QuarkJS is a HTML5 game framework. The aim is to provide a easy way to create ga
 It includes two parts:
 
 * Quark-Base: A rendering framework which supports both Canvas and DOM rendering approaches.
-* Quark-Game: A game framework based on Quark-Base.
+* Quark-Game: A game framework based on Quark-Base. (in development progress)
 
 Features
 -----------------
