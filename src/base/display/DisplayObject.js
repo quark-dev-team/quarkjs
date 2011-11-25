@@ -213,7 +213,7 @@ function getConcatenatedMatrix(obj)
 		var cos = 1, sin = 0;
 		if(o.rotation%360 != 0)
 		{
-			var r = o.rotation * Quark.RADIAN;
+			var r = o.rotation * DEG_TO_RAD;
 			cos = Math.cos(r);
 			sin = Math.sin(r);
 		}
