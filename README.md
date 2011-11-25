@@ -38,3 +38,6 @@ Examples
 Demo
 -----------------
 * [Happy Dolphin](http://www.riaidea.com/html5/dolphin/)
+* [Runner (by old framework)](http://www.riaidea.com/html5/runner/)
+* [Mine Sweeper (by old framework)](http://www.riaidea.com/html5/minesweeper/)
+* [AngryBirds Demo (by old framework)](http://www.riaidea.com/html5/angrybirds/)
