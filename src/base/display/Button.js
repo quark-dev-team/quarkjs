@@ -162,4 +162,13 @@ Button.prototype._onEvent = function(e)
 	Button.superClass._onEvent.call(this, e);
 };
 
+/**
+ * 把Button的drawable置空，否则传入image参数时会绘制成Button的背景。
+ * @private
+ */
+Button.prototype.setDrawable = function(drawable)
+{
+    Button.superClass.setDrawable.call(this, null);
+};
+
 })();
