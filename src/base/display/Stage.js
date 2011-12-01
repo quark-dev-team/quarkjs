@@ -11,8 +11,7 @@ var Stage = Quark.Stage = function(props)
 {
 	this.stageX = 0;
 	this.stageY = 0;
-	this.paused = false;
-    
+	this.paused = false;    
 	this.eventTarget = null;
 	
 	props = props || {};

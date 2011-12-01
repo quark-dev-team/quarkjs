@@ -9,7 +9,10 @@
  */
 var Button = Quark.Button = function(props)
 {
-	props = props || {};
+	this.state = Button.UP;
+	this.enabled = true;
+
+    props = props || {};
 	Button.superClass.constructor.call(this, props);
 	this.id = props.id || Quark.UIDUtil.createUID("Button");
 
@@ -17,15 +20,12 @@ var Button = Quark.Button = function(props)
     this.addChild(this._skin);
     this._skin.stop();
 
+    this.eventChildren = false;
+	if(props.useHandCursor === undefined) this.useHandCursor = true;
 	if(props.up) this.setUpState(props.up);
 	if(props.over) this.setOverState(props.over);
 	if(props.down) this.setDownState(props.down);
-	if(props.disabled) this.setDisabledState(props.disabled);	
-	
-	this.state = Button.UP;
-	this.enabled = true;
-	this.eventChildren = false;
-	this.useHandCursor = true;
+	if(props.disabled) this.setDisabledState(props.disabled);
 };
 Quark.inherit(Button, Quark.DisplayObjectContainer);
 
