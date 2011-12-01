@@ -31,7 +31,7 @@ Quark.merge = function(obj, props, strict)
 {
 	for(var key in props)
 	{
-		if(!strict || obj.hasOwnProperty(key)) obj[key] = props[key];
+		if(!strict || obj.hasOwnProperty(key) || obj[key] !== undefined) obj[key] = props[key];
 	}
 	return obj;
 };
