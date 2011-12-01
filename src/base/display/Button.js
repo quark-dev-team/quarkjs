@@ -11,16 +11,16 @@ var Button = Quark.Button = function(props)
 {
 	this.state = Button.UP;
 	this.enabled = true;
-
-    props = props || {};
+    
+	props = props || {};
 	Button.superClass.constructor.call(this, props);
 	this.id = props.id || Quark.UIDUtil.createUID("Button");
 
-    this._skin = new Quark.MovieClip({id:"skin", image:props.image});
-    this.addChild(this._skin);
-    this._skin.stop();
+	this._skin = new Quark.MovieClip({id:"skin", image:props.image});
+	this.addChild(this._skin);
+	this._skin.stop();
 
-    this.eventChildren = false;
+	this.eventChildren = false;
 	if(props.useHandCursor === undefined) this.useHandCursor = true;
 	if(props.up) this.setUpState(props.up);
 	if(props.over) this.setOverState(props.over);
@@ -168,7 +168,7 @@ Button.prototype._onEvent = function(e)
  */
 Button.prototype.setDrawable = function(drawable)
 {
-    Button.superClass.setDrawable.call(this, null);
+	Button.superClass.setDrawable.call(this, null);
 };
 
 })();

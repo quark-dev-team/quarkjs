@@ -24,7 +24,7 @@ var DisplayObject = Quark.DisplayObject = function(props)
 	this.visible = true;
 	this.eventEnabled = true;
 	this.transformEnabled = true;
-    this.useHandCursor = false;
+	this.useHandCursor = false;
 
 	this.drawable = null;	
 	this.parent = null;	
@@ -34,8 +34,8 @@ var DisplayObject = Quark.DisplayObject = function(props)
 	this._lastState = {};
 	this._stateList = ["x", "y", "regX", "regY", "width", "height", "alpha", "scaleX", "scaleY", "rotation", "visible", "_depth"];
 	
-    Quark.merge(this, props, true);
-    if(props.mixin) Quark.merge(this, props.mixin, false);
+	Quark.merge(this, props, true);
+	if(props.mixin) Quark.merge(this, props.mixin, false);
 };
 
 /**
