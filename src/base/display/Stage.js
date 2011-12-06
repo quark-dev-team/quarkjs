@@ -11,8 +11,9 @@ var Stage = Quark.Stage = function(props)
 {
 	this.stageX = 0;
 	this.stageY = 0;
-	this.paused = false;    
-	this.eventTarget = null;
+	this.paused = false;
+	  
+	this._eventTarget = null;
 	
 	props = props || {};
 	Stage.superClass.constructor.call(this, props);
@@ -64,26 +65,29 @@ Stage.prototype._render = function(context)
  */
 Stage.prototype._onEvent = function(e)
 {	
-	var x = e.pageX - this.stageX, y = e.pageY - this.stageY;
-	var obj = this.getObjectUnderPoint(x, y);
-		
-	if(this.eventTarget != null && this.eventTarget != obj)
+	var x = e.pageX - this.stageX, y = e.pageY - this.stageY, target = this._eventTarget;
+	var obj = this.getObjectUnderPoint(x, y, true);
+	
+	if(target != null && target != obj)
 	{
+		e.lastEventTarget = target;
 		//派发移开事件mouseout或touchout到上一个事件对象
 		var outEvent = e.type == "mousemove" ? "mouseout" : e.type == "touchmove" ? "touchout" : null;
-		if(outEvent) this.eventTarget._onEvent({type:outEvent});
-		this.eventTarget = null;
+		if(outEvent) target._onEvent({type:outEvent});
+		this._eventTarget = null;
 	}
+	
 	//派发事件到目标对象
 	if(obj!= null && obj.eventEnabled)
 	{
-		this.eventTarget = obj;
+		e.eventTarget = target = this._eventTarget = obj;
 		obj._onEvent(e);
 	}
+	
 	//设置光标状态
 	if(!Quark.supportTouch)
 	{
-		var cursor = (this.eventTarget && this.eventTarget.useHandCursor && this.eventTarget.eventEnabled) ? "pointer" : "";
+		var cursor = (target && target.useHandCursor && target.eventEnabled) ? "pointer" : "";
 		this.context.canvas.style.cursor = cursor;
 	}
 

@@ -6,9 +6,10 @@
 <title>Quark Framework Example - Tween</title>
 
 <style type="text/css">
-body{margin:0;padding:0;font-size:12px;background-color:#fff;}
+body{margin:0;padding:0;font-size:12px;background-color:#eee;}
 </style>
 
+<!--
 <script type="text/javascript" src="../src/base/core/base.js"></script>
 <script type="text/javascript" src="../src/base/event/EventDispatcher.js"></script>
 <script type="text/javascript" src="../src/base/event/EventManager.js"></script>
@@ -30,12 +31,14 @@ body{margin:0;padding:0;font-size:12px;background-color:#fff;}
 <script type="text/javascript" src="../src/base/display/Stage.js"></script>
 <script type="text/javascript" src="../src/base/display/Bitmap.js"></script>
 <script type="text/javascript" src="../src/base/display/MovieClip.js"></script>
+-->
+<script type="text/javascript" src="../js/quark.base-1.0.0.alpha.min.js"></script>
 
 </head>
 
 <body>
 
-<div id="container" style="position:absolute;left:0;top:0;width:480px;height:320px;background:#eee;"></div>
+<div id="container" style="position:absolute;left:0;top:0;width:480px;height:320px;background:#fff;"></div>
 <div id="fps" style="position:absolute;left:0;top:0;"></div>
 <img id="girl" src="images/girl.png" style="display:none;" />
 <img id="boy" src="images/boy.png" style="display:none;" />
@@ -45,26 +48,33 @@ body{margin:0;padding:0;font-size:12px;background-color:#fff;}
 
 window.onload = init;
 
-var timer, container, canvas;
+var timer, container, context, params, width, height, fps;
 
 function init()
 {	
 	container = Q.getDOM("container");
-	var domContext = new Q.DOMContext({canvas:container});
 	
-	canvas = Quark.createDOM("canvas", {width:480, height:320, style:{position:"absolute",backgroundColor:"#eee"}});
-	container.appendChild(canvas);
-	canvasContext = new Quark.CanvasContext({canvas:canvas});
+	params = Quark.getUrlParams();
+	if(params.mode == undefined) params.mode = 2;
+
+	width = 480;
+	height = 320;
+	fps = 60;
+
+	if(params.mode == 1)
+	{
+		var canvas = Quark.createDOM("canvas", {width:width, height:height, style:{position:"absolute",backgroundColor:"#fff"}});		
+		container.appendChild(canvas);
+		context = new Quark.CanvasContext({canvas:canvas});		
+	}else
+	{
+		context = new Quark.DOMContext({canvas:container});
+	}
 	
-	var stage = new Q.Stage({context:canvasContext, width:480, height:320, update:function()
+	var stage = new Q.Stage({context:context, width:width, height:height, update:function()
 	{
 		frames++;
 	}});
-	
-	timer = new Q.Timer(60);
-	timer.addListener(stage);
-	timer.addListener(Q.Tween);
-	timer.start();
 
 	var turn = new Q.Bitmap({id:'turn', image:Q.getDOM('turn'), alpha:0});
 	turn.x = -turn.width;
@@ -78,6 +88,11 @@ function init()
 			trace("tween end");
 		}});
 	}});
+	
+	timer = new Q.Timer(fps);
+	timer.addListener(stage);
+	timer.addListener(Q.Tween);
+	timer.start();
 }
 
 var frames = 0, fpsContainer = Quark.getDOM("fps");

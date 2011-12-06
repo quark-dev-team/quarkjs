@@ -9,6 +9,7 @@
 body{margin:0;padding:0;font-size:12px;background-color:#eee;}
 </style>
 
+<!--
 <script type="text/javascript" src="../src/base/core/base.js"></script>
 <script type="text/javascript" src="../src/base/event/EventDispatcher.js"></script>
 <script type="text/javascript" src="../src/base/event/EventManager.js"></script>
@@ -30,12 +31,15 @@ body{margin:0;padding:0;font-size:12px;background-color:#eee;}
 <script type="text/javascript" src="../src/base/display/Stage.js"></script>
 <script type="text/javascript" src="../src/base/display/Bitmap.js"></script>
 <script type="text/javascript" src="../src/base/display/MovieClip.js"></script>
+-->
+
+<script type="text/javascript" src="../js/quark.base-1.0.0.alpha.min.js"></script>
 
 </head>
 
 <body>
 
-<div id="container" style="position:absolute;left:0;top:0;width:480px;height:320px;"></div>
+<div id="container" style="position:absolute;left:0;top:0;width:480px;height:320px;background-color:#fff;"></div>
 <div id="fps" style="position:absolute;left:0;top:0;"></div>
 <img id="girl" src="images/girl.png" style="display:none;" />
 <img id="boy" src="images/boy.png" style="display:none;" />
@@ -44,47 +48,50 @@ body{margin:0;padding:0;font-size:12px;background-color:#eee;}
 
 window.onload = init;
 
-var container, girl, boy, width, height, stage, canvas, canvasContext, domContext, timer, fps;
-var bmp, bmp2, mc;
-var sound;
+var container, stage, context, girl, boy, width, height, timer, fps, events, params;
+var bmp1, bmp2, mc;
 
 function init()
 {
 	container = Quark.getDOM("container");
 	girl = Quark.getDOM("girl"),
 	boy = Quark.getDOM("boy");
+	events = Quark.supportTouch ? ["touchend"] : ["mouseup"];
+
+	params = Quark.getUrlParams();
+	if(params.mode == undefined) params.mode = 2;
 	
 	width = 480;
 	height = 320;
 	fps = 60;
 	
-	canvas = Quark.createDOM("canvas", {width:width, height:height, style:{position:"absolute",backgroundColor:"#fff"}});
-	canvasContext = new Quark.CanvasContext({canvas:canvas});
-	container.appendChild(canvas);
-	domContext = new Quark.DOMContext({canvas:container});	
+	if(params.mode == 1)
+	{
+		var canvas = Quark.createDOM("canvas", {width:width, height:height, style:{position:"absolute",backgroundColor:"#fff"}});		
+		container.appendChild(canvas);
+		context = new Quark.CanvasContext({canvas:canvas});		
+	}else
+	{
+		context = new Quark.DOMContext({canvas:container});
+	}		
 	
 	start();
 }
 
 function start()
 {	
-	stage = new Quark.Stage({width:width, height:height, context:canvasContext, update:update});
+	stage = new Quark.Stage({width:width, height:height, context:context, update:update});	
 
-	timer = new Q.Timer(1000/fps);
-	timer.addListener(stage);
-	timer.addListener(Q.Tween);
-	timer.start();
-
-	bmp = new Quark.Bitmap({image:girl, rect:[0,0,64,85], regX:32, regY:42});
-	bmp.rotation = 0;
-	bmp.x = 300;
-	bmp.y = 100;
-	bmp.enabled = true;
-	bmp.onEvent = function(e)
+	bmp1 = new Quark.Bitmap({image:girl, rect:[0,0,64,85], regX:32, regY:42});
+	bmp1.rotation = 0;
+	bmp1.x = 300;
+	bmp1.y = 100;
+	bmp1.enabled = true;
+	bmp1.onEvent = function(e)
 	{
-		if(e.type == "mousedown")
+		if(e.type == events[0])
 		{
-			bmp.enabled = !bmp.enabled;
+			bmp1.enabled = !bmp1.enabled;
 		}
 	}
 	
@@ -93,7 +100,7 @@ function start()
 	bmp2.y = 100;
 	bmp2.onEvent = function(e)
 	{
-		if(e.type == "mousedown")
+		if(e.type == events[0])
 		{
 			bmp2.scaleX = bmp2.scaleY = bmp2.scaleX == 1? 2 : 1;
 		}
@@ -112,118 +119,30 @@ function start()
 	mc.gotoAndPlay("walk");
 	mc.onEvent = function(e)
 	{
-		if(e.type == "mousedown")
+		if(e.type == events[0])
 		{
 			mc.paused = !mc.paused;
 		}
 	}
 
-	stage.addChild(bmp);
-	stage.addChild(bmp2);
-	stage.addChild(mc);
+	stage.addChild(bmp1, bmp2, mc);
 	
 	setTimeout(function(){mc.visible=false;}, 2000);
 	setTimeout(function(){mc.visible=true;}, 4000);
-
-	sound = new Q.Audio("../../games/tank/res/sound/explosion.mp3", true, true);
-
-	var events = Quark.supportTouch ? ["touchstart"] : ["mousedown"];
+	
 	var em = new Q.EventManager();
-	em.register(stage.context.canvas, events, function()
-	{
-		//if(!sound.loaded()) sound.load();
-		//else setInterval(function(){sound.play();trace("play");}, 2000);
-	});
+	em.registerStage(stage, events);
 
-	em.registerStage(stage, events);	
-}
-
-function loadMusic(sounds)
-{
-	var id = 0, loading = false;
-
-	var loadID = setInterval(function()
-	{
-		if(id >= sounds.length) 
-		{
-			clearInterval(loadID);
-			trace("complete");
-			setInterval(function(){var i=Math.floor(Math.random()*2);sounds[i].play();trace("play", i, sounds[i]);}, 5000);
-		}else
-		{
-			if(!loading)
-			{
-				sounds[id].load();
-				sounds[id].addEventListener("progress", function(e){trace("progress:", e.target.buffered, e.target.duration)});
-				sounds[id].addEventListener("load", function(){trace("load hahha")});
-				loading = true;
-				trace("load:", id, sounds[id].src);
-			}else
-			{
-				if(sounds[id].readyState > 2)
-				{
-					loading = false;
-					id = id + 1;
-				}
-			}
-			
-		}
-	}, 10);
-}
-
-function playAudio()
-{	
-	audioObj1.play();
-	//audioObj2.play();
-	//fakeClick(function(){audioObj1.play();trace("play audio");});
-}
-
-function createAudio(id, url)
-{
-	var audio = new Audio(url);
-	//audio.loop = true;
-	audio.autoPlay = true;
-	audio.id = id;
-	document.body.appendChild(audio);
-	return audio;
-}
-
-function fakeClick(callback)
-{
-	var aTag = document.createElement("a");
-	aTag.id = "fakeClickLink";
-	aTag.addEventListener("click", function(e)
-	{
-		e.preventDefault();
-		callback();
-	}, false);
-	document.body.appendChild(aTag);
-
-	if (document.createEvent)
-	{
-		var evt = document.createEvent("MouseEvents");
-		if (evt.initMouseEvent)
-		{
-			evt.initMouseEvent("click", true, true, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);
-			aTag.dispatchEvent(evt);
-		}
-	}	
-	document.body.removeChild(aTag);
+	timer = new Q.Timer(1000/fps);
+	timer.addListener(stage);
+	timer.addListener(Q.Tween);
+	timer.start();
 }
 
 function update()
 {
 	frames++;
-	if(bmp && bmp.enabled) bmp.rotation += 5;
-}
-
-function clearDirty()
-{
-	for(var i = 0; i < this.children.length; i++)
-	{
-		var child = this.children[i];
-		this.context.clear(child.getState("x")-child.getState("regX"), child.getState("y")-child.getState("regY"), child.getState("width"), child.getState("height"));
-	}
+	if(bmp1 && bmp1.enabled) bmp1.rotation += 5;
 }
 
 var frames = 0, fpsContainer = Quark.getDOM("fps");

@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="user-scalable=no, width=device-width, height=device-height, initial-scale=1.0, minimum-scale=1, maximum-scale=1" />
-<title>Quark Framework Example - Button</title>
+<title>Quark Framework Example - HitTest</title>
 
 <style type="text/css">
 body{margin:0;padding:0;font-size:12px;background-color:#eee;}
@@ -31,70 +31,102 @@ body{margin:0;padding:0;font-size:12px;background-color:#eee;}
 <script type="text/javascript" src="../src/base/display/Stage.js"></script>
 <script type="text/javascript" src="../src/base/display/Bitmap.js"></script>
 <script type="text/javascript" src="../src/base/display/MovieClip.js"></script>
-<script type="text/javascript" src="../src/base/display/Button.js"></script>
 -->
 
 <script type="text/javascript" src="../js/quark.base-1.0.0.alpha.min.js"></script>
+
 
 </head>
 
 <body>
 
-<div id="container" style="position:absolute;left:0;top:0;width:480px;height:320px;background:#fff;"></div>
+<div id="container" style="position:absolute;left:0;top:0;width:480px;height:320px;background-color:#fff;"></div>
 <div id="fps" style="position:absolute;left:0;top:0;"></div>
-<img id="btns" src="images/btns.png" style="display:none;" />
+<img id="girl" src="images/girl.png" style="display:none;" />
+<img id="boy" src="images/boy.png" style="display:none;" />
 
 <script type="text/javascript">
 
 window.onload = init;
 
-var timer, container, params, context, events, stage;
+var container, stage, context, girl, boy, width, height, timer, fps, events, params;
+var box, rect1, rect2;
 
 function init()
 {
-	container = Q.getDOM("container");
-	events = Q.supportTouch ? ["touchstart","touchmove","touchend"] : ["mousedown","mousemove","mouseup"];
-	
-	params = Q.getUrlParams();
-	if(params.mode == undefined) params.mode = 2;
+	container = Quark.getDOM("container");
+	events = Quark.supportTouch ? ["touchend"] : ["mouseup"];
 
+	params = Quark.getUrlParams();
+	if(params.mode == undefined) params.mode = 1;
+	
+	width = 480;
+	height = 320;
+	fps = 60;
+	
 	if(params.mode == 1)
 	{
-		var canvas = Quark.createDOM("canvas", {width:480, height:320, style:{position:"absolute",backgroundColor:"#eee"}});
+		var canvas = Quark.createDOM("canvas", {width:width, height:height, style:{position:"absolute",backgroundColor:"#fff"}});		
 		container.appendChild(canvas);
-		context = new Quark.CanvasContext({canvas:canvas});
+		context = new Quark.CanvasContext({canvas:canvas});		
 	}else
 	{
-		context = new Q.DOMContext({canvas:container});
+		context = new Quark.DOMContext({canvas:container});
 	}
+
+	start();
+}
+
+function start()
+{	
+	stage = new Quark.Stage({width:width, height:height, context:context, update:update, onEvent:onEvent});
+	Q.toggleDebugRect(stage);
+
+	box = new Quark.DisplayObjectContainer({id:"box", x:350, y:0, rotation:90, width:width, height:height, eventEnabled:false});
+	rect1 = new Quark.Bitmap({id:"blue", x:100, y:100, rotation:0, regX:25, regY:50, image:createRect(50, 100, "#00f")});
+	rect2 = new Quark.Bitmap({id:"green", x:rect1.x+90, y:rect1.y, regX:25, regY:50, image:createRect(50, 100, "#0f0")});
+	stage.addChild(box.addChild(rect1, rect2));
 	
-	stage = new Q.Stage({context:context, width:480, height:320, update:function()
-	{
-		frames++;
-	}});
-
-	var btn1 = new Q.Button({id:"btn1", image:Q.getDOM("btns"), x:50, y:50, width:64, height:64,
-	up:{rect:[0,0,64,64]},
-	over:{rect:[64,0,64,64]},
-	down:{rect:[128,0,64,64]},
-	disabled:{rect:[192,0,64,64]}
-	});
-
-	var btn2 = new Q.Button({id:"btn2", image:Q.getDOM("btns"), x:200, y:50, width:64, height:64,
-	up:{rect:[0,64,64,64]},
-	over:{rect:[64,64,64,64]},
-	down:{rect:[128,64,64,64]},
-	disabled:{rect:[192,64,64,64]}
-	});
-
-	stage.addChild(btn1, btn2);
-
 	var em = new Q.EventManager();
-	em.registerStage(stage, events, true, true);
-	
-	timer = new Q.Timer(1000/60);
+	em.registerStage(stage, events);
+
+	timer = new Q.Timer(1000/fps);
 	timer.addListener(stage);
+	timer.addListener(Q.Tween);
 	timer.start();
+}
+
+function update()
+{
+	frames++;	
+	rect1.rotation -= 1;
+	rect2.rotation += 1;
+	var hit = rect1.hitTestObject(rect2);
+	rect1.alpha = rect2.alpha = hit ? 0.5 : 1;
+}
+
+function onEvent(e)
+{
+	var obj1 = e.eventTarget, obj2 = e.lastEventTarget;
+	if(obj1) obj1.scaleX = obj1.scaleY = 1.5;
+	if(obj2) obj2.scaleX = obj2.scaleY = 1.0;
+}
+
+function createRect(w, h, color)
+{
+	var canvas = document.createElement("canvas");
+	canvas.width = w;
+	canvas.height = h;
+	var ctx = canvas.getContext("2d");
+	ctx.fillStyle = color;
+	ctx.rect(0, 0, w, h);
+	ctx.fill();
+
+	var img = new Image();
+	img.src = canvas.toDataURL("image/png");
+	img.width = w;
+	img.height = h;
+	return img;
 }
 
 var frames = 0, fpsContainer = Quark.getDOM("fps");

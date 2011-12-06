@@ -50,7 +50,7 @@ CanvasContext.prototype.transform = function(target)
 {
 	var ctx = this.context;
 	if(target.x != 0 || target.y != 0) ctx.translate(target.x, target.y);
-	if(target.rotation%360 != 0) ctx.rotate(target.rotation%360*DEG_TO_RAD);
+	if(target.rotation%360 != 0) ctx.rotate(target.rotation%360*Quark.DEG_TO_RAD);
 	if(target.scaleX != 1 || target.scaleY != 1) ctx.scale(target.scaleX, target.scaleY);
 	if(target.regX != 0 || target.regY != 0) ctx.translate(-target.regX, -target.regY);
 	if(target.alpha > 0) ctx.globalAlpha *= target.alpha;
@@ -64,7 +64,5 @@ CanvasContext.prototype.clear = function(x, y, width, height)
 	this.context.clearRect(x, y, width, height);
 	//this.canvas.width = this.canvas.width;
 };
-
-var DEG_TO_RAD = Math.PI / 180;
 
 })();

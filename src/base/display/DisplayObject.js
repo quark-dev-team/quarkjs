@@ -25,8 +25,9 @@ var DisplayObject = Quark.DisplayObject = function(props)
 	this.eventEnabled = true;
 	this.transformEnabled = true;
 	this.useHandCursor = false;
+	this.polyArea = null;
 
-	this.drawable = null;	
+	this.drawable = null;
 	this.parent = null;	
 	this.context = null;
 	
@@ -149,32 +150,21 @@ DisplayObject.prototype.propChanged = function()
 };
 
 /**
- * 计算DisplayObject对象的边框，以确定它是否与x和y参数指定的点重叠或相交。
+ * 计算DisplayObject对象的包围矩形，以确定由x和y参数指定的点是否在其包围矩形之内。
+ * @return 在包围矩形之内返回1，在边界上返回0，否则返回-1。
  */
-DisplayObject.prototype.hitTestPoint = function(x, y, usePixelCollision, threshold)
+DisplayObject.prototype.hitTestPoint = function(x, y, usePolyCollision)
 {
-	if(!usePixelCollision)
-	{
-		var b = this.getBounds();		
-		return x >= b.x && x <= b.x + b.width && y >= b.y && y <= b.y + b.height;
-	}
-	//TODO: pixel collision
-	return false;
+	return Quark.hitTestPoint(this, x, y, usePolyCollision);
 };
 
 /**
- * 计算DisplayObject对象的边框，以确定它是否与object参数指定的显示对象的边框重叠或相交。
+ * 计算DisplayObject对象的包围矩形，以确定由object参数指定的显示对象是否与其相交。
+ * @return 相交返回true，否则返回false。
  */
-DisplayObject.prototype.hitTestObject = function(object, usePixelCollision, threshold)
+DisplayObject.prototype.hitTestObject = function(object, usePolyCollision)
 {
-	var b1 = this.getBounds(), b2 = object.getBounds();
-	if(!usePixelCollision)
-	{
-		return (b1.x <= b2.x + b2.width && b2.x <= b1.x + b1.width &&
-				b1.y <= b2.y + b2.height && b2.y <= b1.y + b1.height);		
-	}
-	//TODO: pixel collision
-	return false;
+	return Quark.hitTestObject(this, object, usePolyCollision);
 };
 
 /**
@@ -182,7 +172,7 @@ DisplayObject.prototype.hitTestObject = function(object, usePixelCollision, thre
  */
 DisplayObject.prototype.localToGlobal = function(x, y)
 {
-	var cm = getConcatenatedMatrix(this);
+	var cm = this.getConcatenatedMatrix();
 	return {x:cm.tx+x, y:cm.ty+y};
 };
 
@@ -191,7 +181,7 @@ DisplayObject.prototype.localToGlobal = function(x, y)
  */
 DisplayObject.prototype.globalToLocal = function(x, y) 
 {
-	var cm = getConcatenatedMatrix(this).invert();
+	var cm = this.getConcatenatedMatrix().invert();
 	return {x:cm.tx+x, y:cm.ty+y};
 };
 
@@ -205,17 +195,18 @@ DisplayObject.prototype.localToTarget = function(x, y, target)
 };
 
 /**
- * 获得一个对象的连接矩阵。
+ * 获得一个对象相对于其某个祖先（默认即舞台）的连接矩阵。
  */
-function getConcatenatedMatrix(obj) 
+DisplayObject.prototype.getConcatenatedMatrix = function(ancestor) 
 {	
 	var mtx = new Quark.Matrix(1, 0, 0, 1, 0, 0);
-	for (var o = obj; o.parent != null; o = o.parent)
+	if(ancestor == this) return mtx;
+	for(var o = this; o.parent != null && o.parent != ancestor; o = o.parent)
 	{		
 		var cos = 1, sin = 0;
 		if(o.rotation%360 != 0)
 		{
-			var r = o.rotation * DEG_TO_RAD;
+			var r = o.rotation * Quark.DEG_TO_RAD;
 			cos = Math.cos(r);
 			sin = Math.sin(r);
 		}
@@ -229,41 +220,36 @@ function getConcatenatedMatrix(obj)
 };
 
 /**
- * 返回DisplayObject对象相对于targetCoordinateSpace参数对象指定的坐标系的显示对象矩形区域。
+ * 返回DisplayObject对象在舞台全局坐标系内的矩形区域以及所有顶点。
  */
-DisplayObject.prototype.getBounds = function(targetCoordinateSpace)
-{
-	var p = targetCoordinateSpace == null ? this.localToGlobal(0, 0) : this.localToTarget(0, 0, targetCoordinateSpace);
-	var x = this.x, y = this.y, regX = this.regX, regY = this.regY, w = this.getCurrentWidth(), h = this.getCurrentHeight();
-	//TODO: bugfix if scaleX < 0 or scaleY < 0.
-	if(this.rotation%360 != 0)
-	{
-		var radian = this.rotation * DEG_TO_RAD;
-		var sin = Math.sin(radian), cos = Math.cos(radian);
-		var origin = {x:x, y:y};
-		var p1 = rotatePoint(origin, {x:x-regX, y:y-regY}, sin, cos);
-		var p2 = rotatePoint(origin, {x:x-regX+w, y:y-regY}, sin, cos);
-		var p3 = rotatePoint(origin, {x:x-regX+w, y:y-regY+h}, sin, cos);
-		var p4 = rotatePoint(origin, {x:x-regX, y:y-regY+h}, sin, cos);
-		this._rotatedPoints = [p1, p2, p3, p4];
-		
-		var left = Math.min(p1.x, p2.x, p3.x, p4.x);
-		var right = Math.max(p1.x, p2.x, p3.x, p4.x);
-		var top = Math.min(p1.y, p2.y, p3.y, p4.y);
-		var bottom = Math.max(p1.y, p2.y, p3.y, p4.y);
-		return {x:left, y:top, width:right-left, height:bottom-top};
-	}
-	return {x:p.x, y:p.y, width:w, height:h};
-};
-
-/**
- * 把一个点旋转指定角度。
- */
-function rotatePoint(origin, point, sin, cos)
+DisplayObject.prototype.getBounds = function()
 {	
-	var x = (point.x - origin.x) * cos - (point.y - origin.y) * sin;
-	var y = (point.y - origin.y) * cos + (point.x - origin.x) * sin;
-	return {x:(x + origin.x + 0.5) >> 0, y:(y + origin.y + 0.5) >> 0};
+	var w = this.width, h = this.height;
+	var mtx = this.getConcatenatedMatrix();
+	
+	var poly = this.polyArea || [{x:0, y:0}, {x:w, y:0}, {x:w, y:h}, {x:0, y:h}];
+	
+	var vertexs = [], len = poly.length, v, minX, maxX, minY, maxY;	
+	v = mtx.transformPoint(poly[0], true);
+	minX = maxX = v.x;
+	minY = maxY = v.y;
+	vertexs[0] = v;
+	
+	for(var i = 1; i < len; i++)
+	{
+		var v = mtx.transformPoint(poly[i], true);
+		if(minX > v.x) minX = v.x;
+		else if(maxX < v.x) maxX = v.x;
+		if(minY > v.y) minY = v.y;
+		else if(maxY < v.y) maxY = v.y;
+		vertexs[i] = v;
+	}
+	
+	vertexs.x = minX;
+	vertexs.y = minY;
+	vertexs.width = maxX - minX;
+	vertexs.height = maxY - minY;
+	return vertexs;
 };
 
 /**
@@ -301,7 +287,5 @@ DisplayObject.prototype.toString = function()
 	return Quark.UIDUtil.displayObjectToString(this);
 	//return this.id || this.name;
 };
-
-var DEG_TO_RAD = Math.PI / 180;
 
 })();
