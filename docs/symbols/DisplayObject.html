@@ -341,9 +341,18 @@ ul.inheritsList
 						<tr>
 							<td class="attributes">&nbsp;</td>
 							<td class="nameDescription">
-								<div class="fixedFont"><b><a href="../symbols/DisplayObject.html#getBounds">getBounds</a></b>(targetCoordinateSpace)
+								<div class="fixedFont"><b><a href="../symbols/DisplayObject.html#getBounds">getBounds</a></b>()
 								</div>
-								<div class="description">返回DisplayObject对象相对于targetCoordinateSpace参数对象指定的坐标系的显示对象矩形区域。</div>
+								<div class="description">返回DisplayObject对象在舞台全局坐标系内的矩形区域以及所有顶点。</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/DisplayObject.html#getConcatenatedMatrix">getConcatenatedMatrix</a></b>(ancestor)
+								</div>
+								<div class="description">获得一个对象相对于其某个祖先（默认即舞台）的连接矩阵。</div>
 							</td>
 						</tr>
 					
@@ -404,18 +413,18 @@ ul.inheritsList
 						<tr>
 							<td class="attributes">&nbsp;</td>
 							<td class="nameDescription">
-								<div class="fixedFont"><b><a href="../symbols/DisplayObject.html#hitTestObject">hitTestObject</a></b>(object, usePixelCollision, threshold)
+								<div class="fixedFont"><b><a href="../symbols/DisplayObject.html#hitTestObject">hitTestObject</a></b>(object, usePolyCollision)
 								</div>
-								<div class="description">计算DisplayObject对象的边框，以确定它是否与object参数指定的显示对象的边框重叠或相交。</div>
+								<div class="description">计算DisplayObject对象的包围矩形，以确定由object参数指定的显示对象是否与其相交。</div>
 							</td>
 						</tr>
 					
 						<tr>
 							<td class="attributes">&nbsp;</td>
 							<td class="nameDescription">
-								<div class="fixedFont"><b><a href="../symbols/DisplayObject.html#hitTestPoint">hitTestPoint</a></b>(x, y, usePixelCollision, threshold)
+								<div class="fixedFont"><b><a href="../symbols/DisplayObject.html#hitTestPoint">hitTestPoint</a></b>(x, y, usePolyCollision)
 								</div>
-								<div class="description">计算DisplayObject对象的边框，以确定它是否与x和y参数指定的点重叠或相交。</div>
+								<div class="description">计算DisplayObject对象的包围矩形，以确定由x和y参数指定的点是否在其包围矩形之内。</div>
 							</td>
 						</tr>
 					
@@ -570,11 +579,36 @@ ul.inheritsList
 					<div class="fixedFont">
 					
 					
-					<b>getBounds</b>(targetCoordinateSpace)
+					<b>getBounds</b>()
 					
 					</div>
 					<div class="description">
-						返回DisplayObject对象相对于targetCoordinateSpace参数对象指定的坐标系的显示对象矩形区域。
+						返回DisplayObject对象在舞台全局坐标系内的矩形区域以及所有顶点。
+						
+						
+					</div>
+					
+					
+					
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="getConcatenatedMatrix"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>getConcatenatedMatrix</b>(ancestor)
+					
+					</div>
+					<div class="description">
+						获得一个对象相对于其某个祖先（默认即舞台）的连接矩阵。
 						
 						
 					</div>
@@ -586,7 +620,7 @@ ul.inheritsList
 							<dt class="heading">Parameters:</dt>
 							
 								<dt>
-									<b>targetCoordinateSpace</b>
+									<b>ancestor</b>
 									
 								</dt>
 								<dd></dd>
@@ -795,11 +829,11 @@ ul.inheritsList
 					<div class="fixedFont">
 					
 					
-					<b>hitTestObject</b>(object, usePixelCollision, threshold)
+					<b>hitTestObject</b>(object, usePolyCollision)
 					
 					</div>
 					<div class="description">
-						计算DisplayObject对象的边框，以确定它是否与object参数指定的显示对象的边框重叠或相交。
+						计算DisplayObject对象的包围矩形，以确定由object参数指定的显示对象是否与其相交。
 						
 						
 					</div>
@@ -817,13 +851,7 @@ ul.inheritsList
 								<dd></dd>
 							
 								<dt>
-									<b>usePixelCollision</b>
-									
-								</dt>
-								<dd></dd>
-							
-								<dt>
-									<b>threshold</b>
+									<b>usePolyCollision</b>
 									
 								</dt>
 								<dd></dd>
@@ -834,6 +862,13 @@ ul.inheritsList
 						
 						
 						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd>相交返回true，否则返回false。</dd>
+							
+							</dl>
+						
 						
 						
 
@@ -843,11 +878,11 @@ ul.inheritsList
 					<div class="fixedFont">
 					
 					
-					<b>hitTestPoint</b>(x, y, usePixelCollision, threshold)
+					<b>hitTestPoint</b>(x, y, usePolyCollision)
 					
 					</div>
 					<div class="description">
-						计算DisplayObject对象的边框，以确定它是否与x和y参数指定的点重叠或相交。
+						计算DisplayObject对象的包围矩形，以确定由x和y参数指定的点是否在其包围矩形之内。
 						
 						
 					</div>
@@ -871,13 +906,7 @@ ul.inheritsList
 								<dd></dd>
 							
 								<dt>
-									<b>usePixelCollision</b>
-									
-								</dt>
-								<dd></dd>
-							
-								<dt>
-									<b>threshold</b>
+									<b>usePolyCollision</b>
 									
 								</dt>
 								<dd></dd>
@@ -887,6 +916,13 @@ ul.inheritsList
 						
 						
 						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd>在包围矩形之内返回1，在边界上返回0，否则返回-1。</dd>
+							
+							</dl>
 						
 						
 						
@@ -1189,7 +1225,7 @@ ul.inheritsList
 <!-- ============================== footer ================================= -->
 		<div class="fineprint" style="clear:both">
 			
-			Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Fri Nov 25 2011 18:15:08 GMT+0800 (CST)
+			Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Wed Dec 07 2011 10:50:03 GMT+0800 (CST)
 		</div>
 	</body>
 </html>

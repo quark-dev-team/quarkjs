@@ -378,7 +378,7 @@ ul.inheritsList
 						<tr>
 							<td class="attributes">&nbsp;</td>
 							<td class="nameDescription">
-								<div class="fixedFont"><b><a href="../symbols/DisplayObjectContainer.html#getObjectUnderPoint">getObjectUnderPoint</a></b>(x, y, usePixelCollision, threshold, returnAll)
+								<div class="fixedFont"><b><a href="../symbols/DisplayObjectContainer.html#getObjectUnderPoint">getObjectUnderPoint</a></b>(x, y, usePolyCollision, returnAll)
 								</div>
 								<div class="description">返回x和y指定点下的DisplayObjectContainer的子项（或孙子项，依此类推）的数组集合。默认只返回最先加入的子显示对象。</div>
 							</td>
@@ -429,13 +429,31 @@ ul.inheritsList
 							</td>
 						</tr>
 					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/DisplayObjectContainer.html#swapChildren">swapChildren</a></b>(child1, child2)
+								</div>
+								<div class="description">交换在DisplayObjectContainer的子级列表中的两个子对象的索引位置。</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/DisplayObjectContainer.html#swapChildrenAt">swapChildrenAt</a></b>(index1, index2)
+								</div>
+								<div class="description">交换在DisplayObjectContainer的子级列表中的指定索引位置的两个子对象。</div>
+							</td>
+						</tr>
+					
 					</tbody>
 				</table>
 				
 				
 				
 				<dl class="inheritsList">
-				<dt>Methods borrowed from class <a href="../symbols/DisplayObject.html">DisplayObject</a>: </dt><dd><a href="../symbols/DisplayObject.html#getBounds">getBounds</a>, <a href="../symbols/DisplayObject.html#getCurrentHeight">getCurrentHeight</a>, <a href="../symbols/DisplayObject.html#getCurrentWidth">getCurrentWidth</a>, <a href="../symbols/DisplayObject.html#getDrawable">getDrawable</a>, <a href="../symbols/DisplayObject.html#getStage">getStage</a>, <a href="../symbols/DisplayObject.html#getState">getState</a>, <a href="../symbols/DisplayObject.html#globalToLocal">globalToLocal</a>, <a href="../symbols/DisplayObject.html#hitTestObject">hitTestObject</a>, <a href="../symbols/DisplayObject.html#hitTestPoint">hitTestPoint</a>, <a href="../symbols/DisplayObject.html#localToGlobal">localToGlobal</a>, <a href="../symbols/DisplayObject.html#localToTarget">localToTarget</a>, <a href="../symbols/DisplayObject.html#propChanged">propChanged</a>, <a href="../symbols/DisplayObject.html#saveState">saveState</a>, <a href="../symbols/DisplayObject.html#setDrawable">setDrawable</a>, <a href="../symbols/DisplayObject.html#toString">toString</a>, <a href="../symbols/DisplayObject.html#update">update</a></dd>
+				<dt>Methods borrowed from class <a href="../symbols/DisplayObject.html">DisplayObject</a>: </dt><dd><a href="../symbols/DisplayObject.html#getBounds">getBounds</a>, <a href="../symbols/DisplayObject.html#getConcatenatedMatrix">getConcatenatedMatrix</a>, <a href="../symbols/DisplayObject.html#getCurrentHeight">getCurrentHeight</a>, <a href="../symbols/DisplayObject.html#getCurrentWidth">getCurrentWidth</a>, <a href="../symbols/DisplayObject.html#getDrawable">getDrawable</a>, <a href="../symbols/DisplayObject.html#getStage">getStage</a>, <a href="../symbols/DisplayObject.html#getState">getState</a>, <a href="../symbols/DisplayObject.html#globalToLocal">globalToLocal</a>, <a href="../symbols/DisplayObject.html#hitTestObject">hitTestObject</a>, <a href="../symbols/DisplayObject.html#hitTestPoint">hitTestPoint</a>, <a href="../symbols/DisplayObject.html#localToGlobal">localToGlobal</a>, <a href="../symbols/DisplayObject.html#localToTarget">localToTarget</a>, <a href="../symbols/DisplayObject.html#propChanged">propChanged</a>, <a href="../symbols/DisplayObject.html#saveState">saveState</a>, <a href="../symbols/DisplayObject.html#setDrawable">setDrawable</a>, <a href="../symbols/DisplayObject.html#toString">toString</a>, <a href="../symbols/DisplayObject.html#update">update</a></dd>
 				</dl>
 				
 			
@@ -696,7 +714,7 @@ ul.inheritsList
 					<div class="fixedFont">
 					
 					
-					<b>getObjectUnderPoint</b>(x, y, usePixelCollision, threshold, returnAll)
+					<b>getObjectUnderPoint</b>(x, y, usePolyCollision, returnAll)
 					
 					</div>
 					<div class="description">
@@ -724,13 +742,7 @@ ul.inheritsList
 								<dd></dd>
 							
 								<dt>
-									<b>usePixelCollision</b>
-									
-								</dt>
-								<dd></dd>
-							
-								<dt>
-									<b>threshold</b>
+									<b>usePolyCollision</b>
 									
 								</dt>
 								<dd></dd>
@@ -925,6 +937,90 @@ ul.inheritsList
 						
 						
 
+					<hr />
+				
+					<a name="swapChildren"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>swapChildren</b>(child1, child2)
+					
+					</div>
+					<div class="description">
+						交换在DisplayObjectContainer的子级列表中的两个子对象的索引位置。
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<b>child1</b>
+									
+								</dt>
+								<dd></dd>
+							
+								<dt>
+									<b>child2</b>
+									
+								</dt>
+								<dd></dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="swapChildrenAt"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>swapChildrenAt</b>(index1, index2)
+					
+					</div>
+					<div class="description">
+						交换在DisplayObjectContainer的子级列表中的指定索引位置的两个子对象。
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<b>index1</b>
+									
+								</dt>
+								<dd></dd>
+							
+								<dt>
+									<b>index2</b>
+									
+								</dt>
+								<dd></dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+						
+						
+
 					
 				
 			
@@ -939,7 +1035,7 @@ ul.inheritsList
 <!-- ============================== footer ================================= -->
 		<div class="fineprint" style="clear:both">
 			
-			Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Fri Nov 25 2011 18:15:08 GMT+0800 (CST)
+			Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Wed Dec 07 2011 10:50:03 GMT+0800 (CST)
 		</div>
 	</body>
 </html>
