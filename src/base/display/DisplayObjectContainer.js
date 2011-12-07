@@ -11,7 +11,6 @@ var DisplayObjectContainer = Quark.DisplayObjectContainer = function(props)
 {
 	this.eventChildren = true;
 	this.autoSize = false;
-	this.children = [];
 
 	props = props || {};
 	DisplayObjectContainer.superClass.constructor.call(this, props);		
@@ -19,6 +18,7 @@ var DisplayObjectContainer = Quark.DisplayObjectContainer = function(props)
 
 	this.setDrawable(props.drawable || props.image || null);	
 
+	this.children = [];
 	if(props.children)
 	{
 		for(var i = 0; i < props.children.length; i++)
@@ -139,6 +139,26 @@ DisplayObjectContainer.prototype.setChildIndex = function(child, index)
 };
 
 /**
+ * 交换在DisplayObjectContainer的子级列表中的两个子对象的索引位置。
+ */
+DisplayObjectContainer.prototype.swapChildren = function(child1, child2)
+{
+	var index1 = this.getChildIndex(child1), index2 = this.getChildIndex(child2);
+	this.children[index1] = child2;
+	this.children[index2] = child1;
+};
+
+/**
+ * 交换在DisplayObjectContainer的子级列表中的指定索引位置的两个子对象。
+ */
+DisplayObjectContainer.prototype.swapChildrenAt = function(index1, index2)
+{
+	var child1 = this.getChildAt(index1), child2 = this.getChildAt(index2);
+	this.children[index1] = child2;
+	this.children[index2] = child1;
+};
+
+/**
  * 确定指定对象是否为DisplayObjectContainer的子显示对象。
  */
 DisplayObjectContainer.prototype.contains = function(child)
@@ -165,7 +185,7 @@ DisplayObjectContainer.prototype._update = function(timeInfo)
 	for(var i = 0, len = this.children.length; i < len; i++)
 	{
 		var child = this.children[i];
-		child._depth = i;
+		child._depth = i + 1;
 		child._update(timeInfo);
 	}
 };
@@ -187,30 +207,30 @@ DisplayObjectContainer.prototype.render = function(context)
 /**
  * 返回x和y指定点下的DisplayObjectContainer的子项（或孙子项，依此类推）的数组集合。默认只返回最先加入的子显示对象。
  */
-DisplayObjectContainer.prototype.getObjectUnderPoint = function(x, y, usePixelCollision, threshold, returnAll)
+DisplayObjectContainer.prototype.getObjectUnderPoint = function(x, y, usePolyCollision, returnAll)
 {
 	if(returnAll) var result = [];
 	
 	for(var i = this.children.length - 1; i >= 0; i--)
 	{
 		var child = this.children[i];
-		if(child == null || !child.eventEnabled || !child.visible || child.alpha <= 0) continue;
+		if(child == null || (!child.eventEnabled && child.children == undefined) || !child.visible || child.alpha <= 0) continue;
 		
 		if(child.children != undefined && child.eventChildren && child.getNumChildren() > 0)
 		{			
-			var obj = child.getObjectUnderPoint(x, y, usePixelCollision, threshold, returnAll);
+			var obj = child.getObjectUnderPoint(x, y, usePolyCollision, returnAll);
 			if(obj)
 			{
 				if(returnAll) {if(obj.length > 0) result = result.concat(obj);}
 				else return obj;
-			}else if(child.hitTestPoint(x, y, usePixelCollision, threshold))
+			}else if(child.hitTestPoint(x, y, usePolyCollision) >= 0)
 			{
 				if(returnAll) result.push(child);
 				else return child;
-			}			
+			}
 		}else
 		{
-			if(child.hitTestPoint(x, y, usePixelCollision, threshold)) 
+			if(child.hitTestPoint(x, y, usePolyCollision) >= 0) 
 			{
 				if(returnAll) result.push(child);
 				else return child;

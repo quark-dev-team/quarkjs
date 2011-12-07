@@ -85,6 +85,21 @@ Matrix.prototype.invert = function()
 	return this;
 };
 
+Matrix.prototype.transformPoint = function(point, round, returnNew)
+{
+	var x = point.x * this.a + point.y * this.c + this.tx;
+	var y =	point.x * this.b + point.y * this.d + this.ty;
+	if(round)
+	{
+		x = x + 0.5 >> 0;
+		y = y + 0.5 >> 0;
+	}
+	if(returnNew) return {x:x, y:y};
+	point.x = x;
+	point.y = y;
+	return point;
+};
+
 Matrix.prototype.clone = function()
 {
 	return new Matrix(this.a, this.b, this.c, this.d, this.tx, this.ty);

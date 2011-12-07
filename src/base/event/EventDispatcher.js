@@ -77,9 +77,9 @@ EventDispatcher.prototype.removeAllEventListeners = function()
 EventDispatcher.prototype.dispatchEvent = function(event)
 {
 	var map = this._eventMap[event.type];
-	if(map == null) return false;
+	if(map == null) return false;	
 	if(!event.target) event.target = this;
-	map = map.slice();
+    map = map.slice();
 
 	for(var i = 0; i < map.length; i++)
 	{

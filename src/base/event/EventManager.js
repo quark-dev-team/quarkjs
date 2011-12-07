@@ -108,8 +108,7 @@ EventManager.prototype._onEvent = function(e, params, callback)
 		this.keyState[e.keyCode] = type;
 	}
 	
-	//不能修改原生的event对象，在opera下会抛错
-	//e.timeStamp = Date.now();
+	//e.eventTime = Date.now();
 	
 	if(callback.func != null) callback.func.call(callback.host, ne);
 	

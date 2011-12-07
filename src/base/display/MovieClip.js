@@ -22,6 +22,8 @@ var MovieClip = Quark.MovieClip = function(props)
 	props = props || {};
 	MovieClip.superClass.constructor.call(this, props);
 	this.id = props.id || Quark.UIDUtil.createUID("MovieClip");
+
+	if(props.frames) this.addFrame(props.frames);
 };
 Quark.inherit(MovieClip, Quark.Bitmap);
 

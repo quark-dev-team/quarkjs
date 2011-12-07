@@ -41,24 +41,33 @@ Quark.addMeta = function(props)
  */
 Quark.toggleDebugRect = function(stage)
 {
-	stage.paused = !stage.paused;
-	if(!stage.paused) return;
-	
-	var context = stage.context;
-	stage._update(context);
-	
-	var ctx = context.context;
-	if(ctx != null)
+	stage.debug = !stage.debug;	
+	if(stage.debug)
 	{
-		ctx.save();
-		ctx.lineWidth = 1;
-		ctx.strokeStyle = "#f00";
-		ctx.globalAlpha = 0.5;
+		stage._render = function(context)
+		{
+			if(context.clear != null) context.clear(0, 0, stage.width, stage.height);
+			Quark.Stage.superClass._render.call(stage, context);
+			
+			var ctx = stage.context.context;
+			if(ctx != null)
+			{
+				ctx.save();
+				ctx.lineWidth = 1;
+				ctx.strokeStyle = "#f00";
+				ctx.globalAlpha = 0.5;
+			}
+			drawObjectRect(stage, ctx);
+			if(ctx != null) ctx.restore();
+		};
+	}else
+	{
+		stage._render = function(context)
+		{
+			if(context.clear != null) context.clear(0, 0, stage.width, stage.height);
+			Quark.Stage.superClass._render.call(stage, context);
+		};
 	}
-	
-	drawObjectRect(stage, ctx);
-	
-	if(ctx != null) ctx.restore();
 };
 
 /**
@@ -77,23 +86,20 @@ function drawObjectRect(obj, ctx)
 			if(ctx != null)
 			{
 				var b = child.getBounds();
-				
-				if(child._rotatedPoints != null)
+								
+				ctx.globalAlpha = 0.2;
+				ctx.beginPath();
+				var p0 = b[0];
+				ctx.moveTo(p0.x-0.5, p0.y-0.5);						
+				for(var j = 1; j < b.length; j++)
 				{
-					ctx.globalAlpha = 0.2;
-					ctx.beginPath();
-					var p0 = child._rotatedPoints[0];
-					ctx.moveTo(p0.x-0.5, p0.y-0.5);						
-					for(var j = 1; j < child._rotatedPoints.length; j++)
-					{
-						var p = child._rotatedPoints[j];							
-						ctx.lineTo(p.x-0.5, p.y-0.5);	
-					}
-					ctx.lineTo(p0.x-0.5, p0.y-0.5);
-					ctx.stroke();
-					ctx.closePath();
-					ctx.globalAlpha = 0.5;
+					var p = b[j];					
+					ctx.lineTo(p.x-0.5, p.y-0.5);	
 				}
+				ctx.lineTo(p0.x-0.5, p0.y-0.5);
+				ctx.stroke();
+				ctx.closePath();
+				ctx.globalAlpha = 0.5;
 				
 				ctx.beginPath();
 				ctx.rect((b.x>>0)-0.5, (b.y>>0)-0.5, b.width>>0, b.height>>0);

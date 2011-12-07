@@ -31,7 +31,7 @@ Quark.merge = function(obj, props, strict)
 {
 	for(var key in props)
 	{
-		if(!strict || obj.hasOwnProperty(key)) obj[key] = props[key];
+		if(!strict || obj.hasOwnProperty(key) || obj[key] !== undefined) obj[key] = props[key];
 	}
 	return obj;
 };
@@ -184,6 +184,136 @@ Quark.createDOMDrawable = function(disObj, imageObj)
 		}
 	}
 	return elem;
+};
+
+/**
+ * Constants
+ */
+Quark.DEG_TO_RAD = Math.PI / 180;
+Quark.RAD_TO_DEG = 180 / Math.PI;
+
+/**
+ * 检测显示对象obj是否与点x，y发生了碰撞。
+ */
+Quark.hitTestPoint = function(obj, x, y, usePolyCollision)
+{
+	var b = obj.getBounds(), len = b.length;
+	var hit = x >= b.x && x <= b.x + b.width && y >= b.y && y <= b.y + b.height;
+	
+	if(hit && usePolyCollision)
+	{
+		var cross = 0, onBorder = false, minX, maxX, minY, maxY;		
+		for(var i = 0; i < len; i++)
+		{
+			var p1 = b[i], p2 = b[(i+1)%len];			
+			
+			if(p1.y == p2.y && y == p1.y)
+			{
+				p1.x > p2.x ? (minX = p2.x, maxX = p1.x) : (minX = p1.x, maxX = p2.x);
+				if(x >= minX && x <= maxX)
+				{
+					onBorder = true;
+					continue;
+				}
+			}
+			
+			p1.y > p2.y ? (minY = p2.y, maxY = p1.y) : (minY = p1.y, maxY = p2.y);
+			if(y < minY || y > maxY) continue;
+			
+			var nx = (y - p1.y)*(p2.x - p1.x) / (p2.y - p1.y) + p1.x;
+			if(nx > x) cross++;
+			else if(nx == x) onBorder = true;			
+		}
+		
+		if(onBorder) return 0;
+		else if(cross % 2 == 1) return 1;
+		return -1;
+	}
+	return hit ? 1 : -1;
+};
+
+/**
+ * 检测显示对象obj1和obj2是否发生了碰撞。
+ */
+Quark.hitTestObject = function(obj1, obj2, usePolyCollision)
+{
+	var b1 = obj1.getBounds(), b2 = obj2.getBounds();
+	var hit = b1.x <= b2.x + b2.width && b2.x <= b1.x + b1.width && 
+				   b1.y <= b2.y + b2.height && b2.y <= b1.y + b1.height;
+	
+	if(hit && usePolyCollision)
+	{
+		hit = Quark.polygonCollision(b2, b2);
+		return hit !== false;
+	}
+	return hit;
+};
+
+/**
+ * 采用Separating Axis Theorem(SAT)的多边形碰撞检测方法。
+ * poly1,poly2是多边形顶点组成的数组。如[{x:0, y:0}, {x:10, y:0}, {x:10, y:10}, {x:0, y:10}]
+ */
+Quark.polygonCollision = function(poly1, poly2)
+{	
+	var result = doSATCheck(poly1, poly2, {overlap:-Infinity, normal:{x:0, y:0}});
+	if(result) return doSATCheck(poly2, poly1, result);
+	return false;
+};
+
+function doSATCheck(poly1, poly2, result)
+{
+	var len1 = poly1.length, len2 = poly2.length, currentPoint, nextPoint, distance, min1, max1, min2, max2, dot, overlap, normal = {x:0, y:0};
+	
+	for(var i = 0; i < len1; i++)
+	{
+		currentPoint = poly1[i];
+		nextPoint = poly1[(i < len1-1 ? i+1 : 0)];
+		
+		normal.x = currentPoint.x - nextPoint.x;
+		normal.y = nextPoint.y - currentPoint.y;
+		
+		distance = Math.sqrt(normal.x * normal.x + normal.y * normal.y);
+		normal.x /= distance;
+		normal.y /= distance;
+		
+		min1 = max1 = poly1[0].x * normal.x + poly1[0].y * normal.y;		
+		for(var j = 1; j < len1; j++)
+		{
+			dot = poly1[j].x * normal.x + poly1[j].y * normal.y;
+			if(dot > max1) max1 = dot;
+			else if(dot < min1) min1 = dot;
+		}
+		
+		min2 = max2 = poly2[0].x * normal.x + poly2[0].y * normal.y;		
+		for(j = 1; j < len2; j++)
+		{
+			dot = poly2[j].x * normal.x + poly2[j].y * normal.y;
+			if(dot > max2) max2 = dot;
+			else if(dot < min2) min2 = dot;
+		}
+		
+		if(min1 < min2)
+		{
+			overlap = min2 - max1;
+			normal.x = -normal.x;
+			normal.y = -normal.y;
+		}else
+		{
+			overlap = min1 - max2;
+		}
+		
+		if(overlap >= 0)
+		{
+			return false;
+		}else if(overlap > result.overlap)
+		{
+			result.overlap = overlap;
+			result.normal.x = normal.x;
+			result.normal.y = normal.y;
+		}
+	}
+	
+	return result;
 };
 
 /**

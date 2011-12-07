@@ -4,27 +4,30 @@
 /**
  * Constructor.
  * @name Button
- * @augments MovieClip
- * @class Button类继承自MovieClip，是Quark中的简单按钮实现。
+ * @augments DisplayObjectContainer
+ * @class Button类继承自DisplayObjectContainer，是Quark中的简单按钮实现。
  */
 var Button = Quark.Button = function(props)
 {
+	this.state = Button.UP;
+	this.enabled = true;
+    
 	props = props || {};
 	Button.superClass.constructor.call(this, props);
 	this.id = props.id || Quark.UIDUtil.createUID("Button");
-	
+
+	this._skin = new Quark.MovieClip({id:"skin", image:props.image});
+	this.addChild(this._skin);
+	this._skin.stop();
+
+	this.eventChildren = false;
+	if(props.useHandCursor === undefined) this.useHandCursor = true;
 	if(props.up) this.setUpState(props.up);
 	if(props.over) this.setOverState(props.over);
 	if(props.down) this.setDownState(props.down);
 	if(props.disabled) this.setDisabledState(props.disabled);
-	
-	this.state = Button.UP;
-	this.enabled = true;
-	this.mouseChildren = false;
-	this.useHandCursor = true;
-	this.stop();
 };
-Quark.inherit(Button, Quark.MovieClip);
+Quark.inherit(Button, Quark.DisplayObjectContainer);
 
 /**
  * 按钮的弹起状态。常数。
@@ -49,7 +52,7 @@ Button.DISABLED = "disabled";
 Button.prototype.setUpState = function(upState)
 {
 	upState.label = Button.UP;
-	this.setFrame(upState, 0);
+	this._skin.setFrame(upState, 0);
 	this.upState = upState;
 	return this;
 };
@@ -60,7 +63,7 @@ Button.prototype.setUpState = function(upState)
 Button.prototype.setOverState = function(overState)
 {
 	overState.label = Button.OVER;
-	this.setFrame(overState, 1);
+	this._skin.setFrame(overState, 1);
 	this.overState = overState;
 	return this;
 };
@@ -71,7 +74,7 @@ Button.prototype.setOverState = function(overState)
 Button.prototype.setDownState = function(downState)
 {
 	downState.label = Button.DOWN;
-	this.setFrame(downState, 2);
+	this._skin.setFrame(downState, 2);
 	this.downState = downState;
 	return this;
 };
@@ -82,7 +85,7 @@ Button.prototype.setDownState = function(downState)
 Button.prototype.setDisabledState = function(disabledState)
 {
 	disabledState.label = Button.DISABLED;
-	this.setFrame(disabledState, 3);
+	this._skin.setFrame(disabledState, 3);
 	this.disabledState = disabledState;
 	return this;
 };
@@ -96,11 +99,11 @@ Button.prototype.setEnabled = function(enabled)
 	this.eventEnabled = this.enabled = enabled;	 
 	if(!enabled)
 	{
-		if(this.disabledState) this.gotoAndStop(Button.DISABLED);
-		else this.gotoAndStop(Button.state.UP);
+		if(this.disabledState) this._skin.gotoAndStop(Button.DISABLED);
+		else this._skin.gotoAndStop(Button.state.UP);
 	}else
 	{
-		if(this.currentFrame == 3) this.gotoAndStop(Button.UP);
+		if(this.currentFrame == 3) this._skin.gotoAndStop(Button.UP);
 	}
 	return this;
 };
@@ -119,7 +122,7 @@ Button.prototype.changeState = function(state)
 		case Button.DOWN:
 		case Button.UP:
 			if(!this.enabled) this.eventEnabled = this.enabled = true;
-			this.gotoAndStop(state);
+			this._skin.gotoAndStop(state);
 			break;
 		case Button.DISABLED:
 			this.setEnabled(false);
@@ -157,6 +160,15 @@ Button.prototype._onEvent = function(e)
 			break;
 	}
 	Button.superClass._onEvent.call(this, e);
+};
+
+/**
+ * 把Button的drawable置空，否则传入image参数时会绘制成Button的背景。
+ * @private
+ */
+Button.prototype.setDrawable = function(drawable)
+{
+	Button.superClass.setDrawable.call(this, null);
 };
 
 })();

@@ -22,7 +22,7 @@ Drawable.prototype.get = function(obj, context)
 		return this.rawDrawable;
 	}else
 	{
-		if(this.domDrawable == null)
+        if(this.domDrawable == null)
 		{
 			this.domDrawable = Quark.createDOMDrawable(obj, {image:this.rawDrawable});
 		}
