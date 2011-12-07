@@ -31,11 +31,13 @@ API Docs
 Examples
 -----------------
 * [Simple](http://quark-dev-team.github.com/quarkjs/examples/simple1.html)
+* [Button](http://quark-dev-team.github.com/quarkjs/examples/button.html)
+* [HitTest](http://quark-dev-team.github.com/quarkjs/examples/hittest.html)
 * [Tween1](http://quark-dev-team.github.com/quarkjs/examples/tween1.html)
 * [Tween2](http://quark-dev-team.github.com/quarkjs/examples/tween2.html)
 * [Squirrel](http://quark-dev-team.github.com/quarkjs/examples/squirrel/squirrel.html)
 
-Demos
+Showcase
 -----------------
 * [Happy Dolphin](http://www.riaidea.com/html5/dolphin/)
 * [Runner (by old framework CasualJS)](http://www.riaidea.com/html5/runner/)
