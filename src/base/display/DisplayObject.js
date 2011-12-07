@@ -230,14 +230,14 @@ DisplayObject.prototype.getBounds = function()
 	var poly = this.polyArea || [{x:0, y:0}, {x:w, y:0}, {x:w, y:h}, {x:0, y:h}];
 	
 	var vertexs = [], len = poly.length, v, minX, maxX, minY, maxY;	
-	v = mtx.transformPoint(poly[0], true);
+	v = mtx.transformPoint(poly[0], true, true);
 	minX = maxX = v.x;
 	minY = maxY = v.y;
 	vertexs[0] = v;
 	
 	for(var i = 1; i < len; i++)
 	{
-		var v = mtx.transformPoint(poly[i], true);
+		var v = mtx.transformPoint(poly[i], true, true);
 		if(minX > v.x) minX = v.x;
 		else if(maxX < v.x) maxX = v.x;
 		if(minY > v.y) minY = v.y;

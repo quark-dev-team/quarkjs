@@ -51,7 +51,7 @@ DisplayObjectContainer.prototype.addChildAt = function(child, index)
 	child.parent = this;
 	
 	if(this.autoSize)
-	{
+	{		
 		var rect = new Quark.Rectangle(0, 0, this.rectWidth || this.width, this.rectHeight || this.height);
 		var childRect = new Quark.Rectangle(child.x, child.y, child.rectWidth || child.width, child.rectHeight || child.height);
 		rect.union(childRect);
