@@ -40,9 +40,10 @@ Stage.prototype.step = function(timeInfo)
 Stage.prototype._update = function(timeInfo)
 {	
 	//Stage作为根容器，先更新所有子对象，再调用update方法。
-	for(var i = 0, len = this.children.length; i < len; i++)
+	var copy = this.children.slice(0);
+	for(var i = 0, len = copy.length; i < len; i++)
 	{
-		var child = this.children[i];
+		var child = copy[i];
 		child._depth = i;
 		child._update(timeInfo);
 	}
@@ -67,6 +68,9 @@ Stage.prototype._onEvent = function(e)
 {	
 	var x = e.pageX - this.stageX, y = e.pageY - this.stageY, target = this._eventTarget;
 	var obj = this.getObjectUnderPoint(x, y, true);
+	
+	e.eventX = x;
+	e.eventY = y;
 	
 	if(target != null && target != obj)
 	{

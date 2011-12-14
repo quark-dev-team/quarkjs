@@ -181,10 +181,11 @@ DisplayObjectContainer.prototype._update = function(timeInfo)
 {
 	//先更新容器本身的数据，再更新子元素的数据
 	if(this.update != null) this.update(timeInfo);
-
-	for(var i = 0, len = this.children.length; i < len; i++)
+	
+	var copy = this.children.slice(0);
+	for(var i = 0, len = copy.length; i < len; i++)
 	{
-		var child = this.children[i];
+		var child = copy[i];
 		child._depth = i + 1;
 		child._update(timeInfo);
 	}
