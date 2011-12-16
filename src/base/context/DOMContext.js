@@ -71,33 +71,33 @@ DOMContext.prototype.transform = function(target)
 		origin = prefix + "TransformOrigin", 
 		transform = prefix + "Transform";
 	
-	if(target.propChanged("visible", "alpha"))
+	if(!image.style.display || target.propChanged("visible", "alpha"))
 	{
 		image.style.display = (!target.visible || target.alpha <= 0) ? "none" : "";
 	}
-	if(target.propChanged("alpha"))
+	if(!image.style.opacity || target.propChanged("alpha"))
 	{
 		image.style.opacity = target.alpha;
 	}
-	if(target.propChanged("rectX", "rectY"))
+	if(!image.style.backgroundPosition || target.propChanged("rectX", "rectY"))
 	{
 		image.style.backgroundPosition = (-target.rectX) + "px " + (-target.rectY) + "px";
 	}
-	if(target.propChanged("width", "height"))
+	if(!image.style.width || target.propChanged("width", "height"))
 	{
 		image.style.width = target.width + "px";
 		image.style.height = target.height + "px";
 	}
-	if(target.propChanged("regX", "regY"))
+	if(!image.style[origin] || target.propChanged("regX", "regY"))
 	{
 		image.style[origin] = target.regX + "px " + target.regY + "px";
 	}	
-	if(target.propChanged("x", "y", "regX", "regY", "scaleX", "scaleY", "rotation"))
+	if(!image.style[transform] || target.propChanged("x", "y", "regX", "regY", "scaleX", "scaleY", "rotation"))
 	{
 		var css = Quark.supportTransform3D ? getTransformCSS(target, true) : getTransformCSS(target, false);
 		image.style[transform] = css;
 	}
-	if(target.propChanged("_depth"))
+	if(!image.style.zIndex || target.propChanged("_depth"))
 	{
 		image.style.zIndex = target._depth;
 	}

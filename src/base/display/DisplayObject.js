@@ -44,9 +44,12 @@ var DisplayObject = Quark.DisplayObject = function(props)
  */
 DisplayObject.prototype.setDrawable = function(drawable)
 { 
-	if(this.drawable == null || this.drawable.rawDrawable != drawable)
+	if(this.drawable == null)
 	{
 		this.drawable = new Quark.Drawable(drawable);
+	}else if(this.drawable.rawDrawable != drawable)
+	{
+		this.drawable.set(drawable);
 	}
 };
 

@@ -8,8 +8,9 @@
  */
 var Drawable = Quark.Drawable = function(drawable, isDOM)
 {	
-	if(isDrawable(drawable)) this.rawDrawable = drawable;
-	if(isDOM === true) this.domDrawable = drawable;
+	this.rawDrawable = null;
+	this.domDrawable = null;	
+	this.set(drawable, isDOM);
 };
 
 /**
@@ -27,6 +28,21 @@ Drawable.prototype.get = function(obj, context)
 			this.domDrawable = Quark.createDOMDrawable(obj, {image:this.rawDrawable});
 		}
 		return this.domDrawable;
+	}
+};
+
+/**
+ * 设置Drawable对象。
+ */
+Drawable.prototype.set = function(drawable, isDOM)
+{
+	if(isDrawable(drawable)) this.rawDrawable = drawable;
+	if(isDOM === true)
+	{
+		this.domDrawable = drawable;
+	}else if(this.domDrawable)
+	{
+		this.domDrawable.style.backgroundImage = "url(" + this.rawDrawable.src + ")";
 	}
 };
 
