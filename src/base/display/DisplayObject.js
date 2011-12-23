@@ -5,6 +5,24 @@
  * Constructor.
  * @name DisplayObject
  * @class DisplayObject类是可放在舞台上的所有显示对象的基类。DisplayObject类定义了若干显示对象的基本属性。渲染一个DisplayObject其实是进行若干变换后再渲染其drawable对象。
+ * @property id DisplayObject对象唯一标识符id。
+ * @property name DisplayObject对象的名称。
+ * @property x DisplayObject对象相对父容器的x轴坐标。
+ * @property y DisplayObject对象相对父容器的y轴坐标。
+ * @property regX DisplayObject对象的注册点（中心点）的x轴坐标。
+ * @property regY DisplayObject对象的注册点（中心点）的y轴坐标。
+ * @property width DisplayObject对象的宽。
+ * @property height DisplayObject对象的高。
+ * @property alpha DisplayObject对象的透明度。取值范围为0-1，默认为1。
+ * @property scaleX DisplayObject对象在x轴上的缩放值。取值范围为0-1。
+ * @property scaleY DisplayObject对象在y轴上的缩放值。取值范围为0-1。
+ * @property rotation DisplayObject对象的旋转角度。默认为0。
+ * @property visible 指示DisplayObject对象是否可见。默认为true。
+ * @property eventEnabled 指示DisplayObject对象是否接受交互事件，如mousedown，touchstart等。默认为true。
+ * @property transformEnabled 指示DisplayObject对象是否执行变换。默认为false。
+ * @property useHandCursor 指示DisplayObject对象是否支持手型的鼠标光标。默认为false。
+ * @property polyArea 指示DisplayObject对象的多边形碰撞区域。默认为null，即使用对象的外包围矩形。
+ * @property parent DisplayObject对象的父容器。只读属性。
  */	
 var DisplayObject = Quark.DisplayObject = function(props)
 {

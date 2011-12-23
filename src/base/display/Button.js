@@ -6,6 +6,7 @@
  * @name Button
  * @augments DisplayObjectContainer
  * @class Button类继承自DisplayObjectContainer，是Quark中的简单按钮实现。
+ * @argument props 参数JSON格式为：{image:imgElem, up:[0,0,50,50], over:[50,0,50,50], down:[100,0,50,50], disabled:[150,0,50,50]}。
  */
 var Button = Quark.Button = function(props)
 {
