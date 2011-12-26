@@ -69,37 +69,38 @@ DOMContext.prototype.transform = function(target)
 	
 	var prefix = Quark.cssPrefix, 
 		origin = prefix + "TransformOrigin", 
-		transform = prefix + "Transform";
+		transform = prefix + "Transform",
+		style = image.style;
 	
-	if(!image.style.display || target.propChanged("visible", "alpha"))
+	if(!style.display || target.propChanged("visible", "alpha"))
 	{
-		image.style.display = (!target.visible || target.alpha <= 0) ? "none" : "";
+		style.display = (!target.visible || target.alpha <= 0) ? "none" : "";
 	}
-	if(!image.style.opacity || target.propChanged("alpha"))
+	if(!style.opacity || target.propChanged("alpha"))
 	{
-		image.style.opacity = target.alpha;
+		style.opacity = target.alpha;
 	}
-	if(!image.style.backgroundPosition || target.propChanged("rectX", "rectY"))
+	if(!style.backgroundPosition || target.propChanged("rectX", "rectY"))
 	{
-		image.style.backgroundPosition = (-target.rectX) + "px " + (-target.rectY) + "px";
+		style.backgroundPosition = (-target.rectX) + "px " + (-target.rectY) + "px";
 	}
-	if(!image.style.width || target.propChanged("width", "height"))
+	if(!style.width || target.propChanged("width", "height"))
 	{
-		image.style.width = target.width + "px";
-		image.style.height = target.height + "px";
+		style.width = target.width + "px";
+		style.height = target.height + "px";
 	}
-	if(!image.style[origin] || target.propChanged("regX", "regY"))
+	if(!style[origin] || target.propChanged("regX", "regY"))
 	{
-		image.style[origin] = target.regX + "px " + target.regY + "px";
+		style[origin] = target.regX + "px " + target.regY + "px";
 	}	
-	if(!image.style[transform] || target.propChanged("x", "y", "regX", "regY", "scaleX", "scaleY", "rotation"))
+	if(!style[transform] || target.propChanged("x", "y", "regX", "regY", "scaleX", "scaleY", "rotation"))
 	{
 		var css = Quark.supportTransform3D ? getTransformCSS(target, true) : getTransformCSS(target, false);
-		image.style[transform] = css;
+		style[transform] = css;
 	}
-	if(!image.style.zIndex || target.propChanged("_depth"))
+	if(!style.zIndex || target.propChanged("_depth"))
 	{
-		image.style.zIndex = target._depth;
+		style.zIndex = target._depth;
 	}
 };
 
