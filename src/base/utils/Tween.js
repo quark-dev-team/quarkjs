@@ -31,6 +31,7 @@ var Tween = Quark.Tween = function(target, newProps, params)
 	this._startTime = 0;
 	this._lastTime = 0;
 	this._pausedTime = 0;
+	this._pausedStartTime = 0;
 	this._reverseFlag = 1;
 	this._frameTotal = 0;
 	this._frameCount = 0;
@@ -108,7 +109,7 @@ Tween.prototype.stop = function()
 Tween.prototype.pause = function()
 {	
 	this.paused = true;
-	this._pausedTime = Date.now();
+	this._pausedStartTime = Date.now();
 };
 
 /**
@@ -117,7 +118,7 @@ Tween.prototype.pause = function()
 Tween.prototype.resume = function()
 {	
 	this.paused = false;
-	this._pausedTime = Date.now() - this._pausedTime;
+	this._pausedTime += Date.now() - this._pausedStartTime;
 };
 
 /**
