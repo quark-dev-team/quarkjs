@@ -23,6 +23,7 @@ Wiki
 Tutorials
 -----------------
 * [Get Started](http://github.com/quark-dev-team/quarkjs/wiki/Get-Started)
+* [Handle Events](http://github.com/quark-dev-team/quarkjs/wiki/Handle-Events)
 
 API Docs
 -----------------
