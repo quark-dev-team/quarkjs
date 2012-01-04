@@ -68,6 +68,9 @@ Stage.prototype._onEvent = function(e)
 	var x = e.pageX - this.stageX, y = e.pageY - this.stageY, target = this._eventTarget;
 	var obj = this.getObjectUnderPoint(x, y, true);
 	
+	e.eventX = x;
+	e.eventY = y;
+	
 	if(target != null && target != obj)
 	{
 		e.lastEventTarget = target;
