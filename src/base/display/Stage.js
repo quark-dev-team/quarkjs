@@ -48,7 +48,7 @@ Stage.prototype._update = function(timeInfo)
 	for(var i = 0, len = copy.length; i < len; i++)
 	{
 		var child = copy[i];
-		child._depth = i;
+		child._depth = i + 1;
 		child._update(timeInfo);
 	}
 	//update方法提供渲染前更新舞台对象的数据的最后机会。
@@ -70,7 +70,7 @@ Stage.prototype._render = function(context)
  */
 Stage.prototype._onEvent = function(e)
 {	
-	var x = e.pageX - this.stageX, y = e.pageY - this.stageY, target = this._eventTarget;
+	var x = (e.pageX - this.stageX) / this.scaleX, y = (e.pageY - this.stageY) / this.scaleY, target = this._eventTarget;
 	var obj = this.getObjectUnderPoint(x, y, true);
 	
 	e.eventX = x;
