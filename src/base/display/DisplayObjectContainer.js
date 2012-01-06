@@ -161,6 +161,50 @@ DisplayObjectContainer.prototype.swapChildrenAt = function(index1, index2)
 };
 
 /**
+ * 返回DisplayObjectContainer中指定id的子显示对象。
+ */
+DisplayObjectContainer.prototype.getChildById = function(id)
+{
+	for(var i = 0, len = this.children.length; i < len; i++)
+	{
+		var child = this.children[i];
+		if(child.id == id) return child;
+	}
+	return null;
+};
+
+/**
+ * 删除并返回DisplayObjectContainer中指定id的子显示对象。
+ */
+DisplayObjectContainer.prototype.removeChildById = function(id)
+{	
+	for(var i = 0, len = this.children.length; i < len; i++)
+	{
+		if(this.children[i].id == id) 
+		{
+			return this.removeChildAt(i);
+		}
+	}
+	return null;
+};
+
+/**
+ * 根据参数keyOrFunction指定的子元素键值或自定义函数对DisplayObjectContainer的子元素进行排序。
+ */
+DisplayObjectContainer.prototype.sortChildren = function(keyOrFunction)
+{
+	var f = keyOrFunction;
+	if(typeof(f) == "string")
+	{
+		f = function(a, b)
+		{
+			return b[f] - a[f];
+		};
+	}
+	this.children.sort(f);
+};
+
+/**
  * 确定指定对象是否为DisplayObjectContainer的子显示对象。
  */
 DisplayObjectContainer.prototype.contains = function(child)

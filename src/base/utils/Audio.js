@@ -54,7 +54,7 @@ Audio.prototype._evtHandler = function(e)
 		var i = 0, buffered = 0, ranges = e.target.buffered;
 		if(ranges && ranges.length > 0)
 		{
-			for (i = ranges.length; i--; i >= 0)
+			for (i = ranges.length - 1; i >= 0; i--)
 			{
 	          buffered = (ranges.end(i) - ranges.start(i));
 	        }
