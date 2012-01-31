@@ -121,6 +121,7 @@ function detectBrowser(ns)
 	ns.supportOrientation = "orientation" in win;
 	ns.supportDeviceMotion = "ondevicemotion" in win;
 	ns.supportTouch = "ontouchstart" in win;
+	ns.supportCanvas = document.createElement("canvas").getContext != null;
 	ns.cssPrefix = ns.isWebKit ? "webkit" : ns.isFirefox ? "Moz" : ns.isOpera ? "O" : ns.isIE ? "ms" : "";
 };
 
@@ -269,8 +270,8 @@ function doSATCheck(poly1, poly2, result)
 		currentPoint = poly1[i];
 		nextPoint = poly1[(i < len1-1 ? i+1 : 0)];
 		
-		normal.x = currentPoint.x - nextPoint.x;
-		normal.y = nextPoint.y - currentPoint.y;
+		normal.x = currentPoint.y - nextPoint.y;
+		normal.y = nextPoint.x - currentPoint.x;
 		
 		distance = Math.sqrt(normal.x * normal.x + normal.y * normal.y);
 		normal.x /= distance;

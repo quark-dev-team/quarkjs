@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="user-scalable=no, width=device-width, height=device-height, initial-scale=1.0, minimum-scale=1, maximum-scale=1" />
+<title>Quark Framework Example - Graphics</title>
+
+<style type="text/css">
+body{margin:0;padding:0;font-size:12px;background-color:#eee;}
+</style>
+
+<!--
+<script type="text/javascript" src="../src/base/core/base.js"></script>
+<script type="text/javascript" src="../src/base/event/EventDispatcher.js"></script>
+<script type="text/javascript" src="../src/base/event/EventManager.js"></script>
+<script type="text/javascript" src="../src/base/event/EventConst.js"></script>
+<script type="text/javascript" src="../src/base/utils/Utils.js"></script>
+<script type="text/javascript" src="../src/base/utils/UIDUtil.js"></script>
+<script type="text/javascript" src="../src/base/utils/Timer.js"></script>
+<script type="text/javascript" src="../src/base/utils/Tween.js"></script>
+<script type="text/javascript" src="../src/base/utils/Audio.js"></script>
+<script type="text/javascript" src="../src/base/utils/ImageLoader.js"></script>
+<script type="text/javascript" src="../src/base/geom/Matrix.js"></script>
+<script type="text/javascript" src="../src/base/geom/Rectangle.js"></script>
+<script type="text/javascript" src="../src/base/context/Context.js"></script>
+<script type="text/javascript" src="../src/base/context/CanvasContext.js"></script>
+<script type="text/javascript" src="../src/base/context/DOMContext.js"></script>
+<script type="text/javascript" src="../src/base/display/Drawable.js"></script>
+<script type="text/javascript" src="../src/base/display/DisplayObject.js"></script>
+<script type="text/javascript" src="../src/base/display/DisplayObjectContainer.js"></script>
+<script type="text/javascript" src="../src/base/display/Stage.js"></script>
+<script type="text/javascript" src="../src/base/display/Bitmap.js"></script>
+<script type="text/javascript" src="../src/base/display/MovieClip.js"></script>
+<script type="text/javascript" src="../src/base/display/Graphics.js"></script>
+-->
+<script type="text/javascript" src="../js/quark.base-1.0.0.alpha.min.js"></script>
+
+
+</head>
+
+<body>
+
+<div id="container" style="position:absolute;left:0;top:0;width:480px;height:320px;background:#fff;"></div>
+<div id="fps" style="position:absolute;left:0;top:0;"></div>
+
+<script type="text/javascript">
+
+window.onload = init;
+
+var timer, container, context, params, width, height, fps, stage;
+
+function init()
+{	
+	container = Q.getDOM("container");
+	
+	params = Quark.getUrlParams();
+	if(params.mode == undefined) params.mode = 2;
+
+	width = 480;
+	height = 320;
+	fps = 60;
+
+	if(params.mode == 1)
+	{
+		var canvas = Quark.createDOM("canvas", {width:width, height:height, style:{position:"absolute",backgroundColor:"#fff"}});		
+		container.appendChild(canvas);
+		context = new Quark.CanvasContext({canvas:canvas});		
+	}else
+	{
+		context = new Quark.DOMContext({canvas:container});
+	}
+	
+	stage = new Q.Stage({context:context, width:width, height:height, update:function()
+	{
+		frames++;
+	}});
+	
+	timer = new Q.Timer(1000/fps);
+	timer.addListener(stage);
+	timer.addListener(Q.Tween);
+	timer.start();
+
+	draw();
+}
+
+function draw()
+{
+	var g1 = new Q.Graphics({width:200, height:200, x:20, y:20});
+	g1.lineStyle(1, "#00f").beginFill("#0ff").drawRect(0.5, 0.5, 100, 100).endFill().cache();
+	
+	var g2 = new Q.Graphics({width:200, height:200, x:150, y:20});
+	g2.lineStyle(10, "#431608").beginFill("#0ff").drawRoundRect(5, 5, 90, 90, 20).endFill().cache();
+	
+	var g3 = new Q.Graphics({width:200, height:200, x:270, y:20});
+	g3.lineStyle(2, "#7db9e8").drawCircle(2, 2, 50).beginRadialGradientFill(50, 50, 0, 50, 50, 50, ["#7db9e8", "#1E5799"], [0, 1]).endFill().cache();
+	
+	var g4 = new Q.Graphics({width:200, height:200, x:20, y:150});
+	g4.drawEllipse(5, 5, 150, 100).lineStyle(5, "#12161f").beginFill("#0ff").endFill().cache();
+	
+	var g5 = new Q.Graphics({width:200, height:200, x:200, y:150});
+	g5.lineStyle(4, "#111").beginLinearGradientFill(0, 0, 60, 0, ["#959595", "#010101", "#4e4e4e", "#383838", "#1b1b1b"], [0, 0.5, 0.76, 0.87, 1]).drawRect(2, 2, 60, 100).endFill().cache();
+
+	stage.addChild(g1, g2, g3, g4, g5);
+}
+
+var frames = 0, fpsContainer = Quark.getDOM("fps");
+setInterval(function()
+{
+	fpsContainer.innerHTML = "FPS:" + frames;
+	frames = 0;
+}, 1000);
+
+</script>
+
+</body>
+</html>

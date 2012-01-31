@@ -23,7 +23,11 @@ if(supportTransform3D && 'webkitPerspective' in docElem.style)
 };
 Quark.supportTransform = supportTransform;
 Quark.supportTransform3D = supportTransform3D;
-if(!supportTransform) throw "Error: DOMContext requires css transfrom support.";
+if(!supportTransform)
+{
+	trace("Warn: DOMContext requires css transfrom support.");
+	return;
+}
 
 /**
  * Constructor.

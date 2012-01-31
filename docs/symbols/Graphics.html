@@ -5,7 +5,7 @@
 		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 		<meta name="generator" content="JsDoc Toolkit" />
 		
-		<title>QuarkJS Reference - DisplayObjectContainer</title>
+		<title>QuarkJS Reference - Graphics</title>
 
 		<style type="text/css">
 			/* default.css */
@@ -259,7 +259,7 @@ ul.inheritsList
 <!-- ============================== class title ============================ -->
 			<h1 class="classTitle">
 				
-				Class DisplayObjectContainer
+				Class Graphics
 			</h1>
 
 <!-- ============================== class summary ========================== -->			
@@ -269,13 +269,13 @@ ul.inheritsList
 					<a href="../symbols/DisplayObject.html">DisplayObject</a>.<br />
 				
 			
-				DisplayObjectContainer类继承自DisplayObject，是显示列表中显示对象容器的基类。每个DisplayObjectContainer对象都有自己的子级列表children，用于组织对象的Z轴顺序。注意：DisplayObjectContainer对象的宽高默认为0，在autoSize=false的情况下，需要手动设置宽高。
+				The Graphics class contains a set of methods that you can use to create a vector shape.
 				
 			</p>
 
 <!-- ============================== constructor summary ==================== -->			
 			
-			<table class="summaryTable" cellspacing="0" summary="A summary of the constructor documented in the class DisplayObjectContainer.">
+			<table class="summaryTable" cellspacing="0" summary="A summary of the constructor documented in the class Graphics.">
 				<caption>Class Summary</caption>
 				<thead>
 					<tr>
@@ -288,7 +288,7 @@ ul.inheritsList
 						<td class="attributes">&nbsp;</td>
 						<td class="nameDescription" >
 							<div class="fixedFont">
-								<b><a href="../symbols/DisplayObjectContainer.html#constructor">DisplayObjectContainer</a></b>()
+								<b><a href="../symbols/Graphics.html#constructor">Graphics</a></b>()
 							</div>
 							<div class="description">Constructor.</div>
 						</td>
@@ -300,39 +300,6 @@ ul.inheritsList
 <!-- ============================== properties summary ===================== -->
 			
 				
-				
-				<table class="summaryTable" cellspacing="0" summary="A summary of the fields documented in the class DisplayObjectContainer.">
-					<caption>Field Summary</caption>
-					<thead>
-						<tr>
-							<th scope="col">Field Attributes</th>
-							<th scope="col">Field Name and Description</th>
-						</tr>
-					</thead>
-					<tbody>
-					
-						<tr>
-							<td class="attributes">&nbsp;</td>
-							<td class="nameDescription">
-								<div class="fixedFont">
-								<b><a href="../symbols/DisplayObjectContainer.html#autoSize">autoSize</a></b>
-								</div>
-								<div class="description">指示DisplayObjectContainer是否随子元素自动设置大小。默认为false。</div>
-							</td>
-						</tr>
-					
-						<tr>
-							<td class="attributes">&nbsp;</td>
-							<td class="nameDescription">
-								<div class="fixedFont">
-								<b><a href="../symbols/DisplayObjectContainer.html#eventChildren">eventChildren</a></b>
-								</div>
-								<div class="description">指示DisplayObjectContainer的子元素是否接受交互事件，如mousedown，touchstart等。默认为true。</div>
-							</td>
-						</tr>
-					
-					</tbody>
-				</table>
 				
 				
 				
@@ -346,7 +313,7 @@ ul.inheritsList
 			
 				
 				
-				<table class="summaryTable" cellspacing="0" summary="A summary of the methods documented in the class DisplayObjectContainer.">
+				<table class="summaryTable" cellspacing="0" summary="A summary of the methods documented in the class Graphics.">
 					<caption>Method Summary</caption>
 					<thead>
 						<tr>
@@ -359,153 +326,153 @@ ul.inheritsList
 						<tr>
 							<td class="attributes">&nbsp;</td>
 							<td class="nameDescription">
-								<div class="fixedFont"><b><a href="../symbols/DisplayObjectContainer.html#addChild">addChild</a></b>(child)
+								<div class="fixedFont"><b><a href="../symbols/Graphics.html#beginBitmapFill">beginBitmapFill</a></b>(image, repetition)
 								</div>
-								<div class="description">将一个DisplayObject子实例添加到该DisplayObjectContainer实例的子级列表中。</div>
+								<div class="description">Fills a drawing area with a bitmap image.</div>
 							</td>
 						</tr>
 					
 						<tr>
 							<td class="attributes">&nbsp;</td>
 							<td class="nameDescription">
-								<div class="fixedFont"><b><a href="../symbols/DisplayObjectContainer.html#addChildAt">addChildAt</a></b>(child, index)
+								<div class="fixedFont"><b><a href="../symbols/Graphics.html#beginFill">beginFill</a></b>(fill, alpha)
 								</div>
-								<div class="description">将一个DisplayObject子实例添加到该DisplayObjectContainer实例的子级列表中的指定位置。</div>
+								<div class="description">Specifies an available fill that subsequent calls to other Graphics methods (such as lineTo() or drawCircle()) use when drawing.</div>
 							</td>
 						</tr>
 					
 						<tr>
 							<td class="attributes">&nbsp;</td>
 							<td class="nameDescription">
-								<div class="fixedFont"><b><a href="../symbols/DisplayObjectContainer.html#contains">contains</a></b>(child)
+								<div class="fixedFont"><b><a href="../symbols/Graphics.html#beginLinearGradientFill">beginLinearGradientFill</a></b>(x0, y0, x1, y1, colors, ratios)
 								</div>
-								<div class="description">确定指定对象是否为DisplayObjectContainer的子显示对象。</div>
+								<div class="description">Specifies a linear gradient fill that subsequent calls to other Graphics methods (such as lineTo() or drawCircle()) use when drawing.</div>
 							</td>
 						</tr>
 					
 						<tr>
 							<td class="attributes">&nbsp;</td>
 							<td class="nameDescription">
-								<div class="fixedFont"><b><a href="../symbols/DisplayObjectContainer.html#getChildAt">getChildAt</a></b>(index)
+								<div class="fixedFont"><b><a href="../symbols/Graphics.html#beginPath">beginPath</a></b>()
 								</div>
-								<div class="description">返回DisplayObjectContainer的位于指定索引处的子显示对象。</div>
+								<div class="description">Begins a path.</div>
 							</td>
 						</tr>
 					
 						<tr>
 							<td class="attributes">&nbsp;</td>
 							<td class="nameDescription">
-								<div class="fixedFont"><b><a href="../symbols/DisplayObjectContainer.html#getChildById">getChildById</a></b>(id)
+								<div class="fixedFont"><b><a href="../symbols/Graphics.html#beginRadialGradientFill">beginRadialGradientFill</a></b>(x0, y0, r0, x1, y1, r1, colors, ratios)
 								</div>
-								<div class="description">返回DisplayObjectContainer中指定id的子显示对象。</div>
+								<div class="description">Specifies a radial gradient fill that subsequent calls to other Graphics methods (such as lineTo() or drawCircle()) use when drawing.</div>
 							</td>
 						</tr>
 					
 						<tr>
 							<td class="attributes">&nbsp;</td>
 							<td class="nameDescription">
-								<div class="fixedFont"><b><a href="../symbols/DisplayObjectContainer.html#getChildIndex">getChildIndex</a></b>(child)
+								<div class="fixedFont"><b><a href="../symbols/Graphics.html#cache">cache</a></b>(toImage)
 								</div>
-								<div class="description">返回指定对象在DisplayObjectContainer的子级列表中的索引位置。</div>
+								<div class="description">Caches the graphics to a canvas or image.</div>
 							</td>
 						</tr>
 					
 						<tr>
 							<td class="attributes">&nbsp;</td>
 							<td class="nameDescription">
-								<div class="fixedFont"><b><a href="../symbols/DisplayObjectContainer.html#getNumChildren">getNumChildren</a></b>()
+								<div class="fixedFont"><b><a href="../symbols/Graphics.html#clear">clear</a></b>()
 								</div>
-								<div class="description">返回DisplayObjectContainer的子显示对象数目。</div>
+								<div class="description">Clears all drawing actions and cached image.</div>
 							</td>
 						</tr>
 					
 						<tr>
 							<td class="attributes">&nbsp;</td>
 							<td class="nameDescription">
-								<div class="fixedFont"><b><a href="../symbols/DisplayObjectContainer.html#getObjectUnderPoint">getObjectUnderPoint</a></b>(x, y, usePolyCollision, returnAll)
+								<div class="fixedFont"><b><a href="../symbols/Graphics.html#closePath">closePath</a></b>()
 								</div>
-								<div class="description">返回x和y指定点下的DisplayObjectContainer的子项（或孙子项，依此类推）的数组集合。默认只返回最先加入的子显示对象。</div>
+								<div class="description">Closes a path.</div>
 							</td>
 						</tr>
 					
 						<tr>
 							<td class="attributes">&nbsp;</td>
 							<td class="nameDescription">
-								<div class="fixedFont"><b><a href="../symbols/DisplayObjectContainer.html#removeAllChildren">removeAllChildren</a></b>()
+								<div class="fixedFont"><b><a href="../symbols/Graphics.html#drawCircle">drawCircle</a></b>(x, y, radius)
 								</div>
-								<div class="description">删除DisplayObjectContainer的所有子对象。</div>
+								<div class="description">Draws a circle.</div>
 							</td>
 						</tr>
 					
 						<tr>
 							<td class="attributes">&nbsp;</td>
 							<td class="nameDescription">
-								<div class="fixedFont"><b><a href="../symbols/DisplayObjectContainer.html#removeChild">removeChild</a></b>(child)
+								<div class="fixedFont"><b><a href="../symbols/Graphics.html#drawEllipse">drawEllipse</a></b>(x, y, width, height)
 								</div>
-								<div class="description">从DisplayObjectContainer的子级列表中删除指定子对象。</div>
+								<div class="description">Draws a ellipse.</div>
 							</td>
 						</tr>
 					
 						<tr>
 							<td class="attributes">&nbsp;</td>
 							<td class="nameDescription">
-								<div class="fixedFont"><b><a href="../symbols/DisplayObjectContainer.html#removeChildAt">removeChildAt</a></b>(index)
+								<div class="fixedFont"><b><a href="../symbols/Graphics.html#drawRect">drawRect</a></b>(x, y, width, height)
 								</div>
-								<div class="description">从DisplayObjectContainer的子级列表中指定索引处删除子对象。</div>
+								<div class="description">Draws a rectangle.</div>
 							</td>
 						</tr>
 					
 						<tr>
 							<td class="attributes">&nbsp;</td>
 							<td class="nameDescription">
-								<div class="fixedFont"><b><a href="../symbols/DisplayObjectContainer.html#removeChildById">removeChildById</a></b>(id)
+								<div class="fixedFont"><b><a href="../symbols/Graphics.html#drawRoundRect">drawRoundRect</a></b>(x, y, width, height, cornerSize)
 								</div>
-								<div class="description">删除并返回DisplayObjectContainer中指定id的子显示对象。</div>
+								<div class="description">Draws a rounded rectangle.</div>
 							</td>
 						</tr>
 					
 						<tr>
 							<td class="attributes">&nbsp;</td>
 							<td class="nameDescription">
-								<div class="fixedFont"><b><a href="../symbols/DisplayObjectContainer.html#render">render</a></b>(context)
+								<div class="fixedFont"><b><a href="../symbols/Graphics.html#drawRoundRectComplex">drawRoundRectComplex</a></b>(x, y, width, height, cornerTL, cornerTR, cornerBR, cornerBL)
 								</div>
-								<div class="description">渲染DisplayObjectContainer本身及其所有子显示对象。</div>
+								<div class="description">Draws a complex rounded rectangle.</div>
 							</td>
 						</tr>
 					
 						<tr>
 							<td class="attributes">&nbsp;</td>
 							<td class="nameDescription">
-								<div class="fixedFont"><b><a href="../symbols/DisplayObjectContainer.html#setChildIndex">setChildIndex</a></b>(child, index)
+								<div class="fixedFont"><b><a href="../symbols/Graphics.html#endFill">endFill</a></b>()
 								</div>
-								<div class="description">设置指定对象在DisplayObjectContainer的子级列表中的索引位置。</div>
+								<div class="description">Applies a fill to the lines and curves that were added.</div>
 							</td>
 						</tr>
 					
 						<tr>
 							<td class="attributes">&nbsp;</td>
 							<td class="nameDescription">
-								<div class="fixedFont"><b><a href="../symbols/DisplayObjectContainer.html#sortChildren">sortChildren</a></b>(keyOrFunction)
+								<div class="fixedFont"><b><a href="../symbols/Graphics.html#lineStyle">lineStyle</a></b>(thickness, lineColor, alpha, lineCap, lineJoin, miterLimit)
 								</div>
-								<div class="description">根据参数keyOrFunction指定的子元素键值或自定义函数对DisplayObjectContainer的子元素进行排序。</div>
+								<div class="description">Specifies a line style that Canvas uses for subsequent calls to other Graphics methods (such as lineTo() or drawCircle()) for the object.</div>
 							</td>
 						</tr>
 					
 						<tr>
 							<td class="attributes">&nbsp;</td>
 							<td class="nameDescription">
-								<div class="fixedFont"><b><a href="../symbols/DisplayObjectContainer.html#swapChildren">swapChildren</a></b>(child1, child2)
+								<div class="fixedFont"><b><a href="../symbols/Graphics.html#toImage">toImage</a></b>(type)
 								</div>
-								<div class="description">交换在DisplayObjectContainer的子级列表中的两个子对象的索引位置。</div>
+								<div class="description">Converts the graphics to a dataURL image.</div>
 							</td>
 						</tr>
 					
 						<tr>
 							<td class="attributes">&nbsp;</td>
 							<td class="nameDescription">
-								<div class="fixedFont"><b><a href="../symbols/DisplayObjectContainer.html#swapChildrenAt">swapChildrenAt</a></b>(index1, index2)
+								<div class="fixedFont"><b><a href="../symbols/Graphics.html#uncache">uncache</a></b>()
 								</div>
-								<div class="description">交换在DisplayObjectContainer的子级列表中的指定索引位置的两个子对象。</div>
+								<div class="description">Releases the cache.</div>
 							</td>
 						</tr>
 					
@@ -515,7 +482,7 @@ ul.inheritsList
 				
 				
 				<dl class="inheritsList">
-				<dt>Methods borrowed from class <a href="../symbols/DisplayObject.html">DisplayObject</a>: </dt><dd><a href="../symbols/DisplayObject.html#getBounds">getBounds</a>, <a href="../symbols/DisplayObject.html#getConcatenatedMatrix">getConcatenatedMatrix</a>, <a href="../symbols/DisplayObject.html#getCurrentHeight">getCurrentHeight</a>, <a href="../symbols/DisplayObject.html#getCurrentWidth">getCurrentWidth</a>, <a href="../symbols/DisplayObject.html#getDrawable">getDrawable</a>, <a href="../symbols/DisplayObject.html#getStage">getStage</a>, <a href="../symbols/DisplayObject.html#getState">getState</a>, <a href="../symbols/DisplayObject.html#globalToLocal">globalToLocal</a>, <a href="../symbols/DisplayObject.html#hitTestObject">hitTestObject</a>, <a href="../symbols/DisplayObject.html#hitTestPoint">hitTestPoint</a>, <a href="../symbols/DisplayObject.html#localToGlobal">localToGlobal</a>, <a href="../symbols/DisplayObject.html#localToTarget">localToTarget</a>, <a href="../symbols/DisplayObject.html#propChanged">propChanged</a>, <a href="../symbols/DisplayObject.html#saveState">saveState</a>, <a href="../symbols/DisplayObject.html#setDrawable">setDrawable</a>, <a href="../symbols/DisplayObject.html#toString">toString</a>, <a href="../symbols/DisplayObject.html#update">update</a></dd>
+				<dt>Methods borrowed from class <a href="../symbols/DisplayObject.html">DisplayObject</a>: </dt><dd><a href="../symbols/DisplayObject.html#getBounds">getBounds</a>, <a href="../symbols/DisplayObject.html#getConcatenatedMatrix">getConcatenatedMatrix</a>, <a href="../symbols/DisplayObject.html#getCurrentHeight">getCurrentHeight</a>, <a href="../symbols/DisplayObject.html#getCurrentWidth">getCurrentWidth</a>, <a href="../symbols/DisplayObject.html#getDrawable">getDrawable</a>, <a href="../symbols/DisplayObject.html#getStage">getStage</a>, <a href="../symbols/DisplayObject.html#getState">getState</a>, <a href="../symbols/DisplayObject.html#globalToLocal">globalToLocal</a>, <a href="../symbols/DisplayObject.html#hitTestObject">hitTestObject</a>, <a href="../symbols/DisplayObject.html#hitTestPoint">hitTestPoint</a>, <a href="../symbols/DisplayObject.html#localToGlobal">localToGlobal</a>, <a href="../symbols/DisplayObject.html#localToTarget">localToTarget</a>, <a href="../symbols/DisplayObject.html#propChanged">propChanged</a>, <a href="../symbols/DisplayObject.html#render">render</a>, <a href="../symbols/DisplayObject.html#saveState">saveState</a>, <a href="../symbols/DisplayObject.html#setDrawable">setDrawable</a>, <a href="../symbols/DisplayObject.html#toString">toString</a>, <a href="../symbols/DisplayObject.html#update">update</a></dd>
 				</dl>
 				
 			
@@ -530,7 +497,7 @@ ul.inheritsList
 				</div>
 				
 				<div class="fixedFont">
-						<b>DisplayObjectContainer</b>()
+						<b>Graphics</b>()
 				</div>
 				
 				<div class="description">
@@ -554,55 +521,6 @@ ul.inheritsList
 
 <!-- ============================== field details ========================== -->		
 			
-				<div class="sectionTitle">
-					Field Detail
-				</div>
-				
-					<a name="autoSize"> </a>
-					<div class="fixedFont">
-					
-					
-					<b>autoSize</b>
-					
-					</div>
-					<div class="description">
-						指示DisplayObjectContainer是否随子元素自动设置大小。默认为false。
-						
-						
-					</div>
-					
-					
-
-						
-						
-						
-						
-
-					<hr />
-				
-					<a name="eventChildren"> </a>
-					<div class="fixedFont">
-					
-					
-					<b>eventChildren</b>
-					
-					</div>
-					<div class="description">
-						指示DisplayObjectContainer的子元素是否接受交互事件，如mousedown，touchstart等。默认为true。
-						
-						
-					</div>
-					
-					
-
-						
-						
-						
-						
-
-					
-				
-			
 
 <!-- ============================== method details ========================= -->		
 			
@@ -610,15 +528,15 @@ ul.inheritsList
 					Method Detail
 				</div>
 				
-					<a name="addChild"> </a>
+					<a name="beginBitmapFill"> </a>
 					<div class="fixedFont">
 					
 					
-					<b>addChild</b>(child)
+					<b>beginBitmapFill</b>(image, repetition)
 					
 					</div>
 					<div class="description">
-						将一个DisplayObject子实例添加到该DisplayObjectContainer实例的子级列表中。
+						Fills a drawing area with a bitmap image. The repetition parameter must be one of the following values: repeat, repeat-x, repeat-y, no-repeat.
 						
 						
 					</div>
@@ -630,7 +548,13 @@ ul.inheritsList
 							<dt class="heading">Parameters:</dt>
 							
 								<dt>
-									<b>child</b>
+									<b>image</b>
+									
+								</dt>
+								<dd></dd>
+							
+								<dt>
+									<b>repetition</b>
 									
 								</dt>
 								<dd></dd>
@@ -646,15 +570,15 @@ ul.inheritsList
 
 					<hr />
 				
-					<a name="addChildAt"> </a>
+					<a name="beginFill"> </a>
 					<div class="fixedFont">
 					
 					
-					<b>addChildAt</b>(child, index)
+					<b>beginFill</b>(fill, alpha)
 					
 					</div>
 					<div class="description">
-						将一个DisplayObject子实例添加到该DisplayObjectContainer实例的子级列表中的指定位置。
+						Specifies an available fill that subsequent calls to other Graphics methods (such as lineTo() or drawCircle()) use when drawing.
 						
 						
 					</div>
@@ -666,13 +590,13 @@ ul.inheritsList
 							<dt class="heading">Parameters:</dt>
 							
 								<dt>
-									<b>child</b>
+									<b>fill</b>
 									
 								</dt>
 								<dd></dd>
 							
 								<dt>
-									<b>index</b>
+									<b>alpha</b>
 									
 								</dt>
 								<dd></dd>
@@ -688,15 +612,15 @@ ul.inheritsList
 
 					<hr />
 				
-					<a name="contains"> </a>
+					<a name="beginLinearGradientFill"> </a>
 					<div class="fixedFont">
 					
 					
-					<b>contains</b>(child)
+					<b>beginLinearGradientFill</b>(x0, y0, x1, y1, colors, ratios)
 					
 					</div>
 					<div class="description">
-						确定指定对象是否为DisplayObjectContainer的子显示对象。
+						Specifies a linear gradient fill that subsequent calls to other Graphics methods (such as lineTo() or drawCircle()) use when drawing.
 						
 						
 					</div>
@@ -708,7 +632,37 @@ ul.inheritsList
 							<dt class="heading">Parameters:</dt>
 							
 								<dt>
-									<b>child</b>
+									<b>x0</b>
+									
+								</dt>
+								<dd></dd>
+							
+								<dt>
+									<b>y0</b>
+									
+								</dt>
+								<dd></dd>
+							
+								<dt>
+									<b>x1</b>
+									
+								</dt>
+								<dd></dd>
+							
+								<dt>
+									<b>y1</b>
+									
+								</dt>
+								<dd></dd>
+							
+								<dt>
+									<b>colors</b>
+									
+								</dt>
+								<dd></dd>
+							
+								<dt>
+									<b>ratios</b>
 									
 								</dt>
 								<dd></dd>
@@ -724,15 +678,40 @@ ul.inheritsList
 
 					<hr />
 				
-					<a name="getChildAt"> </a>
+					<a name="beginPath"> </a>
 					<div class="fixedFont">
 					
 					
-					<b>getChildAt</b>(index)
+					<b>beginPath</b>()
 					
 					</div>
 					<div class="description">
-						返回DisplayObjectContainer的位于指定索引处的子显示对象。
+						Begins a path.
+						
+						
+					</div>
+					
+					
+					
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="beginRadialGradientFill"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>beginRadialGradientFill</b>(x0, y0, r0, x1, y1, r1, colors, ratios)
+					
+					</div>
+					<div class="description">
+						Specifies a radial gradient fill that subsequent calls to other Graphics methods (such as lineTo() or drawCircle()) use when drawing.
 						
 						
 					</div>
@@ -744,7 +723,49 @@ ul.inheritsList
 							<dt class="heading">Parameters:</dt>
 							
 								<dt>
-									<b>index</b>
+									<b>x0</b>
+									
+								</dt>
+								<dd></dd>
+							
+								<dt>
+									<b>y0</b>
+									
+								</dt>
+								<dd></dd>
+							
+								<dt>
+									<b>r0</b>
+									
+								</dt>
+								<dd></dd>
+							
+								<dt>
+									<b>x1</b>
+									
+								</dt>
+								<dd></dd>
+							
+								<dt>
+									<b>y1</b>
+									
+								</dt>
+								<dd></dd>
+							
+								<dt>
+									<b>r1</b>
+									
+								</dt>
+								<dd></dd>
+							
+								<dt>
+									<b>colors</b>
+									
+								</dt>
+								<dd></dd>
+							
+								<dt>
+									<b>ratios</b>
 									
 								</dt>
 								<dd></dd>
@@ -760,15 +781,15 @@ ul.inheritsList
 
 					<hr />
 				
-					<a name="getChildById"> </a>
+					<a name="cache"> </a>
 					<div class="fixedFont">
 					
 					
-					<b>getChildById</b>(id)
+					<b>cache</b>(toImage)
 					
 					</div>
 					<div class="description">
-						返回DisplayObjectContainer中指定id的子显示对象。
+						Caches the graphics to a canvas or image. Increase the performance normally.
 						
 						
 					</div>
@@ -780,7 +801,7 @@ ul.inheritsList
 							<dt class="heading">Parameters:</dt>
 							
 								<dt>
-									<b>id</b>
+									<b>toImage</b>
 									
 								</dt>
 								<dd></dd>
@@ -796,51 +817,15 @@ ul.inheritsList
 
 					<hr />
 				
-					<a name="getChildIndex"> </a>
+					<a name="clear"> </a>
 					<div class="fixedFont">
 					
 					
-					<b>getChildIndex</b>(child)
+					<b>clear</b>()
 					
 					</div>
 					<div class="description">
-						返回指定对象在DisplayObjectContainer的子级列表中的索引位置。
-						
-						
-					</div>
-					
-					
-					
-						
-							<dl class="detailList">
-							<dt class="heading">Parameters:</dt>
-							
-								<dt>
-									<b>child</b>
-									
-								</dt>
-								<dd></dd>
-							
-							</dl>
-						
-						
-						
-						
-						
-						
-						
-
-					<hr />
-				
-					<a name="getNumChildren"> </a>
-					<div class="fixedFont">
-					
-					
-					<b>getNumChildren</b>()
-					
-					</div>
-					<div class="description">
-						返回DisplayObjectContainer的子显示对象数目。
+						Clears all drawing actions and cached image.
 						
 						
 					</div>
@@ -857,15 +842,40 @@ ul.inheritsList
 
 					<hr />
 				
-					<a name="getObjectUnderPoint"> </a>
+					<a name="closePath"> </a>
 					<div class="fixedFont">
 					
 					
-					<b>getObjectUnderPoint</b>(x, y, usePolyCollision, returnAll)
+					<b>closePath</b>()
 					
 					</div>
 					<div class="description">
-						返回x和y指定点下的DisplayObjectContainer的子项（或孙子项，依此类推）的数组集合。默认只返回最先加入的子显示对象。
+						Closes a path.
+						
+						
+					</div>
+					
+					
+					
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="drawCircle"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>drawCircle</b>(x, y, radius)
+					
+					</div>
+					<div class="description">
+						Draws a circle.
 						
 						
 					</div>
@@ -889,13 +899,7 @@ ul.inheritsList
 								<dd></dd>
 							
 								<dt>
-									<b>usePolyCollision</b>
-									
-								</dt>
-								<dd></dd>
-							
-								<dt>
-									<b>returnAll</b>
+									<b>radius</b>
 									
 								</dt>
 								<dd></dd>
@@ -911,40 +915,15 @@ ul.inheritsList
 
 					<hr />
 				
-					<a name="removeAllChildren"> </a>
+					<a name="drawEllipse"> </a>
 					<div class="fixedFont">
 					
 					
-					<b>removeAllChildren</b>()
+					<b>drawEllipse</b>(x, y, width, height)
 					
 					</div>
 					<div class="description">
-						删除DisplayObjectContainer的所有子对象。
-						
-						
-					</div>
-					
-					
-					
-						
-						
-						
-						
-						
-						
-						
-
-					<hr />
-				
-					<a name="removeChild"> </a>
-					<div class="fixedFont">
-					
-					
-					<b>removeChild</b>(child)
-					
-					</div>
-					<div class="description">
-						从DisplayObjectContainer的子级列表中删除指定子对象。
+						Draws a ellipse.
 						
 						
 					</div>
@@ -956,7 +935,25 @@ ul.inheritsList
 							<dt class="heading">Parameters:</dt>
 							
 								<dt>
-									<b>child</b>
+									<b>x</b>
+									
+								</dt>
+								<dd></dd>
+							
+								<dt>
+									<b>y</b>
+									
+								</dt>
+								<dd></dd>
+							
+								<dt>
+									<b>width</b>
+									
+								</dt>
+								<dd></dd>
+							
+								<dt>
+									<b>height</b>
 									
 								</dt>
 								<dd></dd>
@@ -972,15 +969,15 @@ ul.inheritsList
 
 					<hr />
 				
-					<a name="removeChildAt"> </a>
+					<a name="drawRect"> </a>
 					<div class="fixedFont">
 					
 					
-					<b>removeChildAt</b>(index)
+					<b>drawRect</b>(x, y, width, height)
 					
 					</div>
 					<div class="description">
-						从DisplayObjectContainer的子级列表中指定索引处删除子对象。
+						Draws a rectangle.
 						
 						
 					</div>
@@ -992,7 +989,25 @@ ul.inheritsList
 							<dt class="heading">Parameters:</dt>
 							
 								<dt>
-									<b>index</b>
+									<b>x</b>
+									
+								</dt>
+								<dd></dd>
+							
+								<dt>
+									<b>y</b>
+									
+								</dt>
+								<dd></dd>
+							
+								<dt>
+									<b>width</b>
+									
+								</dt>
+								<dd></dd>
+							
+								<dt>
+									<b>height</b>
 									
 								</dt>
 								<dd></dd>
@@ -1008,15 +1023,15 @@ ul.inheritsList
 
 					<hr />
 				
-					<a name="removeChildById"> </a>
+					<a name="drawRoundRect"> </a>
 					<div class="fixedFont">
 					
 					
-					<b>removeChildById</b>(id)
+					<b>drawRoundRect</b>(x, y, width, height, cornerSize)
 					
 					</div>
 					<div class="description">
-						删除并返回DisplayObjectContainer中指定id的子显示对象。
+						Draws a rounded rectangle.
 						
 						
 					</div>
@@ -1028,7 +1043,31 @@ ul.inheritsList
 							<dt class="heading">Parameters:</dt>
 							
 								<dt>
-									<b>id</b>
+									<b>x</b>
+									
+								</dt>
+								<dd></dd>
+							
+								<dt>
+									<b>y</b>
+									
+								</dt>
+								<dd></dd>
+							
+								<dt>
+									<b>width</b>
+									
+								</dt>
+								<dd></dd>
+							
+								<dt>
+									<b>height</b>
+									
+								</dt>
+								<dd></dd>
+							
+								<dt>
+									<b>cornerSize</b>
 									
 								</dt>
 								<dd></dd>
@@ -1044,15 +1083,15 @@ ul.inheritsList
 
 					<hr />
 				
-					<a name="render"> </a>
+					<a name="drawRoundRectComplex"> </a>
 					<div class="fixedFont">
 					
 					
-					<b>render</b>(context)
+					<b>drawRoundRectComplex</b>(x, y, width, height, cornerTL, cornerTR, cornerBR, cornerBL)
 					
 					</div>
 					<div class="description">
-						渲染DisplayObjectContainer本身及其所有子显示对象。
+						Draws a complex rounded rectangle.
 						
 						
 					</div>
@@ -1064,7 +1103,49 @@ ul.inheritsList
 							<dt class="heading">Parameters:</dt>
 							
 								<dt>
-									<b>context</b>
+									<b>x</b>
+									
+								</dt>
+								<dd></dd>
+							
+								<dt>
+									<b>y</b>
+									
+								</dt>
+								<dd></dd>
+							
+								<dt>
+									<b>width</b>
+									
+								</dt>
+								<dd></dd>
+							
+								<dt>
+									<b>height</b>
+									
+								</dt>
+								<dd></dd>
+							
+								<dt>
+									<b>cornerTL</b>
+									
+								</dt>
+								<dd></dd>
+							
+								<dt>
+									<b>cornerTR</b>
+									
+								</dt>
+								<dd></dd>
+							
+								<dt>
+									<b>cornerBR</b>
+									
+								</dt>
+								<dd></dd>
+							
+								<dt>
+									<b>cornerBL</b>
 									
 								</dt>
 								<dd></dd>
@@ -1080,15 +1161,40 @@ ul.inheritsList
 
 					<hr />
 				
-					<a name="setChildIndex"> </a>
+					<a name="endFill"> </a>
 					<div class="fixedFont">
 					
 					
-					<b>setChildIndex</b>(child, index)
+					<b>endFill</b>()
 					
 					</div>
 					<div class="description">
-						设置指定对象在DisplayObjectContainer的子级列表中的索引位置。
+						Applies a fill to the lines and curves that were added.
+						
+						
+					</div>
+					
+					
+					
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="lineStyle"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>lineStyle</b>(thickness, lineColor, alpha, lineCap, lineJoin, miterLimit)
+					
+					</div>
+					<div class="description">
+						Specifies a line style that Canvas uses for subsequent calls to other Graphics methods (such as lineTo() or drawCircle()) for the object.
 						
 						
 					</div>
@@ -1100,13 +1206,37 @@ ul.inheritsList
 							<dt class="heading">Parameters:</dt>
 							
 								<dt>
-									<b>child</b>
+									<b>thickness</b>
 									
 								</dt>
 								<dd></dd>
 							
 								<dt>
-									<b>index</b>
+									<b>lineColor</b>
+									
+								</dt>
+								<dd></dd>
+							
+								<dt>
+									<b>alpha</b>
+									
+								</dt>
+								<dd></dd>
+							
+								<dt>
+									<b>lineCap</b>
+									
+								</dt>
+								<dd></dd>
+							
+								<dt>
+									<b>lineJoin</b>
+									
+								</dt>
+								<dd></dd>
+							
+								<dt>
+									<b>miterLimit</b>
 									
 								</dt>
 								<dd></dd>
@@ -1122,15 +1252,15 @@ ul.inheritsList
 
 					<hr />
 				
-					<a name="sortChildren"> </a>
+					<a name="toImage"> </a>
 					<div class="fixedFont">
 					
 					
-					<b>sortChildren</b>(keyOrFunction)
+					<b>toImage</b>(type)
 					
 					</div>
 					<div class="description">
-						根据参数keyOrFunction指定的子元素键值或自定义函数对DisplayObjectContainer的子元素进行排序。
+						Converts the graphics to a dataURL image.
 						
 						
 					</div>
@@ -1142,7 +1272,7 @@ ul.inheritsList
 							<dt class="heading">Parameters:</dt>
 							
 								<dt>
-									<b>keyOrFunction</b>
+									<b>type</b>
 									
 								</dt>
 								<dd></dd>
@@ -1158,80 +1288,21 @@ ul.inheritsList
 
 					<hr />
 				
-					<a name="swapChildren"> </a>
+					<a name="uncache"> </a>
 					<div class="fixedFont">
 					
 					
-					<b>swapChildren</b>(child1, child2)
+					<b>uncache</b>()
 					
 					</div>
 					<div class="description">
-						交换在DisplayObjectContainer的子级列表中的两个子对象的索引位置。
+						Releases the cache.
 						
 						
 					</div>
 					
 					
 					
-						
-							<dl class="detailList">
-							<dt class="heading">Parameters:</dt>
-							
-								<dt>
-									<b>child1</b>
-									
-								</dt>
-								<dd></dd>
-							
-								<dt>
-									<b>child2</b>
-									
-								</dt>
-								<dd></dd>
-							
-							</dl>
-						
-						
-						
-						
-						
-						
-						
-
-					<hr />
-				
-					<a name="swapChildrenAt"> </a>
-					<div class="fixedFont">
-					
-					
-					<b>swapChildrenAt</b>(index1, index2)
-					
-					</div>
-					<div class="description">
-						交换在DisplayObjectContainer的子级列表中的指定索引位置的两个子对象。
-						
-						
-					</div>
-					
-					
-					
-						
-							<dl class="detailList">
-							<dt class="heading">Parameters:</dt>
-							
-								<dt>
-									<b>index1</b>
-									
-								</dt>
-								<dd></dd>
-							
-								<dt>
-									<b>index2</b>
-									
-								</dt>
-								<dd></dd>
-							
-							</dl>
 						
 						
 						

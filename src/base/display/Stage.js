@@ -70,8 +70,10 @@ Stage.prototype._render = function(context)
  */
 Stage.prototype._onEvent = function(e)
 {	
-	var x = (e.pageX - this.stageX) / this.scaleX, y = (e.pageY - this.stageY) / this.scaleY, target = this._eventTarget;
-	var obj = this.getObjectUnderPoint(x, y, true);
+	var x = e.pageX || e.clientX, y = e.pageY || e.clientY;
+	x = (x - this.stageX) / this.scaleX;
+	y = (y - this.stageY) / this.scaleY;
+	var obj = this.getObjectUnderPoint(x, y, true), target = this._eventTarget;
 	
 	e.eventX = x;
 	e.eventY = y;

@@ -22,7 +22,7 @@ Quark.getUrlParams = function()
 	return params;
 };
 
-var head = document.head;
+var head = document.getElementsByTagName("head")[0];
 var metas = head.getElementsByTagName("meta");
 var metaAfterNode = metas.length > 0 ? metas[metas.length-1].nextSibling : head.childNodes[0];
 

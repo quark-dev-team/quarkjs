@@ -48,6 +48,7 @@ Drawable.prototype.set = function(drawable, isDOM)
 
 function isDrawable(elem)
 {
+	if(elem == null) return false;
 	return (elem instanceof HTMLImageElement) || 
 	  	   (elem instanceof HTMLCanvasElement) ||
 	   	   (elem instanceof HTMLVideoElement);
