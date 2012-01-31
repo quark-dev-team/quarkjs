@@ -20,6 +20,7 @@ Wiki
 * [Quark Base Infrastructure](http://github.com/quark-dev-team/quarkjs/wiki/Quark-Base-Infrastructure)
 * [DisplayObject](http://github.com/quark-dev-team/quarkjs/wiki/DisplayObject)
 * [Handle Events](http://github.com/quark-dev-team/quarkjs/wiki/Handle-Events)
+* [Performance](http://github.com/quark-dev-team/quarkjs/wiki/Performance)
 
 Tutorials
 -----------------
