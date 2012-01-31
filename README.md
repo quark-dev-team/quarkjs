@@ -18,6 +18,7 @@ Features
 Wiki
 -----------------
 * [Quark Base Infrastructure](http://github.com/quark-dev-team/quarkjs/wiki/Quark-Base-Infrastructure)
+* [Context](http://github.com/quark-dev-team/quarkjs/wiki/Context)
 * [DisplayObject](http://github.com/quark-dev-team/quarkjs/wiki/DisplayObject)
 * [Handle Events](http://github.com/quark-dev-team/quarkjs/wiki/Handle-Events)
 * [Performance](http://github.com/quark-dev-team/quarkjs/wiki/Performance)
