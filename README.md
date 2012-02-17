@@ -42,7 +42,7 @@ Examples
 
 Showcase
 -----------------
-* [Fish Joy](http://html5lab.sinaapp.com/ppt1229/demo/fishjoy/)
+* [Fish Joy](http://www.riaidea.com/html5/fishjoy/)
 * [Happy Dolphin](http://www.riaidea.com/html5/dolphin/)
 * [Runner](http://www.riaidea.com/html5/runner/)
 * [Mine Sweeper](http://www.riaidea.com/html5/minesweeper/)
