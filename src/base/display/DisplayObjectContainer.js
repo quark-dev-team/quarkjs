@@ -196,9 +196,10 @@ DisplayObjectContainer.prototype.sortChildren = function(keyOrFunction)
 	var f = keyOrFunction;
 	if(typeof(f) == "string")
 	{
+		var key = f;
 		f = function(a, b)
 		{
-			return b[f] - a[f];
+			return b[key] - a[key];
 		};
 	}
 	this.children.sort(f);

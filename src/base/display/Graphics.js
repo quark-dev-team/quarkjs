@@ -8,11 +8,7 @@
  * @class The Graphics class contains a set of methods that you can use to create a vector shape.
  */ 
 var Graphics = Quark.Graphics = function(props)
-{
-	props = props || {};
-	Graphics.superClass.constructor.call(this, props);
-	this.id = Quark.UIDUtil.createUID("Graphics");
-	
+{	
 	this.lineWidth = 1;
 	this.strokeStyle = "0";
 	this.lineAlpha = 1;
@@ -23,6 +19,10 @@ var Graphics = Quark.Graphics = function(props)
 	
 	this.fillStyle = "0";
 	this.fillAlpha = 1;
+	
+	props = props || {};
+	Graphics.superClass.constructor.call(this, props);
+	this.id = Quark.UIDUtil.createUID("Graphics");
 	
 	this._actions = [];
 	this._cache = null;
