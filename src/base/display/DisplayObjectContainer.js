@@ -227,7 +227,9 @@ DisplayObjectContainer.prototype.getNumChildren = function()
 DisplayObjectContainer.prototype._update = function(timeInfo)
 {
 	//先更新容器本身的数据，再更新子元素的数据
-	if(this.update != null) this.update(timeInfo);
+	var result = true;
+	if(this.update != null) result = this.update(timeInfo);
+	if(result === false) return;
 	
 	var copy = this.children.slice(0);
 	for(var i = 0, len = copy.length; i < len; i++)

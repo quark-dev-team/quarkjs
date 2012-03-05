@@ -2089,7 +2089,7 @@ DisplayObject.prototype._update = function(timeInfo)
 /**
  * 对象数据更新接口，可通过覆盖此方法实现对象的数据更新。
  */
-DisplayObject.prototype.update = function(timeInfo){ };
+DisplayObject.prototype.update = function(timeInfo){ return true; };
 
 /**
  * 对象渲染接口，仅供框架内部或组件开发者使用。用户通常应该重写render方法。
@@ -2547,7 +2547,9 @@ DisplayObjectContainer.prototype.getNumChildren = function()
 DisplayObjectContainer.prototype._update = function(timeInfo)
 {
 	//先更新容器本身的数据，再更新子元素的数据
-	if(this.update != null) this.update(timeInfo);
+	var result = true;
+	if(this.update != null) result = this.update(timeInfo);
+	if(result === false) return;
 	
 	var copy = this.children.slice(0);
 	for(var i = 0, len = copy.length; i < len; i++)

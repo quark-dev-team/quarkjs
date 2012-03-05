@@ -91,7 +91,7 @@ DisplayObject.prototype._update = function(timeInfo)
 /**
  * 对象数据更新接口，可通过覆盖此方法实现对象的数据更新。
  */
-DisplayObject.prototype.update = function(timeInfo){ };
+DisplayObject.prototype.update = function(timeInfo){ return true; };
 
 /**
  * 对象渲染接口，仅供框架内部或组件开发者使用。用户通常应该重写render方法。
