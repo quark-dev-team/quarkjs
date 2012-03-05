@@ -113,4 +113,36 @@ function drawObjectRect(obj, ctx)
 	}
 };
 
+/**
+ * 把DisplayObject对象转换成dataURL格式的位图。
+ */
+Quark.displayObjectToImage = function(obj, type)
+{
+	if(this._helpStage == null)
+	{
+		this._helpStage = new Q.Stage({context:new Q.CanvasContext({canvas:Q.createDOM("canvas")})});		
+	}
+	
+	var w = obj.width, h = obj.height, x = obj.x, y = obj.y;	
+	var context = this._helpStage.context, canvas = context.canvas;
+	context.clear(0, 0, canvas.width, canvas.height);
+	canvas.width = this._helpStage.width = w;
+	canvas.height = this._helpStage.height = h;
+	
+	obj.x = 0;
+	obj.y = 0;
+	context.startDraw();
+	context.transform(obj);
+	obj.render(context);
+	context.endDraw();
+	obj.x = x;
+	obj.y = y;
+	
+	var img = new Image();
+	img.width = w;
+	img.height = h;
+	img.src = canvas.toDataURL(type || "image/png");
+	return img;
+};
+
 })();

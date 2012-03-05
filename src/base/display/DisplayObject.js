@@ -301,6 +301,14 @@ DisplayObject.prototype.getStage = function()
 };
 
 /**
+ * 把DisplayObject对象转换成dataURL格式的位图。
+ */
+DisplayObject.prototype.toImage = function(type)
+{	
+	return Quark.displayObjectToImage(this, type);
+};
+
+/**
  * 返回DisplayObject对象的全路径的字符串表示形式，方便debug。如Stage1.Container2.Bitmap3。
  */
 DisplayObject.prototype.toString = function()
