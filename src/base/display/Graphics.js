@@ -268,7 +268,7 @@ Graphics.prototype.toImage = function(type)
 Graphics.prototype.clear = function()
 {
 	this._actions.length = 0;
-	this._cache = 0;
+	this._cache = null;
 	
 	this.lineWidth = 1;
 	this.strokeStyle = "0";
