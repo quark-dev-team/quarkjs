@@ -15,7 +15,9 @@ var Graphics = Quark.Graphics = function(props)
 	this.lineCap = null; //"butt", "round", "square"
 	this.lineJoin = null; //"miter", "round", "bevel"
 	this.miterLimit = 10;
+	
 	this.hasStroke = false;
+	this.hasFill = false;
 	
 	this.fillStyle = "0";
 	this.fillAlpha = 1;
@@ -51,6 +53,7 @@ Graphics.prototype.beginFill = function(fill, alpha)
 {
 	this._addAction(["fillStyle", (this.fillStyle = fill)]);
 	this._addAction(["fillAlpha", (this.fillAlpha = alpha || 1)]);
+	this.hasFill = true;
 	return this;
 };
 
@@ -60,7 +63,7 @@ Graphics.prototype.beginFill = function(fill, alpha)
 Graphics.prototype.endFill = function()
 {
 	if(this.hasStroke) this._addAction(["stroke"]);
-	this._addAction(["fill"]);
+	if(this.hasFill) this._addAction(["fill"]);
 	return this;
 };
 
@@ -173,6 +176,44 @@ Graphics.prototype.drawEllipse = function(x, y, width, height)
 	this._addAction(["bezierCurveTo", x - cx, y - h, x - w, y - cy, x - w, y]);
 	this._addAction(["bezierCurveTo", x - w, y + cy, x - cx, y + h, x, y + h]);
 	this._addAction(["bezierCurveTo", x + cx, y + h, x + w, y + cy, x + w, y]);
+	return this;
+};
+
+/**
+ * Draws a path from SVG path data. 
+ * For example: 
+ * var path = "M250 150 L150 350 L350 350 Z";
+ * var shape = new Quark.Graphics({width:500, height:500});
+ * shape.drawSVGPath(path).beginFill("#0ff").endFill();
+ */
+Graphics.prototype.drawSVGPath = function(pathData)
+{
+	var path = pathData.split(/,| (?=[a-zA-Z])/);
+	
+	this._addAction(["beginPath"]);
+	for(var i = 0, len = path.length; i < len; i++)
+	{
+		var str = path[i], cmd = str[0].toUpperCase(), p = str.substring(1).split(/,| /);
+		if(p[0].length == 0) p.shift();
+
+		switch(cmd)
+		{
+			case "M":
+				this._addAction(["moveTo", p[0], p[1]]);
+				break;
+			case "L":
+				this._addAction(["lineTo", p[0], p[1]]);
+				break;
+			case "C":
+				this._addAction(["bezierCurveTo", p[0], p[1], p[2], p[3], p[4], p[5]]);
+				break;
+			case "Z":
+				this._addAction(["closePath"]);
+				break;
+			default:
+				break;
+		}
+	}
 	return this;
 };
 
