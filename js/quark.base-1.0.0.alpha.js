@@ -2020,6 +2020,7 @@ function isDrawable(elem)
  * @property transformEnabled 指示DisplayObject对象是否执行变换。默认为false。
  * @property useHandCursor 指示DisplayObject对象是否支持手型的鼠标光标。默认为false。
  * @property polyArea 指示DisplayObject对象的多边形碰撞区域。默认为null，即使用对象的外包围矩形。
+ * @property mask 指示DisplayObject对象的遮罩对象，仅当上下文为CanvasContext时有效。默认为null。
  * @property parent DisplayObject对象的父容器。只读属性。
  */	
 var DisplayObject = Quark.DisplayObject = function(props)
@@ -2042,6 +2043,7 @@ var DisplayObject = Quark.DisplayObject = function(props)
 	this.transformEnabled = true;
 	this.useHandCursor = false;
 	this.polyArea = null;
+	this.mask = null;
 
 	this.drawable = null;
 	this.parent = null;	
@@ -2106,6 +2108,14 @@ DisplayObject.prototype._render = function(context)
 	
 	ctx.startDraw();
 	ctx.transform(this);
+	
+	//only works for canvas context
+	if(this.mask != null && ctx.context != null)
+	{		
+		this.mask._render(ctx);
+		ctx.context.globalCompositeOperation = 'source-in';
+	}
+	
 	this.render(ctx);
 	ctx.endDraw();
 	this.saveState();
@@ -2408,7 +2418,7 @@ DisplayObjectContainer.prototype.removeChildAt = function(index)
 	if (child != null) 
 	{
 		var stage = this.getStage();
-		stage.context.remove(child);
+		if(stage != null) stage.context.remove(child);
 		child.parent = null;
 	}
 	this.children.splice(index, 1);
