@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="user-scalable=no, width=device-width, height=device-height, initial-scale=1.0, minimum-scale=1, maximum-scale=1" />
+<title>Quark Framework Example - DisplayObject Mask</title>
+
+<style type="text/css">
+body{margin:0;padding:0;font-size:12px;background-color:#eee;}
+</style>
+
+<script type="text/javascript" src="../js/quark.base-1.0.0.alpha.js"></script>
+
+
+</head>
+
+<body>
+
+<div id="container" style="position:absolute;left:0;top:0;width:480px;height:320px;background-color:#fff;"></div>
+<div id="fps" style="position:absolute;left:0;top:0;"></div>
+<img id="img" src="images/girl.png" style="display:none;" />
+<img id="mask" src="images/mask.png" style="display:none;" />
+
+<script type="text/javascript">
+
+window.onload = init;
+
+var timer, container, context, params, width, height, fps, stage;
+var img, mask, bmp, speedX = 2, maskY = 0;
+
+function init()
+{	
+	container = Q.getDOM("container");
+	
+	params = Quark.getUrlParams();
+	if(params.mode == undefined) params.mode = 1;
+
+	width = 480;
+	height = 320;
+	fps = 60;
+
+	if(params.mode == 1)
+	{
+		var canvas = Quark.createDOM("canvas", {width:width, height:height, style:{position:"absolute", backgroundColor:"#fff"}});		
+		container.appendChild(canvas);
+		context = new Quark.CanvasContext({canvas:canvas});		
+	}else
+	{
+		context = new Quark.DOMContext({canvas:container});
+	}
+	
+	stage = new Q.Stage({context:context, width:width, height:height, update:function()
+	{
+		frames++;
+		moveMask();
+	}});
+	
+	timer = new Q.Timer(1000/fps);
+	timer.addListener(stage);
+	timer.addListener(Q.Tween);
+	timer.start();
+
+	start();
+}
+
+function start()
+{
+	img = Q.getDOM("img");
+	mask = Q.getDOM("mask");
+	
+	//raw bitmap
+	bmp = new Q.Bitmap({image:img, x:0, y:0});
+	stage.addChild(bmp);
+	
+	//bitmap mask
+	var bitmapMask = new Q.Bitmap({image:mask, x:0, y:0});
+	
+	//graphics mask
+	var graphMask = new Q.Graphics({width:300, height:300, x:0, y:0});
+	graphMask.drawSVGPath("M100 0 L0 200 L200 200 Z").beginFill("#0ff").endFill();
+	
+	//combo mask
+	var comboMask = new Q.DisplayObjectContainer({autoSize:true});
+	comboMask.addChild(bitmapMask, graphMask);
+
+	bmp.mask = bitmapMask;
+	//bmp.mask = graphMask;
+	//bmp.mask = comboMask;
+}
+
+function moveMask()
+{
+	if(bmp == null || bmp.mask == null) return;
+
+	var mask = bmp.mask;
+	var needTurn = mask.x < -mask.width || mask.x > bmp.width;
+	if(needTurn)
+	{
+		speedX *= -1;
+		maskY = maskY + 85 >= 255 ? 0 : maskY + 85;
+	}
+	mask.x += speedX;
+	mask.y = maskY;
+}
+
+var frames = 0, fpsContainer = Quark.getDOM("fps");
+setInterval(function()
+{
+	fpsContainer.innerHTML = "FPS:" + frames;
+	frames = 0;
+}, 1000);
+
+</script>
+
+</body>
+</html>

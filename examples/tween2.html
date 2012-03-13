@@ -89,7 +89,7 @@ function init()
 		}});
 	}});
 	
-	timer = new Q.Timer(1000 / fps);
+	timer = new Q.Timer(fps);
 	timer.addListener(stage);
 	timer.addListener(Q.Tween);
 	timer.start();

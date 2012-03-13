@@ -87,6 +87,9 @@ function start()
 	rect2 = new Quark.Bitmap({id:"green", x:rect1.x+90, y:rect1.y, regX:25, regY:50, image:createRect(50, 100, "#0f0")});
 	stage.addChild(box.addChild(rect1, rect2));
 	
+	//try this code to see the effect
+	//rect2.polyArea = [{x:25, y:0}, {x:50, y:15}, {x:25, y:30}, {x:0, y:15}];
+	
 	var em = new Q.EventManager();
 	em.registerStage(stage, events);
 
