@@ -106,6 +106,12 @@ DOMContext.prototype.transform = function(target)
 	{
 		style.zIndex = target._depth;
 	}
+	if(target.mask != null)
+	{
+		style[Q.cssPrefix + "MaskImage"] = target.mask.getDrawable(this).style.backgroundImage;
+		style[Q.cssPrefix + "MaskRepeat"] = "no-repeat";
+		style[Q.cssPrefix + "MaskPosition"] = target.mask.x + "px " + target.mask.y + "px";
+	}
 };
 
 /**

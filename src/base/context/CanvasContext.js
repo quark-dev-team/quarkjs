@@ -27,6 +27,13 @@ CanvasContext.prototype.startDraw = function()
  */
 CanvasContext.prototype.draw = function(target)
 {
+	//draw mask first
+	if(target.mask != null)
+	{		
+		target.mask._render(this);
+		this.context.globalCompositeOperation = 'source-in';
+	}
+	
 	var img = target.getDrawable(this);
 	if(img != null)
 	{
