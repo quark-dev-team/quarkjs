@@ -104,7 +104,7 @@ Button.prototype.setEnabled = function(enabled)
 		else this._skin.gotoAndStop(Button.state.UP);
 	}else
 	{
-		if(this.currentFrame == 3) this._skin.gotoAndStop(Button.UP);
+		if(this._skin.currentFrame == 3) this._skin.gotoAndStop(Button.UP);
 	}
 	return this;
 };
