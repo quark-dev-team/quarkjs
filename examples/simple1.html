@@ -9,31 +9,7 @@
 body{margin:0;padding:0;font-size:12px;background-color:#eee;}
 </style>
 
-<!--
-<script type="text/javascript" src="../src/base/core/base.js"></script>
-<script type="text/javascript" src="../src/base/event/EventDispatcher.js"></script>
-<script type="text/javascript" src="../src/base/event/EventManager.js"></script>
-<script type="text/javascript" src="../src/base/event/EventConst.js"></script>
-<script type="text/javascript" src="../src/base/utils/Utils.js"></script>
-<script type="text/javascript" src="../src/base/utils/UIDUtil.js"></script>
-<script type="text/javascript" src="../src/base/utils/Timer.js"></script>
-<script type="text/javascript" src="../src/base/utils/Tween.js"></script>
-<script type="text/javascript" src="../src/base/utils/Audio.js"></script>
-<script type="text/javascript" src="../src/base/utils/ImageLoader.js"></script>
-<script type="text/javascript" src="../src/base/geom/Matrix.js"></script>
-<script type="text/javascript" src="../src/base/geom/Rectangle.js"></script>
-<script type="text/javascript" src="../src/base/context/Context.js"></script>
-<script type="text/javascript" src="../src/base/context/CanvasContext.js"></script>
-<script type="text/javascript" src="../src/base/context/DOMContext.js"></script>
-<script type="text/javascript" src="../src/base/display/Drawable.js"></script>
-<script type="text/javascript" src="../src/base/display/DisplayObject.js"></script>
-<script type="text/javascript" src="../src/base/display/DisplayObjectContainer.js"></script>
-<script type="text/javascript" src="../src/base/display/Stage.js"></script>
-<script type="text/javascript" src="../src/base/display/Bitmap.js"></script>
-<script type="text/javascript" src="../src/base/display/MovieClip.js"></script>
--->
-
-<script type="text/javascript" src="../js/quark.base-1.0.0.alpha.min.js"></script>
+<script type="text/javascript" src="../js/quark.base-1.0.0.alpha.js"></script>
 
 </head>
 
@@ -87,23 +63,17 @@ function start()
 	bmp1.x = 300;
 	bmp1.y = 100;
 	bmp1.enabled = true;
-	bmp1.onEvent = function(e)
-	{
-		if(e.type == events[0])
-		{
-			bmp1.enabled = !bmp1.enabled;
-		}
+	bmp1.ontouchend = bmp1.onmouseup = function(e)
+	{	
+		bmp1.enabled = !bmp1.enabled;
 	}
 	
 	bmp2 = new Quark.Bitmap({image:boy, rect:[0,0,64,85], regX:32, regY:42});
 	bmp2.x = 100;
 	bmp2.y = 100;
-	bmp2.onEvent = function(e)
+	bmp2.ontouchend = bmp2.onmouseup = function(e)
 	{
-		if(e.type == events[0])
-		{
-			bmp2.scaleX = bmp2.scaleY = bmp2.scaleX == 1? 2 : 1;
-		}
+		bmp2.scaleX = bmp2.scaleY = bmp2.scaleX == 1? 2 : 1;
 	}
 	
 	mc = new Quark.MovieClip({image:girl, interval:50});
@@ -117,12 +87,9 @@ function start()
 	mc.x = 150;
 	mc.y = 150;
 	mc.gotoAndPlay("walk");
-	mc.onEvent = function(e)
+	mc.ontouchend = mc.onmouseup = function(e)
 	{
-		if(e.type == events[0])
-		{
-			mc.paused = !mc.paused;
-		}
+		mc.paused = !mc.paused;
 	}
 
 	stage.addChild(bmp1, bmp2, mc);
