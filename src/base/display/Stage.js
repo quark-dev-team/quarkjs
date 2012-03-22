@@ -78,17 +78,18 @@ Stage.prototype._onEvent = function(e)
 	e.eventX = x;
 	e.eventY = y;
 	
-	if(target != null && target != obj)
+	var leave = e.type == "mouseout" && !this.context.canvas.contains(e.relatedTarget);	
+	if(target != null && (target != obj || leave))
 	{
 		e.lastEventTarget = target;
 		//派发移开事件mouseout或touchout到上一个事件对象
-		var outEvent = e.type == "mousemove" ? "mouseout" : e.type == "touchmove" ? "touchout" : null;
+		var outEvent = (leave || obj == null || e.type == "mousemove") ? "mouseout" : e.type == "touchmove" ? "touchout" : null;
 		if(outEvent) target._onEvent({type:outEvent});
 		this._eventTarget = null;
 	}
 	
 	//派发事件到目标对象
-	if(obj!= null && obj.eventEnabled)
+	if(obj!= null && obj.eventEnabled && e.type != "mouseout")
 	{
 		e.eventTarget = target = this._eventTarget = obj;
 		obj._onEvent(e);
@@ -100,8 +101,8 @@ Stage.prototype._onEvent = function(e)
 		var cursor = (target && target.useHandCursor && target.eventEnabled) ? "pointer" : "";
 		this.context.canvas.style.cursor = cursor;
 	}
-
-    if(this.onEvent != null) this.onEvent(e);
+	
+	if(leave || e.type != "mouseout") Stage.superClass._onEvent.call(this, e);
 };
 
 /**

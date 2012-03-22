@@ -124,17 +124,13 @@ DisplayObject.prototype.render = function(context)
 };
 
 /**
- * DisplayObject对象的系统事件处理器，仅供框架内部或组件开发者使用。用户通常应该设置onEvent回调。
+ * DisplayObject对象的系统事件处理器，仅供框架内部或组件开发者使用。用户通常应该设置相应的回调函数，如onmousedown、onmousemove、onmouseup、onmouseout等。
  */
 DisplayObject.prototype._onEvent = function(e) 
-{ 	
-	if(this.onEvent != null) this.onEvent(e);
+{
+	var handler = "on" + e.type;
+	if(this[handler] != null) this[handler](e);
 };
-
-/**
- * DisplayObject对象的系统事件处理器，可通过设置onEvent回调来处理事件。
- */
-DisplayObject.prototype.onEvent = null;
 
 /**
  * 保存DisplayObject对象的状态列表中的各种属性状态。

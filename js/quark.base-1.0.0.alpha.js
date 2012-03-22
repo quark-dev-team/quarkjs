@@ -2122,17 +2122,13 @@ DisplayObject.prototype.render = function(context)
 };
 
 /**
- * DisplayObject对象的系统事件处理器，仅供框架内部或组件开发者使用。用户通常应该设置onEvent回调。
+ * DisplayObject对象的系统事件处理器，仅供框架内部或组件开发者使用。用户通常应该设置相应的回调函数，如onmousedown、onmousemove、onmouseup、onmouseout等。
  */
 DisplayObject.prototype._onEvent = function(e) 
-{ 	
-	if(this.onEvent != null) this.onEvent(e);
+{
+	var handler = "on" + e.type;
+	if(this[handler] != null) this[handler](e);
 };
-
-/**
- * DisplayObject对象的系统事件处理器，可通过设置onEvent回调来处理事件。
- */
-DisplayObject.prototype.onEvent = null;
 
 /**
  * 保存DisplayObject对象的状态列表中的各种属性状态。
@@ -2696,17 +2692,18 @@ Stage.prototype._onEvent = function(e)
 	e.eventX = x;
 	e.eventY = y;
 	
-	if(target != null && target != obj)
+	var leave = e.type == "mouseout" && !this.context.canvas.contains(e.relatedTarget);	
+	if(target != null && (target != obj || leave))
 	{
 		e.lastEventTarget = target;
 		//派发移开事件mouseout或touchout到上一个事件对象
-		var outEvent = e.type == "mousemove" ? "mouseout" : e.type == "touchmove" ? "touchout" : null;
+		var outEvent = (leave || obj == null || e.type == "mousemove") ? "mouseout" : e.type == "touchmove" ? "touchout" : null;
 		if(outEvent) target._onEvent({type:outEvent});
 		this._eventTarget = null;
 	}
 	
 	//派发事件到目标对象
-	if(obj!= null && obj.eventEnabled)
+	if(obj!= null && obj.eventEnabled && e.type != "mouseout")
 	{
 		e.eventTarget = target = this._eventTarget = obj;
 		obj._onEvent(e);
@@ -2718,8 +2715,8 @@ Stage.prototype._onEvent = function(e)
 		var cursor = (target && target.useHandCursor && target.eventEnabled) ? "pointer" : "";
 		this.context.canvas.style.cursor = cursor;
 	}
-
-    if(this.onEvent != null) this.onEvent(e);
+	
+	if(leave || e.type != "mouseout") Stage.superClass._onEvent.call(this, e);
 };
 
 /**
