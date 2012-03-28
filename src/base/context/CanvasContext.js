@@ -27,18 +27,56 @@ CanvasContext.prototype.startDraw = function()
  */
 CanvasContext.prototype.draw = function(target)
 {
-	//draw mask first
-	if(target.mask != null)
-	{		
-		target.mask._render(this);
-		this.context.globalCompositeOperation = 'source-in';
-	}
+	//ignore children drawing if the parent has a mask.
+	if(target.parent != null && target.parent.mask != null) return;
 	
-	var img = target.getDrawable(this);
-	if(img != null)
+	if(target.mask != null)
 	{
-		arguments[0] = img;
+		//we implements the mask function by using 'source-in' composite operation.
+		//so can't draw objects with masks into this canvas directly.
+		var w = target.width, h = target.height;
+		var context = Q._helpContext, canvas = context.canvas, ctx = context.context;
+		canvas.width = 0;
+		canvas.width = w;
+		canvas.height = h;
+		context.startDraw();
+		target.mask._render(context);
+		ctx.globalCompositeOperation = 'source-in';
+		
+		//this is a trick for ignoring mask drawing during object drawing.
+		var mask = target.mask;
+		target.mask = null;
+		if(target instanceof Quark.DisplayObjectContainer)
+		{
+			//container's children should draw at once in 'source-in' mode.
+			var cache = target._cache || Quark.cacheObject(target);
+			ctx.drawImage(cache, 0, 0, w, h, 0, 0, w, h);
+		}else
+		{
+			target.render(context);
+		}
+		context.endDraw();
+		target.mask = mask;
+
+		arguments[0] = canvas;
 		this.context.drawImage.apply(this.context, arguments);
+	}else if(target._cache != null)
+	{
+		//draw cache if exist
+		this.context.drawImage(target._cache, 0, 0);
+	}else if(target instanceof Quark.Graphics)
+	{
+		//special drawing actions for graphics
+		target._draw(this.context);
+	}else
+	{
+		//normal draw
+		var img = target.getDrawable(this);
+		if(img != null)
+		{
+			arguments[0] = img;
+			this.context.drawImage.apply(this.context, arguments);	
+		}
 	}
 };
 

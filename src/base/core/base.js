@@ -7,7 +7,6 @@
  */
 var Quark = win.Quark = win.Quark || 
 {
-	version: "1.0.0",
 	global: win
 };
 

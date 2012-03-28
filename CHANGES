@@ -1,12 +1,23 @@
-== 2011.3.22 v1.0.0 ==
+== 2012.3.27 v1.0.0 ==
+
+Added:
+	* DisplayObject.cache(), uncache() - now only works for CanvasContext.
+	* Build version for each build.
+
+Fixed:
+	* DisplayObject.mask - incorrent behavior on containers or with background color.
+
+
+== 2012.3.22 v1.0.0 ==
 
 Modified:
-	* DisplayObject.onEvent deprecated, use "on" event handlers instead, e.g. onmousedown, onmouseup, onmouseout etc.
+	* DisplayObject.onEvent() deprecated, use "on" event handlers instead, e.g. onmousedown, onmouseup, onmouseout etc.
 
 Fixed:
 	* Button state changes incorrect when move fast.
 
-== 2011.3.13 v1.0.0 ==
+
+== 2012.3.13 v1.0.0 ==
 
 Added:
 	* DisplayObject.mask property - only support webkit browsers when use DOMContext.

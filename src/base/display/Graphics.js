@@ -218,28 +218,6 @@ Graphics.prototype.drawSVGPath = function(pathData)
 };
 
 /**
- * Override method.
- * @private
- */
-Graphics.prototype.render = function(context)
-{
-	var ctx = context.context;
-	if(ctx == null)
-	{
-		Graphics.superClass.render.call(this, context);
-	}else
-	{
-		if(this._cache != null)
-		{
-			ctx.drawImage(this._cache, 0, 0);
-		}else
-		{
-			this._draw(ctx);
-		}
-	}
-};
-
-/**
  * Performs all drawing actions. For internal use.
  * @private
  */

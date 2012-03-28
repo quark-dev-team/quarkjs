@@ -54,7 +54,7 @@ var DisplayObject = Quark.DisplayObject = function(props)
 	this._depth = 0;
 	this._lastState = {};
 	this._stateList = ["x", "y", "regX", "regY", "width", "height", "alpha", "scaleX", "scaleY", "rotation", "visible", "_depth"];
-	
+
 	Quark.merge(this, props, true);
 	if(props.mixin) Quark.merge(this, props.mixin, false);
 };
@@ -79,7 +79,7 @@ DisplayObject.prototype.setDrawable = function(drawable)
 DisplayObject.prototype.getDrawable = function(context)
 {
 	//context = context || this.context || this.getStage().context;
-	return this.drawable && this.drawable.get(this, context);
+	return this._cache || this.drawable && this.drawable.get(this, context);
 };
 
 /**
@@ -109,7 +109,7 @@ DisplayObject.prototype._render = function(context)
 	}
 	
 	ctx.startDraw();
-	ctx.transform(this);	
+	ctx.transform(this);
 	this.render(ctx);
 	ctx.endDraw();
 	this.saveState();
@@ -299,11 +299,31 @@ DisplayObject.prototype.getStage = function()
 };
 
 /**
+ * Draws the display object into a new canvas for caching use. This can provide faster rendering for complex object that doesn't change frequently.
+ * 把DisplayObject对象缓存到一个新的canvas，对于包含复杂内容且不经常改变的对象使用缓存，可以提高渲染速度。
+ * @param {Boolean} toImage Indicates whether convert to an image in dataURL format.
+ * @param {String} type The converting image mime type when 'toImage' sets to true, 'image/png' is default.
+ */
+Quark.DisplayObject.prototype.cache  = function(toImage, type)
+{
+	return this._cache = Quark.cacheObject(this, toImage, type);
+};
+
+/**
+ * Clears the cache.
+ * 清除缓存。
+ */
+Quark.DisplayObject.prototype.uncache = function()
+{
+	this._cache = null;
+};
+
+/**
  * 把DisplayObject对象转换成dataURL格式的位图。
  */
-DisplayObject.prototype.toImage = function(type)
+Quark.DisplayObject.prototype.toImage = function(type)
 {	
-	return Quark.displayObjectToImage(this, type);
+	return Quark.cacheObject(this, true, type);
 };
 
 /**
@@ -312,7 +332,6 @@ DisplayObject.prototype.toImage = function(type)
 DisplayObject.prototype.toString = function()
 {
 	return Quark.UIDUtil.displayObjectToString(this);
-	//return this.id || this.name;
 };
 
 })();

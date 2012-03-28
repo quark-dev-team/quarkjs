@@ -2,6 +2,7 @@
 (function(){
 
 /**
+ * Translates url parameters into a key-value object.
  * 获取并对象化url参数。
  */
 Quark.getUrlParams = function()
@@ -27,7 +28,9 @@ var metas = head.getElementsByTagName("meta");
 var metaAfterNode = metas.length > 0 ? metas[metas.length-1].nextSibling : head.childNodes[0];
 
 /**
+ * Add a meta tag into the head of the document.
  * 动态添加meta到head中。
+ * {Object} props The meta properties to add. e.g. {name:'viewport', content:'width=device-width'}
  */
 Quark.addMeta = function(props)
 {
@@ -37,7 +40,9 @@ Quark.addMeta = function(props)
 };
 
 /**
- * 打开或关闭调试区域。
+ * Show or Hide the bounding rects of all display objects on stage. This method is mainly for debugging use.
+ * 显示或关闭舞台上所有显示对象的外包围矩形。主要用于调试物体碰撞区域等。
+ * @param {Quark.Stage} The stage to be debug.
  */
 Quark.toggleDebugRect = function(stage)
 {
@@ -71,7 +76,8 @@ Quark.toggleDebugRect = function(stage)
 };
 
 /**
- * 绘制显示对象区域。
+ * Draws the bounding rect of the display object. Internal function.
+ * 绘制显示对象的外包围矩形。
  */
 function drawObjectRect(obj, ctx)
 {
@@ -114,35 +120,35 @@ function drawObjectRect(obj, ctx)
 };
 
 /**
- * 把DisplayObject对象转换成dataURL格式的位图。
+ * Draws the display object into a new canvas for caching use.
+ * 把DisplayObject对象绘制到一个新的画布上。可作为缓存使用，也可转换成dataURL格式的位图。
+ * @param {Quark.DisplayObject} obj The display object to draw.
+ * @param {Boolean} toImage Indicates whether convert to an image in dataURL format.
+ * @param {String} type The converting image mime type, 'image/png' is default.
  */
-Quark.displayObjectToImage = function(obj, type)
+Quark.cacheObject = function(obj, toImage, type)
 {
-	if(this._helpStage == null)
-	{
-		this._helpStage = new Q.Stage({context:new Q.CanvasContext({canvas:Q.createDOM("canvas")})});		
-	}
-	
-	var w = obj.width, h = obj.height, x = obj.x, y = obj.y;	
-	var context = this._helpStage.context, canvas = context.canvas;
-	context.clear(0, 0, canvas.width, canvas.height);
-	canvas.width = this._helpStage.width = w;
-	canvas.height = this._helpStage.height = h;
-	
-	obj.x = 0;
-	obj.y = 0;
-	context.startDraw();
-	context.transform(obj);
+	var w = obj.width, h = obj.height;
+	var canvas = Quark.createDOM("canvas", {width:w, height:h});
+	var context = new Quark.CanvasContext({canvas:canvas});
 	obj.render(context);
-	context.endDraw();
-	obj.x = x;
-	obj.y = y;
 	
-	var img = new Image();
-	img.width = w;
-	img.height = h;
-	img.src = canvas.toDataURL(type || "image/png");
-	return img;
+	if(toImage)
+	{
+		var img = new Image();
+		img.width = w;
+		img.height = h;
+		img.src = canvas.toDataURL(type || "image/png");
+		return img;
+	}
+	return canvas;
 };
+
+
+/**
+ * A help stage for internal use.
+ * 用于Quark内部实现的一个上下文。
+ */
+Quark._helpContext = new Quark.CanvasContext({canvas:Quark.createDOM("canvas")});
 
 })();
