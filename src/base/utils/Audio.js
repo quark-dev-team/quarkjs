@@ -37,9 +37,10 @@ Audio.prototype.load = function()
 	this._element.addEventListener("progress", this._evtHandler, false);
 	this._element.addEventListener("ended", this._evtHandler, false);
 	this._element.addEventListener("error", this._evtHandler, false);
-	try{
-		this._element.load();
-	}catch(e){trace(e);};
+    try{
+        this._element.load();
+    }catch(e){trace(e);};
+	
 };
 
 /**
@@ -53,7 +54,7 @@ Audio.prototype._evtHandler = function(e)
 		var i = 0, buffered = 0, ranges = e.target.buffered;
 		if(ranges && ranges.length > 0)
 		{
-			for (i = ranges.length; i >= 0; i--)
+			for (i = ranges.length - 1; i >= 0; i--)
 			{
 	          buffered = (ranges.end(i) - ranges.start(i));
 	        }

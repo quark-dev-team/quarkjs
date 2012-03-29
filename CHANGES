@@ -1,3 +1,32 @@
-== 1.0.0 alpha ==
+== 2012.3.27 v1.0.0 ==
 
-  * First alpha version released.
+Added:
+	* DisplayObject.cache(), uncache() - now only works for CanvasContext.
+	* Build version for each build.
+
+Fixed:
+	* DisplayObject.mask - incorrent behavior on containers or with background color.
+
+
+== 2012.3.22 v1.0.0 ==
+
+Modified:
+	* DisplayObject.onEvent() deprecated, use "on" event handlers instead, e.g. onmousedown, onmouseup, onmouseout etc.
+
+Fixed:
+	* Button state changes incorrect when move fast.
+
+
+== 2012.3.13 v1.0.0 ==
+
+Added:
+	* DisplayObject.mask property - only support webkit browsers when use DOMContext.
+	* Graphics.drawSVGPath() - draw graphics by using SVG path.
+	* DisplayObject.toImage() - return as an image in DataURL format. it's useful but be careful.
+
+Modified:	
+	* DisplayObject.update() - now returns true/false. if a container's update() returns false, its children don't update at all.
+
+Fixed:
+	* Button.setEnabled() - incorrect skin state change.
+	* Graphics.clear() - incorrect cache reset.

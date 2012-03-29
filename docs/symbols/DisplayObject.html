@@ -219,6 +219,8 @@ ul.inheritsList
 	
 	<li><a href="../symbols/Bitmap.html">Bitmap</a></li>
 	
+	<li><a href="../symbols/Button.html">Button</a></li>
+	
 	<li><a href="../symbols/CanvasContext.html">CanvasContext</a></li>
 	
 	<li><a href="../symbols/Context.html">Context</a></li>
@@ -234,6 +236,8 @@ ul.inheritsList
 	<li><a href="../symbols/EventDispatcher.html">EventDispatcher</a></li>
 	
 	<li><a href="../symbols/EventManager.html">EventManager</a></li>
+	
+	<li><a href="../symbols/Graphics.html">Graphics</a></li>
 	
 	<li><a href="../symbols/ImageLoader.html">ImageLoader</a></li>
 	
@@ -309,9 +313,199 @@ ul.inheritsList
 							<td class="attributes">&nbsp;</td>
 							<td class="nameDescription">
 								<div class="fixedFont">
+								<b><a href="../symbols/DisplayObject.html#alpha">alpha</a></b>
+								</div>
+								<div class="description">DisplayObject对象的透明度。取值范围为0-1，默认为1。</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">
+								<b><a href="../symbols/DisplayObject.html#eventEnabled">eventEnabled</a></b>
+								</div>
+								<div class="description">指示DisplayObject对象是否接受交互事件，如mousedown，touchstart等。默认为true。</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">
+								<b><a href="../symbols/DisplayObject.html#height">height</a></b>
+								</div>
+								<div class="description">DisplayObject对象的高。</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">
+								<b><a href="../symbols/DisplayObject.html#id">id</a></b>
+								</div>
+								<div class="description">DisplayObject对象唯一标识符id。</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">
+								<b><a href="../symbols/DisplayObject.html#mask">mask</a></b>
+								</div>
+								<div class="description">指示DisplayObject对象的遮罩对象。当上下文为DOMContext时暂时只支持webkit内核浏览器。默认为null。</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">
+								<b><a href="../symbols/DisplayObject.html#name">name</a></b>
+								</div>
+								<div class="description">DisplayObject对象的名称。</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">
 								<b><a href="../symbols/DisplayObject.html#onEvent">onEvent</a></b>
 								</div>
 								<div class="description">DisplayObject对象的系统事件处理器，可通过设置onEvent回调来处理事件。</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">
+								<b><a href="../symbols/DisplayObject.html#parent">parent</a></b>
+								</div>
+								<div class="description">DisplayObject对象的父容器。只读属性。</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">
+								<b><a href="../symbols/DisplayObject.html#polyArea">polyArea</a></b>
+								</div>
+								<div class="description">指示DisplayObject对象的多边形碰撞区域。默认为null，即使用对象的外包围矩形。</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">
+								<b><a href="../symbols/DisplayObject.html#regX">regX</a></b>
+								</div>
+								<div class="description">DisplayObject对象的注册点（中心点）的x轴坐标。</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">
+								<b><a href="../symbols/DisplayObject.html#regY">regY</a></b>
+								</div>
+								<div class="description">DisplayObject对象的注册点（中心点）的y轴坐标。</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">
+								<b><a href="../symbols/DisplayObject.html#rotation">rotation</a></b>
+								</div>
+								<div class="description">DisplayObject对象的旋转角度。默认为0。</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">
+								<b><a href="../symbols/DisplayObject.html#scaleX">scaleX</a></b>
+								</div>
+								<div class="description">DisplayObject对象在x轴上的缩放值。取值范围为0-1。</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">
+								<b><a href="../symbols/DisplayObject.html#scaleY">scaleY</a></b>
+								</div>
+								<div class="description">DisplayObject对象在y轴上的缩放值。取值范围为0-1。</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">
+								<b><a href="../symbols/DisplayObject.html#transformEnabled">transformEnabled</a></b>
+								</div>
+								<div class="description">指示DisplayObject对象是否执行变换。默认为false。</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">
+								<b><a href="../symbols/DisplayObject.html#useHandCursor">useHandCursor</a></b>
+								</div>
+								<div class="description">指示DisplayObject对象是否支持手型的鼠标光标。默认为false。</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">
+								<b><a href="../symbols/DisplayObject.html#visible">visible</a></b>
+								</div>
+								<div class="description">指示DisplayObject对象是否可见。默认为true。</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">
+								<b><a href="../symbols/DisplayObject.html#width">width</a></b>
+								</div>
+								<div class="description">DisplayObject对象的宽。</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">
+								<b><a href="../symbols/DisplayObject.html#x">x</a></b>
+								</div>
+								<div class="description">DisplayObject对象相对父容器的x轴坐标。</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">
+								<b><a href="../symbols/DisplayObject.html#y">y</a></b>
+								</div>
+								<div class="description">DisplayObject对象相对父容器的y轴坐标。</div>
 							</td>
 						</tr>
 					
@@ -339,9 +533,18 @@ ul.inheritsList
 						<tr>
 							<td class="attributes">&nbsp;</td>
 							<td class="nameDescription">
-								<div class="fixedFont"><b><a href="../symbols/DisplayObject.html#getBounds">getBounds</a></b>(targetCoordinateSpace)
+								<div class="fixedFont"><b><a href="../symbols/DisplayObject.html#getBounds">getBounds</a></b>()
 								</div>
-								<div class="description">返回DisplayObject对象相对于targetCoordinateSpace参数对象指定的坐标系的显示对象矩形区域。</div>
+								<div class="description">返回DisplayObject对象在舞台全局坐标系内的矩形区域以及所有顶点。</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/DisplayObject.html#getConcatenatedMatrix">getConcatenatedMatrix</a></b>(ancestor)
+								</div>
+								<div class="description">获得一个对象相对于其某个祖先（默认即舞台）的连接矩阵。</div>
 							</td>
 						</tr>
 					
@@ -402,18 +605,18 @@ ul.inheritsList
 						<tr>
 							<td class="attributes">&nbsp;</td>
 							<td class="nameDescription">
-								<div class="fixedFont"><b><a href="../symbols/DisplayObject.html#hitTestObject">hitTestObject</a></b>(object, usePixelCollision, threshold)
+								<div class="fixedFont"><b><a href="../symbols/DisplayObject.html#hitTestObject">hitTestObject</a></b>(object, usePolyCollision)
 								</div>
-								<div class="description">计算DisplayObject对象的边框，以确定它是否与object参数指定的显示对象的边框重叠或相交。</div>
+								<div class="description">计算DisplayObject对象的包围矩形，以确定由object参数指定的显示对象是否与其相交。</div>
 							</td>
 						</tr>
 					
 						<tr>
 							<td class="attributes">&nbsp;</td>
 							<td class="nameDescription">
-								<div class="fixedFont"><b><a href="../symbols/DisplayObject.html#hitTestPoint">hitTestPoint</a></b>(x, y, usePixelCollision, threshold)
+								<div class="fixedFont"><b><a href="../symbols/DisplayObject.html#hitTestPoint">hitTestPoint</a></b>(x, y, usePolyCollision)
 								</div>
-								<div class="description">计算DisplayObject对象的边框，以确定它是否与x和y参数指定的点重叠或相交。</div>
+								<div class="description">计算DisplayObject对象的包围矩形，以确定由x和y参数指定的点是否在其包围矩形之内。</div>
 							</td>
 						</tr>
 					
@@ -468,6 +671,15 @@ ul.inheritsList
 								<div class="fixedFont"><b><a href="../symbols/DisplayObject.html#setDrawable">setDrawable</a></b>(drawable)
 								</div>
 								<div class="description">设置可绘制对象，默认是一个Image对象，可通过覆盖此方法进行DOM绘制。</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/DisplayObject.html#toImage">toImage</a></b>(type)
+								</div>
+								<div class="description">把DisplayObject对象转换成dataURL格式的位图。</div>
 							</td>
 						</tr>
 					
@@ -534,6 +746,138 @@ ul.inheritsList
 					Field Detail
 				</div>
 				
+					<a name="alpha"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>alpha</b>
+					
+					</div>
+					<div class="description">
+						DisplayObject对象的透明度。取值范围为0-1，默认为1。
+						
+						
+					</div>
+					
+					
+
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="eventEnabled"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>eventEnabled</b>
+					
+					</div>
+					<div class="description">
+						指示DisplayObject对象是否接受交互事件，如mousedown，touchstart等。默认为true。
+						
+						
+					</div>
+					
+					
+
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="height"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>height</b>
+					
+					</div>
+					<div class="description">
+						DisplayObject对象的高。
+						
+						
+					</div>
+					
+					
+
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="id"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>id</b>
+					
+					</div>
+					<div class="description">
+						DisplayObject对象唯一标识符id。
+						
+						
+					</div>
+					
+					
+
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="mask"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>mask</b>
+					
+					</div>
+					<div class="description">
+						指示DisplayObject对象的遮罩对象。当上下文为DOMContext时暂时只支持webkit内核浏览器。默认为null。
+						
+						
+					</div>
+					
+					
+
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="name"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>name</b>
+					
+					</div>
+					<div class="description">
+						DisplayObject对象的名称。
+						
+						
+					</div>
+					
+					
+
+						
+						
+						
+						
+
+					<hr />
+				
 					<a name="onEvent"> </a>
 					<div class="fixedFont">
 					
@@ -543,6 +887,292 @@ ul.inheritsList
 					</div>
 					<div class="description">
 						DisplayObject对象的系统事件处理器，可通过设置onEvent回调来处理事件。
+						
+						
+					</div>
+					
+					
+
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="parent"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>parent</b>
+					
+					</div>
+					<div class="description">
+						DisplayObject对象的父容器。只读属性。
+						
+						
+					</div>
+					
+					
+
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="polyArea"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>polyArea</b>
+					
+					</div>
+					<div class="description">
+						指示DisplayObject对象的多边形碰撞区域。默认为null，即使用对象的外包围矩形。
+						
+						
+					</div>
+					
+					
+
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="regX"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>regX</b>
+					
+					</div>
+					<div class="description">
+						DisplayObject对象的注册点（中心点）的x轴坐标。
+						
+						
+					</div>
+					
+					
+
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="regY"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>regY</b>
+					
+					</div>
+					<div class="description">
+						DisplayObject对象的注册点（中心点）的y轴坐标。
+						
+						
+					</div>
+					
+					
+
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="rotation"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>rotation</b>
+					
+					</div>
+					<div class="description">
+						DisplayObject对象的旋转角度。默认为0。
+						
+						
+					</div>
+					
+					
+
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="scaleX"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>scaleX</b>
+					
+					</div>
+					<div class="description">
+						DisplayObject对象在x轴上的缩放值。取值范围为0-1。
+						
+						
+					</div>
+					
+					
+
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="scaleY"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>scaleY</b>
+					
+					</div>
+					<div class="description">
+						DisplayObject对象在y轴上的缩放值。取值范围为0-1。
+						
+						
+					</div>
+					
+					
+
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="transformEnabled"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>transformEnabled</b>
+					
+					</div>
+					<div class="description">
+						指示DisplayObject对象是否执行变换。默认为false。
+						
+						
+					</div>
+					
+					
+
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="useHandCursor"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>useHandCursor</b>
+					
+					</div>
+					<div class="description">
+						指示DisplayObject对象是否支持手型的鼠标光标。默认为false。
+						
+						
+					</div>
+					
+					
+
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="visible"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>visible</b>
+					
+					</div>
+					<div class="description">
+						指示DisplayObject对象是否可见。默认为true。
+						
+						
+					</div>
+					
+					
+
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="width"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>width</b>
+					
+					</div>
+					<div class="description">
+						DisplayObject对象的宽。
+						
+						
+					</div>
+					
+					
+
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="x"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>x</b>
+					
+					</div>
+					<div class="description">
+						DisplayObject对象相对父容器的x轴坐标。
+						
+						
+					</div>
+					
+					
+
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="y"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>y</b>
+					
+					</div>
+					<div class="description">
+						DisplayObject对象相对父容器的y轴坐标。
 						
 						
 					</div>
@@ -568,11 +1198,36 @@ ul.inheritsList
 					<div class="fixedFont">
 					
 					
-					<b>getBounds</b>(targetCoordinateSpace)
+					<b>getBounds</b>()
 					
 					</div>
 					<div class="description">
-						返回DisplayObject对象相对于targetCoordinateSpace参数对象指定的坐标系的显示对象矩形区域。
+						返回DisplayObject对象在舞台全局坐标系内的矩形区域以及所有顶点。
+						
+						
+					</div>
+					
+					
+					
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="getConcatenatedMatrix"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>getConcatenatedMatrix</b>(ancestor)
+					
+					</div>
+					<div class="description">
+						获得一个对象相对于其某个祖先（默认即舞台）的连接矩阵。
 						
 						
 					</div>
@@ -584,7 +1239,7 @@ ul.inheritsList
 							<dt class="heading">Parameters:</dt>
 							
 								<dt>
-									<b>targetCoordinateSpace</b>
+									<b>ancestor</b>
 									
 								</dt>
 								<dd></dd>
@@ -793,11 +1448,11 @@ ul.inheritsList
 					<div class="fixedFont">
 					
 					
-					<b>hitTestObject</b>(object, usePixelCollision, threshold)
+					<b>hitTestObject</b>(object, usePolyCollision)
 					
 					</div>
 					<div class="description">
-						计算DisplayObject对象的边框，以确定它是否与object参数指定的显示对象的边框重叠或相交。
+						计算DisplayObject对象的包围矩形，以确定由object参数指定的显示对象是否与其相交。
 						
 						
 					</div>
@@ -815,13 +1470,7 @@ ul.inheritsList
 								<dd></dd>
 							
 								<dt>
-									<b>usePixelCollision</b>
-									
-								</dt>
-								<dd></dd>
-							
-								<dt>
-									<b>threshold</b>
+									<b>usePolyCollision</b>
 									
 								</dt>
 								<dd></dd>
@@ -832,6 +1481,13 @@ ul.inheritsList
 						
 						
 						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd>相交返回true，否则返回false。</dd>
+							
+							</dl>
+						
 						
 						
 
@@ -841,11 +1497,11 @@ ul.inheritsList
 					<div class="fixedFont">
 					
 					
-					<b>hitTestPoint</b>(x, y, usePixelCollision, threshold)
+					<b>hitTestPoint</b>(x, y, usePolyCollision)
 					
 					</div>
 					<div class="description">
-						计算DisplayObject对象的边框，以确定它是否与x和y参数指定的点重叠或相交。
+						计算DisplayObject对象的包围矩形，以确定由x和y参数指定的点是否在其包围矩形之内。
 						
 						
 					</div>
@@ -869,13 +1525,7 @@ ul.inheritsList
 								<dd></dd>
 							
 								<dt>
-									<b>usePixelCollision</b>
-									
-								</dt>
-								<dd></dd>
-							
-								<dt>
-									<b>threshold</b>
+									<b>usePolyCollision</b>
 									
 								</dt>
 								<dd></dd>
@@ -885,6 +1535,13 @@ ul.inheritsList
 						
 						
 						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd>在包围矩形之内返回1，在边界上返回0，否则返回-1。</dd>
+							
+							</dl>
 						
 						
 						
@@ -1114,6 +1771,42 @@ ul.inheritsList
 
 					<hr />
 				
+					<a name="toImage"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>toImage</b>(type)
+					
+					</div>
+					<div class="description">
+						把DisplayObject对象转换成dataURL格式的位图。
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<b>type</b>
+									
+								</dt>
+								<dd></dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
 					<a name="toString"> </a>
 					<div class="fixedFont">
 					
@@ -1187,7 +1880,7 @@ ul.inheritsList
 <!-- ============================== footer ================================= -->
 		<div class="fineprint" style="clear:both">
 			
-			Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Thu Oct 27 2011 16:10:54 GMT+0800 (CST)
+			Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Wed Mar 14 2012 11:39:40 GMT+0800 (CST)
 		</div>
 	</body>
 </html>

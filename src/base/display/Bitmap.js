@@ -6,6 +6,7 @@
  * @name Bitmap
  * @augments DisplayObject
  * @class Bitmap位图类，表示位图图像的显示对象，简单说它就是Image对象的某个区域的抽象表示。
+ * @argument props 参数JSON格式为：{image:imgElem, rect:[0,0,100,100]} 其中image是Image对象，rect指定Image区域。
  */
 var Bitmap = Quark.Bitmap = function(props)
 {	

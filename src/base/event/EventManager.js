@@ -52,6 +52,7 @@ EventManager.prototype.register = function(target, events, callback, preventDefa
 			var li = list[j];
 			if(li.target == target && li.callback.func == callback.func) 
 			{
+				trace("duplicate callback");
 				has = true;
 				break;
 			}

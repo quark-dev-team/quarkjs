@@ -23,7 +23,11 @@ if(supportTransform3D && 'webkitPerspective' in docElem.style)
 };
 Quark.supportTransform = supportTransform;
 Quark.supportTransform3D = supportTransform3D;
-if(!supportTransform) throw "Error: DOMContext requires css transfrom support.";
+if(!supportTransform)
+{
+	trace("Warn: DOMContext requires css transfrom support.");
+	return;
+}
 
 /**
  * Constructor.
@@ -69,37 +73,44 @@ DOMContext.prototype.transform = function(target)
 	
 	var prefix = Quark.cssPrefix, 
 		origin = prefix + "TransformOrigin", 
-		transform = prefix + "Transform";
+		transform = prefix + "Transform",
+		style = image.style;
 	
-	if(target.propChanged("visible", "alpha"))
+	if(!style.display || target.propChanged("visible", "alpha"))
 	{
-		image.style.display = (!target.visible || target.alpha <= 0) ? "none" : "";
+		style.display = (!target.visible || target.alpha <= 0) ? "none" : "";
 	}
-	if(target.propChanged("alpha"))
+	if(!style.opacity || target.propChanged("alpha"))
 	{
-		image.style.opacity = target.alpha;
+		style.opacity = target.alpha;
 	}
-	if(target.propChanged("rectX", "rectY"))
+	if(!style.backgroundPosition || target.propChanged("rectX", "rectY"))
 	{
-		image.style.backgroundPosition = (-target.rectX) + "px " + (-target.rectY) + "px";
+		style.backgroundPosition = (-target.rectX) + "px " + (-target.rectY) + "px";
 	}
-	if(target.propChanged("width", "height"))
+	if(!style.width || target.propChanged("width", "height"))
 	{
-		image.style.width = target.width + "px";
-		image.style.height = target.height + "px";
+		style.width = target.width + "px";
+		style.height = target.height + "px";
 	}
-	if(target.propChanged("regX", "regY"))
+	if(!style[origin] || target.propChanged("regX", "regY"))
 	{
-		image.style[origin] = target.regX + "px " + target.regY + "px";
+		style[origin] = target.regX + "px " + target.regY + "px";
 	}	
-	if(target.propChanged("x", "y", "regX", "regY", "scaleX", "scaleY", "rotation"))
+	if(!style[transform] || target.propChanged("x", "y", "regX", "regY", "scaleX", "scaleY", "rotation"))
 	{
 		var css = Quark.supportTransform3D ? getTransformCSS(target, true) : getTransformCSS(target, false);
-		image.style[transform] = css;
+		style[transform] = css;
 	}
-	if(target.propChanged("_depth"))
+	if(!style.zIndex || target.propChanged("_depth"))
 	{
-		image.style.zIndex = target._depth;
+		style.zIndex = target._depth;
+	}
+	if(target.mask != null)
+	{
+		style[Q.cssPrefix + "MaskImage"] = target.mask.getDrawable(this).style.backgroundImage;
+		style[Q.cssPrefix + "MaskRepeat"] = "no-repeat";
+		style[Q.cssPrefix + "MaskPosition"] = target.mask.x + "px " + target.mask.y + "px";
 	}
 };
 

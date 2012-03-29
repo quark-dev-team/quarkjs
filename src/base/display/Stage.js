@@ -6,6 +6,10 @@
  * @name Stage
  * @augments DisplayObjectContainer
  * @class 舞台是显示对象的根，所有显示对象都会被添加到舞台上，必须传入一个context使得舞台能被渲染。舞台是一种特殊显示对象容器，可以容纳子显示对象。
+ * @property stageX 舞台在页面中的X偏移量，即offsetLeft。只读属性。可通过调用updatePosition()方法更新。
+ * @property stageY 舞台在页面中的Y偏移量，即offsetTop。只读属性。可通过调用updatePosition()方法更新。
+ * @property paused 指示舞台更新和渲染是否暂停。默认为false。
+ * @argument props 参数JSON格式为：{context:context} context上下文必须指定。
  */
 var Stage = Quark.Stage = function(props)
 {
@@ -40,10 +44,11 @@ Stage.prototype.step = function(timeInfo)
 Stage.prototype._update = function(timeInfo)
 {	
 	//Stage作为根容器，先更新所有子对象，再调用update方法。
-	for(var i = 0, len = this.children.length; i < len; i++)
+	var copy = this.children.slice(0);
+	for(var i = 0, len = copy.length; i < len; i++)
 	{
-		var child = this.children[i];
-		child._depth = i;
+		var child = copy[i];
+		child._depth = i + 1;
 		child._update(timeInfo);
 	}
 	//update方法提供渲染前更新舞台对象的数据的最后机会。
@@ -65,23 +70,26 @@ Stage.prototype._render = function(context)
  */
 Stage.prototype._onEvent = function(e)
 {	
-	var x = e.pageX - this.stageX, y = e.pageY - this.stageY, target = this._eventTarget;
-	var obj = this.getObjectUnderPoint(x, y, true);
+	var x = e.pageX || e.clientX, y = e.pageY || e.clientY;
+	x = (x - this.stageX) / this.scaleX;
+	y = (y - this.stageY) / this.scaleY;
+	var obj = this.getObjectUnderPoint(x, y, true), target = this._eventTarget;
 	
 	e.eventX = x;
 	e.eventY = y;
 	
-	if(target != null && target != obj)
+	var leave = e.type == "mouseout" && !this.context.canvas.contains(e.relatedTarget);	
+	if(target != null && (target != obj || leave))
 	{
 		e.lastEventTarget = target;
 		//派发移开事件mouseout或touchout到上一个事件对象
-		var outEvent = e.type == "mousemove" ? "mouseout" : e.type == "touchmove" ? "touchout" : null;
+		var outEvent = (leave || obj == null || e.type == "mousemove") ? "mouseout" : e.type == "touchmove" ? "touchout" : null;
 		if(outEvent) target._onEvent({type:outEvent});
 		this._eventTarget = null;
 	}
 	
 	//派发事件到目标对象
-	if(obj!= null && obj.eventEnabled)
+	if(obj!= null && obj.eventEnabled && e.type != "mouseout")
 	{
 		e.eventTarget = target = this._eventTarget = obj;
 		obj._onEvent(e);
@@ -93,8 +101,8 @@ Stage.prototype._onEvent = function(e)
 		var cursor = (target && target.useHandCursor && target.eventEnabled) ? "pointer" : "";
 		this.context.canvas.style.cursor = cursor;
 	}
-
-    if(this.onEvent != null) this.onEvent(e);
+	
+	if(leave || e.type != "mouseout") Stage.superClass._onEvent.call(this, e);
 };
 
 /**

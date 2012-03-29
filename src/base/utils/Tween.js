@@ -30,6 +30,8 @@ var Tween = Quark.Tween = function(target, newProps, params)
 	this._deltaProps = {};
 	this._startTime = 0;
 	this._lastTime = 0;
+	this._pausedTime = 0;
+	this._pausedStartTime = 0;
 	this._reverseFlag = 1;
 	this._frameTotal = 0;
 	this._frameCount = 0;
@@ -79,6 +81,7 @@ Tween.prototype.setProps = function(oldProps, newProps)
 Tween.prototype._init = function()
 {
 	this._startTime = Date.now() + this.delay;
+	this._pausedTime = 0;
 	if(this.interval > 0) this._frameTotal = Math.round(this.time / this.interval);
 	Tween.add(this);
 };
@@ -96,8 +99,7 @@ Tween.prototype.start = function()
  * 停止缓动动画的播放。
  */
 Tween.prototype.stop = function()
-{	
-	this.paused = true;
+{
 	Tween.remove(this);
 };
 
@@ -107,6 +109,16 @@ Tween.prototype.stop = function()
 Tween.prototype.pause = function()
 {	
 	this.paused = true;
+	this._pausedStartTime = Date.now();
+};
+
+/**
+ * 恢复缓动动画的播放。
+ */
+Tween.prototype.resume = function()
+{	
+	this.paused = false;
+	this._pausedTime += Date.now() - this._pausedStartTime;
 };
 
 /**
@@ -117,7 +129,7 @@ Tween.prototype._update = function()
 {
 	if(this.paused) return;
 	var now = Date.now();
-	var elapsed = now - this._startTime;
+	var elapsed = now - this._startTime - this._pausedTime;
 	if(elapsed < 0) return;
 	
 	if(this._lastTime == 0 && this.onStart != null) this.onStart(this);
