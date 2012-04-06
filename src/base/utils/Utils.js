@@ -128,10 +128,12 @@ function drawObjectRect(obj, ctx)
  */
 Quark.cacheObject = function(obj, toImage, type)
 {
-	var w = obj.width, h = obj.height;
+	var w = obj.width, h = obj.height, mask = obj.mask;
 	var canvas = Quark.createDOM("canvas", {width:w, height:h});
 	var context = new Quark.CanvasContext({canvas:canvas});
+	obj.mask = null;
 	obj.render(context);
+	obj.mask = mask;
 	
 	if(toImage)
 	{

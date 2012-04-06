@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="user-scalable=no, width=device-width, height=device-height, initial-scale=1.0, minimum-scale=1, maximum-scale=1" />
+<title>Quark Framework Example - DisplayObject Mask</title>
+
+<style type="text/css">
+body{margin:0;padding:0;font-size:12px;background-color:#eee;}
+</style>
+
+<script type="text/javascript" src="../js/quark.base-1.0.0.js"></script>
+
+</head>
+
+<body>
+
+<div id="container" style="position:absolute;left:0;top:0;width:480px;height:320px;background-color:#fff;"></div>
+<div id="fps" style="position:absolute;left:0;top:0;"></div>
+<img id="mask" src="images/mask.png" style="visibility:hidden;" />
+
+<script type="text/javascript">
+
+window.onload = init;
+
+var timer, container, context, params, width, height, fps, stage;
+var img, mask, bmp, speedX = 2, maskY = 0;
+
+function init()
+{	
+	container = Q.getDOM("container");
+	
+	params = Quark.getUrlParams();
+	if(params.mode == undefined) params.mode = 1;
+
+	width = 240;
+	height = 320;
+	fps = 20;
+
+	if(params.mode == 1)
+	{
+		var canvas = Quark.createDOM("canvas", {width:width, height:height, style:{position:"absolute", backgroundColor:"#fff"}});		
+		container.appendChild(canvas);
+		context = new Quark.CanvasContext({canvas:canvas});		
+	}else
+	{
+		context = new Quark.DOMContext({canvas:container});
+	}
+	
+	stage = new Q.Stage({context:context, width:width, height:height, update:function()
+	{
+		frames++;
+	}});
+	
+	timer = new Q.Timer(1000/fps);
+	timer.addListener(stage);
+	timer.addListener(Q.Tween);
+	timer.start();
+
+	start();
+}
+
+function start()
+{
+	var font = "14px arial";
+	var text1 = "Quark.Text()<br><br>English: Hello world!<br>Number: 1234567890<br>Chinese: 你好，这是Quark的简单文本类。支持基本的自动换行功能。<br><br>这是Quark中的显示结果。";
+	var text2 = "Quark.Text()<br><br>English: Hello world!<br>Number: 1234567890<br>Chinese: 你好，这是Quark的简单文本类。支持基本的自动换行功能。<br><br>这是普通Div中的显示结果。";
+
+	var txt = new Q.Text({font:font, text:text1, width:stage.width, height:100, lineWidth:stage.width, lineSpacing:0, textAlign:"left"});
+	//txt.mask = new Q.Bitmap({image:Q.getDOM("mask"), x:50, y:0});
+	//txt.cache();
+	stage.addChild(txt);
+
+	var div = Q.createDOM("div", {style:
+	{
+		position: "absolute",
+		left: stage.width + "px",
+		top: txt.y + "px",
+		width: txt.lineWidth + "px",
+		height: stage.height + "px",
+		font: font,
+		background: "#e1e1e1"
+	}});
+	div.innerHTML = text2;
+	document.body.appendChild(div);
+}
+
+var frames = 0, fpsContainer = Quark.getDOM("fps");
+setInterval(function()
+{
+	//fpsContainer.innerHTML = "FPS:" + frames;
+	frames = 0;
+}, 1000);
+
+</script>
+
+</body>
+</html>
