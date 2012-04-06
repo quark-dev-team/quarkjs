@@ -64,9 +64,9 @@ CanvasContext.prototype.draw = function(target)
 	{
 		//draw cache if exist
 		this.context.drawImage(target._cache, 0, 0);
-	}else if(target instanceof Quark.Graphics)
+	}else if(target instanceof Quark.Graphics || target instanceof Quark.Text)
 	{
-		//special drawing actions for graphics
+		//special drawing
 		target._draw(this.context);
 	}else
 	{

@@ -34,7 +34,8 @@ def build():
 			 "base/display/Bitmap.js",
 			 "base/display/MovieClip.js",
 			 "base/display/Button.js",
-			 "base/display/Graphics.js"]
+			 "base/display/Graphics.js",
+			 "base/display/Text.js"]
 
 	
 	#build version

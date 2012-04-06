@@ -1,4 +1,9 @@
-== 2012.3.27 v1.0.0 ==
+== 2012.4.6 v1.0.0 build 107 ==
+
+Added:
+	* Quark.Text - a class for simple text drawing.
+
+== 2012.3.27 v1.0.0 build 104 ==
 
 Added:
 	* DisplayObject.cache(), uncache() - now only works for CanvasContext.
