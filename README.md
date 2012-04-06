@@ -37,6 +37,7 @@ Examples
 * [Button](http://quark-dev-team.github.com/quarkjs/examples/button.html)
 * [HitTest](http://quark-dev-team.github.com/quarkjs/examples/hittest.html)
 * [Graphics](http://quark-dev-team.github.com/quarkjs/examples/graphics.html)
+* [Text](http://quark-dev-team.github.com/quarkjs/examples/text.html)
 * [Mask](http://quark-dev-team.github.com/quarkjs/examples/mask.html)
 * [Tween1](http://quark-dev-team.github.com/quarkjs/examples/tween1.html)
 * [Tween2](http://quark-dev-team.github.com/quarkjs/examples/tween2.html)
