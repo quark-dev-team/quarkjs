@@ -223,6 +223,7 @@ Graphics.prototype.drawSVGPath = function(pathData)
  */
 Graphics.prototype._draw = function(context)
 {	
+	context.beginPath();
 	for(var i = 0, len = this._actions.length; i < len; i++)
 	{
 		var action = this._actions[i], 

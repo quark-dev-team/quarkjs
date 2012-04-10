@@ -1,5 +1,5 @@
 /*
-Quark 1.0.0 (build 107)
+Quark 1.0.0 (build 110)
 Licensed under the MIT License.
 http://github.com/quark-dev-team/quarkjs
 */
@@ -1121,15 +1121,17 @@ DOMContext.prototype.draw = function(target)
 	{
 		var parent = target.parent;
 		var targetDOM = target.getDrawable(this);
-		if(parent == null && targetDOM.parentNode == null)
-		{
-			this.canvas.appendChild(targetDOM);
-		}else
+		if(parent != null)
 		{
 			var parentDOM = parent.getDrawable(this);
 			if(targetDOM.parentNode != parentDOM) parentDOM.appendChild(targetDOM);
+			if(parentDOM.parentNode == null && parent instanceof Quark.Stage) 
+			{
+				this.canvas.appendChild(parentDOM);
+				parent._addedToDOM = true;
+			}
+			target._addedToDOM = true;
 		}
-		target._addedToDOM = true;
 	}
 };
 
@@ -1183,6 +1185,7 @@ DOMContext.prototype.transform = function(target)
 		style[Q.cssPrefix + "MaskRepeat"] = "no-repeat";
 		style[Q.cssPrefix + "MaskPosition"] = target.mask.x + "px " + target.mask.y + "px";
 	}
+	style.pointerEvents = target.eventEnabled ? "auto" : "none";
 };
 
 /**
@@ -3727,6 +3730,7 @@ Graphics.prototype.drawSVGPath = function(pathData)
  */
 Graphics.prototype._draw = function(context)
 {	
+	context.beginPath();
 	for(var i = 0, len = this._actions.length; i < len; i++)
 	{
 		var action = this._actions[i], 

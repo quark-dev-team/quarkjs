@@ -1,3 +1,10 @@
+== 2012.4.10 v1.0.0 build 110 ==
+
+Fixed:
+	* DOMContext.draw() - dones't render objects if mix DOMContext with CanvasContext.
+	* DOMContext.transform() - use css property pointer-events to control whether a object can be a event target.
+	* Graphics._draw() - each draw should start with a beginPath() to clear all subpaths.
+
 == 2012.4.6 v1.0.0 build 107 ==
 
 Added:

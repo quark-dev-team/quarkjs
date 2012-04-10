@@ -50,15 +50,17 @@ DOMContext.prototype.draw = function(target)
 	{
 		var parent = target.parent;
 		var targetDOM = target.getDrawable(this);
-		if(parent == null && targetDOM.parentNode == null)
-		{
-			this.canvas.appendChild(targetDOM);
-		}else
+		if(parent != null)
 		{
 			var parentDOM = parent.getDrawable(this);
 			if(targetDOM.parentNode != parentDOM) parentDOM.appendChild(targetDOM);
+			if(parentDOM.parentNode == null && parent instanceof Quark.Stage) 
+			{
+				this.canvas.appendChild(parentDOM);
+				parent._addedToDOM = true;
+			}
+			target._addedToDOM = true;
 		}
-		target._addedToDOM = true;
 	}
 };
 
@@ -112,6 +114,7 @@ DOMContext.prototype.transform = function(target)
 		style[Q.cssPrefix + "MaskRepeat"] = "no-repeat";
 		style[Q.cssPrefix + "MaskPosition"] = target.mask.x + "px " + target.mask.y + "px";
 	}
+	style.pointerEvents = target.eventEnabled ? "auto" : "none";
 };
 
 /**
