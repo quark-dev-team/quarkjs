@@ -51,6 +51,15 @@ Squirrel.prototype.onEvent = function(e)
     }
 };
 
+Squirrel.prototype.onmouseup = Squirrel.prototype.ontouchend = function(e)
+{
+	if(!this.jumping) 
+	{
+		this.jumping = true;
+		this.currentSpeedY = this.speedY;
+	}
+};
+
 Squirrel.prototype.update = function()
 {
     if(this.jumping)
