@@ -144,6 +144,7 @@ Text.prototype.render = function(context)
 		//Notice: be care of width/height might be 0.
 		style.width = this.width + "px";
 		style.height = this.height + "px";
+		style.lineHeight = (this.fontMetrics.height + this.lineSpacing) + "px";
 		dom.innerHTML = this.text;
 	}
 	Text.superClass.render.call(this, context);
