@@ -1,5 +1,5 @@
 /*
-Quark 1.0.0 (build 110)
+Quark 1.0.0 (build 111)
 Licensed under the MIT License.
 http://github.com/quark-dev-team/quarkjs
 */
@@ -3431,7 +3431,7 @@ Button.prototype.setEnabled = function(enabled)
 	if(!enabled)
 	{
 		if(this.disabledState) this._skin.gotoAndStop(Button.DISABLED);
-		else this._skin.gotoAndStop(Button.state.UP);
+		else this._skin.gotoAndStop(Button.UP);
 	}else
 	{
 		if(this._skin.currentFrame == 3) this._skin.gotoAndStop(Button.UP);
@@ -3981,6 +3981,7 @@ Text.prototype.render = function(context)
 		//Notice: be care of width/height might be 0.
 		style.width = this.width + "px";
 		style.height = this.height + "px";
+		style.lineHeight = (this.fontMetrics.height + this.lineSpacing) + "px";
 		dom.innerHTML = this.text;
 	}
 	Text.superClass.render.call(this, context);

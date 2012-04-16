@@ -1,3 +1,9 @@
+== 2012.4.16 v1.0.0 build 111 ==
+
+Fixed:
+	* Button.setEnabled() - incorrect constant Button.UP.
+	* Text.render() - set line height for DOMContext.
+
 == 2012.4.10 v1.0.0 build 110 ==
 
 Fixed:
