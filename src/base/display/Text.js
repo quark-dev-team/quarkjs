@@ -168,21 +168,22 @@ Text.prototype.getDrawable = function(context)
  */
 Text.getFontMetrics = function(font)
 {
-	var elem = Quark.createDOM("div", {style:{font: font}});
-  	//trick: calculate baseline shift by creating 1px height element that will be aligned to baseline.
-  	elem.innerHTML = '<div style="display:inline-block; width:1px; height:1px;"></div>';
-  	document.body.appendChild(elem);
+	var metrics = { };
+	var elem = Quark.createDOM("div", {style:{font:font, position:"absolute"}, innerHTML:"M"});
+	document.body.appendChild(elem);
+	//the line height of the specific font style.
+	metrics.height = elem.offsetHeight;
 
-	var metrics = { }, baseline = elem.childNodes[0];
-	//the height of the specific font style.
-  	metrics.height = elem.offsetHeight;
-  	//the ascent value is the length from the baseline to the top of the line height.
-  	metrics.ascent = baseline.offsetTop + baseline.offsetHeight;
-  	//the descent value is the length from the baseline to the bottom of the line height.
-  	metrics.descent = metrics.height - metrics.ascent;
-  	
-  	document.body.removeChild(elem);
-  	return metrics;
+	//trick: calculate baseline shift by creating 1px height element that will be aligned to baseline.
+	elem.innerHTML = '<div style="display:inline-block; width:1px; height:1px;"></div>';
+	var baseline = elem.childNodes[0];
+	//the ascent value is the length from the baseline to the top of the line height.
+	metrics.ascent = baseline.offsetTop + baseline.offsetHeight;
+	//the descent value is the length from the baseline to the bottom of the line height.
+	metrics.descent = metrics.height - metrics.ascent;
+	
+	document.body.removeChild(elem);
+	return metrics;
 };
 
 
