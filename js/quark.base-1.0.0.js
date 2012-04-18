@@ -1,5 +1,5 @@
 /*
-Quark 1.0.0 (build 107)
+Quark 1.0.0 (build 112)
 Licensed under the MIT License.
 http://github.com/quark-dev-team/quarkjs
 */
@@ -1121,15 +1121,17 @@ DOMContext.prototype.draw = function(target)
 	{
 		var parent = target.parent;
 		var targetDOM = target.getDrawable(this);
-		if(parent == null && targetDOM.parentNode == null)
-		{
-			this.canvas.appendChild(targetDOM);
-		}else
+		if(parent != null)
 		{
 			var parentDOM = parent.getDrawable(this);
 			if(targetDOM.parentNode != parentDOM) parentDOM.appendChild(targetDOM);
+			if(parentDOM.parentNode == null && parent instanceof Quark.Stage) 
+			{
+				this.canvas.appendChild(parentDOM);
+				parent._addedToDOM = true;
+			}
+			target._addedToDOM = true;
 		}
-		target._addedToDOM = true;
 	}
 };
 
@@ -1183,6 +1185,7 @@ DOMContext.prototype.transform = function(target)
 		style[Q.cssPrefix + "MaskRepeat"] = "no-repeat";
 		style[Q.cssPrefix + "MaskPosition"] = target.mask.x + "px " + target.mask.y + "px";
 	}
+	style.pointerEvents = target.eventEnabled ? "auto" : "none";
 };
 
 /**
@@ -3428,7 +3431,7 @@ Button.prototype.setEnabled = function(enabled)
 	if(!enabled)
 	{
 		if(this.disabledState) this._skin.gotoAndStop(Button.DISABLED);
-		else this._skin.gotoAndStop(Button.state.UP);
+		else this._skin.gotoAndStop(Button.UP);
 	}else
 	{
 		if(this._skin.currentFrame == 3) this._skin.gotoAndStop(Button.UP);
@@ -3727,6 +3730,7 @@ Graphics.prototype.drawSVGPath = function(pathData)
  */
 Graphics.prototype._draw = function(context)
 {	
+	context.beginPath();
 	for(var i = 0, len = this._actions.length; i < len; i++)
 	{
 		var action = this._actions[i], 
@@ -3977,6 +3981,7 @@ Text.prototype.render = function(context)
 		//Notice: be care of width/height might be 0.
 		style.width = this.width + "px";
 		style.height = this.height + "px";
+		style.lineHeight = (this.fontMetrics.height + this.lineSpacing) + "px";
 		dom.innerHTML = this.text;
 	}
 	Text.superClass.render.call(this, context);
@@ -4000,21 +4005,22 @@ Text.prototype.getDrawable = function(context)
  */
 Text.getFontMetrics = function(font)
 {
-	var elem = Quark.createDOM("div", {style:{font: font}});
-  	//trick: calculate baseline shift by creating 1px height element that will be aligned to baseline.
-  	elem.innerHTML = '<div style="display:inline-block; width:1px; height:1px;"></div>';
-  	document.body.appendChild(elem);
+	var metrics = { };
+	var elem = Quark.createDOM("div", {style:{font:font, position:"absolute"}, innerHTML:"M"});
+	document.body.appendChild(elem);
+	//the line height of the specific font style.
+	metrics.height = elem.offsetHeight;
 
-	var metrics = { }, baseline = elem.childNodes[0];
-	//the height of the specific font style.
-  	metrics.height = elem.offsetHeight;
-  	//the ascent value is the length from the baseline to the top of the line height.
-  	metrics.ascent = baseline.offsetTop + baseline.offsetHeight;
-  	//the descent value is the length from the baseline to the bottom of the line height.
-  	metrics.descent = metrics.height - metrics.ascent;
-  	
-  	document.body.removeChild(elem);
-  	return metrics;
+	//trick: calculate baseline shift by creating 1px height element that will be aligned to baseline.
+	elem.innerHTML = '<div style="display:inline-block; width:1px; height:1px;"></div>';
+	var baseline = elem.childNodes[0];
+	//the ascent value is the length from the baseline to the top of the line height.
+	metrics.ascent = baseline.offsetTop + baseline.offsetHeight;
+	//the descent value is the length from the baseline to the bottom of the line height.
+	metrics.descent = metrics.height - metrics.ascent;
+	
+	document.body.removeChild(elem);
+	return metrics;
 };
 
 
