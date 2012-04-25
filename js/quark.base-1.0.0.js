@@ -1,5 +1,5 @@
 /*
-Quark 1.0.0 (build 112)
+Quark 1.0.0 (build 113)
 Licensed under the MIT License.
 http://github.com/quark-dev-team/quarkjs
 */
@@ -3293,6 +3293,14 @@ MovieClip.prototype.nextFrame = function(displayedDelta)
 	if(frame.interval > 0 && this._displayedCount > 0) return this.currentFrame;
 	else if(this.currentFrame >= this._frames.length - 1) return this.currentFrame = 0;
 	else return ++this.currentFrame;
+};
+
+/**
+ * 返回MovieClip的帧数。
+ */
+MovieClip.prototype.getNumFrames = function()
+{
+	return this._frames.length;
 };
 
 /**
