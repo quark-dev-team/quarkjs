@@ -141,6 +141,14 @@ MovieClip.prototype.nextFrame = function(displayedDelta)
 };
 
 /**
+ * 返回MovieClip的帧数。
+ */
+MovieClip.prototype.getNumFrames = function()
+{
+	return this._frames.length;
+};
+
+/**
  * 更新MovieClip对象的属性。
  */
 MovieClip.prototype._update = function(timeInfo)
