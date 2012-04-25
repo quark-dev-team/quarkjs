@@ -1,5 +1,5 @@
 /*
-Quark 1.0.0 (build 112)
+Quark 1.0.0 (build 117)
 Licensed under the MIT License.
 http://github.com/quark-dev-team/quarkjs
 */
@@ -666,7 +666,7 @@ var EventManager = Quark.EventManager = function()
  */
 EventManager.prototype.registerStage = function(stage, events, preventDefault, stopPropagation)
 {
-	this.register(stage.context.canvas, events, {host:stage, func:stage._onEvent}, preventDefault, stopPropagation);
+	this.register(stage.context.canvas, events, {host:stage, func:stage.dispatchEvent}, preventDefault, stopPropagation);
 };
 
 /**
@@ -676,7 +676,7 @@ EventManager.prototype.registerStage = function(stage, events, preventDefault, s
  */
 EventManager.prototype.unregisterStage = function(stage, events)
 {
-	this.unregister(stage.context.canvas, events, stage.onEvent);
+	this.unregister(stage.context.canvas, events, stage.dispatchEvent);
 };
 
 /**
@@ -816,8 +816,10 @@ EventDispatcher.prototype.addEventListener = function(type, listener)
  */
 EventDispatcher.prototype.removeEventListener = function(type, listener)
 {
+	if(arguments.length == 1) return this.removeEventListenerByType(type);
+
 	var map = this._eventMap[type];
-	if(map == null) return false;	
+	if(map == null) return false;
 
 	for(var i = 0; i < map.length; i++)
 	{
@@ -2355,6 +2357,7 @@ function isDrawable(elem)
  * Constructor.
  * @name DisplayObject
  * @class DisplayObject类是可放在舞台上的所有显示对象的基类。DisplayObject类定义了若干显示对象的基本属性。渲染一个DisplayObject其实是进行若干变换后再渲染其drawable对象。
+ * @augments EventDispatcher
  * @property id DisplayObject对象唯一标识符id。
  * @property name DisplayObject对象的名称。
  * @property x DisplayObject对象相对父容器的x轴坐标。
@@ -2407,7 +2410,10 @@ var DisplayObject = Quark.DisplayObject = function(props)
 
 	Quark.merge(this, props, true);
 	if(props.mixin) Quark.merge(this, props.mixin, false);
+
+	DisplayObject.superClass.constructor.call(this, props);
 };
+Quark.inherit(DisplayObject, Quark.EventDispatcher);
 
 /**
  * 设置可绘制对象，默认是一个Image对象，可通过覆盖此方法进行DOM绘制。
@@ -2471,15 +2477,6 @@ DisplayObject.prototype._render = function(context)
 DisplayObject.prototype.render = function(context)
 {
 	context.draw(this, 0, 0, this.width, this.height, 0, 0, this.width, this.height);
-};
-
-/**
- * DisplayObject对象的系统事件处理器，仅供框架内部或组件开发者使用。用户通常应该设置相应的回调函数，如onmousedown、onmousemove、onmouseup、onmouseout等。
- */
-DisplayObject.prototype._onEvent = function(e) 
-{
-	var handler = "on" + e.type;
-	if(this[handler] != null) this[handler](e);
 };
 
 /**
@@ -3051,9 +3048,9 @@ Stage.prototype._render = function(context)
 };
 
 /**
- * 舞台Stage默认的事件处理器。调用事件发生的目标显示对象的onEvent回调。
+ * 舞台Stage默认的事件处理器。
  */
-Stage.prototype._onEvent = function(e)
+Stage.prototype.dispatchEvent = function(e)
 {	
 	var x = e.pageX || e.clientX, y = e.pageY || e.clientY;
 	x = (x - this.stageX) / this.scaleX;
@@ -3069,7 +3066,7 @@ Stage.prototype._onEvent = function(e)
 		e.lastEventTarget = target;
 		//派发移开事件mouseout或touchout到上一个事件对象
 		var outEvent = (leave || obj == null || e.type == "mousemove") ? "mouseout" : e.type == "touchmove" ? "touchout" : null;
-		if(outEvent) target._onEvent({type:outEvent});
+		if(outEvent) target.dispatchEvent({type:outEvent});
 		this._eventTarget = null;
 	}
 	
@@ -3077,7 +3074,7 @@ Stage.prototype._onEvent = function(e)
 	if(obj!= null && obj.eventEnabled && e.type != "mouseout")
 	{
 		e.eventTarget = target = this._eventTarget = obj;
-		obj._onEvent(e);
+		obj.dispatchEvent(e);
 	}
 	
 	//设置光标状态
@@ -3087,7 +3084,7 @@ Stage.prototype._onEvent = function(e)
 		this.context.canvas.style.cursor = cursor;
 	}
 	
-	if(leave || e.type != "mouseout") Stage.superClass._onEvent.call(this, e);
+	if(leave || e.type != "mouseout") Stage.superClass.dispatchEvent.call(this, e);
 };
 
 /**
@@ -3296,6 +3293,14 @@ MovieClip.prototype.nextFrame = function(displayedDelta)
 };
 
 /**
+ * 返回MovieClip的帧数。
+ */
+MovieClip.prototype.getNumFrames = function()
+{
+	return this._frames.length;
+};
+
+/**
  * 更新MovieClip对象的属性。
  */
 MovieClip.prototype._update = function(timeInfo)
@@ -3463,10 +3468,10 @@ Button.prototype.changeState = function(state)
 };
 
 /**
- * 按钮的事件处理器。内部方法。开发者请使用onEvent回调。
+ * 按钮的默认事件处理行为。
  * @private
  */
-Button.prototype._onEvent = function(e)
+Button.prototype.dispatchEvent = function(e)
 {
 	if(!this.enabled) return;
 	
@@ -3490,7 +3495,7 @@ Button.prototype._onEvent = function(e)
 			if(this.upState) this.changeState(Button.UP);
 			break;
 	}
-	Button.superClass._onEvent.call(this, e);
+	Button.superClass.dispatchEvent.call(this, e);
 };
 
 /**

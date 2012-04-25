@@ -55,8 +55,9 @@ function init()
 
 function start()
 {	
-	stage = new Quark.Stage({width:width, height:height, context:context, update:update, onEvent:onEvent});
+	stage = new Quark.Stage({width:width, height:height, context:context, update:update});
 	Q.toggleDebugRect(stage);
+	stage.addEventListener(events[0], onEvent);
 
 	box = new Quark.DisplayObjectContainer({id:"box", x:350, y:0, rotation:90, width:width, height:height, eventEnabled:false});
 	rect1 = new Quark.Bitmap({id:"blue", x:100, y:100, rotation:0, regX:25, regY:50, image:createRect(50, 100, "#00f")});

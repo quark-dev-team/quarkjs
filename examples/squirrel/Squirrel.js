@@ -39,16 +39,13 @@ Squirrel.prototype.init = function()
 	this.originY = this.y;
 };
 
-Squirrel.prototype.onEvent = function(e)
+Squirrel.prototype.jump = function(e)
 {
-    if(e.type == "mouseup" || e.type == "touchend")
-    {
-        if(!this.jumping) 
-        {
-            this.jumping = true;
-            this.currentSpeedY = this.speedY;
-        }
-    }
+	if(!this.jumping) 
+	{
+		this.jumping = true;
+		this.currentSpeedY = this.speedY;
+	}
 };
 
 Squirrel.prototype.update = function()
