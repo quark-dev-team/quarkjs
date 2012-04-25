@@ -5,6 +5,7 @@
  * Constructor.
  * @name DisplayObject
  * @class DisplayObject类是可放在舞台上的所有显示对象的基类。DisplayObject类定义了若干显示对象的基本属性。渲染一个DisplayObject其实是进行若干变换后再渲染其drawable对象。
+ * @augments EventDispatcher
  * @property id DisplayObject对象唯一标识符id。
  * @property name DisplayObject对象的名称。
  * @property x DisplayObject对象相对父容器的x轴坐标。
@@ -57,7 +58,10 @@ var DisplayObject = Quark.DisplayObject = function(props)
 
 	Quark.merge(this, props, true);
 	if(props.mixin) Quark.merge(this, props.mixin, false);
+
+	DisplayObject.superClass.constructor.call(this, props);
 };
+Quark.inherit(DisplayObject, Quark.EventDispatcher);
 
 /**
  * 设置可绘制对象，默认是一个Image对象，可通过覆盖此方法进行DOM绘制。
@@ -121,15 +125,6 @@ DisplayObject.prototype._render = function(context)
 DisplayObject.prototype.render = function(context)
 {
 	context.draw(this, 0, 0, this.width, this.height, 0, 0, this.width, this.height);
-};
-
-/**
- * DisplayObject对象的系统事件处理器，仅供框架内部或组件开发者使用。用户通常应该设置相应的回调函数，如onmousedown、onmousemove、onmouseup、onmouseout等。
- */
-DisplayObject.prototype._onEvent = function(e) 
-{
-	var handler = "on" + e.type;
-	if(this[handler] != null) this[handler](e);
 };
 
 /**

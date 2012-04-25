@@ -33,8 +33,10 @@ EventDispatcher.prototype.addEventListener = function(type, listener)
  */
 EventDispatcher.prototype.removeEventListener = function(type, listener)
 {
+	if(arguments.length == 1) return this.removeEventListenerByType(type);
+
 	var map = this._eventMap[type];
-	if(map == null) return false;	
+	if(map == null) return false;
 
 	for(var i = 0; i < map.length; i++)
 	{

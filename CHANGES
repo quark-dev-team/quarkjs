@@ -1,3 +1,8 @@
+== 2012.4.25 v1.0.0 build 117 ==
+
+Modified:
+	* DisplayObject Event Mode - now DisplayObject inherits from EventDispatcher.
+
 == 2012.4.20 v1.0.0 build 113 ==
 
 Added:

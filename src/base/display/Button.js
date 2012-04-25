@@ -133,10 +133,10 @@ Button.prototype.changeState = function(state)
 };
 
 /**
- * 按钮的事件处理器。内部方法。开发者请使用onEvent回调。
+ * 按钮的默认事件处理行为。
  * @private
  */
-Button.prototype._onEvent = function(e)
+Button.prototype.dispatchEvent = function(e)
 {
 	if(!this.enabled) return;
 	
@@ -160,7 +160,7 @@ Button.prototype._onEvent = function(e)
 			if(this.upState) this.changeState(Button.UP);
 			break;
 	}
-	Button.superClass._onEvent.call(this, e);
+	Button.superClass.dispatchEvent.call(this, e);
 };
 
 /**

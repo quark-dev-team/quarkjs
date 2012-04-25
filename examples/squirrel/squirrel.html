@@ -57,12 +57,13 @@ function init()
 	timer.addListener(stage);
 	timer.start();
 
-	squirrel = new Squirrel({id:"squirrel", x:200, y:160, autoSize:true});
-	stage.addChild(squirrel);
-
 	em = new Q.EventManager();
 	var events = Q.supportTouch ? ["touchstart","touchmove","touchend"] : ["mousedown","mousemove","mouseup"];
 	em.registerStage(stage, events, true, true);
+
+	squirrel = new Squirrel({id:"squirrel", x:200, y:160, autoSize:true});
+	stage.addChild(squirrel);
+	squirrel.addEventListener(events[2], squirrel.jump);
 
 	var tip = Q.createDOM("span", {id:"tip", style:
 	{
