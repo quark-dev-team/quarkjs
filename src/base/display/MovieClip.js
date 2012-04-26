@@ -159,12 +159,13 @@ MovieClip.prototype._update = function(timeInfo)
 		this.stop();
 		return;
 	}
+	
 	if(!this.paused) 
 	{
 		var delta = this.useFrames ? 1 : timeInfo && timeInfo.deltaTime;
 		this.nextFrame(delta);
+		this.setRect(this._frames[this.currentFrame].rect);
 	}
-	this.setRect(frame.rect);
 	
 	MovieClip.superClass._update.call(this, timeInfo);
 };
