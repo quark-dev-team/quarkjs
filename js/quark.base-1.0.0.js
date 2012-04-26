@@ -1,5 +1,5 @@
 /*
-Quark 1.0.0 (build 117)
+Quark 1.0.0 (build 118)
 Licensed under the MIT License.
 http://github.com/quark-dev-team/quarkjs
 */
@@ -3311,12 +3311,13 @@ MovieClip.prototype._update = function(timeInfo)
 		this.stop();
 		return;
 	}
+	
 	if(!this.paused) 
 	{
 		var delta = this.useFrames ? 1 : timeInfo && timeInfo.deltaTime;
 		this.nextFrame(delta);
+		this.setRect(this._frames[this.currentFrame].rect);
 	}
-	this.setRect(frame.rect);
 	
 	MovieClip.superClass._update.call(this, timeInfo);
 };
