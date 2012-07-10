@@ -2,9 +2,10 @@
 (function(){
 
 /**
- * Constructor.
+ * 构造函数.
  * @name DisplayObject
  * @class DisplayObject类是可放在舞台上的所有显示对象的基类。DisplayObject类定义了若干显示对象的基本属性。渲染一个DisplayObject其实是进行若干变换后再渲染其drawable对象。
+ * @augments EventDispatcher
  * @property id DisplayObject对象唯一标识符id。
  * @property name DisplayObject对象的名称。
  * @property x DisplayObject对象相对父容器的x轴坐标。
@@ -57,10 +58,14 @@ var DisplayObject = Quark.DisplayObject = function(props)
 
 	Quark.merge(this, props, true);
 	if(props.mixin) Quark.merge(this, props.mixin, false);
+
+	DisplayObject.superClass.constructor.call(this, props);
 };
+Quark.inherit(DisplayObject, Quark.EventDispatcher);
 
 /**
  * 设置可绘制对象，默认是一个Image对象，可通过覆盖此方法进行DOM绘制。
+ * @param {Object} drawable 要设置的可绘制对象。一般是一个Image对象。
  */
 DisplayObject.prototype.setDrawable = function(drawable)
 { 
@@ -75,6 +80,7 @@ DisplayObject.prototype.setDrawable = function(drawable)
 
 /**
  * 获得可绘制对象实体，如Image或Canvas等其他DOM对象。
+ * @param {Context} context 渲染上下文。
  */
 DisplayObject.prototype.getDrawable = function(context)
 {
@@ -84,6 +90,7 @@ DisplayObject.prototype.getDrawable = function(context)
 
 /**
  * 对象数据更新接口，仅供框架内部或组件开发者使用。用户通常应该重写update方法。
+ * @protected
  */
 DisplayObject.prototype._update = function(timeInfo)
 { 
@@ -92,11 +99,14 @@ DisplayObject.prototype._update = function(timeInfo)
 
 /**
  * 对象数据更新接口，可通过覆盖此方法实现对象的数据更新。
+ * @param {Object} timeInfo 对象更新所需的时间信息。
+ * @return {Boolean} 更新成功返回true，否则为false。
  */
 DisplayObject.prototype.update = function(timeInfo){ return true; };
 
 /**
  * 对象渲染接口，仅供框架内部或组件开发者使用。用户通常应该重写render方法。
+ * @protected
  */
 DisplayObject.prototype._render = function(context)
 {
@@ -117,6 +127,7 @@ DisplayObject.prototype._render = function(context)
 
 /**
  * DisplayObject对象渲染接口，可通过覆盖此方法实现对象的渲染。
+ * @param {Context} context 渲染上下文。
  */
 DisplayObject.prototype.render = function(context)
 {
@@ -124,16 +135,8 @@ DisplayObject.prototype.render = function(context)
 };
 
 /**
- * DisplayObject对象的系统事件处理器，仅供框架内部或组件开发者使用。用户通常应该设置相应的回调函数，如onmousedown、onmousemove、onmouseup、onmouseout等。
- */
-DisplayObject.prototype._onEvent = function(e) 
-{
-	var handler = "on" + e.type;
-	if(this[handler] != null) this[handler](e);
-};
-
-/**
  * 保存DisplayObject对象的状态列表中的各种属性状态。
+ * @param {Array} list 要保存的属性名称列表。默认为null。
  */
 DisplayObject.prototype.saveState = function(list)
 {
@@ -148,16 +151,20 @@ DisplayObject.prototype.saveState = function(list)
 
 /**
  * 获得DisplayObject对象保存的状态列表中的指定的属性状态。
+ * @param {String} propName 要获取的属性状态名称。
+ * @return 返回指定属性的最后一次保存状态值。
  */
-DisplayObject.prototype.getState = function(p)
+DisplayObject.prototype.getState = function(propName)
 {
-	return this._lastState["last" + p];
+	return this._lastState["last" + propName];
 };
 
 /**
  * 比较DisplayObject对象的当前状态和最近一次保存的状态，返回指定属性中是否发生改变。
+ * @param prop 可以是单个或多个属性参数。
+ * @return 属性改变返回true，否则返回false。
  */
-DisplayObject.prototype.propChanged = function()
+DisplayObject.prototype.propChanged = function(prop)
 {
 	var list = arguments.length > 0 ? arguments : this._stateList;
 	for(var i = 0, len = list.length; i < len; i++)
@@ -170,7 +177,10 @@ DisplayObject.prototype.propChanged = function()
 
 /**
  * 计算DisplayObject对象的包围矩形，以确定由x和y参数指定的点是否在其包围矩形之内。
- * @return 在包围矩形之内返回1，在边界上返回0，否则返回-1。
+ * @param {Number} x 指定碰撞点的x坐标。
+ * @param {Number} y 指定碰撞点的y坐标。
+ * @param {Boolean} usePolyCollision 指定是否采用多边形碰撞。默认为false。
+ * @return {Number} 在包围矩形之内返回1，在边界上返回0，否则返回-1。
  */
 DisplayObject.prototype.hitTestPoint = function(x, y, usePolyCollision)
 {
@@ -179,7 +189,9 @@ DisplayObject.prototype.hitTestPoint = function(x, y, usePolyCollision)
 
 /**
  * 计算DisplayObject对象的包围矩形，以确定由object参数指定的显示对象是否与其相交。
- * @return 相交返回true，否则返回false。
+ * @param {DisplayObject} object 指定检测碰撞的显示对象。
+ * @param {Boolean} usePolyCollision 指定是否采用多边形碰撞。默认为false。
+ * @return {Boolean} 相交返回true，否则返回false。
  */
 DisplayObject.prototype.hitTestObject = function(object, usePolyCollision)
 {
@@ -188,6 +200,9 @@ DisplayObject.prototype.hitTestObject = function(object, usePolyCollision)
 
 /**
  * 将x和y指定的点从显示对象的（本地）坐标转换为舞台（全局）坐标。
+ * @param {Number} x 显示对象的本地x轴坐标。
+ * @param {Number} y 显示对象的本地y轴坐标。
+ * @return {Object} 返回转换后的全局坐标对象。格式如：{x:10, y:10}。
  */
 DisplayObject.prototype.localToGlobal = function(x, y)
 {
@@ -197,6 +212,9 @@ DisplayObject.prototype.localToGlobal = function(x, y)
 
 /**
  * 将x和y指定的点从舞台（全局）坐标转换为显示对象的（本地）坐标。
+ * @param {Number} x 显示对象的全局x轴坐标。
+ * @param {Number} y 显示对象的全局y轴坐标。
+ * @return {Object} 返回转换后的本地坐标对象。格式如：{x:10, y:10}。
  */
 DisplayObject.prototype.globalToLocal = function(x, y) 
 {
@@ -206,6 +224,9 @@ DisplayObject.prototype.globalToLocal = function(x, y)
 
 /**
  * 将x和y指定的点从显示对象的（本地）坐标转换为指定对象的坐标系里坐标。
+ * @param {Number} x 显示对象的本地x轴坐标。
+ * @param {Number} y 显示对象的本地y轴坐标。
+ * @return {Object} 返回转换后指定对象的本地坐标对象。格式如：{x:10, y:10}。
  */
 DisplayObject.prototype.localToTarget = function(x, y, target) 
 {
@@ -215,6 +236,7 @@ DisplayObject.prototype.localToTarget = function(x, y, target)
 
 /**
  * 获得一个对象相对于其某个祖先（默认即舞台）的连接矩阵。
+ * @private
  */
 DisplayObject.prototype.getConcatenatedMatrix = function(ancestor) 
 {	
@@ -240,6 +262,7 @@ DisplayObject.prototype.getConcatenatedMatrix = function(ancestor)
 
 /**
  * 返回DisplayObject对象在舞台全局坐标系内的矩形区域以及所有顶点。
+ * @return {Object} 返回显示对象的矩形区域。
  */
 DisplayObject.prototype.getBounds = function()
 {	
@@ -273,6 +296,7 @@ DisplayObject.prototype.getBounds = function()
 
 /**
  * 获得DisplayObject对象变形后的宽度。
+ * @return {Number} 返回对象变形后的宽度。
  */
 DisplayObject.prototype.getCurrentWidth = function()
 {
@@ -281,6 +305,7 @@ DisplayObject.prototype.getCurrentWidth = function()
 
 /**
  * 获得DisplayObject对象变形后的高度。
+ * @return {Number} 返回对象变形后的高度。
  */
 DisplayObject.prototype.getCurrentHeight = function()
 {
@@ -289,6 +314,7 @@ DisplayObject.prototype.getCurrentHeight = function()
 
 /**
  * 获得DisplayObject对象的舞台引用。如未被添加到舞台，则返回null。
+ * @return {Stage} 返回对象的舞台。
  */
 DisplayObject.prototype.getStage = function()
 {
@@ -299,10 +325,10 @@ DisplayObject.prototype.getStage = function()
 };
 
 /**
- * Draws the display object into a new canvas for caching use. This can provide faster rendering for complex object that doesn't change frequently.
  * 把DisplayObject对象缓存到一个新的canvas，对于包含复杂内容且不经常改变的对象使用缓存，可以提高渲染速度。
- * @param {Boolean} toImage Indicates whether convert to an image in dataURL format.
- * @param {String} type The converting image mime type when 'toImage' sets to true, 'image/png' is default.
+ * @param {Boolean} toImage 指定是否把缓存转为DataURL格式的。默认为false。
+ * @param {String} type 指定转换为DataURL格式的图片mime类型。默认为"image/png"。
+ * @return {Object} 显示对象的缓存结果。根据参数toImage不同而返回Canvas或Image对象。
  */
 Quark.DisplayObject.prototype.cache  = function(toImage, type)
 {
@@ -310,7 +336,6 @@ Quark.DisplayObject.prototype.cache  = function(toImage, type)
 };
 
 /**
- * Clears the cache.
  * 清除缓存。
  */
 Quark.DisplayObject.prototype.uncache = function()
@@ -320,6 +345,7 @@ Quark.DisplayObject.prototype.uncache = function()
 
 /**
  * 把DisplayObject对象转换成dataURL格式的位图。
+ * @param {String} type 指定转换为DataURL格式的图片mime类型。默认为"image/png"。
  */
 Quark.DisplayObject.prototype.toImage = function(type)
 {	
@@ -328,6 +354,7 @@ Quark.DisplayObject.prototype.toImage = function(type)
 
 /**
  * 返回DisplayObject对象的全路径的字符串表示形式，方便debug。如Stage1.Container2.Bitmap3。
+ * @return {String} 返回对象的全路径的字符串表示形式。如Stage1.Container2.Bitmap3。
  */
 DisplayObject.prototype.toString = function()
 {

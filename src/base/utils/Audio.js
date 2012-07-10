@@ -2,7 +2,7 @@
 (function(){
 
 /**
- * Constructor.
+ * 构造函数.
  * @name Audio
  * @class Audio类是原生Audio的封装。
  * @param src 要加载的声音的地址。

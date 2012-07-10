@@ -2,8 +2,8 @@
 (function(){
 
 /**
- * Translates url parameters into a key-value object.
- * 获取并对象化url参数。
+ * 获取URL参数。
+ * @return {Object} 包含URL参数的键值对对象。
  */
 Quark.getUrlParams = function()
 {
@@ -28,9 +28,8 @@ var metas = head.getElementsByTagName("meta");
 var metaAfterNode = metas.length > 0 ? metas[metas.length-1].nextSibling : head.childNodes[0];
 
 /**
- * Add a meta tag into the head of the document.
  * 动态添加meta到head中。
- * {Object} props The meta properties to add. e.g. {name:'viewport', content:'width=device-width'}
+ * @param {Object} props 要添加的meta的属性. 格式如：{name:'viewport', content:'width=device-width'}。
  */
 Quark.addMeta = function(props)
 {
@@ -40,9 +39,8 @@ Quark.addMeta = function(props)
 };
 
 /**
- * Show or Hide the bounding rects of all display objects on stage. This method is mainly for debugging use.
- * 显示或关闭舞台上所有显示对象的外包围矩形。主要用于调试物体碰撞区域等。
- * @param {Quark.Stage} The stage to be debug.
+ * 显示或关闭舞台上所有显示对象的外包围矩形。此方法主要用于调试物体碰撞区域等。
+ * @param {Stage} stage 要调试的舞台对象。
  */
 Quark.toggleDebugRect = function(stage)
 {
@@ -76,8 +74,8 @@ Quark.toggleDebugRect = function(stage)
 };
 
 /**
- * Draws the bounding rect of the display object. Internal function.
  * 绘制显示对象的外包围矩形。
+ * @private
  */
 function drawObjectRect(obj, ctx)
 {
@@ -120,11 +118,11 @@ function drawObjectRect(obj, ctx)
 };
 
 /**
- * Draws the display object into a new canvas for caching use.
  * 把DisplayObject对象绘制到一个新的画布上。可作为缓存使用，也可转换成dataURL格式的位图。
- * @param {Quark.DisplayObject} obj The display object to draw.
- * @param {Boolean} toImage Indicates whether convert to an image in dataURL format.
- * @param {String} type The converting image mime type, 'image/png' is default.
+ * @param {DisplayObject} obj 要缓存的显示对象。
+ * @param {Boolean} toImage 指定是否把缓存转为DataURL格式的。默认为false。
+ * @param {String} type 指定转换为DataURL格式的图片mime类型。默认为"image/png"。
+ * @return {Object} 显示对象的缓存结果。根据参数toImage不同而返回Canvas或Image对象。
  */
 Quark.cacheObject = function(obj, toImage, type)
 {
@@ -148,8 +146,8 @@ Quark.cacheObject = function(obj, toImage, type)
 
 
 /**
- * A help stage for internal use.
  * 用于Quark内部实现的一个上下文。
+ * @private
  */
 Quark._helpContext = new Quark.CanvasContext({canvas:Quark.createDOM("canvas")});
 

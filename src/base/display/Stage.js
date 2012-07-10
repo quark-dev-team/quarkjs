@@ -2,7 +2,7 @@
 (function(){
 
 /**
- * Constructor.
+ * 构造函数.
  * @name Stage
  * @augments DisplayObjectContainer
  * @class 舞台是显示对象的根，所有显示对象都会被添加到舞台上，必须传入一个context使得舞台能被渲染。舞台是一种特殊显示对象容器，可以容纳子显示对象。
@@ -21,7 +21,7 @@ var Stage = Quark.Stage = function(props)
 	
 	props = props || {};
 	Stage.superClass.constructor.call(this, props);
-	this.id = props.id || Quark.UIDUtil.createUID("Stage");	
+	this.id = props.id || Quark.UIDUtil.createUID("Stage");
 	if(this.context == null) throw "Quark.Stage Error: context is required.";
 	
 	this.updatePosition();
@@ -66,9 +66,9 @@ Stage.prototype._render = function(context)
 };
 
 /**
- * 舞台Stage默认的事件处理器。调用事件发生的目标显示对象的onEvent回调。
+ * 舞台Stage默认的事件处理器。
  */
-Stage.prototype._onEvent = function(e)
+Stage.prototype.dispatchEvent = function(e)
 {	
 	var x = e.pageX || e.clientX, y = e.pageY || e.clientY;
 	x = (x - this.stageX) / this.scaleX;
@@ -84,7 +84,7 @@ Stage.prototype._onEvent = function(e)
 		e.lastEventTarget = target;
 		//派发移开事件mouseout或touchout到上一个事件对象
 		var outEvent = (leave || obj == null || e.type == "mousemove") ? "mouseout" : e.type == "touchmove" ? "touchout" : null;
-		if(outEvent) target._onEvent({type:outEvent});
+		if(outEvent) target.dispatchEvent({type:outEvent});
 		this._eventTarget = null;
 	}
 	
@@ -92,7 +92,7 @@ Stage.prototype._onEvent = function(e)
 	if(obj!= null && obj.eventEnabled && e.type != "mouseout")
 	{
 		e.eventTarget = target = this._eventTarget = obj;
-		obj._onEvent(e);
+		obj.dispatchEvent(e);
 	}
 	
 	//设置光标状态
@@ -102,7 +102,7 @@ Stage.prototype._onEvent = function(e)
 		this.context.canvas.style.cursor = cursor;
 	}
 	
-	if(leave || e.type != "mouseout") Stage.superClass._onEvent.call(this, e);
+	if(leave || e.type != "mouseout") Stage.superClass.dispatchEvent.call(this, e);
 };
 
 /**

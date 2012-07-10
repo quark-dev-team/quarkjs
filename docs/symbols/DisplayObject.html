@@ -292,7 +292,7 @@ ul.inheritsList
 							<div class="fixedFont">
 								<b><a href="../symbols/DisplayObject.html#constructor">DisplayObject</a></b>()
 							</div>
-							<div class="description">Constructor.</div>
+							<div class="description">构造函数.</div>
 						</td>
 					</tr>
 				</tbody>
@@ -540,15 +540,6 @@ ul.inheritsList
 						<tr>
 							<td class="attributes">&nbsp;</td>
 							<td class="nameDescription">
-								<div class="fixedFont"><b><a href="../symbols/DisplayObject.html#getConcatenatedMatrix">getConcatenatedMatrix</a></b>(ancestor)
-								</div>
-								<div class="description">获得一个对象相对于其某个祖先（默认即舞台）的连接矩阵。</div>
-							</td>
-						</tr>
-					
-						<tr>
-							<td class="attributes">&nbsp;</td>
-							<td class="nameDescription">
 								<div class="fixedFont"><b><a href="../symbols/DisplayObject.html#getCurrentHeight">getCurrentHeight</a></b>()
 								</div>
 								<div class="description">获得DisplayObject对象变形后的高度。</div>
@@ -585,7 +576,7 @@ ul.inheritsList
 						<tr>
 							<td class="attributes">&nbsp;</td>
 							<td class="nameDescription">
-								<div class="fixedFont"><b><a href="../symbols/DisplayObject.html#getState">getState</a></b>(p)
+								<div class="fixedFont"><b><a href="../symbols/DisplayObject.html#getState">getState</a></b>(propName)
 								</div>
 								<div class="description">获得DisplayObject对象保存的状态列表中的指定的属性状态。</div>
 							</td>
@@ -639,7 +630,7 @@ ul.inheritsList
 						<tr>
 							<td class="attributes">&nbsp;</td>
 							<td class="nameDescription">
-								<div class="fixedFont"><b><a href="../symbols/DisplayObject.html#propChanged">propChanged</a></b>()
+								<div class="fixedFont"><b><a href="../symbols/DisplayObject.html#propChanged">propChanged</a></b>(prop)
 								</div>
 								<div class="description">比较DisplayObject对象的当前状态和最近一次保存的状态，返回指定属性中是否发生改变。</div>
 							</td>
@@ -715,7 +706,7 @@ ul.inheritsList
 				</div>
 				
 				<div class="description">
-					Constructor.
+					构造函数.
 					
 				</div>
 				
@@ -1168,7 +1159,7 @@ ul.inheritsList
 					<a name="getBounds"> </a>
 					<div class="fixedFont">
 					
-					
+					<span class="light">{Object}</span>
 					<b>getBounds</b>()
 					
 					</div>
@@ -1185,41 +1176,12 @@ ul.inheritsList
 						
 						
 						
-						
-						
-
-					<hr />
-				
-					<a name="getConcatenatedMatrix"> </a>
-					<div class="fixedFont">
-					
-					
-					<b>getConcatenatedMatrix</b>(ancestor)
-					
-					</div>
-					<div class="description">
-						获得一个对象相对于其某个祖先（默认即舞台）的连接矩阵。
-						
-						
-					</div>
-					
-					
-					
-						
 							<dl class="detailList">
-							<dt class="heading">Parameters:</dt>
+							<dt class="heading">Returns:</dt>
 							
-								<dt>
-									<b>ancestor</b>
-									
-								</dt>
-								<dd></dd>
+								<dd><span class="light fixedFont">{Object}</span> 返回显示对象的矩形区域。</dd>
 							
 							</dl>
-						
-						
-						
-						
 						
 						
 						
@@ -1229,7 +1191,7 @@ ul.inheritsList
 					<a name="getCurrentHeight"> </a>
 					<div class="fixedFont">
 					
-					
+					<span class="light">{Number}</span>
 					<b>getCurrentHeight</b>()
 					
 					</div>
@@ -1246,6 +1208,13 @@ ul.inheritsList
 						
 						
 						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd><span class="light fixedFont">{Number}</span> 返回对象变形后的高度。</dd>
+							
+							</dl>
+						
 						
 						
 
@@ -1254,7 +1223,7 @@ ul.inheritsList
 					<a name="getCurrentWidth"> </a>
 					<div class="fixedFont">
 					
-					
+					<span class="light">{Number}</span>
 					<b>getCurrentWidth</b>()
 					
 					</div>
@@ -1270,6 +1239,13 @@ ul.inheritsList
 						
 						
 						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd><span class="light fixedFont">{Number}</span> 返回对象变形后的宽度。</dd>
+							
+							</dl>
 						
 						
 						
@@ -1296,10 +1272,10 @@ ul.inheritsList
 							<dt class="heading">Parameters:</dt>
 							
 								<dt>
-									<b>context</b>
+									<span class="light fixedFont">{<a href="../symbols/Context.html">Context</a>}</span> <b>context</b>
 									
 								</dt>
-								<dd></dd>
+								<dd>渲染上下文。</dd>
 							
 							</dl>
 						
@@ -1315,7 +1291,7 @@ ul.inheritsList
 					<a name="getStage"> </a>
 					<div class="fixedFont">
 					
-					
+					<span class="light">{<a href="../symbols/Stage.html">Stage</a>}</span>
 					<b>getStage</b>()
 					
 					</div>
@@ -1332,6 +1308,13 @@ ul.inheritsList
 						
 						
 						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd><span class="light fixedFont">{<a href="../symbols/Stage.html">Stage</a>}</span> 返回对象的舞台。</dd>
+							
+							</dl>
+						
 						
 						
 
@@ -1341,7 +1324,7 @@ ul.inheritsList
 					<div class="fixedFont">
 					
 					
-					<b>getState</b>(p)
+					<b>getState</b>(propName)
 					
 					</div>
 					<div class="description">
@@ -1357,16 +1340,23 @@ ul.inheritsList
 							<dt class="heading">Parameters:</dt>
 							
 								<dt>
-									<b>p</b>
+									<span class="light fixedFont">{String}</span> <b>propName</b>
 									
 								</dt>
-								<dd></dd>
+								<dd>要获取的属性状态名称。</dd>
 							
 							</dl>
 						
 						
 						
 						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd>返回指定属性的最后一次保存状态值。</dd>
+							
+							</dl>
 						
 						
 						
@@ -1376,7 +1366,7 @@ ul.inheritsList
 					<a name="globalToLocal"> </a>
 					<div class="fixedFont">
 					
-					
+					<span class="light">{Object}</span>
 					<b>globalToLocal</b>(x, y)
 					
 					</div>
@@ -1393,22 +1383,29 @@ ul.inheritsList
 							<dt class="heading">Parameters:</dt>
 							
 								<dt>
-									<b>x</b>
+									<span class="light fixedFont">{Number}</span> <b>x</b>
 									
 								</dt>
-								<dd></dd>
+								<dd>显示对象的全局x轴坐标。</dd>
 							
 								<dt>
-									<b>y</b>
+									<span class="light fixedFont">{Number}</span> <b>y</b>
 									
 								</dt>
-								<dd></dd>
+								<dd>显示对象的全局y轴坐标。</dd>
 							
 							</dl>
 						
 						
 						
 						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd><span class="light fixedFont">{Object}</span> 返回转换后的本地坐标对象。格式如：{x:10, y:10}。</dd>
+							
+							</dl>
 						
 						
 						
@@ -1418,7 +1415,7 @@ ul.inheritsList
 					<a name="hitTestObject"> </a>
 					<div class="fixedFont">
 					
-					
+					<span class="light">{Boolean}</span>
 					<b>hitTestObject</b>(object, usePolyCollision)
 					
 					</div>
@@ -1435,16 +1432,16 @@ ul.inheritsList
 							<dt class="heading">Parameters:</dt>
 							
 								<dt>
-									<b>object</b>
+									<span class="light fixedFont">{<a href="../symbols/DisplayObject.html">DisplayObject</a>}</span> <b>object</b>
 									
 								</dt>
-								<dd></dd>
+								<dd>指定检测碰撞的显示对象。</dd>
 							
 								<dt>
-									<b>usePolyCollision</b>
+									<span class="light fixedFont">{Boolean}</span> <b>usePolyCollision</b>
 									
 								</dt>
-								<dd></dd>
+								<dd>指定是否采用多边形碰撞。默认为false。</dd>
 							
 							</dl>
 						
@@ -1455,7 +1452,7 @@ ul.inheritsList
 							<dl class="detailList">
 							<dt class="heading">Returns:</dt>
 							
-								<dd>相交返回true，否则返回false。</dd>
+								<dd><span class="light fixedFont">{Boolean}</span> 相交返回true，否则返回false。</dd>
 							
 							</dl>
 						
@@ -1467,7 +1464,7 @@ ul.inheritsList
 					<a name="hitTestPoint"> </a>
 					<div class="fixedFont">
 					
-					
+					<span class="light">{Number}</span>
 					<b>hitTestPoint</b>(x, y, usePolyCollision)
 					
 					</div>
@@ -1484,22 +1481,22 @@ ul.inheritsList
 							<dt class="heading">Parameters:</dt>
 							
 								<dt>
-									<b>x</b>
+									<span class="light fixedFont">{Number}</span> <b>x</b>
 									
 								</dt>
-								<dd></dd>
+								<dd>指定碰撞点的x坐标。</dd>
 							
 								<dt>
-									<b>y</b>
+									<span class="light fixedFont">{Number}</span> <b>y</b>
 									
 								</dt>
-								<dd></dd>
+								<dd>指定碰撞点的y坐标。</dd>
 							
 								<dt>
-									<b>usePolyCollision</b>
+									<span class="light fixedFont">{Boolean}</span> <b>usePolyCollision</b>
 									
 								</dt>
-								<dd></dd>
+								<dd>指定是否采用多边形碰撞。默认为false。</dd>
 							
 							</dl>
 						
@@ -1510,7 +1507,7 @@ ul.inheritsList
 							<dl class="detailList">
 							<dt class="heading">Returns:</dt>
 							
-								<dd>在包围矩形之内返回1，在边界上返回0，否则返回-1。</dd>
+								<dd><span class="light fixedFont">{Number}</span> 在包围矩形之内返回1，在边界上返回0，否则返回-1。</dd>
 							
 							</dl>
 						
@@ -1522,7 +1519,7 @@ ul.inheritsList
 					<a name="localToGlobal"> </a>
 					<div class="fixedFont">
 					
-					
+					<span class="light">{Object}</span>
 					<b>localToGlobal</b>(x, y)
 					
 					</div>
@@ -1539,22 +1536,29 @@ ul.inheritsList
 							<dt class="heading">Parameters:</dt>
 							
 								<dt>
-									<b>x</b>
+									<span class="light fixedFont">{Number}</span> <b>x</b>
 									
 								</dt>
-								<dd></dd>
+								<dd>显示对象的本地x轴坐标。</dd>
 							
 								<dt>
-									<b>y</b>
+									<span class="light fixedFont">{Number}</span> <b>y</b>
 									
 								</dt>
-								<dd></dd>
+								<dd>显示对象的本地y轴坐标。</dd>
 							
 							</dl>
 						
 						
 						
 						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd><span class="light fixedFont">{Object}</span> 返回转换后的全局坐标对象。格式如：{x:10, y:10}。</dd>
+							
+							</dl>
 						
 						
 						
@@ -1564,7 +1568,7 @@ ul.inheritsList
 					<a name="localToTarget"> </a>
 					<div class="fixedFont">
 					
-					
+					<span class="light">{Object}</span>
 					<b>localToTarget</b>(x, y, target)
 					
 					</div>
@@ -1581,16 +1585,16 @@ ul.inheritsList
 							<dt class="heading">Parameters:</dt>
 							
 								<dt>
-									<b>x</b>
+									<span class="light fixedFont">{Number}</span> <b>x</b>
 									
 								</dt>
-								<dd></dd>
+								<dd>显示对象的本地x轴坐标。</dd>
 							
 								<dt>
-									<b>y</b>
+									<span class="light fixedFont">{Number}</span> <b>y</b>
 									
 								</dt>
-								<dd></dd>
+								<dd>显示对象的本地y轴坐标。</dd>
 							
 								<dt>
 									<b>target</b>
@@ -1604,6 +1608,13 @@ ul.inheritsList
 						
 						
 						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd><span class="light fixedFont">{Object}</span> 返回转换后指定对象的本地坐标对象。格式如：{x:10, y:10}。</dd>
+							
+							</dl>
+						
 						
 						
 
@@ -1613,7 +1624,7 @@ ul.inheritsList
 					<div class="fixedFont">
 					
 					
-					<b>propChanged</b>()
+					<b>propChanged</b>(prop)
 					
 					</div>
 					<div class="description">
@@ -1625,9 +1636,27 @@ ul.inheritsList
 					
 					
 						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<b>prop</b>
+									
+								</dt>
+								<dd>可以是单个或多个属性参数。</dd>
+							
+							</dl>
 						
 						
 						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd>属性改变返回true，否则返回false。</dd>
+							
+							</dl>
 						
 						
 						
@@ -1654,10 +1683,10 @@ ul.inheritsList
 							<dt class="heading">Parameters:</dt>
 							
 								<dt>
-									<b>context</b>
+									<span class="light fixedFont">{<a href="../symbols/Context.html">Context</a>}</span> <b>context</b>
 									
 								</dt>
-								<dd></dd>
+								<dd>渲染上下文。</dd>
 							
 							</dl>
 						
@@ -1690,10 +1719,10 @@ ul.inheritsList
 							<dt class="heading">Parameters:</dt>
 							
 								<dt>
-									<b>list</b>
+									<span class="light fixedFont">{Array}</span> <b>list</b>
 									
 								</dt>
-								<dd></dd>
+								<dd>要保存的属性名称列表。默认为null。</dd>
 							
 							</dl>
 						
@@ -1726,10 +1755,10 @@ ul.inheritsList
 							<dt class="heading">Parameters:</dt>
 							
 								<dt>
-									<b>drawable</b>
+									<span class="light fixedFont">{Object}</span> <b>drawable</b>
 									
 								</dt>
-								<dd></dd>
+								<dd>要设置的可绘制对象。一般是一个Image对象。</dd>
 							
 							</dl>
 						
@@ -1745,7 +1774,7 @@ ul.inheritsList
 					<a name="toString"> </a>
 					<div class="fixedFont">
 					
-					
+					<span class="light">{String}</span>
 					<b>toString</b>()
 					
 					</div>
@@ -1762,6 +1791,13 @@ ul.inheritsList
 						
 						
 						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd><span class="light fixedFont">{String}</span> 返回对象的全路径的字符串表示形式。如Stage1.Container2.Bitmap3。</dd>
+							
+							</dl>
+						
 						
 						
 
@@ -1770,7 +1806,7 @@ ul.inheritsList
 					<a name="update"> </a>
 					<div class="fixedFont">
 					
-					
+					<span class="light">{Boolean}</span>
 					<b>update</b>(timeInfo)
 					
 					</div>
@@ -1787,16 +1823,23 @@ ul.inheritsList
 							<dt class="heading">Parameters:</dt>
 							
 								<dt>
-									<b>timeInfo</b>
+									<span class="light fixedFont">{Object}</span> <b>timeInfo</b>
 									
 								</dt>
-								<dd></dd>
+								<dd>对象更新所需的时间信息。</dd>
 							
 							</dl>
 						
 						
 						
 						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd><span class="light fixedFont">{Boolean}</span> 更新成功返回true，否则为false。</dd>
+							
+							</dl>
 						
 						
 						
@@ -1815,7 +1858,7 @@ ul.inheritsList
 <!-- ============================== footer ================================= -->
 		<div class="fineprint" style="clear:both">
 			
-			Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Wed Apr 25 2012 16:25:50 GMT+0800 (CST)
+			Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Tue Jul 10 2012 15:06:39 GMT+0800 (CST)
 		</div>
 	</body>
 </html>

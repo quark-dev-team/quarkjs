@@ -2,9 +2,11 @@
 (function(){
 
 /**
- * Constructor.
+ * 构造函数.
  * @name Context
  * @class Context是Quark框架中显示对象结构的上下文，实现显示对象结构的渲染。此类为抽象类。
+ * @param {Object} props 一个对象。包含以下属性：
+ * <p>canvas - 渲染上下文所对应的画布。</p>
  */
 var Context = Quark.Context = function(props)
 {	
@@ -36,7 +38,8 @@ Context.prototype.transform = function(){ };
 
 /**
  * 从画布中删除显示对象，需要子类来实现。
+ * @param {DisplayObject} target 要删除的显示对象。
  */
-Context.prototype.remove = function(obj){ };
+Context.prototype.remove = function(target){ };
 
 })();

@@ -2,7 +2,7 @@
 (function(){
 
 /**
- * Constructor.
+ * 构造函数.
  * @name DisplayObjectContainer
  * @augments DisplayObject
  * @class DisplayObjectContainer类继承自DisplayObject，是显示列表中显示对象容器的基类。每个DisplayObjectContainer对象都有自己的子级列表children，用于组织对象的Z轴顺序。注意：DisplayObjectContainer对象的宽高默认为0，在autoSize=false的情况下，需要手动设置宽高。
@@ -33,6 +33,9 @@ Quark.inherit(DisplayObjectContainer, Quark.DisplayObject);
 
 /**
  * 将一个DisplayObject子实例添加到该DisplayObjectContainer实例的子级列表中的指定位置。
+ * @param {DisplayObject} child 要添加的显示对象。
+ * @param {Integer} index 指定显示对象要被添加到的索引位置。
+ * @return {DisplayObjectContainer} 返回显示容器本身。
  */
 DisplayObjectContainer.prototype.addChildAt = function(child, index)
 {
@@ -66,6 +69,8 @@ DisplayObjectContainer.prototype.addChildAt = function(child, index)
 
 /**
  * 将一个DisplayObject子实例添加到该DisplayObjectContainer实例的子级列表中。
+ * @param {DisplayObject} child 要添加的显示对象。
+ * @return {DisplayObjectContainer} 返回显示容器本身。
  */
 DisplayObjectContainer.prototype.addChild = function(child)
 {	
@@ -80,6 +85,8 @@ DisplayObjectContainer.prototype.addChild = function(child)
 
 /**
  * 从DisplayObjectContainer的子级列表中指定索引处删除子对象。
+ * @param {Integer} index 指定要删除的显示对象的索引位置。
+ * @return {Boolean} 删除成功返回true，否则返回false。
  */
 DisplayObjectContainer.prototype.removeChildAt = function(index)
 {
@@ -97,6 +104,8 @@ DisplayObjectContainer.prototype.removeChildAt = function(index)
 
 /**
  * 从DisplayObjectContainer的子级列表中删除指定子对象。
+ * @param {DisplayObject} child 指定要删除的显示对象。
+ * @return {Boolean} 删除成功返回true，否则返回false。
  */
 DisplayObjectContainer.prototype.removeChild = function(child)
 {
@@ -113,6 +122,8 @@ DisplayObjectContainer.prototype.removeAllChildren = function()
 
 /**
  * 返回DisplayObjectContainer的位于指定索引处的子显示对象。
+ * @param {Integer} index 指定子显示对象的索引位置。
+ * @return {DisplayObject} 返回指定的子显示对象。
  */
 DisplayObjectContainer.prototype.getChildAt = function(index)
 {
@@ -122,6 +133,8 @@ DisplayObjectContainer.prototype.getChildAt = function(index)
 
 /**
  * 返回指定对象在DisplayObjectContainer的子级列表中的索引位置。
+ * @param {Integer} child 指定子显示对象。
+ * @return {Integer} 返回指定子显示对象的索引位置。
  */
 DisplayObjectContainer.prototype.getChildIndex = function(child)
 {
@@ -130,6 +143,8 @@ DisplayObjectContainer.prototype.getChildIndex = function(child)
 
 /**
  * 设置指定对象在DisplayObjectContainer的子级列表中的索引位置。
+ * @param {DisplayObject} child 指定子显示对象。
+ * @param {Integer} index 指定子显示对象新的索引位置。
  */
 DisplayObjectContainer.prototype.setChildIndex = function(child, index)
 {
@@ -142,6 +157,8 @@ DisplayObjectContainer.prototype.setChildIndex = function(child, index)
 
 /**
  * 交换在DisplayObjectContainer的子级列表中的两个子对象的索引位置。
+ * @param {DisplayObject} child1 指定交换索引位置的子显示对象1。
+ * @param {DisplayObject} child2 指定交换索引位置的子显示对象2。
  */
 DisplayObjectContainer.prototype.swapChildren = function(child1, child2)
 {
@@ -152,6 +169,8 @@ DisplayObjectContainer.prototype.swapChildren = function(child1, child2)
 
 /**
  * 交换在DisplayObjectContainer的子级列表中的指定索引位置的两个子对象。
+ * @param {Integer} index1 指定交换索引位置1。
+ * @param {Integer} index2 指定交换索引位置2。
  */
 DisplayObjectContainer.prototype.swapChildrenAt = function(index1, index2)
 {
@@ -162,6 +181,8 @@ DisplayObjectContainer.prototype.swapChildrenAt = function(index1, index2)
 
 /**
  * 返回DisplayObjectContainer中指定id的子显示对象。
+ * @param {String} 指定子显示对象的id。
+ * @return {DisplayObject} 返回指定id的子显示对象。
  */
 DisplayObjectContainer.prototype.getChildById = function(id)
 {
@@ -175,6 +196,8 @@ DisplayObjectContainer.prototype.getChildById = function(id)
 
 /**
  * 删除并返回DisplayObjectContainer中指定id的子显示对象。
+ * @param {String} 指定子显示对象的id。
+ * @return {DisplayObject} 返回删除的指定id的子显示对象。
  */
 DisplayObjectContainer.prototype.removeChildById = function(id)
 {	
@@ -190,6 +213,7 @@ DisplayObjectContainer.prototype.removeChildById = function(id)
 
 /**
  * 根据参数keyOrFunction指定的子元素键值或自定义函数对DisplayObjectContainer的子元素进行排序。
+ * @param keyOrFunction 指定排序的子元素的键值或自定义函数。
  */
 DisplayObjectContainer.prototype.sortChildren = function(keyOrFunction)
 {
@@ -207,6 +231,8 @@ DisplayObjectContainer.prototype.sortChildren = function(keyOrFunction)
 
 /**
  * 确定指定对象是否为DisplayObjectContainer的子显示对象。
+ * @param {DisplayObject} child 指定的显示对象。
+ * @return {Boolean} 指定对象为DisplayObjectContainer的子显示对象返回true，否则返回false。
  */
 DisplayObjectContainer.prototype.contains = function(child)
 {
@@ -214,7 +240,8 @@ DisplayObjectContainer.prototype.contains = function(child)
 };
 
 /**
- * 返回DisplayObjectContainer的子显示对象数目。
+ * 返回DisplayObjectContainer的子显示对象的数量。
+ * @return {Integer} 返回子显示对象的数量。
  */
 DisplayObjectContainer.prototype.getNumChildren = function()
 {
@@ -223,6 +250,7 @@ DisplayObjectContainer.prototype.getNumChildren = function()
 
 /**
  * 覆盖父类DisplayObject的_update方法，更新所有子显示对象的深度。
+ * @protected
  */
 DisplayObjectContainer.prototype._update = function(timeInfo)
 {
@@ -242,6 +270,7 @@ DisplayObjectContainer.prototype._update = function(timeInfo)
 
 /**
  * 渲染DisplayObjectContainer本身及其所有子显示对象。
+ * @param {Context} 渲染上下文。
  */
 DisplayObjectContainer.prototype.render = function(context)
 {
@@ -256,6 +285,11 @@ DisplayObjectContainer.prototype.render = function(context)
 
 /**
  * 返回x和y指定点下的DisplayObjectContainer的子项（或孙子项，依此类推）的数组集合。默认只返回最先加入的子显示对象。
+ * @param {Number} x 指定点的x轴坐标。
+ * @param {Number} y 指定点的y轴坐标。
+ * @param {Boolean} usePolyCollision 指定是否采用多边形碰撞检测。默认为false。
+ * @param {Boolean} returnAll 指定是否返回指定点下的所有显示对象。默认为false。
+ * @return 返回指定点下的显示对象集合，当然returnAll为false时只返回最先加入的子显示对象。
  */
 DisplayObjectContainer.prototype.getObjectUnderPoint = function(x, y, usePolyCollision, returnAll)
 {

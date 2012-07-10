@@ -2,7 +2,7 @@
 (function(){
 
 /**
- * Constructor.
+ * 构造函数.
  * @name EventDispatcher
  * @class EventDispatcher类是可调度事件的类的基类，它允许显示列表上的任何对象都是一个事件目标。
  */
@@ -33,8 +33,10 @@ EventDispatcher.prototype.addEventListener = function(type, listener)
  */
 EventDispatcher.prototype.removeEventListener = function(type, listener)
 {
+	if(arguments.length == 1) return this.removeEventListenerByType(type);
+
 	var map = this._eventMap[type];
-	if(map == null) return false;	
+	if(map == null) return false;
 
 	for(var i = 0; i < map.length; i++)
 	{

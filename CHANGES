@@ -1,3 +1,13 @@
+== 2012.7.10 v1.0.0 build 119 ==
+
+Modified:
+	* Update API documentation.
+
+== 2012.4.26 v1.0.0 build 118 ==
+
+Fixed:
+	* MovieClip._update() - incorrect setRect() method call.
+
 == 2012.4.25 v1.0.0 build 117 ==
 
 Modified:

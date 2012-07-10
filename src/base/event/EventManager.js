@@ -2,7 +2,7 @@
 (function(){
 
 /**
- * Constructor.
+ * 构造函数.
  * @name EventManager
  * @class EventManager是一个简单的系统事件管理器。
  */
@@ -19,7 +19,7 @@ var EventManager = Quark.EventManager = function()
  */
 EventManager.prototype.registerStage = function(stage, events, preventDefault, stopPropagation)
 {
-	this.register(stage.context.canvas, events, {host:stage, func:stage._onEvent}, preventDefault, stopPropagation);
+	this.register(stage.context.canvas, events, {host:stage, func:stage.dispatchEvent}, preventDefault, stopPropagation);
 };
 
 /**
@@ -29,7 +29,7 @@ EventManager.prototype.registerStage = function(stage, events, preventDefault, s
  */
 EventManager.prototype.unregisterStage = function(stage, events)
 {
-	this.unregister(stage.context.canvas, events, stage.onEvent);
+	this.unregister(stage.context.canvas, events, stage.dispatchEvent);
 };
 
 /**

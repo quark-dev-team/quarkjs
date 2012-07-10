@@ -2,10 +2,12 @@
 (function(){
 
 /**
- * Constructor.
+ * 构造函数.
  * @name CanvasContext
  * @augments Context
  * @class CanvasContext是Canvas渲染上下文，将显示对象渲染到指定的Canvas上。
+ * @param {Object} props 一个对象。包含以下属性：
+ * <p>canvas - 渲染上下文所对应的canvas，HTMLCanvasElement对象。</p>
  */
 var CanvasContext = Quark.CanvasContext = function(props)
 {
@@ -23,7 +25,8 @@ CanvasContext.prototype.startDraw = function()
 };
 
 /**
- * 绘制指定对象到Canvas上。
+ * 绘制指定的显示对象到Canvas上。
+ * @param {DisplayObject} target 要绘制的显示对象。
  */
 CanvasContext.prototype.draw = function(target)
 {
@@ -90,6 +93,7 @@ CanvasContext.prototype.endDraw = function()
 
 /**
  * 对指定的显示对象进行context属性设置或变换。
+ * @param {DisplayObject} target 要进行属性设置或变换的显示对象。
  */
 CanvasContext.prototype.transform = function(target)
 {
@@ -121,6 +125,10 @@ CanvasContext.prototype.transform = function(target)
 
 /**
  * 清除画布上的指定区域内容。
+ * @param {Number} x 指定区域的x轴坐标。
+ * @param {Number} y 指定区域的y轴坐标。
+ * @param {Number} width 指定区域的宽度。
+ * @param {Number} height 指定区域的高度。
  */
 CanvasContext.prototype.clear = function(x, y, width, height)
 {

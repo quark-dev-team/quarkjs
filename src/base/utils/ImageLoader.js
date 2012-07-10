@@ -2,7 +2,7 @@
 (function(){
 
 /**
- * Constructor.
+ * 构造函数.
  * @name ImageLoader
  * @augments EventDispatcher
  * @class ImageLoader类是一个图片加载器，用于动态加载图片资源。

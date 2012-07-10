@@ -269,7 +269,7 @@ ul.inheritsList
 				
 				
 			
-				QuarkJS框架的全局对象，也是框架内部所有类的命名空间。
+				Quark是QuarkJS框架的全局对象，也是框架内部所有类的全局命名空间。在全局Q未被占用的情况下，也可以使用其缩写Q。
 				
 			</p>
 
@@ -290,7 +290,7 @@ ul.inheritsList
 							<div class="fixedFont">
 								<b><a href="../symbols/Quark.html#constructor">Quark</a></b>()
 							</div>
-							<div class="description"></div>
+							<div class="description">Quark不是构造函数。</div>
 						</td>
 					</tr>
 				</tbody>
@@ -317,7 +317,7 @@ ul.inheritsList
 								<div class="fixedFont">
 								Quark.<b><a href="../symbols/Quark.html#.DEG_TO_RAD">DEG_TO_RAD</a></b>
 								</div>
-								<div class="description">Constants</div>
+								<div class="description">角度转弧度常量。</div>
 							</td>
 						</tr>
 					
@@ -328,6 +328,16 @@ ul.inheritsList
 								Quark.<b><a href="../symbols/Quark.html#.KEY">KEY</a></b>
 								</div>
 								<div class="description">按钮Key的code映射表。</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&lt;static&gt; &nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">
+								Quark.<b><a href="../symbols/Quark.html#.RAD_TO_DEG">RAD_TO_DEG</a></b>
+								</div>
+								<div class="description">弧度转角度常量。</div>
 							</td>
 						</tr>
 					
@@ -357,7 +367,7 @@ ul.inheritsList
 							<td class="nameDescription">
 								<div class="fixedFont">Quark.<b><a href="../symbols/Quark.html#.addMeta">addMeta</a></b>(props)
 								</div>
-								<div class="description">Add a meta tag into the head of the document.</div>
+								<div class="description">动态添加meta到head中。</div>
 							</td>
 						</tr>
 					
@@ -393,7 +403,7 @@ ul.inheritsList
 							<td class="nameDescription">
 								<div class="fixedFont">Quark.<b><a href="../symbols/Quark.html#.cacheObject">cacheObject</a></b>(obj, toImage, type)
 								</div>
-								<div class="description">Draws the display object into a new canvas for caching use.</div>
+								<div class="description">把DisplayObject对象绘制到一个新的画布上。可作为缓存使用，也可转换成dataURL格式的位图。</div>
 							</td>
 						</tr>
 					
@@ -429,8 +439,7 @@ ul.inheritsList
 							<td class="nameDescription">
 								<div class="fixedFont">Quark.<b><a href="../symbols/Quark.html#.createDOMDrawable">createDOMDrawable</a></b>(disObj, imageObj)
 								</div>
-								<div class="description">创建一个可渲染的DOM，可指定tagName，如canvas或div。
-disObj是一个DisplayObject或类似的对象，imageObj指定渲染的image及相关设置，如绘制区域rect。</div>
+								<div class="description">创建一个可渲染的DOM，可指定tagName，如canvas或div。</div>
 							</td>
 						</tr>
 					
@@ -511,7 +520,7 @@ disObj是一个DisplayObject或类似的对象，imageObj指定渲染的image及
 							<td class="nameDescription">
 								<div class="fixedFont">Quark.<b><a href="../symbols/Quark.html#.getElementOffset">getElementOffset</a></b>(elem)
 								</div>
-								<div class="description">获取某个DOM元素在页面中的位置偏移量。</div>
+								<div class="description">获取某个DOM元素在页面中的位置偏移量。格式为:{left: leftValue, top: topValue}。</div>
 							</td>
 						</tr>
 					
@@ -520,7 +529,7 @@ disObj是一个DisplayObject或类似的对象，imageObj指定渲染的image及
 							<td class="nameDescription">
 								<div class="fixedFont">Quark.<b><a href="../symbols/Quark.html#.getUrlParams">getUrlParams</a></b>()
 								</div>
-								<div class="description">Translates url parameters into a key-value object.</div>
+								<div class="description">获取URL参数。</div>
 							</td>
 						</tr>
 					
@@ -565,7 +574,7 @@ disObj是一个DisplayObject或类似的对象，imageObj指定渲染的image及
 							<td class="nameDescription">
 								<div class="fixedFont">Quark.<b><a href="../symbols/Quark.html#.inherit">inherit</a></b>(childClass, parentClass)
 								</div>
-								<div class="description"></div>
+								<div class="description">Quark框架的继承方法。</div>
 							</td>
 						</tr>
 					
@@ -584,16 +593,6 @@ disObj是一个DisplayObject或类似的对象，imageObj指定渲染的image及
 								<div class="fixedFont">Quark.<b><a href="../symbols/Quark.html#.MovieClip">MovieClip</a></b>(props)
 								</div>
 								<div class="description"></div>
-							</td>
-						</tr>
-					
-						<tr>
-							<td class="attributes">&lt;static&gt; &nbsp;</td>
-							<td class="nameDescription">
-								<div class="fixedFont">Quark.<b><a href="../symbols/Quark.html#.polygonCollision">polygonCollision</a></b>(poly1, poly2)
-								</div>
-								<div class="description">采用Separating Axis Theorem(SAT)的多边形碰撞检测方法。
-poly1,poly2是多边形顶点组成的数组。如[{x:0, y:0}, {x:10, y:0}, {x:10, y:10}, {x:0, y:10}]</div>
 							</td>
 						</tr>
 					
@@ -627,9 +626,9 @@ poly1,poly2是多边形顶点组成的数组。如[{x:0, y:0}, {x:10, y:0}, {x:1
 						<tr>
 							<td class="attributes">&lt;static&gt; &nbsp;</td>
 							<td class="nameDescription">
-								<div class="fixedFont">Quark.<b><a href="../symbols/Quark.html#.toggleDebugRect">toggleDebugRect</a></b>(The)
+								<div class="fixedFont">Quark.<b><a href="../symbols/Quark.html#.toggleDebugRect">toggleDebugRect</a></b>(stage)
 								</div>
-								<div class="description">Show or Hide the bounding rects of all display objects on stage.</div>
+								<div class="description">显示或关闭舞台上所有显示对象的外包围矩形。此方法主要用于调试物体碰撞区域等。</div>
 							</td>
 						</tr>
 					
@@ -663,9 +662,9 @@ poly1,poly2是多边形顶点组成的数组。如[{x:0, y:0}, {x:10, y:0}, {x:1
 						<tr>
 							<td class="attributes">&lt;static&gt; &nbsp;</td>
 							<td class="nameDescription">
-								<div class="fixedFont">Quark.<b><a href="../symbols/Quark.html#.use">use</a></b>(name)
+								<div class="fixedFont">Quark.<b><a href="../symbols/Quark.html#.use">use</a></b>()
 								</div>
-								<div class="description">根据限定名称返回一个命名空间（从global开始）。如：Quark.use('quark.test')。</div>
+								<div class="description">根据限定名称返回一个命名空间（从global开始）。如：Quark.use('Quark.test')。</div>
 							</td>
 						</tr>
 					
@@ -690,7 +689,7 @@ poly1,poly2是多边形顶点组成的数组。如[{x:0, y:0}, {x:10, y:0}, {x:1
 				</div>
 				
 				<div class="description">
-					
+					Quark不是构造函数。
 					
 				</div>
 				
@@ -722,7 +721,7 @@ poly1,poly2是多边形顶点组成的数组。如[{x:0, y:0}, {x:10, y:0}, {x:1
 					
 					</div>
 					<div class="description">
-						Constants
+						角度转弧度常量。
 						
 						
 					</div>
@@ -759,6 +758,28 @@ poly1,poly2是多边形顶点组成的数组。如[{x:0, y:0}, {x:10, y:0}, {x:1
 						
 						
 
+					<hr />
+				
+					<a name=".RAD_TO_DEG"> </a>
+					<div class="fixedFont">&lt;static&gt; 
+					
+					
+					<span class="light">Quark.</span><b>RAD_TO_DEG</b>
+					
+					</div>
+					<div class="description">
+						弧度转角度常量。
+						
+						
+					</div>
+					
+					
+
+						
+						
+						
+						
+
 					
 				
 			
@@ -777,9 +798,7 @@ poly1,poly2是多边形顶点组成的数组。如[{x:0, y:0}, {x:10, y:0}, {x:1
 					
 					</div>
 					<div class="description">
-						Add a meta tag into the head of the document.
-动态添加meta到head中。
-{Object} props The meta properties to add. e.g. {name:'viewport', content:'width=device-width'}
+						动态添加meta到head中。
 						
 							<br />
 							<i>Defined in: </i> <a href="../symbols/src/src_base_utils_Utils.js.html">Utils.js</a>.
@@ -794,10 +813,10 @@ poly1,poly2是多边形顶点组成的数组。如[{x:0, y:0}, {x:10, y:0}, {x:1
 							<dt class="heading">Parameters:</dt>
 							
 								<dt>
-									<b>props</b>
+									<span class="light fixedFont">{Object}</span> <b>props</b>
 									
 								</dt>
-								<dd></dd>
+								<dd>要添加的meta的属性. 格式如：{name:'viewport', content:'width=device-width'}。</dd>
 							
 							</dl>
 						
@@ -948,13 +967,12 @@ poly1,poly2是多边形顶点组成的数组。如[{x:0, y:0}, {x:10, y:0}, {x:1
 					<a name=".cacheObject"> </a>
 					<div class="fixedFont">&lt;static&gt; 
 					
-					
+					<span class="light">{Object}</span>
 					<span class="light">Quark.</span><b>cacheObject</b>(obj, toImage, type)
 					
 					</div>
 					<div class="description">
-						Draws the display object into a new canvas for caching use.
-把DisplayObject对象绘制到一个新的画布上。可作为缓存使用，也可转换成dataURL格式的位图。
+						把DisplayObject对象绘制到一个新的画布上。可作为缓存使用，也可转换成dataURL格式的位图。
 						
 							<br />
 							<i>Defined in: </i> <a href="../symbols/src/src_base_utils_Utils.js.html">Utils.js</a>.
@@ -969,28 +987,35 @@ poly1,poly2是多边形顶点组成的数组。如[{x:0, y:0}, {x:10, y:0}, {x:1
 							<dt class="heading">Parameters:</dt>
 							
 								<dt>
-									<span class="light fixedFont">{<a href="../symbols/Quark.html#.DisplayObject">Quark.DisplayObject</a>}</span> <b>obj</b>
+									<span class="light fixedFont">{<a href="../symbols/DisplayObject.html">DisplayObject</a>}</span> <b>obj</b>
 									
 								</dt>
-								<dd>The display object to draw.</dd>
+								<dd>要缓存的显示对象。</dd>
 							
 								<dt>
 									<span class="light fixedFont">{Boolean}</span> <b>toImage</b>
 									
 								</dt>
-								<dd>Indicates whether convert to an image in dataURL format.</dd>
+								<dd>指定是否把缓存转为DataURL格式的。默认为false。</dd>
 							
 								<dt>
 									<span class="light fixedFont">{String}</span> <b>type</b>
 									
 								</dt>
-								<dd>The converting image mime type, 'image/png' is default.</dd>
+								<dd>指定转换为DataURL格式的图片mime类型。默认为"image/png"。</dd>
 							
 							</dl>
 						
 						
 						
 						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd><span class="light fixedFont">{Object}</span> 显示对象的缓存结果。根据参数toImage不同而返回Canvas或Image对象。</dd>
+							
+							</dl>
 						
 						
 						
@@ -1078,7 +1103,7 @@ poly1,poly2是多边形顶点组成的数组。如[{x:0, y:0}, {x:10, y:0}, {x:1
 					<a name=".createDOM"> </a>
 					<div class="fixedFont">&lt;static&gt; 
 					
-					
+					<span class="light">{HTMLElement}</span>
 					<span class="light">Quark.</span><b>createDOM</b>(type, props)
 					
 					</div>
@@ -1095,22 +1120,29 @@ poly1,poly2是多边形顶点组成的数组。如[{x:0, y:0}, {x:10, y:0}, {x:1
 							<dt class="heading">Parameters:</dt>
 							
 								<dt>
-									<b>type</b>
+									<span class="light fixedFont">{String}</span> <b>type</b>
 									
 								</dt>
-								<dd></dd>
+								<dd>指定DOM的类型。比如canvas，div等。</dd>
 							
 								<dt>
-									<b>props</b>
+									<span class="light fixedFont">{Object}</span> <b>props</b>
 									
 								</dt>
-								<dd></dd>
+								<dd>指定生成的DOM的属性对象。</dd>
 							
 							</dl>
 						
 						
 						
 						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd><span class="light fixedFont">{HTMLElement}</span> 新生成的DOM对象。</dd>
+							
+							</dl>
 						
 						
 						
@@ -1120,13 +1152,12 @@ poly1,poly2是多边形顶点组成的数组。如[{x:0, y:0}, {x:10, y:0}, {x:1
 					<a name=".createDOMDrawable"> </a>
 					<div class="fixedFont">&lt;static&gt; 
 					
-					
+					<span class="light">{HTMLElement}</span>
 					<span class="light">Quark.</span><b>createDOMDrawable</b>(disObj, imageObj)
 					
 					</div>
 					<div class="description">
 						创建一个可渲染的DOM，可指定tagName，如canvas或div。
-disObj是一个DisplayObject或类似的对象，imageObj指定渲染的image及相关设置，如绘制区域rect。
 						
 						
 					</div>
@@ -1138,22 +1169,29 @@ disObj是一个DisplayObject或类似的对象，imageObj指定渲染的image及
 							<dt class="heading">Parameters:</dt>
 							
 								<dt>
-									<b>disObj</b>
+									<span class="light fixedFont">{Object}</span> <b>disObj</b>
 									
 								</dt>
-								<dd></dd>
+								<dd>一个DisplayObject或类似的对象。</dd>
 							
 								<dt>
-									<b>imageObj</b>
+									<span class="light fixedFont">{Object}</span> <b>imageObj</b>
 									
 								</dt>
-								<dd></dd>
+								<dd>指定渲染的image及相关设置，如绘制区域rect。</dd>
 							
 							</dl>
 						
 						
 						
 						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd><span class="light fixedFont">{HTMLElement}</span> 新创建的DOM对象。</dd>
+							
+							</dl>
 						
 						
 						
@@ -1163,7 +1201,7 @@ disObj是一个DisplayObject或类似的对象，imageObj指定渲染的image及
 					<a name=".delegate"> </a>
 					<div class="fixedFont">&lt;static&gt; 
 					
-					
+					<span class="light">{Function}</span>
 					<span class="light">Quark.</span><b>delegate</b>(func, self)
 					
 					</div>
@@ -1180,22 +1218,29 @@ disObj是一个DisplayObject或类似的对象，imageObj指定渲染的image及
 							<dt class="heading">Parameters:</dt>
 							
 								<dt>
-									<b>func</b>
+									<span class="light fixedFont">{Function}</span> <b>func</b>
 									
 								</dt>
-								<dd></dd>
+								<dd>要改变函数作用域的函数。</dd>
 							
 								<dt>
-									<b>self</b>
+									<span class="light fixedFont">{Object}</span> <b>self</b>
 									
 								</dt>
-								<dd></dd>
+								<dd>指定func函数的作用对象。</dd>
 							
 							</dl>
 						
 						
 						
 						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd><span class="light fixedFont">{Function}</span> 一个作用域为参数self的功能与func相同的新函数。</dd>
+							
+							</dl>
 						
 						
 						
@@ -1423,7 +1468,7 @@ disObj是一个DisplayObject或类似的对象，imageObj指定渲染的image及
 					<a name=".getDOM"> </a>
 					<div class="fixedFont">&lt;static&gt; 
 					
-					
+					<span class="light">{HTMLElement}</span>
 					<span class="light">Quark.</span><b>getDOM</b>(id)
 					
 					</div>
@@ -1440,16 +1485,23 @@ disObj是一个DisplayObject或类似的对象，imageObj指定渲染的image及
 							<dt class="heading">Parameters:</dt>
 							
 								<dt>
-									<b>id</b>
+									<span class="light fixedFont">{String}</span> <b>id</b>
 									
 								</dt>
-								<dd></dd>
+								<dd>DOM对象的id。</dd>
 							
 							</dl>
 						
 						
 						
 						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd><span class="light fixedFont">{HTMLElement}</span> DOM对象。</dd>
+							
+							</dl>
 						
 						
 						
@@ -1459,12 +1511,12 @@ disObj是一个DisplayObject或类似的对象，imageObj指定渲染的image及
 					<a name=".getElementOffset"> </a>
 					<div class="fixedFont">&lt;static&gt; 
 					
-					
+					<span class="light">{Object}</span>
 					<span class="light">Quark.</span><b>getElementOffset</b>(elem)
 					
 					</div>
 					<div class="description">
-						获取某个DOM元素在页面中的位置偏移量。
+						获取某个DOM元素在页面中的位置偏移量。格式为:{left: leftValue, top: topValue}。
 						
 						
 					</div>
@@ -1476,16 +1528,23 @@ disObj是一个DisplayObject或类似的对象，imageObj指定渲染的image及
 							<dt class="heading">Parameters:</dt>
 							
 								<dt>
-									<b>elem</b>
+									<span class="light fixedFont">{HTMLElement}</span> <b>elem</b>
 									
 								</dt>
-								<dd></dd>
+								<dd>DOM元素。</dd>
 							
 							</dl>
 						
 						
 						
 						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd><span class="light fixedFont">{Object}</span> 指定DOM元素在页面中的位置偏移。格式为:{left: leftValue, top: topValue}。</dd>
+							
+							</dl>
 						
 						
 						
@@ -1495,13 +1554,12 @@ disObj是一个DisplayObject或类似的对象，imageObj指定渲染的image及
 					<a name=".getUrlParams"> </a>
 					<div class="fixedFont">&lt;static&gt; 
 					
-					
+					<span class="light">{Object}</span>
 					<span class="light">Quark.</span><b>getUrlParams</b>()
 					
 					</div>
 					<div class="description">
-						Translates url parameters into a key-value object.
-获取并对象化url参数。
+						获取URL参数。
 						
 							<br />
 							<i>Defined in: </i> <a href="../symbols/src/src_base_utils_Utils.js.html">Utils.js</a>.
@@ -1515,6 +1573,13 @@ disObj是一个DisplayObject或类似的对象，imageObj指定渲染的image及
 						
 						
 						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd><span class="light fixedFont">{Object}</span> 包含URL参数的键值对对象。</dd>
+							
+							</dl>
 						
 						
 						
@@ -1563,7 +1628,7 @@ disObj是一个DisplayObject或类似的对象，imageObj指定渲染的image及
 					<a name=".hitTestObject"> </a>
 					<div class="fixedFont">&lt;static&gt; 
 					
-					
+					<span class="light">{Boolean}</span>
 					<span class="light">Quark.</span><b>hitTestObject</b>(obj1, obj2, usePolyCollision)
 					
 					</div>
@@ -1580,28 +1645,35 @@ disObj是一个DisplayObject或类似的对象，imageObj指定渲染的image及
 							<dt class="heading">Parameters:</dt>
 							
 								<dt>
-									<b>obj1</b>
+									<span class="light fixedFont">{<a href="../symbols/DisplayObject.html">DisplayObject</a>}</span> <b>obj1</b>
 									
 								</dt>
-								<dd></dd>
+								<dd>要检测的显示对象。</dd>
 							
 								<dt>
-									<b>obj2</b>
+									<span class="light fixedFont">{<a href="../symbols/DisplayObject.html">DisplayObject</a>}</span> <b>obj2</b>
 									
 								</dt>
-								<dd></dd>
+								<dd>要检测的显示对象。</dd>
 							
 								<dt>
-									<b>usePolyCollision</b>
+									<span class="light fixedFont">{Boolean}</span> <b>usePolyCollision</b>
 									
 								</dt>
-								<dd></dd>
+								<dd>指定是否采用多边形碰撞。默认为false。</dd>
 							
 							</dl>
 						
 						
 						
 						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd><span class="light fixedFont">{Boolean}</span> 发生碰撞为true，否则为false。</dd>
+							
+							</dl>
 						
 						
 						
@@ -1611,7 +1683,7 @@ disObj是一个DisplayObject或类似的对象，imageObj指定渲染的image及
 					<a name=".hitTestPoint"> </a>
 					<div class="fixedFont">&lt;static&gt; 
 					
-					
+					<span class="light">{Number}</span>
 					<span class="light">Quark.</span><b>hitTestPoint</b>(obj, x, y, usePolyCollision)
 					
 					</div>
@@ -1628,34 +1700,41 @@ disObj是一个DisplayObject或类似的对象，imageObj指定渲染的image及
 							<dt class="heading">Parameters:</dt>
 							
 								<dt>
-									<b>obj</b>
+									<span class="light fixedFont">{<a href="../symbols/DisplayObject.html">DisplayObject</a>}</span> <b>obj</b>
 									
 								</dt>
-								<dd></dd>
+								<dd>要检测的显示对象。</dd>
 							
 								<dt>
-									<b>x</b>
+									<span class="light fixedFont">{Number}</span> <b>x</b>
 									
 								</dt>
-								<dd></dd>
+								<dd>指定碰撞点的x坐标。</dd>
 							
 								<dt>
-									<b>y</b>
+									<span class="light fixedFont">{Number}</span> <b>y</b>
 									
 								</dt>
-								<dd></dd>
+								<dd>指定碰撞点的y坐标。</dd>
 							
 								<dt>
-									<b>usePolyCollision</b>
+									<span class="light fixedFont">{Boolean}</span> <b>usePolyCollision</b>
 									
 								</dt>
-								<dd></dd>
+								<dd>指定是否采用多边形碰撞。默认为false。</dd>
 							
 							</dl>
 						
 						
 						
 						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd><span class="light fixedFont">{Number}</span> 如果点x，y在对象obj内为1，在外为-1，在边上为0。</dd>
+							
+							</dl>
 						
 						
 						
@@ -1709,7 +1788,7 @@ disObj是一个DisplayObject或类似的对象，imageObj指定渲染的image及
 					
 					</div>
 					<div class="description">
-						
+						Quark框架的继承方法。
 						
 						
 					</div>
@@ -1721,16 +1800,16 @@ disObj是一个DisplayObject或类似的对象，imageObj指定渲染的image及
 							<dt class="heading">Parameters:</dt>
 							
 								<dt>
-									<b>childClass</b>
+									<span class="light fixedFont">{Function}</span> <b>childClass</b>
 									
 								</dt>
-								<dd></dd>
+								<dd>子类。</dd>
 							
 								<dt>
-									<b>parentClass</b>
+									<span class="light fixedFont">{Function}</span> <b>parentClass</b>
 									
 								</dt>
-								<dd></dd>
+								<dd>父类。</dd>
 							
 							</dl>
 						
@@ -1746,7 +1825,7 @@ disObj是一个DisplayObject或类似的对象，imageObj指定渲染的image及
 					<a name=".merge"> </a>
 					<div class="fixedFont">&lt;static&gt; 
 					
-					
+					<span class="light">{Object}</span>
 					<span class="light">Quark.</span><b>merge</b>(obj, props, strict)
 					
 					</div>
@@ -1763,28 +1842,35 @@ disObj是一个DisplayObject或类似的对象，imageObj指定渲染的image及
 							<dt class="heading">Parameters:</dt>
 							
 								<dt>
-									<b>obj</b>
+									<span class="light fixedFont">{Object}</span> <b>obj</b>
 									
 								</dt>
-								<dd></dd>
+								<dd>Object对象。</dd>
 							
 								<dt>
-									<b>props</b>
+									<span class="light fixedFont">{Object}</span> <b>props</b>
 									
 								</dt>
-								<dd></dd>
+								<dd>包含要复制到obj对象上的属性或方法的对象。</dd>
 							
 								<dt>
-									<b>strict</b>
+									<span class="light fixedFont">{Boolean}</span> <b>strict</b>
 									
 								</dt>
-								<dd></dd>
+								<dd>指定是否采用严格模式复制。默认为false。</dd>
 							
 							</dl>
 						
 						
 						
 						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd><span class="light fixedFont">{Object}</span> 复制后的obj对象。</dd>
+							
+							</dl>
 						
 						
 						
@@ -1815,49 +1901,6 @@ disObj是一个DisplayObject或类似的对象，imageObj指定渲染的image及
 							
 								<dt>
 									<b>props</b>
-									
-								</dt>
-								<dd></dd>
-							
-							</dl>
-						
-						
-						
-						
-						
-						
-						
-
-					<hr />
-				
-					<a name=".polygonCollision"> </a>
-					<div class="fixedFont">&lt;static&gt; 
-					
-					
-					<span class="light">Quark.</span><b>polygonCollision</b>(poly1, poly2)
-					
-					</div>
-					<div class="description">
-						采用Separating Axis Theorem(SAT)的多边形碰撞检测方法。
-poly1,poly2是多边形顶点组成的数组。如[{x:0, y:0}, {x:10, y:0}, {x:10, y:10}, {x:0, y:10}]
-						
-						
-					</div>
-					
-					
-					
-						
-							<dl class="detailList">
-							<dt class="heading">Parameters:</dt>
-							
-								<dt>
-									<b>poly1</b>
-									
-								</dt>
-								<dd></dd>
-							
-								<dt>
-									<b>poly2</b>
 									
 								</dt>
 								<dd></dd>
@@ -1994,12 +2037,11 @@ poly1,poly2是多边形顶点组成的数组。如[{x:0, y:0}, {x:10, y:0}, {x:1
 					<div class="fixedFont">&lt;static&gt; 
 					
 					
-					<span class="light">Quark.</span><b>toggleDebugRect</b>(The)
+					<span class="light">Quark.</span><b>toggleDebugRect</b>(stage)
 					
 					</div>
 					<div class="description">
-						Show or Hide the bounding rects of all display objects on stage. This method is mainly for debugging use.
-显示或关闭舞台上所有显示对象的外包围矩形。主要用于调试物体碰撞区域等。
+						显示或关闭舞台上所有显示对象的外包围矩形。此方法主要用于调试物体碰撞区域等。
 						
 							<br />
 							<i>Defined in: </i> <a href="../symbols/src/src_base_utils_Utils.js.html">Utils.js</a>.
@@ -2014,10 +2056,10 @@ poly1,poly2是多边形顶点组成的数组。如[{x:0, y:0}, {x:10, y:0}, {x:1
 							<dt class="heading">Parameters:</dt>
 							
 								<dt>
-									<span class="light fixedFont">{<a href="../symbols/Quark.html#.Stage">Quark.Stage</a>}</span> <b>The</b>
+									<span class="light fixedFont">{<a href="../symbols/Stage.html">Stage</a>}</span> <b>stage</b>
 									
 								</dt>
-								<dd>stage to be debug.</dd>
+								<dd>要调试的舞台对象。</dd>
 							
 							</dl>
 						
@@ -2033,7 +2075,7 @@ poly1,poly2是多边形顶点组成的数组。如[{x:0, y:0}, {x:10, y:0}, {x:1
 					<a name=".toString"> </a>
 					<div class="fixedFont">&lt;static&gt; 
 					
-					
+					<span class="light">{String}</span>
 					<span class="light">Quark.</span><b>toString</b>()
 					
 					</div>
@@ -2049,6 +2091,13 @@ poly1,poly2是多边形顶点组成的数组。如[{x:0, y:0}, {x:10, y:0}, {x:1
 						
 						
 						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd><span class="light fixedFont">{String}</span> Quark的字符串表示形式。</dd>
+							
+							</dl>
 						
 						
 						
@@ -2134,12 +2183,12 @@ poly1,poly2是多边形顶点组成的数组。如[{x:0, y:0}, {x:10, y:0}, {x:1
 					<a name=".use"> </a>
 					<div class="fixedFont">&lt;static&gt; 
 					
-					
-					<span class="light">Quark.</span><b>use</b>(name)
+					<span class="light">{Object}</span>
+					<span class="light">Quark.</span><b>use</b>()
 					
 					</div>
 					<div class="description">
-						根据限定名称返回一个命名空间（从global开始）。如：Quark.use('quark.test')。
+						根据限定名称返回一个命名空间（从global开始）。如：Quark.use('Quark.test')。
 						
 						
 					</div>
@@ -2151,7 +2200,7 @@ poly1,poly2是多边形顶点组成的数组。如[{x:0, y:0}, {x:10, y:0}, {x:1
 							<dt class="heading">Parameters:</dt>
 							
 								<dt>
-									<b>name</b>
+									<span class="light fixedFont">{String}</span> <b>指定新的命名空间的名称。如Quark.test等。</b>
 									
 								</dt>
 								<dd></dd>
@@ -2161,6 +2210,13 @@ poly1,poly2是多边形顶点组成的数组。如[{x:0, y:0}, {x:10, y:0}, {x:1
 						
 						
 						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd><span class="light fixedFont">{Object}</span> 参数name指定的命名空间对象。</dd>
+							
+							</dl>
 						
 						
 						
@@ -2179,7 +2235,7 @@ poly1,poly2是多边形顶点组成的数组。如[{x:0, y:0}, {x:10, y:0}, {x:1
 <!-- ============================== footer ================================= -->
 		<div class="fineprint" style="clear:both">
 			
-			Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Wed Apr 25 2012 16:25:51 GMT+0800 (CST)
+			Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Tue Jul 10 2012 15:06:39 GMT+0800 (CST)
 		</div>
 	</body>
 </html>
