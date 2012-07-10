@@ -2,11 +2,16 @@
 (function(){
 
 /**
- * Constructor.
+ * 构造函数.
  * @name Button
  * @augments DisplayObjectContainer
  * @class Button类继承自DisplayObjectContainer，是Quark中的简单按钮实现。
- * @argument props 参数JSON格式为：{image:imgElem, up:[0,0,50,50], over:[50,0,50,50], down:[100,0,50,50], disabled:[150,0,50,50]}。
+ * @argument {Object} props 一个对象，包含以下属性：
+ * <p>image - Image对象。</p>
+ * <p>up - 按钮弹起状态下的显示帧数组对象。如：[0,0,50,50]。
+ * <p>over - 按钮经过状态下的显示帧数组对象。如：[50,0,50,50]。
+ * <p>down - 按钮按下状态下的显示帧数组对象。如：[100,0,50,50]。
+ * <p>disabled - 按钮不可用状态下的显示帧数组对象。如：[150,0,50,50]。
  */
 var Button = Quark.Button = function(props)
 {
@@ -31,24 +36,26 @@ var Button = Quark.Button = function(props)
 Quark.inherit(Button, Quark.DisplayObjectContainer);
 
 /**
- * 按钮的弹起状态。常数。
+ * 按钮的弹起状态。常量值。
  */
 Button.UP = "up";
 /**
- * 按钮的经过状态。常数。
+ * 按钮的经过状态。常量值。
  */
 Button.OVER = "over";
 /**
- * 按钮的按下状态。常数。
+ * 按钮的按下状态。常量值。
  */
 Button.DOWN = "down";
 /**
- * 按钮的不可用状态。常数。
+ * 按钮的不可用状态。常量值。
  */
 Button.DISABLED = "disabled";
 
 /**
  * 设置按钮弹起状态的显示帧。
+ * @param {Array} upState 弹起状态的显示帧。
+ * @return {Button} 返回按钮本身。
  */
 Button.prototype.setUpState = function(upState)
 {
@@ -60,6 +67,8 @@ Button.prototype.setUpState = function(upState)
 
 /**
  * 设置按钮经过状态的显示帧。
+ * @param {Array} overState 经过状态的显示帧。
+ * @return {Button} 返回按钮本身。
  */
 Button.prototype.setOverState = function(overState)
 {
@@ -71,6 +80,8 @@ Button.prototype.setOverState = function(overState)
 
 /**
  * 设置按钮按下状态的显示帧。
+ * @param {Array} downState 点击状态的显示帧。
+ * @return {Button} 返回按钮本身。
  */
 Button.prototype.setDownState = function(downState)
 {
@@ -82,6 +93,8 @@ Button.prototype.setDownState = function(downState)
 
 /**
  * 设置按钮不可用状态的显示帧。
+ * @param {Array} disabledState 不可用状态的显示帧。
+ * @return {Button} 返回按钮本身。
  */
 Button.prototype.setDisabledState = function(disabledState)
 {
@@ -93,6 +106,8 @@ Button.prototype.setDisabledState = function(disabledState)
 
 /**
  * 设置按钮是否启用。
+ * @param {Boolean} enabled 指定按钮是否启用。默认为false。
+ * @return {Button} 返回按钮本身。
  */
 Button.prototype.setEnabled = function(enabled)
 {
@@ -110,7 +125,9 @@ Button.prototype.setEnabled = function(enabled)
 };
 
 /**
- * 改变按钮的状态。
+ * 改变按钮的显示状态。
+ * @param {String} state 指定按钮的显示状态。
+ * @return {Button} 返回按钮本身。
  */
 Button.prototype.changeState = function(state)
 {

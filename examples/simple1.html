@@ -71,6 +71,8 @@ function start()
 	bmp2 = new Quark.Bitmap({image:boy, rect:[0,0,64,85], regX:32, regY:42});
 	bmp2.x = 100;
 	bmp2.y = 100;
+	bmp2.scaleX = 2;
+	bmp2.scaleY = 2;
 	bmp2.addEventListener(events[0], function(e)
 	{
 		bmp2.scaleX = bmp2.scaleY = bmp2.scaleX == 1? 2 : 1;

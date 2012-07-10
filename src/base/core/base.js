@@ -2,18 +2,22 @@
 (function(win){
 
 /**
+ * Quark不是构造函数。
  * @name Quark
- * @class QuarkJS框架的全局对象，也是框架内部所有类的命名空间。
+ * @class Quark是QuarkJS框架的全局对象，也是框架内部所有类的全局命名空间。在全局Q未被占用的情况下，也可以使用其缩写Q。
  */
 var Quark = win.Quark = win.Quark || 
 {
 	global: win
 };
 
+
+var emptyConstructor = function() {};
 /**
  * Quark框架的继承方法。
+ * @param {Function} childClass 子类。
+ * @param {Function} parentClass 父类。
  */
-var emptyConstructor = function() {};
 Quark.inherit = function(childClass, parentClass) 
 {
   	emptyConstructor.prototype = parentClass.prototype;
@@ -25,6 +29,10 @@ Quark.inherit = function(childClass, parentClass)
 
 /**
  * 把props参数指定的属性或方法复制到obj对象上。
+ * @param {Object} obj Object对象。
+ * @param {Object} props 包含要复制到obj对象上的属性或方法的对象。
+ * @param {Boolean} strict 指定是否采用严格模式复制。默认为false。
+ * @return {Object} 复制后的obj对象。
  */
 Quark.merge = function(obj, props, strict)
 {
@@ -37,6 +45,9 @@ Quark.merge = function(obj, props, strict)
 
 /**
  * 改变func函数的作用域scope，即this的指向。
+ * @param {Function} func 要改变函数作用域的函数。
+ * @param {Object} self 指定func函数的作用对象。
+ * @return {Function} 一个作用域为参数self的功能与func相同的新函数。
  */
 Quark.delegate = function(func, self)
 {
@@ -57,6 +68,8 @@ Quark.delegate = function(func, self)
 
 /**
  * 根据id获得DOM对象。
+ * @param {String} id DOM对象的id。
+ * @return {HTMLElement} DOM对象。
  */
 Quark.getDOM = function(id)
 {
@@ -65,6 +78,9 @@ Quark.getDOM = function(id)
 
 /**
  * 创建一个指定类型type和属性props的DOM对象。
+ * @param {String} type 指定DOM的类型。比如canvas，div等。
+ * @param {Object} props 指定生成的DOM的属性对象。
+ * @return {HTMLElement} 新生成的DOM对象。
  */
 Quark.createDOM = function(type, props)
 {
@@ -84,7 +100,9 @@ Quark.createDOM = function(type, props)
 };
 
 /**
- * 根据限定名称返回一个命名空间（从global开始）。如：Quark.use('quark.test')。
+ * 根据限定名称返回一个命名空间（从global开始）。如：Quark.use('Quark.test')。
+ * @param {String} 指定新的命名空间的名称。如Quark.test等。
+ * @return {Object} 参数name指定的命名空间对象。
  */
 Quark.use = function(name)
 {
@@ -127,7 +145,9 @@ function detectBrowser(ns)
 detectBrowser(Quark);
 
 /**
- * 获取某个DOM元素在页面中的位置偏移量。
+ * 获取某个DOM元素在页面中的位置偏移量。格式为:{left: leftValue, top: topValue}。
+ * @param {HTMLElement} elem DOM元素。
+ * @return {Object} 指定DOM元素在页面中的位置偏移。格式为:{left: leftValue, top: topValue}。
  */
 Quark.getElementOffset = function(elem)
 {
@@ -142,7 +162,9 @@ Quark.getElementOffset = function(elem)
 
 /**
  * 创建一个可渲染的DOM，可指定tagName，如canvas或div。
- * disObj是一个DisplayObject或类似的对象，imageObj指定渲染的image及相关设置，如绘制区域rect。
+ * @param {Object} disObj 一个DisplayObject或类似的对象。
+ * @param {Object} imageObj 指定渲染的image及相关设置，如绘制区域rect。
+ * @return {HTMLElement} 新创建的DOM对象。
  */
 Quark.createDOMDrawable = function(disObj, imageObj)
 {
@@ -187,13 +209,22 @@ Quark.createDOMDrawable = function(disObj, imageObj)
 };
 
 /**
- * Constants
+ * 角度转弧度常量。
  */
 Quark.DEG_TO_RAD = Math.PI / 180;
+
+/**
+ * 弧度转角度常量。
+ */
 Quark.RAD_TO_DEG = 180 / Math.PI;
 
 /**
  * 检测显示对象obj是否与点x，y发生了碰撞。
+ * @param {DisplayObject} obj 要检测的显示对象。
+ * @param {Number} x 指定碰撞点的x坐标。
+ * @param {Number} y 指定碰撞点的y坐标。
+ * @param {Boolean} usePolyCollision 指定是否采用多边形碰撞。默认为false。
+ * @return {Number} 如果点x，y在对象obj内为1，在外为-1，在边上为0。
  */
 Quark.hitTestPoint = function(obj, x, y, usePolyCollision)
 {
@@ -234,6 +265,10 @@ Quark.hitTestPoint = function(obj, x, y, usePolyCollision)
 
 /**
  * 检测显示对象obj1和obj2是否发生了碰撞。
+ * @param {DisplayObject} obj1 要检测的显示对象。
+ * @param {DisplayObject} obj2 要检测的显示对象。
+ * @param {Boolean} usePolyCollision 指定是否采用多边形碰撞。默认为false。
+ * @return {Boolean} 发生碰撞为true，否则为false。
  */
 Quark.hitTestObject = function(obj1, obj2, usePolyCollision)
 {
@@ -251,7 +286,10 @@ Quark.hitTestObject = function(obj1, obj2, usePolyCollision)
 
 /**
  * 采用Separating Axis Theorem(SAT)的多边形碰撞检测方法。
- * poly1,poly2是多边形顶点组成的数组。如[{x:0, y:0}, {x:10, y:0}, {x:10, y:10}, {x:0, y:10}]
+ * @private
+ * @param {Array} poly1 多边形顶点组成的数组。格式如：[{x:0, y:0}, {x:10, y:0}, {x:10, y:10}, {x:0, y:10}]。
+ * @param {Array} poly2 多边形顶点组成的数组。格式与参数poly1相同。
+ * @param {Boolean} 发生碰撞为true，否则为false。 
  */
 Quark.polygonCollision = function(poly1, poly2)
 {	
@@ -318,6 +356,7 @@ function doSATCheck(poly1, poly2, result)
 
 /**
  * 返回Quark的字符串表示形式。
+ * @return {String} Quark的字符串表示形式。
  */
 Quark.toString = function()
 {

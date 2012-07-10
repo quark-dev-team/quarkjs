@@ -2,10 +2,10 @@
 (function(){
 
 /**
- * Constructor.
+ * 构造函数.
  * @name Graphics
  * @augments DisplayObject
- * @class The Graphics class contains a set of methods that you can use to create a vector shape.
+ * @class Graphics类包含一组创建矢量图形的方法。
  */ 
 var Graphics = Quark.Graphics = function(props)
 {	
@@ -32,7 +32,7 @@ var Graphics = Quark.Graphics = function(props)
 Quark.inherit(Graphics, Quark.DisplayObject);
 
 /**
- * Specifies a line style that Canvas uses for subsequent calls to other Graphics methods (such as lineTo() or drawCircle()) for the object.
+ * 指定绘制图形的线条样式。
  */
 Graphics.prototype.lineStyle = function(thickness, lineColor, alpha, lineCap, lineJoin, miterLimit)
 {	
@@ -47,7 +47,7 @@ Graphics.prototype.lineStyle = function(thickness, lineColor, alpha, lineCap, li
 };
 
 /**
- * Specifies an available fill that subsequent calls to other Graphics methods (such as lineTo() or drawCircle()) use when drawing.
+ * 指定绘制图形的填充样式和透明度。
  */
 Graphics.prototype.beginFill = function(fill, alpha)
 {
@@ -58,7 +58,7 @@ Graphics.prototype.beginFill = function(fill, alpha)
 };
 
 /**
- * Applies a fill to the lines and curves that were added.
+ * 应用并结束笔画的绘制和图形样式的填充。
  */
 Graphics.prototype.endFill = function()
 {
@@ -68,7 +68,7 @@ Graphics.prototype.endFill = function()
 };
 
 /**
- * Specifies a linear gradient fill that subsequent calls to other Graphics methods (such as lineTo() or drawCircle()) use when drawing.
+ * 指定绘制图形的线性渐变填充样式。
  */
 Graphics.prototype.beginLinearGradientFill = function(x0, y0, x1, y1, colors, ratios)
 {
@@ -81,7 +81,7 @@ Graphics.prototype.beginLinearGradientFill = function(x0, y0, x1, y1, colors, ra
 };
 
 /**
- * Specifies a radial gradient fill that subsequent calls to other Graphics methods (such as lineTo() or drawCircle()) use when drawing.
+ * 指定绘制图形的放射性渐变填充样式。
  */
 Graphics.prototype.beginRadialGradientFill = function(x0, y0, r0, x1, y1, r1, colors, ratios)
 {
@@ -94,8 +94,9 @@ Graphics.prototype.beginRadialGradientFill = function(x0, y0, r0, x1, y1, r1, co
 };
 
 /**
- * Fills a drawing area with a bitmap image. 
- * The repetition parameter must be one of the following values: repeat, repeat-x, repeat-y, no-repeat.
+ * 开始一个位图填充样式。
+ * @param {HTMLImageElement} image 指定填充的Image对象。
+ * @param {String} repetition 指定填充的重复设置参数。它可以是以下任意一个值：repeat, repeat-x, repeat-y, no-repeat。默认为""。
  */
 Graphics.prototype.beginBitmapFill = function(image, repetition)
 {
@@ -104,7 +105,7 @@ Graphics.prototype.beginBitmapFill = function(image, repetition)
 };
 
 /**
- * Begins a path.
+ * 开始一个新的路径。
  */
 Graphics.prototype.beginPath = function()
 {
@@ -112,7 +113,7 @@ Graphics.prototype.beginPath = function()
 };
 
 /**
- * Closes a path.
+ * 关闭当前的路径。
  */
 Graphics.prototype.closePath = function()
 {
@@ -120,7 +121,7 @@ Graphics.prototype.closePath = function()
 };
 
 /**
- * Draws a rectangle.
+ * 绘制一个矩形。
  */
 Graphics.prototype.drawRect = function(x, y, width, height)
 {
@@ -128,7 +129,7 @@ Graphics.prototype.drawRect = function(x, y, width, height)
 };
 
 /**
- * Draws a complex rounded rectangle.
+ * 绘制一个复杂的圆角矩形。
  */
 Graphics.prototype.drawRoundRectComplex = function(x, y, width, height, cornerTL, cornerTR, cornerBR, cornerBL)
 {
@@ -145,7 +146,7 @@ Graphics.prototype.drawRoundRectComplex = function(x, y, width, height, cornerTL
 };
 
 /**
- * Draws a rounded rectangle.
+ * 绘制一个圆角矩形。
  */
 Graphics.prototype.drawRoundRect = function(x, y, width, height, cornerSize)
 {
@@ -153,7 +154,7 @@ Graphics.prototype.drawRoundRect = function(x, y, width, height, cornerSize)
 };
 
 /**
- * Draws a circle.
+ * 绘制一个圆。
  */
 Graphics.prototype.drawCircle = function(x, y, radius)
 {
@@ -161,7 +162,7 @@ Graphics.prototype.drawCircle = function(x, y, radius)
 };
 
 /**
- * Draws a ellipse.
+ * 绘制一个椭圆。
  */
 Graphics.prototype.drawEllipse = function(x, y, width, height)
 {
@@ -180,11 +181,11 @@ Graphics.prototype.drawEllipse = function(x, y, width, height)
 };
 
 /**
- * Draws a path from SVG path data. 
- * For example: 
- * var path = "M250 150 L150 350 L350 350 Z";
- * var shape = new Quark.Graphics({width:500, height:500});
- * shape.drawSVGPath(path).beginFill("#0ff").endFill();
+ * 根据参数指定的SVG数据绘制一条路径。
+ * 代码示例: 
+ * <p>var path = "M250 150 L150 350 L350 350 Z";</p>
+ * <p>var shape = new Quark.Graphics({width:500, height:500});</p>
+ * <p>shape.drawSVGPath(path).beginFill("#0ff").endFill();</p>
  */
 Graphics.prototype.drawSVGPath = function(pathData)
 {
@@ -218,7 +219,7 @@ Graphics.prototype.drawSVGPath = function(pathData)
 };
 
 /**
- * Performs all drawing actions. For internal use.
+ * 执行全部绘制动作。内部私有方法。
  * @private
  */
 Graphics.prototype._draw = function(context)
@@ -247,7 +248,7 @@ Graphics.prototype.getDrawable = function(context)
 };
 
 /**
- * Caches the graphics to a canvas or image. Increase the performance normally.
+ * 缓存graphics到一个canvas或image。可用来提高渲染效率。
  */
 Graphics.prototype.cache = function(toImage)
 {
@@ -260,7 +261,7 @@ Graphics.prototype.cache = function(toImage)
 };
 
 /**
- * Releases the cache.
+ * 清除缓存。
  */
 Graphics.prototype.uncache = function()
 {
@@ -268,7 +269,8 @@ Graphics.prototype.uncache = function()
 };
 
 /**
- * Converts the graphics to a dataURL image.
+ * 把Graphics对象转换成dataURL格式的位图。
+ * @param {String} type 指定转换为DataURL格式的图片mime类型。默认为"image/png"。
  */
 Graphics.prototype.toImage = function(type)
 {
@@ -283,7 +285,7 @@ Graphics.prototype.toImage = function(type)
 };
 
 /**
- * Clears all drawing actions and cached image.
+ * 清除所有绘制动作并复原所有初始状态。
  */
 Graphics.prototype.clear = function()
 {
@@ -303,7 +305,7 @@ Graphics.prototype.clear = function()
 };
 
 /** 
- * Adds a drawing action. For internal use.
+ * 添加一个绘制动作。内部私有方法。
  * @private
  */
 Graphics.prototype._addAction = function(action)

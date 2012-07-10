@@ -2,7 +2,7 @@
 (function(){
 
 /**
- * Constructor.
+ * 构造函数.
  * @name EventManager
  * @class EventManager是一个简单的系统事件管理器。
  */

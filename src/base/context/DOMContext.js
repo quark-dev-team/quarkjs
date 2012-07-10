@@ -30,10 +30,12 @@ if(!supportTransform)
 }
 
 /**
- * Constructor.
+ * 构造函数.
  * @name DOMContext
  * @augments Context
  * @class DOMContext是DOM渲染上下文，将显示对象以dom方式渲染到舞台上。
+ * @param {Object} props 一个对象。包含以下属性：
+ * <p>canvas - 渲染上下文所对应的画布，HTMLDivElement对象。</p>
  */
 var DOMContext = Quark.DOMContext = function(props)
 {
@@ -43,6 +45,7 @@ Quark.inherit(DOMContext, Quark.Context);
 
 /**
  * 绘制指定对象的DOM到舞台上。
+ * @param {DisplayObject} target 要绘制的显示对象。
  */
 DOMContext.prototype.draw = function(target)
 {
@@ -66,6 +69,7 @@ DOMContext.prototype.draw = function(target)
 
 /**
  * 对指定的显示对象的DOM进行css属性设置或变换。
+ * @param {DisplayObject} target 要进行属性设置或变换的显示对象。
  */
 DOMContext.prototype.transform = function(target)
 {	
@@ -119,6 +123,9 @@ DOMContext.prototype.transform = function(target)
 
 /**
  * 根据指定对象生成css变换的样式。
+ * @param {DisplayObject} target 显示对象。
+ * @param {Boolean} useTransform3D 是否采用transform—3d变换。在支持transform—3d的浏览器中推荐使用。默认为false。
+ * @return {String} 生成的css样式。
  */
 function getTransformCSS(target, useTransform3D)
 {
@@ -140,6 +147,7 @@ function getTransformCSS(target, useTransform3D)
 
 /**
  * 隐藏指定对象渲染的dom节点，用于当显示对象visible=0或alpha=0等情况，由显示对象内部方法调用。
+ * @param {DisplayObject} target 要隐藏的显示对象。
  */
 DOMContext.prototype.hide = function(target)
 {
@@ -148,6 +156,7 @@ DOMContext.prototype.hide = function(target)
 
 /**
  * 删除指定显示对象渲染的dom节点，由显示对象内部方法调用。
+ * @param {DisplayObject} target 要删除的显示对象。
  */
 DOMContext.prototype.remove = function(target)
 {

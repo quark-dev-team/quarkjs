@@ -2,19 +2,19 @@
 (function(){
 
 /**
- * Constructor.
+ * 构造函数。
  * @name Text
  * @augments DisplayObject
- * @class The Text class provides simple text drawing.
- * @property text The text to display.
- * @property font  The font style to use.
- * @property color The color to use.
- * @property textAlign The text alignment. Can be any of "start", "end", "left", "right", and "center".
- * @property outline Determine whether stroke or fill text.
- * @property maxWidth The maximum width to draw the text, For canvas use.
- * @property lineWidth The maximum width for a line of text.
- * @property lineSpacing The space between two lines, in pixel.
- * @property fontMetrics The font metrics. You don't need to care it in most cases, can be passed in for performance optimization.
+ * @class Text类提供简单的文字显示功能。
+ * @property text 指定要显示的文本内容。
+ * @property font 指定使用的字体样式。
+ * @property color 指定使用的字体颜色。
+ * @property textAlign 指定文本的对齐方式。可以是以下任意一个值："start", "end", "left", "right", and "center"。
+ * @property outline 指定文本是绘制边框还是填充。
+ * @property maxWidth 指定文本绘制的最大宽度。仅在canvas中使用。
+ * @property lineWidth 指定文本行的最大宽度。
+ * @property lineSpacing 指定文本的行距。单位为像素。
+ * @property fontMetrics 指定字体的度量对象。一般可忽略此属性，可用于提高性能。
  */
 var Text = Quark.Text = function(props)
 {
@@ -38,7 +38,7 @@ Quark.inherit(Text, Quark.DisplayObject);
 
 
 /**
- * Draws the text into the specific context.
+ * 在指定的渲染上下文上绘制文本。
  * @private
  */
 Text.prototype._draw = function(context)
@@ -99,7 +99,7 @@ Text.prototype._draw = function(context)
 };
 
 /**
- * Draws a text line into the specific context.
+ * 在指定的渲染上下文上绘制一行文本。
  * @private
  */
 Text.prototype._drawTextLine = function(context, text, y)
@@ -120,7 +120,7 @@ Text.prototype._drawTextLine = function(context, text, y)
 };
 
 /**
- * Indicates the font style to use.
+ * 指定渲染文本的字体样式。
  */
 Text.prototype.setFont = function(font, ignoreFontMetrics)
 {
@@ -162,9 +162,9 @@ Text.prototype.getDrawable = function(context)
 };
 
 /**
- * A help method that returns line height and baseline informations of the specific font.
+ * 此方法可帮助我们得到指定字体的行高、基准线等度量信息。
  * @method getFontMetrics
- * @return {Object} a font metrics object with height, ascent, descent.
+ * @return {Object} 返回字体的度量信息，包括height、ascent、descent等。
  */
 Text.getFontMetrics = function(font)
 {

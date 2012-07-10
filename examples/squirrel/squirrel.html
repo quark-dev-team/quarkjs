@@ -29,13 +29,14 @@ var container, params, timer, stage, context, em, squirrel;
 
 function init()
 {		
+	//初始化游戏场景容器，设定背景渐变样式
 	container = Q.getDOM("container");
-
 	container.style.background = "-moz-linear-gradient(top, #00889d, #94d7e1, #58B000)";
 	container.style.background = "-webkit-gradient(linear, 0 0, 0 bottom, from(#00889d), to(#58B000), color-stop(0.5,#94d7e1))";
 	container.style.background = "-o-linear-gradient(top, #00889d, #94d7e1, #58B000)";
 	container.style.filter = "progid:DXImageTransform.Microsoft.gradient(startColorstr=#00889d, endColorstr=#94d7e1)";
 	
+	//初始化渲染上下文，这里根据URL参数可选择是采用CanvasContext还是DOMContext
 	params = Q.getUrlParams();
 	if(params.canvas)
 	{
@@ -47,24 +48,31 @@ function init()
 		context = new Q.DOMContext({canvas:container});
 	}	
 	
+	//初始化舞台
 	stage = new Q.Stage({context:context, width:480, height:320, 
 	update:function()
 	{
 		frames++;
 	}});
 	
+	//初始化timer并启动
 	timer = new Q.Timer(1000/30);
 	timer.addListener(stage);
 	timer.start();
 
+	//注册舞台事件，使舞台上的元素能接收交互事件
 	em = new Q.EventManager();
-	var events = Q.supportTouch ? ["touchstart","touchmove","touchend"] : ["mousedown","mousemove","mouseup"];
+	var events = Q.supportTouch ? ["touchend"] : ["mouseup"];
 	em.registerStage(stage, events, true, true);
 
+	//创建一只松鼠，并添加到舞台
 	squirrel = new Squirrel({id:"squirrel", x:200, y:160, autoSize:true});
 	stage.addChild(squirrel);
-	squirrel.addEventListener(events[2], squirrel.jump);
 
+	//为松鼠添加touchend或mouseup事件侦听，控制其跳跃。
+	squirrel.addEventListener(events[0], squirrel.jump);
+
+	//提示信息
 	var tip = Q.createDOM("span", {id:"tip", style:
 	{
 		position: "absolute",
