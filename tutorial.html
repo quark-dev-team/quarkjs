@@ -1,0 +1,152 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>QuarkJS - A HTML5 Game Framework</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="quarkjs, a html5 game framework.">
+    <meta name="author" content="flashlizi">
+
+    <!-- Le styles -->
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <style type="text/css">
+      body {
+        padding-top: 60px;
+        padding-bottom: 40px;
+      }
+      .sidebar-nav {
+        padding: 9px 0;
+      }
+    </style>
+    <link href="css/bootstrap-responsive.css" rel="stylesheet">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container-fluid">
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          <a class="brand" href="#">QuarkJS - A HTML5 Game Framework</a>
+          <div class="nav-collapse">
+            <ul class="nav">
+              <li><a href="index.html">首页</a></li>
+              <li><a href="https://github.com/quark-dev-team/quarkjs" target="_blank">源码下载</a></li>
+              <li><a href="../docs/index.html" target="_blank">API文档</a></li>
+              <li class="active"><a href="#">使用指南</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container-fluid">
+      <div class="row-fluid">
+        <div class="span3">
+          <div class="well sidebar-nav">
+            <ul class="nav nav-list">
+              <li class="nav-header">使用指南</li>
+              <li class="active"><a href="#">快速开始 - Getting Started</a></li>
+              <li><a href="http://github.com/quark-dev-team/quarkjs/wiki/Quark-Base-Infrastructure">基础架构 - Infrastructure</a></li>
+              <li><a href="http://github.com/quark-dev-team/quarkjs/wiki/Context">上下文 - Context</a></li>
+              <li><a href="http://github.com/quark-dev-team/quarkjs/wiki/DisplayObject">显示对象 - DisplayObject</a></li>
+              <li><a href="http://github.com/quark-dev-team/quarkjs/wiki/Handle-Events">事件处理 - Handling Events</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="span9">
+          <div class="page-header">
+            <h1>快速开始</h1>
+          </div>
+
+          <div>
+            <div>
+              <h2>1. 下载安装</h2><br/>
+              <p>到GitHub上下载quarkjs的最新版本：<a href="http://github.com/quark-dev-team/quarkjs" target="_blank">http://github.com/quark-dev-team/quarkjs</a>
+              <a class="btn btn-primary" href="http://github.com/quark-dev-team/quarkjs/zipball/master" target="_blank">直接下载 &raquo;</a></p>
+              <p>然后把quarkjs类库引入到html页面：</p>
+              <pre>&lt;script src="js/quark.base-1.0.0.js"&gt;&lt;/script&gt;</pre>
+            </div>
+
+            <div>
+              <h2>2. 创建渲染上下文</h2><br/>
+              <p>上下文Context在quark中负责渲染，目前有DOMContext和CanvasContext两种。</p>
+              <pre>//create a DOMContext
+var container = Quark.getDOM("container");
+var domContext = new Quark.DOMContext({canvas:container});
+
+//or create a CanvasContext
+var container = Quark.getDOM("container");
+var canvas = Quark.createDOM("canvas", {width:480, height:320, style:
+{
+    position:"absolute",
+    backgroundColor:"#fff"
+}});
+container.appendChild(canvas);
+var canvasContext = new Quark.CanvasContext({canvas:canvas});</pre>
+            </div>
+
+            <div>
+              <h2>3. 创建舞台</h2><br/>
+              <p>显示对象通过Context在舞台Stage上被渲染出来。</p>
+              <pre>var stage = new Quark.Stage({width:480, height:320, context:canvasContext, update:function()
+{
+    //write your own update code here
+}});</pre>
+            </div>
+
+            <div>
+              <h2>4. 创建计时器</h2><br/>
+              <p>舞台Stage上的物体的运动等变化，都是通过一个计时器Timer不断地调用Stage.step()方法来实现刷新的。</p>
+              <pre>var fps = 60;
+var timer = new Q.Timer(1000/fps);
+timer.addListener(stage);
+timer.start();</pre>
+            </div>
+
+            <div>
+              <h2>5. 注册舞台事件</h2><br/>
+              <p>要想舞台上的显示对象能响应用户的点击、触碰等交互事件，就必需为舞台注册相应的事件。</p>
+              <pre>var em = new Quark.EventManager();
+var events = Quark.supportTouch ? ["touchstart", "touchmove", "touchend"] : ["mousedown", "mousemove", "mouseup"];
+em.registerStage(stage, events);</pre>
+            </div>
+
+            <div>
+              <h2>6. 准备工作完成</h2><br/>
+              <p>至此，初始化工作基本完成。你可以开始利用quark提供的各种类和方法来创建各种显示对象。开始创建你的第一个HTML5游戏吧！</p>
+              <pre>var bmp = new Quark.Bitmap({image:imgElem, rect:[0,0,100,100], update:function()
+{
+    //update code here
+}});
+stage.addChild(bmp);</pre>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <hr>
+
+      <footer>
+        <p style="text-align:center;">&copy; QuarkJS Dev-Team 2012</p>
+      </footer>
+
+    </div>
+
+    <script src="js/jquery.js"></script>
+    <script src="js/bootstrap.js"></script>
+
+  </body>
+</html>
