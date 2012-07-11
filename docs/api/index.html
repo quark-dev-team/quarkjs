@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		
+		<title>QuarkJS API Reference</title>
+		<meta name="generator" content="JsDoc Toolkit" />
+
+		<link href="../css/bootstrap.css" rel="stylesheet">
+	    <style type="text/css">
+	      body {
+	        padding-top: 60px;
+	        padding-bottom: 40px;
+	      }
+	      .sidebar-nav {
+	        padding: 9px 0;
+	      }
+	      .hero-unit {
+	        padding: 30px;
+	      }
+	      .hero-unit p {
+	        font-size: 16px;
+	      }
+	      .hero-unit li {
+	        font-size: 16px;
+	        line-height: 24px;
+	      }
+	    </style>
+	    <link href="../css/bootstrap-responsive.css" rel="stylesheet">
+	</head>
+	
+	<body>
+		<div class="navbar navbar-fixed-top">
+  <div class="navbar-inner">
+    <div class="container-fluid">
+      <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </a>
+      <a class="brand" href="#">QuarkJS - A HTML5 Game Framework</a>
+      <div class="nav-collapse">
+        <ul class="nav">
+          <li><a href="../index.html">首页</a></li>
+          <li><a href="http://github.com/quark-dev-team/quarkjs" target="_blank">源码下载</a></li>
+          <li class="active"><a href="#">API文档</a></li>
+          <li><a href="../tutorial.html">使用指南</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+		
+		<div class="container-fluid">
+      		<div class="row-fluid">
+      			<div class="span3">
+      				<div class="well sidebar-nav">
+<ul class="nav nav-list">
+  <li class="nav-header">类列表</li>
+  
+	<li></li>
+	
+	<li><a href="symbols/Audio.html">Audio</a></li>
+	
+	<li><a href="symbols/Bitmap.html">Bitmap</a></li>
+	
+	<li><a href="symbols/Button.html">Button</a></li>
+	
+	<li><a href="symbols/CanvasContext.html">CanvasContext</a></li>
+	
+	<li><a href="symbols/Context.html">Context</a></li>
+	
+	<li><a href="symbols/DisplayObject.html">DisplayObject</a></li>
+	
+	<li><a href="symbols/DisplayObjectContainer.html">DisplayObjectContainer</a></li>
+	
+	<li><a href="symbols/DOMContext.html">DOMContext</a></li>
+	
+	<li><a href="symbols/Drawable.html">Drawable</a></li>
+	
+	<li><a href="symbols/EventDispatcher.html">EventDispatcher</a></li>
+	
+	<li><a href="symbols/EventManager.html">EventManager</a></li>
+	
+	<li><a href="symbols/Graphics.html">Graphics</a></li>
+	
+	<li><a href="symbols/ImageLoader.html">ImageLoader</a></li>
+	
+	<li><a href="symbols/MovieClip.html">MovieClip</a></li>
+	
+	<li><a href="symbols/Quark.html">Quark</a></li>
+	
+	<li><a href="symbols/Stage.html">Stage</a></li>
+	
+	<li><a href="symbols/Text.html">Text</a></li>
+	
+	<li><a href="symbols/Timer.html">Timer</a></li>
+	
+	<li><a href="symbols/Tween.html">Tween</a></li>
+	 
+</ul>
+</div>
+      			</div>
+      			<div class="span9">
+      				<h1>全部类</h1><br/>
+
+          			<table class="table table-striped table-bordered table-condensed">
+					  <thead>
+					    <tr>
+					      <th><h4>类</h4></th>
+					      <th><h4>说明</h4></th>
+					    </tr>
+					  </thead>
+					  <tbody>
+					    
+					    
+						
+						
+						<tr><td style='padding:8px;'><h4><a href="symbols/Audio.html">Audio</a></h4></td><td style='padding:8px;'>Audio类是原生Audio的封装。</td></tr>
+						
+						<tr><td style='padding:8px;'><h4><a href="symbols/Bitmap.html">Bitmap</a></h4></td><td style='padding:8px;'>Bitmap位图类，表示位图图像的显示对象，简单说它就是Image对象的某个区域的抽象表示。</td></tr>
+						
+						<tr><td style='padding:8px;'><h4><a href="symbols/Button.html">Button</a></h4></td><td style='padding:8px;'>Button类继承自DisplayObjectContainer，是Quark中的简单按钮实现。</td></tr>
+						
+						<tr><td style='padding:8px;'><h4><a href="symbols/CanvasContext.html">CanvasContext</a></h4></td><td style='padding:8px;'>CanvasContext是Canvas渲染上下文，将显示对象渲染到指定的Canvas上。</td></tr>
+						
+						<tr><td style='padding:8px;'><h4><a href="symbols/Context.html">Context</a></h4></td><td style='padding:8px;'>Context是Quark框架中显示对象结构的上下文，实现显示对象结构的渲染。此类为抽象类。</td></tr>
+						
+						<tr><td style='padding:8px;'><h4><a href="symbols/DisplayObject.html">DisplayObject</a></h4></td><td style='padding:8px;'>DisplayObject类是可放在舞台上的所有显示对象的基类。DisplayObject类定义了若干显示对象的基本属性。渲染一个DisplayObject其实是进行若干变换后再渲染其drawable对象。</td></tr>
+						
+						<tr><td style='padding:8px;'><h4><a href="symbols/DisplayObjectContainer.html">DisplayObjectContainer</a></h4></td><td style='padding:8px;'>DisplayObjectContainer类继承自DisplayObject，是显示列表中显示对象容器的基类。每个DisplayObjectContainer对象都有自己的子级列表children，用于组织对象的Z轴顺序。注意：DisplayObjectContainer对象的宽高默认为0，在autoSize=false的情况下，需要手动设置宽高。</td></tr>
+						
+						<tr><td style='padding:8px;'><h4><a href="symbols/DOMContext.html">DOMContext</a></h4></td><td style='padding:8px;'>DOMContext是DOM渲染上下文，将显示对象以dom方式渲染到舞台上。</td></tr>
+						
+						<tr><td style='padding:8px;'><h4><a href="symbols/Drawable.html">Drawable</a></h4></td><td style='padding:8px;'>Drawable是可绘制图像或DOM的包装。当封装的是HTMLImageElement、HTMLCanvasElement或HTMLVideoElement对象时，可同时支持canvas和dom两种渲染方式，而如果封装的是dom时，则不支持canvas方式。</td></tr>
+						
+						<tr><td style='padding:8px;'><h4><a href="symbols/EventDispatcher.html">EventDispatcher</a></h4></td><td style='padding:8px;'>EventDispatcher类是可调度事件的类的基类，它允许显示列表上的任何对象都是一个事件目标。</td></tr>
+						
+						<tr><td style='padding:8px;'><h4><a href="symbols/EventManager.html">EventManager</a></h4></td><td style='padding:8px;'>EventManager是一个简单的系统事件管理器。</td></tr>
+						
+						<tr><td style='padding:8px;'><h4><a href="symbols/Graphics.html">Graphics</a></h4></td><td style='padding:8px;'>Graphics类包含一组创建矢量图形的方法。</td></tr>
+						
+						<tr><td style='padding:8px;'><h4><a href="symbols/ImageLoader.html">ImageLoader</a></h4></td><td style='padding:8px;'>ImageLoader类是一个图片加载器，用于动态加载图片资源。</td></tr>
+						
+						<tr><td style='padding:8px;'><h4><a href="symbols/MovieClip.html">MovieClip</a></h4></td><td style='padding:8px;'>MovieClip影片剪辑类，表示一组动画片段。MovieClip是由Image对象的若干矩形区域组成的集合序列，并按照一定规则顺序播放。帧frame的定义格式为：{rect:*required*, label:"", interval:0, stop:0, jump:-1}。</td></tr>
+						
+						<tr><td style='padding:8px;'><h4><a href="symbols/Quark.html">Quark</a></h4></td><td style='padding:8px;'>Quark是QuarkJS框架的全局对象，也是框架内部所有类的全局命名空间。在全局Q未被占用的情况下，也可以使用其缩写Q。</td></tr>
+						
+						<tr><td style='padding:8px;'><h4><a href="symbols/Stage.html">Stage</a></h4></td><td style='padding:8px;'>舞台是显示对象的根，所有显示对象都会被添加到舞台上，必须传入一个context使得舞台能被渲染。舞台是一种特殊显示对象容器，可以容纳子显示对象。</td></tr>
+						
+						<tr><td style='padding:8px;'><h4><a href="symbols/Text.html">Text</a></h4></td><td style='padding:8px;'>Text类提供简单的文字显示功能。</td></tr>
+						
+						<tr><td style='padding:8px;'><h4><a href="symbols/Timer.html">Timer</a></h4></td><td style='padding:8px;'>Timer是一个计时器。它能按指定的时间序列运行代码。</td></tr>
+						
+						<tr><td style='padding:8px;'><h4><a href="symbols/Tween.html">Tween</a></h4></td><td style='padding:8px;'>Tween类是一个缓动动画类。使用它能实现移动、改变大小、淡入淡出等效果。</td></tr>
+						
+
+					  </tbody>
+					</table>
+
+      			</div>
+      		</div>
+
+      		<hr>
+      		<footer>
+        		<p style="text-align:center;">&copy; QuarkJS Dev-Team 2012</p>
+      		</footer>
+
+      	</div>
+
+		<script src="../js/jquery.js"></script>
+    	<script src="../js/bootstrap.js"></script>
+	</body>
+</html>

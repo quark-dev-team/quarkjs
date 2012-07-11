@@ -1,305 +1,108 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-	<head>
-		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
-		
-		<title>QuarkJS Reference - Index</title>
-		<meta name="generator" content="JsDoc Toolkit" />
-		
-		<style type="text/css">
-		/* default.css */
-body
-{
-	font: 12px Tahoma, Arial, sans-serif;
-	margin: 0;
-	padding: 0;
-}
 
-#header
-{
-	clear: both;
-	background: -moz-linear-gradient(top, #2969ad, #184073);
-	background: -webkit-gradient(linear, 0 0, 0 bottom, from(#2969ad), to(#184073));
-	background: -o-linear-gradient(top, #2969ad, #184073);
-	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#2969ad, endColorstr=#184073);
-	height: 70px;
-	margin-bottom: 20px;
-}
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>QuarkJS - A HTML5 Game Framework</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="quarkjs, a html5 game framework.">
+    <meta name="author" content="flashlizi">
 
-#header a
-{
-	color: #222;
-	display: block;
-	text-decoration: none;
-	height: 18px;
-}
+    <!-- Le styles -->
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <style type="text/css">
+      body {
+        padding-top: 60px;
+        padding-bottom: 40px;
+      }
+      .sidebar-nav {
+        padding: 9px 0;
+      }
+      .hero-unit {
+        padding: 30px;
+      }
+      .hero-unit p {
+        font-size: 16px;
+      }
+      .hero-unit li {
+        font-size: 16px;
+        line-height: 24px;
+      }
+    </style>
+    <link href="css/bootstrap-responsive.css" rel="stylesheet">
 
-a
-{
-	color: #222;
-}
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
 
-a:hover
-{
-	color: #999;
-	text-decoration:none;
-}
+  <body>
 
-h1
-{
-	font-size: 150%;
-	font-weight: bold;
-	padding: 0;
-}
+    <div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container-fluid">
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          <a class="brand" href="#">QuarkJS - A HTML5 Game Framework</a>
+          <div class="nav-collapse">
+            <ul class="nav">
+              <li class="active"><a href="#">首页</a></li>
+              <li><a href="http://github.com/quark-dev-team/quarkjs" target="_blank">源码下载</a></li>
+              <li><a href="api/index.html">API文档</a></li>
+              <li><a href="tutorial.html">使用指南</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
 
-hr
-{
-	border: none 0;
-	border-top: 1px solid #1c4b88;
-	height: 1px;
-}
+    <div class="container-fluid">
+      <div class="row-fluid">
+        <div class="span3">
+          <div class="well sidebar-nav">
+            <ul class="nav nav-list">
+              <li class="active"><a href="#">首页</a></li>
+              <li><a href="http://github.com/quark-dev-team/quarkjs" target="_blank">源码下载</a></li>
+              <li><a href="api/index.html">API文档</a></li>
+              <li><a href="tutorial.html">使用指南</a></li>
+            </ul>
+          </div>
+        </div>
 
-pre.code
-{
-	display: block;
-	padding: 8px;
-	border: 1px dashed #ccc;
-}
+        <div class="span9">
+          <div class="hero-unit">
+            <h1>QuarkJS</h1><br/>
+            <p>QuarkJS是一个HTML5游戏框架，它的目标是提供一套简单高效的方法创建HTML5游戏。</p>
+            <p>它具有以下特性：</p>
+            <ul>
+              <li>面向对象编程模式。</li>
+              <li>完整的显示对象架构。使用简单、易于扩展。</li>
+              <li>支持Canvas和DOM两种渲染模式。</li>
+              <li>兼容各种常见的桌面和移动浏览器。</li>
+            </ul>
+            <br/>
+            <p>
+              <a class="btn btn-primary btn-large" style="font-size:18px;" href="http://github.com/quark-dev-team/quarkjs" target="_blank">查看项目（GitHub）</a></p>
+            </p>
+          </div>
 
-#index
-{
-	float: left;
-	width: 200px;
-	position: absolute;
-	left: 10px;
-	background-color: #F3F3F3;
-	padding: 0px;
-}
+        </div>
+      </div>
 
-#content
-{
-	margin: 0 8px 0 240px;
-}
+      <hr>
 
-.classList
-{
-	list-style-type: none;
-	padding: 0;
-	margin: 0 0 0 8px;
-	font-family: arial, sans-serif;
-	font-size: 1em;
-	overflow: auto;
-}
+      <footer>
+        <p style="text-align:center;">&copy; QuarkJS Dev-Team 2012</p>
+      </footer>
 
-.classList li
-{
-	padding: 0;
-	margin: 0 0 8px 0;
-}
+    </div>
 
-.summaryTable { width: 100%; }
+    <script src="js/jquery.js"></script>
+    <script src="js/bootstrap.js"></script>
 
-h1.classTitle
-{
-	font-size:170%;
-	line-height:130%;
-}
-
-h2 { font-size: 110%; }
-caption, div.sectionTitle
-{
-	background-color: #1c4b88;
-	color: #fff;
-	font-size:130%;
-	text-align: left;
-	padding: 2px 6px 2px 6px;
-	border: 1px #1c4b88 solid;
-}
-
-div.sectionTitle { margin-bottom: 8px; }
-.summaryTable thead { display: none; }
-
-.summaryTable td
-{
-	vertical-align: top;
-	padding: 4px;
-	border-bottom: 1px #1c4b88 solid;
-	border-right: 1px #1c4b88 solid;
-}
-
-/*col#summaryAttributes {}*/
-.summaryTable td.attributes
-{
-	border-left: 1px #1c4b88 solid;
-	width: 140px;
-	text-align: right;
-}
-
-td.attributes, .fixedFont
-{
-	line-height: 15px;
-	color: #1c4b88;
-	font-family: "Courier New",Courier,monospace;
-	font-size: 13px;
-}
-
-.summaryTable td.nameDescription
-{
-	text-align: left;
-	font-size: 13px;
-	line-height: 15px;
-}
-
-.summaryTable td.nameDescription, .description
-{
-	line-height: 15px;
-	padding: 4px;
-	padding-left: 4px;
-}
-
-.summaryTable { margin-bottom: 8px; }
-
-ul.inheritsList
-{
-	list-style: square;
-	margin-left: 20px;
-	padding-left: 0;
-}
-
-.detailList {
-	margin-left: 20px; 
-	line-height: 15px;
-}
-.detailList dt { margin-left: 20px; }
-
-.detailList .heading
-{
-	font-weight: bold;
-	padding-bottom: 6px;
-	margin-left: 0;
-}
-
-.light, td.attributes, .light a:link, .light a:visited
-{
-	color: #777;
-	font-style: italic;
-}
-
-.fineprint
-{
-	margin-top: 20px;
-	margin-bottom: 5px;
-	text-align: center;
-	font-size: 10px;
-}
-		</style>
-	</head>
-	
-	<body>
-		<div id="header">
-	<h1 style="font-size:20px;color:#fff;margin:0;padding:12px 0 0 12px;">QuarkJS - A HTML5 Game Framework</h1>
-	<div id="menu" style="margin:10px 0 0 12px;">
-		<li style="padding-top:4px;background:#fff;width:120px;height:20px;display:block;font-weight:bold;text-align:center;"><a href="../index.html" style="color:#222;display:block;text-decoration:none;height:18px;">Documentation</a></li>
-	</div>
-</div>
-		
-		<div id="index">
-			<div align="center" style="height:24px;padding-top:6px;background:#1c4b88;color:#fff;font-size:14px;font-weight:bold;text-align:center;">Class List</div>
-<ul class="classList">
-	
-	<li></li>
-	
-	<li><a href="symbols/Audio.html">Audio</a></li>
-	
-	<li><a href="symbols/Bitmap.html">Bitmap</a></li>
-	
-	<li><a href="symbols/Button.html">Button</a></li>
-	
-	<li><a href="symbols/CanvasContext.html">CanvasContext</a></li>
-	
-	<li><a href="symbols/Context.html">Context</a></li>
-	
-	<li><a href="symbols/DisplayObject.html">DisplayObject</a></li>
-	
-	<li><a href="symbols/DisplayObjectContainer.html">DisplayObjectContainer</a></li>
-	
-	<li><a href="symbols/DOMContext.html">DOMContext</a></li>
-	
-	<li><a href="symbols/Drawable.html">Drawable</a></li>
-	
-	<li><a href="symbols/EventDispatcher.html">EventDispatcher</a></li>
-	
-	<li><a href="symbols/EventManager.html">EventManager</a></li>
-	
-	<li><a href="symbols/Graphics.html">Graphics</a></li>
-	
-	<li><a href="symbols/ImageLoader.html">ImageLoader</a></li>
-	
-	<li><a href="symbols/MovieClip.html">MovieClip</a></li>
-	
-	<li><a href="symbols/Quark.html">Quark</a></li>
-	
-	<li><a href="symbols/Stage.html">Stage</a></li>
-	
-	<li><a href="symbols/Text.html">Text</a></li>
-	
-	<li><a href="symbols/Timer.html">Timer</a></li>
-	
-	<li><a href="symbols/Tween.html">Tween</a></li>
-	
-</ul>
-		</div>
-		
-		<div id="content">
-			<h1 class="classTitle">Class Index</h1>
-			
-			
-			
-			
-			<div><h2><a href="symbols/Audio.html">Audio</a></h2>Audio类是原生Audio的封装。</div><hr/>
-			
-			<div><h2><a href="symbols/Bitmap.html">Bitmap</a></h2>Bitmap位图类，表示位图图像的显示对象，简单说它就是Image对象的某个区域的抽象表示。</div><hr/>
-			
-			<div><h2><a href="symbols/Button.html">Button</a></h2>Button类继承自DisplayObjectContainer，是Quark中的简单按钮实现。</div><hr/>
-			
-			<div><h2><a href="symbols/CanvasContext.html">CanvasContext</a></h2>CanvasContext是Canvas渲染上下文，将显示对象渲染到指定的Canvas上。</div><hr/>
-			
-			<div><h2><a href="symbols/Context.html">Context</a></h2>Context是Quark框架中显示对象结构的上下文，实现显示对象结构的渲染。此类为抽象类。</div><hr/>
-			
-			<div><h2><a href="symbols/DisplayObject.html">DisplayObject</a></h2>DisplayObject类是可放在舞台上的所有显示对象的基类。DisplayObject类定义了若干显示对象的基本属性。渲染一个DisplayObject其实是进行若干变换后再渲染其drawable对象。</div><hr/>
-			
-			<div><h2><a href="symbols/DisplayObjectContainer.html">DisplayObjectContainer</a></h2>DisplayObjectContainer类继承自DisplayObject，是显示列表中显示对象容器的基类。每个DisplayObjectContainer对象都有自己的子级列表children，用于组织对象的Z轴顺序。注意：DisplayObjectContainer对象的宽高默认为0，在autoSize=false的情况下，需要手动设置宽高。</div><hr/>
-			
-			<div><h2><a href="symbols/DOMContext.html">DOMContext</a></h2>DOMContext是DOM渲染上下文，将显示对象以dom方式渲染到舞台上。</div><hr/>
-			
-			<div><h2><a href="symbols/Drawable.html">Drawable</a></h2>Drawable是可绘制图像或DOM的包装。当封装的是HTMLImageElement、HTMLCanvasElement或HTMLVideoElement对象时，可同时支持canvas和dom两种渲染方式，而如果封装的是dom时，则不支持canvas方式。</div><hr/>
-			
-			<div><h2><a href="symbols/EventDispatcher.html">EventDispatcher</a></h2>EventDispatcher类是可调度事件的类的基类，它允许显示列表上的任何对象都是一个事件目标。</div><hr/>
-			
-			<div><h2><a href="symbols/EventManager.html">EventManager</a></h2>EventManager是一个简单的系统事件管理器。</div><hr/>
-			
-			<div><h2><a href="symbols/Graphics.html">Graphics</a></h2>Graphics类包含一组创建矢量图形的方法。</div><hr/>
-			
-			<div><h2><a href="symbols/ImageLoader.html">ImageLoader</a></h2>ImageLoader类是一个图片加载器，用于动态加载图片资源。</div><hr/>
-			
-			<div><h2><a href="symbols/MovieClip.html">MovieClip</a></h2>MovieClip影片剪辑类，表示一组动画片段。MovieClip是由Image对象的若干矩形区域组成的集合序列，并按照一定规则顺序播放。帧frame的定义格式为：{rect:*required*, label:"", interval:0, stop:0, jump:-1}。</div><hr/>
-			
-			<div><h2><a href="symbols/Quark.html">Quark</a></h2>Quark是QuarkJS框架的全局对象，也是框架内部所有类的全局命名空间。在全局Q未被占用的情况下，也可以使用其缩写Q。</div><hr/>
-			
-			<div><h2><a href="symbols/Stage.html">Stage</a></h2>舞台是显示对象的根，所有显示对象都会被添加到舞台上，必须传入一个context使得舞台能被渲染。舞台是一种特殊显示对象容器，可以容纳子显示对象。</div><hr/>
-			
-			<div><h2><a href="symbols/Text.html">Text</a></h2>Text类提供简单的文字显示功能。</div><hr/>
-			
-			<div><h2><a href="symbols/Timer.html">Timer</a></h2>Timer是一个计时器。它能按指定的时间序列运行代码。</div><hr/>
-			
-			<div><h2><a href="symbols/Tween.html">Tween</a></h2>Tween类是一个缓动动画类。使用它能实现移动、改变大小、淡入淡出等效果。</div><hr/>
-			
-			
-		</div>
-		<div class="fineprint" style="clear:both">
-			
-			Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blankt">JsDoc Toolkit</a> 2.4.0 on Tue Jul 10 2012 15:06:40 GMT+0800 (CST)
-		</div>
-	</body>
+  </body>
 </html>

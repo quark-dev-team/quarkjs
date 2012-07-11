@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<meta name="generator" content="JsDoc Toolkit" />
+		
+		<title>QuarkJS API Reference - Timer</title>
+
+		<link href="../../css/bootstrap.css" rel="stylesheet">
+	    <style type="text/css">
+	      body {
+	        padding-top: 60px;
+	        padding-bottom: 40px;
+	      }
+	      .sidebar-nav {
+	        padding: 9px 0;
+	      }
+	      .hero-unit {
+	        padding: 30px;
+	      }
+	      .hero-unit p {
+	        font-size: 16px;
+	      }
+	      .hero-unit li {
+	        font-size: 16px;
+	        line-height: 24px;
+	      }
+	      caption{
+	      	background: #2c2c2c;
+	      	color: #fff;
+	      	padding: 4px;
+	      	text-align: left;
+	      }
+	    </style>
+	    <link href="../../css/bootstrap-responsive.css" rel="stylesheet">
+
+	</head>
+
+	<body>
+		<div class="navbar navbar-fixed-top">
+		  <div class="navbar-inner">
+		    <div class="container-fluid">
+		      <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+		        <span class="icon-bar"></span>
+		        <span class="icon-bar"></span>
+		        <span class="icon-bar"></span>
+		      </a>
+		      <a class="brand" href="#">QuarkJS - A HTML5 Game Framework</a>
+		      <div class="nav-collapse">
+		        <ul class="nav">
+		          <li><a href="../../index.html">首页</a></li>
+		          <li><a href="http://github.com/quark-dev-team/quarkjs" target="_blank">源码下载</a></li>
+		          <li class="active"><a href="../index.html">API文档</a></li>
+		          <li><a href="../../tutorial.html">使用指南</a></li>
+		        </ul>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+
+		<div class="container-fluid">
+      		<div class="row-fluid">
+      			<div class="span3">
+      				<div class="well sidebar-nav">
+<ul class="nav nav-list">
+  <li class="nav-header">类列表</li>
+  
+	<li></li>
+	
+	<li><a href="../symbols/Audio.html">Audio</a></li>
+	
+	<li><a href="../symbols/Bitmap.html">Bitmap</a></li>
+	
+	<li><a href="../symbols/Button.html">Button</a></li>
+	
+	<li><a href="../symbols/CanvasContext.html">CanvasContext</a></li>
+	
+	<li><a href="../symbols/Context.html">Context</a></li>
+	
+	<li><a href="../symbols/DisplayObject.html">DisplayObject</a></li>
+	
+	<li><a href="../symbols/DisplayObjectContainer.html">DisplayObjectContainer</a></li>
+	
+	<li><a href="../symbols/DOMContext.html">DOMContext</a></li>
+	
+	<li><a href="../symbols/Drawable.html">Drawable</a></li>
+	
+	<li><a href="../symbols/EventDispatcher.html">EventDispatcher</a></li>
+	
+	<li><a href="../symbols/EventManager.html">EventManager</a></li>
+	
+	<li><a href="../symbols/Graphics.html">Graphics</a></li>
+	
+	<li><a href="../symbols/ImageLoader.html">ImageLoader</a></li>
+	
+	<li><a href="../symbols/MovieClip.html">MovieClip</a></li>
+	
+	<li><a href="../symbols/Quark.html">Quark</a></li>
+	
+	<li><a href="../symbols/Stage.html">Stage</a></li>
+	
+	<li><a href="../symbols/Text.html">Text</a></li>
+	
+	<li><a href="../symbols/Timer.html">Timer</a></li>
+	
+	<li><a href="../symbols/Tween.html">Tween</a></li>
+	 
+</ul>
+</div>
+      			</div>
+      			<div class="span9">
+
+      				<!-- ============================== class title ============================ -->
+      				<h1 style="color:#333;">
+  					
+					Class Timer
+      				</h1><br/>
+
+          			<!-- ============================== class summary ========================== -->			
+					<p class="description">
+						
+						
+					
+						Timer是一个计时器。它能按指定的时间序列运行代码。
+						
+					</p>
+
+					<!-- ============================== constructor summary ==================== -->			
+					
+					<h3 style="margin-bottom:6px;">构造函数概览</h3>
+					<table class="table table-striped table-bordered table-condensed" cellspacing="0" summary="A summary of the constructor documented in the class Timer.">
+						<thead>
+							<tr>
+								<th scope="col" style="width:10%;"></th>
+								<th scope="col">说明</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td class="attributes">&nbsp;</td>
+								<td class="nameDescription" >
+									<div class="fixedFont">
+										<b><a href="../symbols/Timer.html#constructor">Timer</a></b>(interval)
+									</div>
+									<div class="description">构造函数.</div>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					
+
+					<!-- ============================== properties summary ===================== -->
+					
+
+					<!-- ============================== methods summary ======================== -->
+					
+						
+						
+						<h3 style="margin-bottom:6px;">方法概览</h3>
+						<table class="table table-striped table-bordered table-condensed" cellspacing="0" summary="A summary of the methods documented in the class Timer.">
+							<thead>
+								<tr>
+									<th scope="col" style="width:10%;"></th>
+									<th scope="col">说明</th>
+								</tr>
+							</thead>
+							<tbody>
+							
+								<tr>
+									<td class="attributes">&nbsp;</td>
+									<td class="nameDescription">
+										<div class="fixedFont"><b><a href="../symbols/Timer.html#addListener">addListener</a></b>(obj)
+										</div>
+										<div class="description">添加侦听器对象，计时器会按照指定的时间间隔来调用侦听器的step方法。即listner必需有step方法。</div>
+									</td>
+								</tr>
+							
+								<tr>
+									<td class="attributes">&nbsp;</td>
+									<td class="nameDescription">
+										<div class="fixedFont"><b><a href="../symbols/Timer.html#delay">delay</a></b>(callback, time)
+										</div>
+										<div class="description">延迟一定时间time调用callback方法。</div>
+									</td>
+								</tr>
+							
+								<tr>
+									<td class="attributes">&nbsp;</td>
+									<td class="nameDescription">
+										<div class="fixedFont"><b><a href="../symbols/Timer.html#pause">pause</a></b>()
+										</div>
+										<div class="description">暂停计时器。</div>
+									</td>
+								</tr>
+							
+								<tr>
+									<td class="attributes">&nbsp;</td>
+									<td class="nameDescription">
+										<div class="fixedFont"><b><a href="../symbols/Timer.html#removeListener">removeListener</a></b>(obj)
+										</div>
+										<div class="description">删除侦听器。</div>
+									</td>
+								</tr>
+							
+								<tr>
+									<td class="attributes">&nbsp;</td>
+									<td class="nameDescription">
+										<div class="fixedFont"><b><a href="../symbols/Timer.html#resume">resume</a></b>()
+										</div>
+										<div class="description">恢复计时器。</div>
+									</td>
+								</tr>
+							
+								<tr>
+									<td class="attributes">&nbsp;</td>
+									<td class="nameDescription">
+										<div class="fixedFont"><b><a href="../symbols/Timer.html#start">start</a></b>()
+										</div>
+										<div class="description">启动计时器。</div>
+									</td>
+								</tr>
+							
+								<tr>
+									<td class="attributes">&nbsp;</td>
+									<td class="nameDescription">
+										<div class="fixedFont"><b><a href="../symbols/Timer.html#stop">stop</a></b>()
+										</div>
+										<div class="description">停止计时器。</div>
+									</td>
+								</tr>
+							
+							</tbody>
+						</table>
+						
+						
+						
+					
+					<!-- ============================== events summary ======================== -->
+					
+
+					<!-- ============================== constructor details ==================== -->		
+					
+					<div class="details"><a name="constructor"> </a>
+						<h3 style="margin-bottom:6px;">构造函数详细信息</h3>
+						
+						<div class="fixedFont">
+								<b>Timer</b>(interval)
+						</div>
+						
+						<div class="description">
+							构造函数.
+							
+						</div>
+						
+						
+						
+						
+							
+								<dl class="detailList">
+								<dt class="heading">Parameters:</dt>
+								
+									<dt>
+										 <b>interval</b>
+										
+									</dt>
+										<dd>计时器的时间间隔。以毫秒为单位。</dd>
+								
+								</dl>
+							
+							
+							
+							
+							
+							
+							
+
+					</div>
+					<hr/>
+					
+
+					<!-- ============================== field details ========================== -->		
+					
+
+					<!-- ============================== method details ========================= -->		
+					
+						<h3 style="margin-bottom:6px;">方法详细信息</h3>
+
+						
+							<a name="addListener"> </a>
+							<div class="fixedFont">
+							
+							
+							<b>addListener</b>(obj)
+							
+							</div>
+							<div class="description">
+								添加侦听器对象，计时器会按照指定的时间间隔来调用侦听器的step方法。即listner必需有step方法。
+								
+								
+							</div>
+							
+							
+							
+								
+									<dl class="detailList">
+									<dt class="heading">Parameters:</dt>
+									
+										<dt>
+											<b>obj</b>
+											
+										</dt>
+										<dd>侦听器对象。</dd>
+									
+									</dl>
+								
+								
+								
+								
+								
+								
+								
+
+							<hr />
+						
+							<a name="delay"> </a>
+							<div class="fixedFont">
+							
+							
+							<b>delay</b>(callback, time)
+							
+							</div>
+							<div class="description">
+								延迟一定时间time调用callback方法。
+								
+								
+							</div>
+							
+							
+							
+								
+									<dl class="detailList">
+									<dt class="heading">Parameters:</dt>
+									
+										<dt>
+											<b>callback</b>
+											
+										</dt>
+										<dd>调用的方法。</dd>
+									
+										<dt>
+											<b>time</b>
+											
+										</dt>
+										<dd>延迟的时间，以毫秒为单位。</dd>
+									
+									</dl>
+								
+								
+								
+								
+								
+								
+								
+
+							<hr />
+						
+							<a name="pause"> </a>
+							<div class="fixedFont">
+							
+							
+							<b>pause</b>()
+							
+							</div>
+							<div class="description">
+								暂停计时器。
+								
+								
+							</div>
+							
+							
+							
+								
+								
+								
+								
+								
+								
+								
+
+							<hr />
+						
+							<a name="removeListener"> </a>
+							<div class="fixedFont">
+							
+							
+							<b>removeListener</b>(obj)
+							
+							</div>
+							<div class="description">
+								删除侦听器。
+								
+								
+							</div>
+							
+							
+							
+								
+									<dl class="detailList">
+									<dt class="heading">Parameters:</dt>
+									
+										<dt>
+											<b>obj</b>
+											
+										</dt>
+										<dd></dd>
+									
+									</dl>
+								
+								
+								
+								
+								
+								
+								
+
+							<hr />
+						
+							<a name="resume"> </a>
+							<div class="fixedFont">
+							
+							
+							<b>resume</b>()
+							
+							</div>
+							<div class="description">
+								恢复计时器。
+								
+								
+							</div>
+							
+							
+							
+								
+								
+								
+								
+								
+								
+								
+
+							<hr />
+						
+							<a name="start"> </a>
+							<div class="fixedFont">
+							
+							
+							<b>start</b>()
+							
+							</div>
+							<div class="description">
+								启动计时器。
+								
+								
+							</div>
+							
+							
+							
+								
+								
+								
+								
+								
+								
+								
+
+							<hr />
+						
+							<a name="stop"> </a>
+							<div class="fixedFont">
+							
+							
+							<b>stop</b>()
+							
+							</div>
+							<div class="description">
+								停止计时器。
+								
+								
+							</div>
+							
+							
+							
+								
+								
+								
+								
+								
+								
+								
+
+							
+						
+					
+					
+					<!-- ============================== event details ========================= -->		
+					
+
+
+      			</div>
+      		</div>
+
+      		<hr>
+      		<footer>
+        		<p style="text-align:center;">&copy; QuarkJS Dev-Team 2012</p>
+      		</footer>
+
+      	</div>
+
+		<script src="../../js/jquery.js"></script>
+    	<script src="../../js/bootstrap.js"></script>
+
+	</body>
+</html>
