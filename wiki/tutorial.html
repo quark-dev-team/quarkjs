@@ -61,6 +61,9 @@
               <li><a href="http://github.com/quark-dev-team/quarkjs/wiki/Context">上下文 - Context</a></li>
               <li><a href="http://github.com/quark-dev-team/quarkjs/wiki/DisplayObject">显示对象 - DisplayObject</a></li>
               <li><a href="http://github.com/quark-dev-team/quarkjs/wiki/Handle-Events">事件处理 - Handling Events</a></li>
+
+              <li class="nav-header">实例分析</li>
+              <li><a href="tutorial_squirrel.html">跳跃的小松鼠</a></li>
             </ul>
           </div>
         </div>
@@ -72,7 +75,7 @@
 
           <div>
             <div>
-              <h2>1. 下载安装</h2><br/>
+              <h3>1. 下载安装</h3><br/>
               <p>到GitHub上下载quarkjs的最新版本：<a href="http://github.com/quark-dev-team/quarkjs" target="_blank">http://github.com/quark-dev-team/quarkjs</a>
               <a class="btn btn-primary" href="http://github.com/quark-dev-team/quarkjs/zipball/master" target="_blank">直接下载 &raquo;</a></p>
               <p>然后把quarkjs类库引入到html页面：</p>
@@ -80,7 +83,7 @@
             </div>
 
             <div>
-              <h2>2. 创建渲染上下文</h2><br/>
+              <h3>2. 创建渲染上下文</h3><br/>
               <p>上下文Context在quark中负责渲染，目前有DOMContext和CanvasContext两种。</p>
               <pre>//create a DOMContext
 var container = Quark.getDOM("container");
@@ -98,7 +101,7 @@ var canvasContext = new Quark.CanvasContext({canvas:canvas});</pre>
             </div>
 
             <div>
-              <h2>3. 创建舞台</h2><br/>
+              <h3>3. 创建舞台</h3><br/>
               <p>显示对象通过Context在舞台Stage上被渲染出来。</p>
               <pre>var stage = new Quark.Stage({width:480, height:320, context:canvasContext, update:function()
 {
@@ -107,7 +110,7 @@ var canvasContext = new Quark.CanvasContext({canvas:canvas});</pre>
             </div>
 
             <div>
-              <h2>4. 创建计时器</h2><br/>
+              <h3>4. 创建计时器</h3><br/>
               <p>舞台Stage上的物体的运动等变化，都是通过一个计时器Timer不断地调用Stage.step()方法来实现刷新的。</p>
               <pre>var fps = 60;
 var timer = new Q.Timer(1000/fps);
@@ -116,7 +119,7 @@ timer.start();</pre>
             </div>
 
             <div>
-              <h2>5. 注册舞台事件</h2><br/>
+              <h3>5. 注册舞台事件</h3><br/>
               <p>要想舞台上的显示对象能响应用户的点击、触碰等交互事件，就必需为舞台注册相应的事件。</p>
               <pre>var em = new Quark.EventManager();
 var events = Quark.supportTouch ? ["touchstart", "touchmove", "touchend"] : ["mousedown", "mousemove", "mouseup"];
@@ -124,7 +127,7 @@ em.registerStage(stage, events);</pre>
             </div>
 
             <div>
-              <h2>6. 准备工作完成</h2><br/>
+              <h3>6. 准备工作完成</h3><br/>
               <p>至此，初始化工作基本完成。你可以开始利用quark提供的各种类和方法来创建各种显示对象。开始创建你的第一个HTML5游戏吧！</p>
               <pre>var bmp = new Quark.Bitmap({image:imgElem, rect:[0,0,100,100], update:function()
 {
