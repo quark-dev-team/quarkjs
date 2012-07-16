@@ -89,7 +89,7 @@
 						<if test="data.version"><br />Version
 							{+ data.version +}.<br />
 						</if>
-						<if test="data.augments.length">继承自 
+						<if test="data.augments.length"><span style="display:block;margin-bottom:5px;">继承自 
 							{+
 								data.augments
 								.sort()
@@ -97,7 +97,7 @@
 									function($) { return new Link().toSymbol($); }
 								)
 								.join(", ")
-							+}.<br /><br />
+							+}.</span>
 						</if>
 					
 						{+resolveLinks(data.classDesc)+}
@@ -173,7 +173,7 @@
 							borrowedMembers.map(function($) {if (contributers.indexOf($.memberOf) < 0) contributers.push($.memberOf)});
 							for (var i = 0, l = contributers.length; i < l; i++) {
 								output +=
-									"<dt>从类 "+new Link().toSymbol(contributers[i])+" 继承的属性有: </dt>"
+									"<dt>从类 "+new Link().toSymbol(contributers[i])+" 继承的属性: </dt>"
 									+
 									"<dd>" +
 									borrowedMembers
@@ -232,7 +232,7 @@
 							borrowedMembers.map(function($) {if (contributers.indexOf($.memberOf) < 0) contributers.push($.memberOf)});
 							for (var i = 0, l = contributers.length; i < l; i++) {
 								output +=
-									"<dt>从类 "+new Link().toSymbol(contributers[i])+" 继承的方法有: </dt>"
+									"<dt>从类 "+new Link().toSymbol(contributers[i])+" 继承的方法: </dt>"
 									+
 									"<dd>" +
 									borrowedMembers
@@ -291,7 +291,7 @@
 							borrowedMembers.map(function($) {if (contributers.indexOf($.memberOf) < 0) contributers.push($.memberOf)});
 							for (var i = 0, l = contributers.length; i < l; i++) {
 								output +=
-									"<dt>从类 "+new Link().toSymbol(contributers[i])+" 继承的事件有: </dt>"
+									"<dt>从类 "+new Link().toSymbol(contributers[i])+" 继承的事件: </dt>"
 									+
 									"<dd>" +
 									borrowedMembers
