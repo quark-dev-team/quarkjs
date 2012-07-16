@@ -89,7 +89,7 @@
 						<if test="data.version"><br />Version
 							{+ data.version +}.<br />
 						</if>
-						<if test="data.augments.length">Extends
+						<if test="data.augments.length"><span style="display:block;margin-bottom:5px;">继承自 
 							{+
 								data.augments
 								.sort()
@@ -97,7 +97,7 @@
 									function($) { return new Link().toSymbol($); }
 								)
 								.join(", ")
-							+}.<br />
+							+}.</span>
 						</if>
 					
 						{+resolveLinks(data.classDesc)+}
@@ -173,7 +173,7 @@
 							borrowedMembers.map(function($) {if (contributers.indexOf($.memberOf) < 0) contributers.push($.memberOf)});
 							for (var i = 0, l = contributers.length; i < l; i++) {
 								output +=
-									"<dt>Fields borrowed from class "+new Link().toSymbol(contributers[i])+": </dt>"
+									"<dt>从类 "+new Link().toSymbol(contributers[i])+" 继承的属性: </dt>"
 									+
 									"<dd>" +
 									borrowedMembers
@@ -232,7 +232,7 @@
 							borrowedMembers.map(function($) {if (contributers.indexOf($.memberOf) < 0) contributers.push($.memberOf)});
 							for (var i = 0, l = contributers.length; i < l; i++) {
 								output +=
-									"<dt>Methods borrowed from class "+new Link().toSymbol(contributers[i])+": </dt>"
+									"<dt>从类 "+new Link().toSymbol(contributers[i])+" 继承的方法: </dt>"
 									+
 									"<dd>" +
 									borrowedMembers
@@ -291,7 +291,7 @@
 							borrowedMembers.map(function($) {if (contributers.indexOf($.memberOf) < 0) contributers.push($.memberOf)});
 							for (var i = 0, l = contributers.length; i < l; i++) {
 								output +=
-									"<dt>Events borrowed from class "+new Link().toSymbol(contributers[i])+": </dt>"
+									"<dt>从类 "+new Link().toSymbol(contributers[i])+" 继承的事件: </dt>"
 									+
 									"<dd>" +
 									borrowedMembers
@@ -326,7 +326,7 @@
 						
 						<div class="description">
 							{+resolveLinks(data.desc)+}
-							<if test="data.author"><br /><i>Author: </i>{+data.author+}.</if>
+							<if test="data.author"><br /><i>作者: </i>{+data.author+}.</if>
 						</div>
 						
 						<if test="data.example.length">
@@ -338,7 +338,7 @@
 						
 							<if test="data.params.length">
 								<dl class="detailList">
-								<dt class="heading">Parameters:</dt>
+								<dt class="heading">参数:</dt>
 								<for each="item" in="data.params">
 									<dt>
 										{+((item.type)?""+("<span class=\"light fixedFont\">{"+(new Link().toSymbol(item.type)+"}</span> ")) : "")+} <b>{+item.name+}</b>
@@ -350,7 +350,7 @@
 							</if>
 							<if test="data.deprecated">
 								<dl class="detailList">
-								<dt class="heading">Deprecated:</dt>
+								<dt class="heading">废弃:</dt>
 								<dt>
 									{+resolveLinks(data.deprecated)+}
 								</dt>
@@ -358,13 +358,13 @@
 							</if>
 							<if test="data.since">
 								<dl class="detailList">
-								<dt class="heading">Since:</dt>
+								<dt class="heading">始于:</dt>
 									<dd>{+ data.since +}</dd>
 								</dl>
 							</if>
 							<if test="data.exceptions.length">
 								<dl class="detailList">
-								<dt class="heading">Throws:</dt>
+								<dt class="heading">异常:</dt>
 								<for each="item" in="data.exceptions">
 									<dt>
 										{+((item.type)?"<span class=\"light fixedFont\">{"+(new Link().toSymbol(item.type))+"}</span> " : "")+} <b>{+item.name+}</b>
@@ -375,7 +375,7 @@
 							</if>
 							<if test="data.returns.length">
 								<dl class="detailList">
-								<dt class="heading">Returns:</dt>
+								<dt class="heading">返回:</dt>
 								<for each="item" in="data.returns">
 										<dd>{+((item.type)?"<span class=\"light fixedFont\">{"+(new Link().toSymbol(item.type))+"}</span> " : "")+}{+resolveLinks(item.desc)+}</dd>
 								</for>
@@ -383,7 +383,7 @@
 							</if>
 							<if test="data.requires.length">
 								<dl class="detailList">
-								<dt class="heading">Requires:</dt>
+								<dt class="heading">需求:</dt>
 								<for each="item" in="data.requires">
 									<dd>{+ new Link().toSymbol(item) +}</dd>
 								</for>
@@ -391,7 +391,7 @@
 							</if>
 							<if test="data.see.length">
 								<dl class="detailList">
-								<dt class="heading">See:</dt>
+								<dt class="heading">查看相关:</dt>
 								<for each="item" in="data.see">
 									<dd>{+ new Link().toSymbol(item) +}</dd>
 								</for>
@@ -425,7 +425,7 @@
 									<br />
 									<i>Defined in: </i> {+new Link().toSrc(member.srcFile)+}.
 								</if>
-								<if test="member.author"><br /><i>Author: </i>{+member.author+}.</if>
+								<if test="member.author"><br /><i>作者: </i>{+member.author+}.</if>
 							</div>
 							
 							<if test="member.example.length">
@@ -436,7 +436,7 @@
 
 								<if test="member.deprecated">
 									<dl class="detailList">
-									<dt class="heading">Deprecated:</dt>
+									<dt class="heading">废弃:</dt>
 									<dt>
 										{+ resolveLinks(member.deprecated) +}
 									</dt>
@@ -444,13 +444,13 @@
 								</if>
 								<if test="member.since">
 									<dl class="detailList">
-									<dt class="heading">Since:</dt>
+									<dt class="heading">始于:</dt>
 										<dd>{+ member.since +}</dd>
 									</dl>
 								</if>
 								<if test="member.see.length">
 									<dl class="detailList">
-									<dt class="heading">See:</dt>
+									<dt class="heading">查看相关:</dt>
 									<for each="item" in="member.see">
 									<dd>{+ new Link().toSymbol(item) +}</dd>
 									</for>
@@ -458,7 +458,7 @@
 								</if>
 								<if test="member.defaultValue">
 									<dl class="detailList">
-									<dt class="heading">Default Value:</dt>
+									<dt class="heading">默认值:</dt>
 									<dd>
 										{+resolveLinks(member.defaultValue)+}
 									</dd>
@@ -491,7 +491,7 @@
 									<br />
 									<i>Defined in: </i> {+new Link().toSrc(member.srcFile)+}.
 								</if>
-								<if test="member.author"><br /><i>Author: </i>{+member.author+}.</if>
+								<if test="member.author"><br /><i>作者: </i>{+member.author+}.</if>
 							</div>
 							
 							<if test="member.example.length">
@@ -502,7 +502,7 @@
 							
 								<if test="member.params.length">
 									<dl class="detailList">
-									<dt class="heading">Parameters:</dt>
+									<dt class="heading">参数:</dt>
 									<for each="item" in="member.params">
 										<dt>
 											{+((item.type)?"<span class=\"light fixedFont\">{"+(new Link().toSymbol(item.type))+"}</span> " : "")+}<b>{+item.name+}</b>
@@ -514,7 +514,7 @@
 								</if>
 								<if test="member.deprecated">
 									<dl class="detailList">
-									<dt class="heading">Deprecated:</dt>
+									<dt class="heading">废弃:</dt>
 									<dt>
 										{+ resolveLinks(member.deprecated) +}
 									</dt>
@@ -522,14 +522,14 @@
 								</if>
 								<if test="member.since">
 									<dl class="detailList">
-									<dt class="heading">Since:</dt>
+									<dt class="heading">始于:</dt>
 										<dd>{+ member.since +}</dd>
 									</dl>
 									</dl>
 								</if>
 								<if test="member.exceptions.length">
 									<dl class="detailList">
-									<dt class="heading">Throws:</dt>
+									<dt class="heading">异常:</dt>
 									<for each="item" in="member.exceptions">
 										<dt>
 											{+((item.type)?"<span class=\"light fixedFont\">{"+(new Link().toSymbol(item.type))+"}</span> " : "")+} <b>{+item.name+}</b>
@@ -540,7 +540,7 @@
 								</if>
 								<if test="member.returns.length">
 									<dl class="detailList">
-									<dt class="heading">Returns:</dt>
+									<dt class="heading">返回值:</dt>
 									<for each="item" in="member.returns">
 										<dd>{+((item.type)?"<span class=\"light fixedFont\">{"+(new Link().toSymbol(item.type))+"}</span> " : "")+}{+resolveLinks(item.desc)+}</dd>
 									</for>
@@ -548,7 +548,7 @@
 								</if>
 								<if test="member.requires.length">
 									<dl class="detailList">
-									<dt class="heading">Requires:</dt>
+									<dt class="heading">需求:</dt>
 									<for each="item" in="member.requires">
 										<dd>{+ resolveLinks(item) +}</dd>
 									</for>
@@ -556,7 +556,7 @@
 								</if>
 								<if test="member.see.length">
 									<dl class="detailList">
-									<dt class="heading">See:</dt>
+									<dt class="heading">查看相关:</dt>
 									<for each="item" in="member.see">
 										<dd>{+ new Link().toSymbol(item) +}</dd>
 									</for>
@@ -589,7 +589,7 @@
 									<br />
 									<i>Defined in: </i> {+new Link().toSrc(member.srcFile)+}.
 								</if>
-								<if test="member.author"><br /><i>Author: </i>{+member.author+}.</if>
+								<if test="member.author"><br /><i>作者: </i>{+member.author+}.</if>
 							</div>
 							
 							<if test="member.example.length">
@@ -600,7 +600,7 @@
 							
 								<if test="member.params.length">
 									<dl class="detailList">
-									<dt class="heading">Parameters:</dt>
+									<dt class="heading">参数:</dt>
 									<for each="item" in="member.params">
 										<dt>
 											{+((item.type)?"<span class=\"light fixedFont\">{"+(new Link().toSymbol(item.type))+"}</span> " : "")+}<b>{+item.name+}</b>
@@ -612,7 +612,7 @@
 								</if>
 								<if test="member.deprecated">
 									<dl class="detailList">
-									<dt class="heading">Deprecated:</dt>
+									<dt class="heading">废弃:</dt>
 									<dt>
 										{+ resolveLinks(member.deprecated) +}
 									</dt>
@@ -620,14 +620,14 @@
 								</if>
 								<if test="member.since">
 									<dl class="detailList">
-									<dt class="heading">Since:</dt>
+									<dt class="heading">始于:</dt>
 										<dd>{+ member.since +}</dd>
 									</dl>
 									</dl>
 								</if>
 								<if test="member.exceptions.length">
 									<dl class="detailList">
-									<dt class="heading">Throws:</dt>
+									<dt class="heading">异常:</dt>
 									<for each="item" in="member.exceptions">
 										<dt>
 											{+((item.type)?"<span class=\"light fixedFont\">{"+(new Link().toSymbol(item.type))+"}</span> " : "")+} <b>{+item.name+}</b>
@@ -638,7 +638,7 @@
 								</if>
 								<if test="member.returns.length">
 									<dl class="detailList">
-									<dt class="heading">Returns:</dt>
+									<dt class="heading">返回值:</dt>
 									<for each="item" in="member.returns">
 										<dd>{+((item.type)?"<span class=\"light fixedFont\">{"+(new Link().toSymbol(item.type))+"}</span> " : "")+}{+resolveLinks(item.desc)+}</dd>
 									</for>
@@ -646,7 +646,7 @@
 								</if>
 								<if test="member.requires.length">
 									<dl class="detailList">
-									<dt class="heading">Requires:</dt>
+									<dt class="heading">需求:</dt>
 									<for each="item" in="member.requires">
 										<dd>{+ resolveLinks(item) +}</dd>
 									</for>
@@ -654,7 +654,7 @@
 								</if>
 								<if test="member.see.length">
 									<dl class="detailList">
-									<dt class="heading">See:</dt>
+									<dt class="heading">查看相关:</dt>
 									<for each="item" in="member.see">
 										<dd>{+ new Link().toSymbol(item) +}</dd>
 									</for>
