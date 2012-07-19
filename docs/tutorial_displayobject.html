@@ -1,0 +1,149 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>QuarkJS - An HTML5 Game Framework</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="quarkjs, a html5 game framework.">
+    <meta name="author" content="flashlizi">
+
+    <!-- Le styles -->
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <style type="text/css">
+      body {
+        padding-top: 60px;
+        padding-bottom: 40px;
+      }
+      .sidebar-nav {
+        padding: 9px 0;
+      }
+    </style>
+    <link href="css/bootstrap-responsive.css" rel="stylesheet">
+    <link href="css/prettify.css" rel="stylesheet">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+
+  <body onload="prettyPrint();">
+
+    <div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container-fluid">
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          <a class="brand" href="#">QuarkJS - An HTML5 Game Framework</a>
+          <div class="nav-collapse">
+            <ul class="nav">
+              <li><a href="index.html">首页</a></li>
+              <li><a href="http://github.com/quark-dev-team/quarkjs" target="_blank">源码下载</a></li>
+              <li><a href="api/index.html">API文档</a></li>
+              <li class="active"><a href="#">使用指南</a></li>
+              <li><a href="demo.html">作品演示</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container-fluid">
+      <div class="row-fluid">
+        <div class="span3">
+          <div class="well sidebar-nav">
+            <ul class="nav nav-list">
+              <li class="nav-header">使用指南</li>
+              <li><a href="tutorial.html">快速开始 - Getting Started</a></li>
+              <li><a href="tutorial_infrastructure.html">基础架构 - Infrastructure</a></li>
+              <li><a href="tutorial_context.html">上下文 - Context</a></li>
+              <li class="active"><a href="#">显示对象 - DisplayObject</a></li>
+              <li><a href="tutorial_event.html">事件处理 - Handling Events</a></li>
+
+              <li class="nav-header">实例分析</li>
+              <li><a href="tutorial_squirrel.html">跳跃的小松鼠</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="span9">
+          <div class="page-header">
+            <h1>显示对象（DisplayObject）</h1>
+          </div>
+
+          <div>
+
+            <div>
+              <p><img src="images/displayobject.jpg"></p><br/>
+              <ul>
+                <li>显示对象是Quark显示对象列表结构的顶级对象。</li>
+                <li>Image即图片。一般包括 HTMLImageElement、HTMLCanvasElement 和 HTMLVideoElement。在Quark中图片会被封装成一个Quark.Drawable 的对象。通过 setDrawable() 和 getDrawable() 接口来设置和获取。</li>
+                <li>Data即数据。包括显示对象的 x、y、width、height、alpha、rotation、visible、scaleX、scaleY、regX、regY、eventEnabled、polyArea等属性以及用户自定义的各种数据。</li>
+                <li>可以通过继承扩展不同的显示对象。</li>
+              </ul>
+            </div>
+            <br>
+
+            <div>
+              <h3><li>显示对象容器（DisplayObjectContainer）</li></h3><br/>
+              <ul>
+                <li>显示对象容器就是一种可以容纳子对象的显示对象。显示对象和显示对象容器的嵌套就构成了Quark显示对象列表结构。这跟HTML的DOM树结构非常相似。</li>
+                <li>舞台Stage是一种特殊的显示对象。他是显示对象结构的根root，总入口。</li>
+                <li>显示对象容器通过 addChild() 和 removeChild() 等方法来添加和删除子对象。</li>
+                <li>显示对象容器里的子对象采用自动深度管理方法。一般新添加的对象会显示在之前添加的对象之上。可以通过 setChildIndex() 等方法来改变子对象在容器中的索引位置，即深度。</li>
+                <li>显示对象容器提供 getObjectUnderPoint() 方法来获得某一点下的子对象。</li>
+              </ul>
+            </div>
+            <br>
+
+            <div>
+              <h3><li>显示对象生命周期（DisplayObject LifeCircle）</li></h3><br/>
+              <p><img src="images/displayobject_lifecircle.jpg"></p>
+              <ul>
+                <li>显示对象的生命周期开始于添加到显示对象列表 container.addChild(obj)。</li>
+                <li>显示对象的生命周期结束于移除显示对象列表 container.removeChild(obj)。</li>
+                <li>在通过 stage.step() 方法刷新舞台的显示对象列表时，会依次循环调用显示对象的 update() 和 render() 方法来实现更新对象数据和渲染。</li>
+              </ul>
+            </div>
+            <br>
+
+            <div>
+              <h3><li>显示对象的事件处理机制（Event Mechanism）</li></h3><br/>
+              <ul>
+                <li>Quark提供一个简单的 EventManager 来做系统事件的监听和回调，通过 EventManager.registerStage() 方法注册相应的事件如mousedown、touchstart等到舞台，舞台会自动转发给触发事件的显示对象。</li>
+                <li>可以通过 obj.addEventListener() 方法让显示对象监听和响应各种事件。</li>
+              </ul>
+            </div>
+            <br>
+
+            <div>
+              <h3><li>显示对象的碰撞检测（Object Collision）</li></h3><br/>
+              <ul>
+                <li>Quark目前只提供矩形碰撞(Rectangle Collision)，暂不支持像素级别的碰撞检测(Pixel Collision)。</li>
+                <li>显示对象提供 getBounds() 方法获得其外包围矩形区域。</li>
+                <li>显示对象提供 hitTestPoint() 和 hitTestObject() 等方法来做点或对象的碰撞检测。</li>
+              </ul>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <hr>
+
+      <footer>
+        <p style="text-align:center;">&copy; QuarkJS Dev-Team 2012</p>
+      </footer>
+
+    </div>
+
+    <script src="js/jquery.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <script src="js/prettify.js"></script>
+
+  </body>
+</html>
