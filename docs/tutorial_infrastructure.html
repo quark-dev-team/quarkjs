@@ -58,8 +58,8 @@
           <div class="well sidebar-nav">
             <ul class="nav nav-list">
               <li class="nav-header">使用指南</li>
-              <li class="active"><a href="#">快速开始 - Getting Started</a></li>
-              <li><a href="tutorial_infrastructure.html">基础架构 - Infrastructure</a></li>
+              <li><a href="tutorial.html">快速开始 - Getting Started</a></li>
+              <li class="active"><a href="#">基础架构 - Infrastructure</a></li>
               <li><a href="tutorial_context.html">上下文 - Context</a></li>
               <li><a href="tutorial_displayobject.html">显示对象 - DisplayObject</a></li>
               <li><a href="tutorial_event.html">事件处理 - Handling Events</a></li>
@@ -72,70 +72,46 @@
 
         <div class="span9">
           <div class="page-header">
-            <h1>快速开始</h1>
+            <h1>基础架构</h1>
           </div>
 
           <div>
             <div>
-              <h3>1. 下载安装</h3><br/>
-              <p>到GitHub上下载quarkjs的最新版本：<a href="http://github.com/quark-dev-team/quarkjs" target="_blank">http://github.com/quark-dev-team/quarkjs</a>
-              <a class="btn btn-primary" href="http://github.com/quark-dev-team/quarkjs/zipball/master" target="_blank">直接下载 &raquo;</a></p>
-              <p>然后把quarkjs类库引入到html页面：</p>
-              <pre class="prettyprint linenums lang-html">&lt;script src="js/quark.base-1.0.0.js"&gt;&lt;/script&gt;</pre>
+              <h3>Quark的基础架构图：</h3><br/>
+              <p><img src="images/infrastructure.jpg"></p><br/>
             </div>
 
             <div>
-              <h3>2. 创建渲染上下文</h3><br/>
-              <p>上下文Context在quark中负责渲染，目前有DOMContext和CanvasContext两种。</p>
-              <pre class="prettyprint linenums lang-js">//create a DOMContext
-var container = Quark.getDOM("container");
-var domContext = new Quark.DOMContext({canvas:container});
-
-//or create a CanvasContext
-var container = Quark.getDOM("container");
-var canvas = Quark.createDOM("canvas", {width:480, height:320, style:
-{
-    position:"absolute",
-    backgroundColor:"#fff"
-}});
-container.appendChild(canvas);
-var canvasContext = new Quark.CanvasContext({canvas:canvas});</pre>
+              <h3><li>显示对象列表（Display Object List）</li></h3><br/>
+              <ul>
+                <li>显示对象列表是Quark中参照Actionscript3中的显示对象列表设计的一套显示和管理对象的结构。他跟HTML的DOM树结构非常相似。</li>
+                <li>显示对象列表的根是舞台stage，可以通过调用 stage.step() 方法来更新显示对象列表。</li>
+              </ul>
             </div>
+            <br>
 
             <div>
-              <h3>3. 创建舞台</h3><br/>
-              <p>显示对象通过Context在舞台Stage上被渲染出来。</p>
-              <pre class="prettyprint linenums lang-js">var stage = new Quark.Stage({width:480, height:320, context:canvasContext, update:function()
-{
-    //write your own update code here
-}});</pre>
+              <h3><li>上下文（Context）</li></h3><br/>
+              <ul>
+                <li>Context在Quark中负责对象的渲染，还包括位移、旋转、缩放等变换。参照CanvasRenderingContext2D的设计思路，我们实现了CanvasContext和DOMContext。</li>
+                <li>CanvasContext采用canvas渲染，DOMContext采用DOM和CSS的 background 和 transform(3d) 进行渲染。</li>
+                <li>Context有一个画布canvas属性，这是显示对象将被渲染到的地方。canvas属性是一个 HTMLCanvasElement 或 HTMLDivElement 对象。</li>
+                <li>Context会被注入到舞台stage里，显示对象列表更新的时候会调用context的 transform() 进行变换，再调用 draw() 方法绘制对象。</li>
+              </ul>
             </div>
+            <br>
 
             <div>
-              <h3>4. 创建计时器</h3><br/>
-              <p>舞台Stage上的物体的运动等变化，都是通过一个计时器Timer不断地调用Stage.step()方法来实现刷新的。</p>
-              <pre class="prettyprint linenums lang-js">var fps = 60;
-var timer = new Q.Timer(1000/fps);
-timer.addListener(stage);
-timer.start();</pre>
+              <h3><li>计时器（Timer）</li></h3><br/>
+              <ul>
+                <li>Timer是一个计时器。在Quark中用来驱动显示对象列表的更新和渲染。</li>
+                <li>Timer通过 addListener() 方法来注册侦听器(侦听器需实现 step() 方法)。</li>
+              </ul>
             </div>
+            <br>
 
             <div>
-              <h3>5. 注册舞台事件</h3><br/>
-              <p>要想舞台上的显示对象能响应用户的点击、触碰等交互事件，就必需为舞台注册相应的事件。</p>
-              <pre class="prettyprint linenums lang-js">var em = new Quark.EventManager();
-var events = Quark.supportTouch ? ["touchstart", "touchmove", "touchend"] : ["mousedown", "mousemove", "mouseup"];
-em.registerStage(stage, events);</pre>
-            </div>
-
-            <div>
-              <h3>6. 准备工作完成</h3><br/>
-              <p>至此，初始化工作基本完成。你可以开始利用quark提供的各种类和方法来创建各种显示对象。开始创建你的第一个HTML5游戏吧！</p>
-              <pre class="prettyprint linenums lang-js">var bmp = new Quark.Bitmap({image:imgElem, rect:[0,0,100,100], update:function()
-{
-    //update code here
-}});
-stage.addChild(bmp);</pre>
+              <p>显示对象列表、上下文、计时器三者分工合作，共同组成了Quark Base的架构。</p>
             </div>
 
           </div>

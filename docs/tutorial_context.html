@@ -1,0 +1,112 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>QuarkJS - An HTML5 Game Framework</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="quarkjs, a html5 game framework.">
+    <meta name="author" content="flashlizi">
+
+    <!-- Le styles -->
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <style type="text/css">
+      body {
+        padding-top: 60px;
+        padding-bottom: 40px;
+      }
+      .sidebar-nav {
+        padding: 9px 0;
+      }
+    </style>
+    <link href="css/bootstrap-responsive.css" rel="stylesheet">
+    <link href="css/prettify.css" rel="stylesheet">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+
+  <body onload="prettyPrint();">
+
+    <div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container-fluid">
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          <a class="brand" href="#">QuarkJS - An HTML5 Game Framework</a>
+          <div class="nav-collapse">
+            <ul class="nav">
+              <li><a href="index.html">首页</a></li>
+              <li><a href="http://github.com/quark-dev-team/quarkjs" target="_blank">源码下载</a></li>
+              <li><a href="api/index.html">API文档</a></li>
+              <li class="active"><a href="#">使用指南</a></li>
+              <li><a href="demo.html">作品演示</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container-fluid">
+      <div class="row-fluid">
+        <div class="span3">
+          <div class="well sidebar-nav">
+            <ul class="nav nav-list">
+              <li class="nav-header">使用指南</li>
+              <li><a href="tutorial.html">快速开始 - Getting Started</a></li>
+              <li><a href="tutorial_infrastructure.html">基础架构 - Infrastructure</a></li>
+              <li class="active"><a href="#">上下文 - Context</a></li>
+              <li><a href="tutorial_displayobject.html">显示对象 - DisplayObject</a></li>
+              <li><a href="tutorial_event.html">事件处理 - Handling Events</a></li>
+
+              <li class="nav-header">实例分析</li>
+              <li><a href="tutorial_squirrel.html">跳跃的小松鼠</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="span9">
+          <div class="page-header">
+            <h1>上下文（Context）</h1>
+          </div>
+
+          <div>
+            <div>
+              <p>HTML5提供了一些图形渲染方法，比如Canvas、DIV+CSS3、VML、SVG等。一般的我们使用Canvas，但是在一些移动设备上（如iPhone），Canvas性能还不够好，我们在实际开发中发现DIV+CSS3在某些应用场景中性能更好。因此我们设计了上下文Context来实现不同的渲染方式，类似CanvasRenderingContext2D的设计。</p>
+              <br/>
+            </div>
+
+            <div>
+              <h3><li>使用方法</li></h3><br/>
+              <p>当前，我们有两种上下文：CanvasContext 和 DOMContext。</p>
+              <p>CanvasContext示例：</p>
+              <pre class="prettyprint linenums lang-js">var canvas = document.getElementById("myCanvas"); //myCanvas是一个canvas元素
+var context = new Quark.CanvasContext({canvas:canvas});</pre>
+              <p>DOMContext示例：</p>
+              <pre class="prettyprint linenums lang-js">var container = document.getElementById("container"); //container是一个div元素
+var context = new Quark.DOMContext({canvas:container}); //把container作为canvas参数传给DOMContext</pre>
+              <p>当上下文Context初始化并传给一个舞台stage后，你就可以几乎不用关心它的存在，而集中专注于游戏逻辑的开发。</p>
+            </div>
+           
+          </div>
+        </div>
+      </div>
+      <hr>
+
+      <footer>
+        <p style="text-align:center;">&copy; QuarkJS Dev-Team 2012</p>
+      </footer>
+
+    </div>
+
+    <script src="js/jquery.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <script src="js/prettify.js"></script>
+
+  </body>
+</html>

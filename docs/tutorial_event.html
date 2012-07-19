@@ -58,11 +58,11 @@
           <div class="well sidebar-nav">
             <ul class="nav nav-list">
               <li class="nav-header">使用指南</li>
-              <li class="active"><a href="#">快速开始 - Getting Started</a></li>
+              <li><a href="tutorial.html">快速开始 - Getting Started</a></li>
               <li><a href="tutorial_infrastructure.html">基础架构 - Infrastructure</a></li>
               <li><a href="tutorial_context.html">上下文 - Context</a></li>
               <li><a href="tutorial_displayobject.html">显示对象 - DisplayObject</a></li>
-              <li><a href="tutorial_event.html">事件处理 - Handling Events</a></li>
+              <li class="active"><a href="#">事件处理 - Handling Events</a></li>
 
               <li class="nav-header">实例分析</li>
               <li><a href="tutorial_squirrel.html">跳跃的小松鼠</a></li>
@@ -72,71 +72,53 @@
 
         <div class="span9">
           <div class="page-header">
-            <h1>快速开始</h1>
+            <h1>事件处理</h1>
           </div>
 
           <div>
             <div>
-              <h3>1. 下载安装</h3><br/>
-              <p>到GitHub上下载quarkjs的最新版本：<a href="http://github.com/quark-dev-team/quarkjs" target="_blank">http://github.com/quark-dev-team/quarkjs</a>
-              <a class="btn btn-primary" href="http://github.com/quark-dev-team/quarkjs/zipball/master" target="_blank">直接下载 &raquo;</a></p>
-              <p>然后把quarkjs类库引入到html页面：</p>
-              <pre class="prettyprint linenums lang-html">&lt;script src="js/quark.base-1.0.0.js"&gt;&lt;/script&gt;</pre>
-            </div>
 
             <div>
-              <h3>2. 创建渲染上下文</h3><br/>
-              <p>上下文Context在quark中负责渲染，目前有DOMContext和CanvasContext两种。</p>
-              <pre class="prettyprint linenums lang-js">//create a DOMContext
-var container = Quark.getDOM("container");
-var domContext = new Quark.DOMContext({canvas:container});
-
-//or create a CanvasContext
-var container = Quark.getDOM("container");
-var canvas = Quark.createDOM("canvas", {width:480, height:320, style:
-{
-    position:"absolute",
-    backgroundColor:"#fff"
-}});
-container.appendChild(canvas);
-var canvasContext = new Quark.CanvasContext({canvas:canvas});</pre>
-            </div>
-
-            <div>
-              <h3>3. 创建舞台</h3><br/>
-              <p>显示对象通过Context在舞台Stage上被渲染出来。</p>
-              <pre class="prettyprint linenums lang-js">var stage = new Quark.Stage({width:480, height:320, context:canvasContext, update:function()
-{
-    //write your own update code here
-}});</pre>
-            </div>
-
-            <div>
-              <h3>4. 创建计时器</h3><br/>
-              <p>舞台Stage上的物体的运动等变化，都是通过一个计时器Timer不断地调用Stage.step()方法来实现刷新的。</p>
-              <pre class="prettyprint linenums lang-js">var fps = 60;
-var timer = new Q.Timer(1000/fps);
-timer.addListener(stage);
-timer.start();</pre>
-            </div>
-
-            <div>
-              <h3>5. 注册舞台事件</h3><br/>
-              <p>要想舞台上的显示对象能响应用户的点击、触碰等交互事件，就必需为舞台注册相应的事件。</p>
-              <pre class="prettyprint linenums lang-js">var em = new Quark.EventManager();
-var events = Quark.supportTouch ? ["touchstart", "touchmove", "touchend"] : ["mousedown", "mousemove", "mouseup"];
+              <h3><li>使用 Quark.EventManager 注册舞台事件</li></h3><br/>
+              <pre>var em = new Q.EventManager();
+var events = Q.supportTouch ? ["touchstart", "touchmove", "touchend"] : ["mousedown", "mousemove", "mouseup"];
 em.registerStage(stage, events);</pre>
             </div>
+            <br>
 
             <div>
-              <h3>6. 准备工作完成</h3><br/>
-              <p>至此，初始化工作基本完成。你可以开始利用quark提供的各种类和方法来创建各种显示对象。开始创建你的第一个HTML5游戏吧！</p>
-              <pre class="prettyprint linenums lang-js">var bmp = new Quark.Bitmap({image:imgElem, rect:[0,0,100,100], update:function()
+              <h3><li>为显示对象编写事件侦听函数</li></h3><br/>
+              <pre>obj.addEventListener("touchend", function(e)
 {
-    //update code here
-}});
-stage.addChild(bmp);</pre>
+  //do something
+});</pre>
+              <p>事件侦听函数会接收一个事件参数e，它包含e.eventX，e.eventY，e.eventTarget，e.lastEventTarget等属性。</p>
             </div>
+            <br>
+
+            <div>
+              <h3><li>删除事件侦听</li></h3><br/>
+              <pre>//删除指定事件类型的指定侦听函数
+obj.removeEventListener("touchend", touchendHandler);
+
+//删除指定事件类型的所有侦听函数
+obj.removeEventListener("touchend");</pre>
+            </div>
+            <br>
+
+            <div>
+              <h3><li>删除舞台事件</li></h3><br/>
+              <pre>em.unregisterStage(stage, events);</pre>
+            </div>
+            <br>
+
+            <div>
+              <h3><li>一些方法的简写</li></h3><br/>
+              <pre>obj.on = obj.addEventListener
+obj.un = obj.removeEventListener
+obj.fire = obj.dispatchEvent</pre>
+            </div>
+            
 
           </div>
         </div>

@@ -18,18 +18,9 @@
       .sidebar-nav {
         padding: 9px 0;
       }
-      .hero-unit {
-        padding: 30px;
-      }
-      .hero-unit p {
-        font-size: 16px;
-      }
-      .hero-unit li {
-        font-size: 16px;
-        line-height: 24px;
-      }
     </style>
     <link href="css/bootstrap-responsive.css" rel="stylesheet">
+    <link href="css/prettify.css" rel="stylesheet">
 
     <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
@@ -37,7 +28,7 @@
     <![endif]-->
   </head>
 
-  <body>
+  <body onload="prettyPrint();">
 
     <div class="navbar navbar-fixed-top">
       <div class="navbar-inner">
@@ -50,51 +41,52 @@
           <a class="brand" href="#">QuarkJS - An HTML5 Game Framework</a>
           <div class="nav-collapse">
             <ul class="nav">
-              <li class="active"><a href="#">首页</a></li>
+              <li><a href="index.html">首页</a></li>
               <li><a href="http://github.com/quark-dev-team/quarkjs" target="_blank">源码下载</a></li>
               <li><a href="api/index.html">API文档</a></li>
               <li><a href="tutorial.html">使用指南</a></li>
-              <li><a href="demo.html">作品演示</a></li>
+              <li class="active"><a href="#">作品演示</a></li>
             </ul>
           </div>
         </div>
       </div>
     </div>
 
-    <div class="container-fluid">
-      <div class="row-fluid">
-        <div class="span3">
-          <div class="well sidebar-nav">
-            <ul class="nav nav-list">
-              <li class="active"><a href="#">首页</a></li>
-              <li><a href="http://github.com/quark-dev-team/quarkjs" target="_blank">源码下载</a></li>
-              <li><a href="api/index.html">API文档</a></li>
-              <li><a href="tutorial.html">使用指南</a></li>
-              <li><a href="demo.html">作品演示</a></li>
-            </ul>
-          </div>
-        </div>
+    <div class="container">
+      
+      <h1>作品演示</h1><hr><br/>
+      <ul class="thumbnails">
+        <li class="span3">
+          <a href="http://www.riaidea.com/html5/fishjoy/" target="_blank" class="thumbnail">
+            <img src="images/fishjoy_260.jpg" width="260" height="180" alt="">
+          </a>
+          <h4 style="padding:10px;text-align:center;">Fish Joy</h4>
+        </li>
 
-        <div class="span9">
-          <div class="hero-unit">
-            <h1>QuarkJS</h1><br/>
-            <p>QuarkJS是一个HTML5游戏框架，它的目标是提供一套简单高效的方法创建HTML5游戏。</p>
-            <p>它具有以下特性：</p>
-            <ul>
-              <li>面向对象编程模式。</li>
-              <li>完整的显示对象架构。使用简单、易于扩展。</li>
-              <li>支持Canvas和DOM两种渲染模式。</li>
-              <li>兼容各种常见的桌面和移动浏览器。</li>
-            </ul>
-            <br/>
-            <p>
-              <a class="btn btn-primary btn-large" style="font-size:18px;" href="http://github.com/quark-dev-team/quarkjs" target="_blank">查看项目（GitHub）</a></p>
-            </p>
-          </div>
+        <li class="span3">
+          <a href="http://www.riaidea.com/html5/dolphin/" target="_blank" class="thumbnail">
+            <img src="images/dolphin_260.jpg" width="260" height="180" alt="">
+          </a>
+          <h4 style="padding:10px;text-align:center;">Happy Dolphin</h4>
+        </li>
 
-        </div>
-      </div>
+        <li class="span3">
+          <a href="http://www.riaidea.com/html5/runner/" target="_blank" class="thumbnail">
+            <img src="images/runner_260.jpg" width="260" height="180" alt="">
+          </a>
+          <h4 style="padding:10px;text-align:center;">Runner *</h4>
+        </li>
 
+        <li class="span3">
+          <a href="http://www.riaidea.com/html5/minesweeper/" target="_blank" class="thumbnail">
+            <img src="images/mine_260.jpg" width="260" height="180" alt="">
+          </a>
+          <h4 style="padding:10px;text-align:center;">Mine Sweeper 2D *</h4>
+        </li>
+
+      </ul>
+
+      <p>说明：带*的作品由QuarkJS的老版本CasualJS开发。</p>
       <hr>
 
       <footer>
@@ -105,6 +97,7 @@
 
     <script src="js/jquery.js"></script>
     <script src="js/bootstrap.js"></script>
+    <script src="js/prettify.js"></script>
 
   </body>
 </html>
