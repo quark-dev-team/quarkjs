@@ -79,9 +79,9 @@ function start()
 function update()
 {
 	frames++;	
-	rect1.rotation -= 1;
+	rect1.rotation += 1;
 	rect2.rotation += 1;
-	var hit = rect1.hitTestObject(rect2);
+	var hit = rect1.hitTestObject(rect2, true);
 	rect1.alpha = rect2.alpha = hit ? 0.5 : 1;
 }
 
