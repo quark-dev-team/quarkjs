@@ -278,7 +278,7 @@ Quark.hitTestObject = function(obj1, obj2, usePolyCollision)
 	
 	if(hit && usePolyCollision)
 	{
-		hit = Quark.polygonCollision(b2, b2);
+		hit = Quark.polygonCollision(b1, b2);
 		return hit !== false;
 	}
 	return hit;
