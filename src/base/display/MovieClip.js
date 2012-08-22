@@ -165,7 +165,7 @@ MovieClip.prototype._update = function(timeInfo)
 		var delta = this.useFrames ? 1 : timeInfo && timeInfo.deltaTime;
 		frame = this._frames[this.nextFrame(delta)];
 	}
-	this.setRect(rect);
+	this.setRect(frame.rect);
 	
 	MovieClip.superClass._update.call(this, timeInfo);
 };
