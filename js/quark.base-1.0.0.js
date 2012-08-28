@@ -1,5 +1,5 @@
 /*
-Quark 1.0.0 (build 120)
+Quark 1.0.0 (build 121)
 Licensed under the MIT License.
 http://github.com/quark-dev-team/quarkjs
 */
@@ -787,6 +787,7 @@ EventManager.prototype._onEvent = function(e, params, callback)
         ne = (e.touches && e.touches.length > 0) ? e.touches[0] : 
             (e.changedTouches && e.changedTouches.length > 0) ? e.changedTouches[0] : e;
         ne.type = type;
+        ne.rawEvent = e;
     }
 	
 	if(type == "keydown" || type == "keyup" || type == "keypress")

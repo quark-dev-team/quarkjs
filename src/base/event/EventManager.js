@@ -101,6 +101,7 @@ EventManager.prototype._onEvent = function(e, params, callback)
         ne = (e.touches && e.touches.length > 0) ? e.touches[0] : 
             (e.changedTouches && e.changedTouches.length > 0) ? e.changedTouches[0] : e;
         ne.type = type;
+        ne.rawEvent = e;
     }
 	
 	if(type == "keydown" || type == "keyup" || type == "keypress")
