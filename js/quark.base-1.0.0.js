@@ -3741,6 +3741,7 @@ Graphics.prototype.beginLinearGradientFill = function(x0, y0, x1, y1, colors, ra
 	{
 		gradient.addColorStop(ratios[i], colors[i]);
 	}
+	this.hasFill = true;
 	return this._addAction(["fillStyle", (this.fillStyle = gradient)]);
 };
 
@@ -3753,7 +3754,8 @@ Graphics.prototype.beginRadialGradientFill = function(x0, y0, r0, x1, y1, r1, co
 	for (var i = 0, len = colors.length; i < len; i++)
 	{
 		gradient.addColorStop(ratios[i], colors[i]);
-	}	
+	}
+	this.hasFill = true;
 	return this._addAction(["fillStyle", (this.fillStyle = gradient)]);
 };
 
@@ -3765,6 +3767,7 @@ Graphics.prototype.beginRadialGradientFill = function(x0, y0, r0, x1, y1, r1, co
 Graphics.prototype.beginBitmapFill = function(image, repetition)
 {
 	var pattern = Graphics._getContext().createPattern(image, repetition || "");
+	this.hasFill = true;
 	return this._addAction(["fillStyle", (this.fillStyle = pattern)]);
 };
 
