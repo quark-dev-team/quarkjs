@@ -1,5 +1,5 @@
 /*
-Quark 1.0.0 (build 121)
+Quark 1.0.0 (build 122)
 Licensed under the MIT License.
 http://github.com/quark-dev-team/quarkjs
 */
