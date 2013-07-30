@@ -2795,15 +2795,14 @@ DisplayObject.prototype.toString = function()
 var DisplayObjectContainer = Quark.DisplayObjectContainer = function(props)
 {
 	this.eventChildren = true;
-	this.autoSize = false;
-	this.children = [];
+	this.autoSize = false;	
 
 	props = props || {};
 	DisplayObjectContainer.superClass.constructor.call(this, props);		
 	this.id = props.id || Quark.UIDUtil.createUID("DisplayObjectContainer");
-
 	this.setDrawable(props.drawable || props.image || null);
 	
+	this.children = [];
 	if(props.children)
 	{
 		for(var i = 0; i < props.children.length; i++)
