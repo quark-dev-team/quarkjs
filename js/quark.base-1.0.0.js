@@ -2636,7 +2636,7 @@ DisplayObject.prototype.localToGlobal = function(x, y)
 DisplayObject.prototype.globalToLocal = function(x, y) 
 {
 	var cm = this.getConcatenatedMatrix().invert();
-	cm = new Q.Matrix(1, 0, 0, 1, x, y).concat(cm);
+	cm = new Quark.Matrix(1, 0, 0, 1, x, y).concat(cm);
 	return {x:cm.tx, y:cm.ty};
 };
 
