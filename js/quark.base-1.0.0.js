@@ -1,5 +1,5 @@
 /*
-Quark 1.0.0 (build 123)
+Quark 1.0.0 (build 125)
 Licensed under the MIT License.
 http://github.com/quark-dev-team/quarkjs
 */
@@ -284,7 +284,7 @@ Quark.hitTestObject = function(obj1, obj2, usePolyCollision)
 	
 	if(hit && usePolyCollision)
 	{
-		hit = Quark.polygonCollision(b2, b2);
+		hit = Quark.polygonCollision(b1, b2);
 		return hit !== false;
 	}
 	return hit;
@@ -2257,7 +2257,7 @@ Quark.inherit(Audio, Quark.EventDispatcher);
  */
 Audio.prototype.load = function()
 {	
-	this._element.addEventListener("progress", this._evtHandler, false);
+	this._element.addEventListener("canplay", this._evtHandler, false);
 	this._element.addEventListener("ended", this._evtHandler, false);
 	this._element.addEventListener("error", this._evtHandler, false);
     try{
@@ -2272,25 +2272,13 @@ Audio.prototype.load = function()
  */
 Audio.prototype._evtHandler = function(e)
 {
-	if(e.type == "progress")
+	if(e.type == "canplay")
 	{
-		var i = 0, buffered = 0, ranges = e.target.buffered;
-		if(ranges && ranges.length > 0)
-		{
-			for (i = ranges.length - 1; i >= 0; i--)
-			{
-	          buffered = (ranges.end(i) - ranges.start(i));
-	        }
-		}
-		var percent = buffered / e.target.duration;
-		if(percent >= 1)
-		{
-			this._element.removeEventListener("progress", this._evtHandler);
-			this._element.removeEventListener("error", this._evtHandler);
-			this._loaded = true;
-			this.dispatchEvent({type:"loaded", target:this});
-			if(this.autoPlay) this.play();
-		}
+		this._element.removeEventListener("canplay", this._evtHandler);
+		this._element.removeEventListener("error", this._evtHandler);
+		this._loaded = true;
+		this.dispatchEvent({type:"loaded", target:this});
+		if(this.autoPlay) this.play();
 	}else if(e.type == "ended")
 	{
 		this.dispatchEvent({type:"ended", target:this});
@@ -2413,7 +2401,6 @@ function isDrawable(elem)
 };
 
 })();
-
 
 
 (function(){
@@ -3112,6 +3099,7 @@ DisplayObjectContainer.prototype.getObjectUnderPoint = function(x, y, usePolyCol
 
 
 
+
 (function(){
 
 /**
@@ -3663,7 +3651,6 @@ Button.prototype.setDrawable = function(drawable)
 })();
 
 
-
 (function(){
 
 /**
@@ -3996,6 +3983,7 @@ Graphics._getContext = function()
 };
 	
 })();
+
 
 
 

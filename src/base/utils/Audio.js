@@ -34,7 +34,7 @@ Quark.inherit(Audio, Quark.EventDispatcher);
  */
 Audio.prototype.load = function()
 {	
-	this._element.addEventListener("progress", this._evtHandler, false);
+	this._element.addEventListener("canplay", this._evtHandler, false);
 	this._element.addEventListener("ended", this._evtHandler, false);
 	this._element.addEventListener("error", this._evtHandler, false);
     try{
@@ -49,25 +49,13 @@ Audio.prototype.load = function()
  */
 Audio.prototype._evtHandler = function(e)
 {
-	if(e.type == "progress")
+	if(e.type == "canplay")
 	{
-		var i = 0, buffered = 0, ranges = e.target.buffered;
-		if(ranges && ranges.length > 0)
-		{
-			for (i = ranges.length - 1; i >= 0; i--)
-			{
-	          buffered = (ranges.end(i) - ranges.start(i));
-	        }
-		}
-		var percent = buffered / e.target.duration;
-		if(percent >= 1)
-		{
-			this._element.removeEventListener("progress", this._evtHandler);
-			this._element.removeEventListener("error", this._evtHandler);
-			this._loaded = true;
-			this.dispatchEvent({type:"loaded", target:this});
-			if(this.autoPlay) this.play();
-		}
+		this._element.removeEventListener("canplay", this._evtHandler);
+		this._element.removeEventListener("error", this._evtHandler);
+		this._loaded = true;
+		this.dispatchEvent({type:"loaded", target:this});
+		if(this.autoPlay) this.play();
 	}else if(e.type == "ended")
 	{
 		this.dispatchEvent({type:"ended", target:this});
